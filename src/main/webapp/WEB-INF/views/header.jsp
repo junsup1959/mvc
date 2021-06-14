@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MVC1234</title>
+    <title>MVC12222</title>
     <link href="${cpath }/resources/css/event.css" rel="stylesheet">
     <link href="${cpath }/resources/css/slick.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
