@@ -32,5 +32,15 @@
 
 </div>
 
+<div>
+<a href="${cpath }/member/movie">영화목록</a>
+</div>
+
+<c:if test="${not empty kakaoError }">
+	<script>
+		alert("${kakaoError}")
+	</script>
+</c:if>
+
 </body>
 </html>

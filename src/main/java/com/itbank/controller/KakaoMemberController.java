@@ -38,8 +38,7 @@ public class KakaoMemberController {
 	 * member_password 또한 없는 정보 -> 카카오 로그인 후 다시 설정하는것도 이상 / 하지만 개인정보 수정할 때 비밀번호를 받아서 수정하기 때문에 설정이 필요
 	 * 개인정보 수정 때 마찬가지로 api로 처리??
 	 * 
-	 * 중복되는 코드 리팩토링이 필요함.
-	 * servlet context 에 beans 로 등록시키는 방법
+	 * 전부 다 실패 했을 경우 msg 를 alert 로 보내주는 코드 하나 작성 !!!!
 	 * 
 	 * 카카오톡에서 직접 프로필을 변경하면 우리서버에서 연동할 방법이 없음
 	 * 최초 로그인 정보를 카톡에 저장하기 때문에
@@ -155,29 +154,13 @@ public class KakaoMemberController {
 		member.setMember_addr("United State");
 		member.setMember_phone("01012345678");
 		
-		
+	
 		ModelAndView mav = new ModelAndView();
 		// kakaoProfile.getKakao_account().getEmail() 가 존재하면 바로 홈페이지로 보내주고
 		if(ms.select(kakaoProfile.getKakao_account().getEmail()) == 1) {
-			System.out.println("이미 존재하는 아이디");
 
 			// 비밀번호는 검증할때마다 uuid 로 변하기 때문에 다른 unique 값인 member_email 만으로 멤버 객체 가져오기
-			MemberDTO login = ms.selectOne2(member);
-			System.out.println("login : "+login);
-			if(login != null) {
-				mav.setViewName("home");
-				session.setAttribute("login", login);
-				session.setMaxInactiveInterval(60*60*3);
-				System.out.println("로그인 성공");
-				return mav;
-				
-			}
-			System.out.println("로그인 실패1");
-			mav.setViewName("member/login");
-			
-//			System.out.println("mav.toString() :" + mav.toString());
-//			System.out.println("mav :" + mav);
-//			System.out.println("mav.getModel() : " +mav.getModel());
+			mav = login(member, session);
 			return mav;
 		}
 		
@@ -185,22 +168,32 @@ public class KakaoMemberController {
 		
 		int row = ms.insert(member);
 		if(row == 1) {
-			System.out.println("회원가입 완료");
-			MemberDTO login = ms.selectOne2(member);
-			if(login != null) {
-				mav.setViewName("home");
-				session.setAttribute("login", login);
-				session.setMaxInactiveInterval(60*60*3);
-				System.out.println("로그인 성공");
-				return mav;
-			}		
-			System.out.println("로그인 실패 ");
+			mav = login(member, session);
 			return mav;
-		}
-		mav.setViewName("member/login");
-		System.out.println("회원가입 실패");
+			}
+		// 전부 다 실패 했을 경우 msg 를 alert 로 보내주는 코드 하나 작성 !!!!
+		mav.addObject("kakaoError", "로그인을 실행할 수 없습니다. 관리자에게 문의하세요");
+		mav.setViewName("home");
 		return mav;
 		
+	}
+	
+	
+	
+	private ModelAndView login(MemberDTO member, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberDTO login = ms.selectOne2(member);
+		if(login != null) {
+			mav.setViewName("home");
+			session.setAttribute("login", login);
+			session.setMaxInactiveInterval(60*60*3);
+			System.out.println("로그인 성공");
+			return mav;
+			
+		}
+		mav.setViewName("member/login");
+		System.out.println("로그인 실패");
+		return mav;
 	}
 	
 }

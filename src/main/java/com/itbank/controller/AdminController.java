@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDTO;
 import com.itbank.admin_member.Admin_memberDTO;
 import com.itbank.service.AdminService;
@@ -28,6 +31,8 @@ public class AdminController {
 
 	@Autowired private AdminService as;
 	@Autowired private BoardSerivce bs;
+	
+	private ObjectMapper mapper = new ObjectMapper();
 	
 	@GetMapping({"", "/"})
 	public String admin(HttpSession session) {
@@ -44,8 +49,6 @@ public class AdminController {
 	
 		
 		String viewName = "redirect:/admin";
-		System.out.println("사원번호 : " + dto.getAdmin_num());
-		System.out.println("비밀번호 : " + dto.getAdmin_password());
 		Admin_memberDTO ad_login = as.login(dto);
 		
 		ModelAndView mav = new ModelAndView();
@@ -73,7 +76,7 @@ public class AdminController {
 			mav.setViewName("msg");
 			mav.addObject("msg","잘못된 접근입니다");
 		}
-		
+		mav.setViewName("admin/admin_member/adminMypage");
 		return mav;
 	}
 	
@@ -85,20 +88,27 @@ public class AdminController {
 		return mav;
 	}
 	
-	@GetMapping("/admin_member/insert")
-	public String admin_minsert() {
-		return "admin/admin_member/admin_member_insert";
-	}
+
 	@PostMapping("/admin_member/insert")
 	public String admin_minsert(Admin_memberDTO dto) {
-	
+		System.out.println(dto.getAdmin_name());
 		int row =as.insert(dto);
 		System.out.println(row);
-		return "redirect:/admin/admin_member";
+		return row+"";
+	}
+
+	@GetMapping(value="/admin_member/{admin_num}", produces = "application/json; charset=utf-8")
+	public String selectOne(@PathVariable String admin_num) throws JsonProcessingException {
+		System.out.println(admin_num);
+		String json = null;
+		Admin_memberDTO dto = as.selectOne(admin_num);
+		System.out.println("selectOne 실행 후 : " + dto.getAdmin_name());
+		json = mapper.writeValueAsString(dto);
+		
+		return json;
 	}
 
 	
-
 	//////////////////////////////////////////////////////////////
 	// -----------------------board-------------------------
 	
@@ -106,17 +116,23 @@ public class AdminController {
 	
 	
 	@GetMapping("/board")
-	public ModelAndView board() {
+	public ModelAndView board(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav= new ModelAndView("admin/board/boardList");
-		List<boardDTO>list= bs.boardAll();
+		int baordCount = bs.boardCount();
+		Paging paging = new Paging(page, baordCount);
+		
+		
+		List<boardDTO> list=bs.list(paging,param);
 		mav.addObject("list", list);
+		mav.addObject("paging", paging);
 		return mav;
 	}
 	@GetMapping("/board/read/{board_number}")
-	public ModelAndView read(@PathVariable int board_number) {
+	public ModelAndView read(@PathVariable int board_number,@RequestParam int page) {
 		ModelAndView mav= new ModelAndView("admin/board/read");
 		boardDTO dto=bs.selectOne(board_number);
 		mav.addObject("dto",dto);
+		mav.addObject("page", page);
 		
 		return mav;
 	}
@@ -129,31 +145,32 @@ public class AdminController {
 	
 	@PostMapping("/board/write")
 	public String board(boardDTO dto) {
-	System.out.println(dto.getFile());
 		int row=bs.insert(dto);
-	return "redirect:/admin/board";
+	return "redirect:/admin/board?page=1";
 	}
 	
 	@GetMapping("/board/update/{board_number}")
-	public ModelAndView update(@PathVariable int board_number) {
+	public ModelAndView update(@PathVariable int board_number, @RequestParam int page) {
 		
 		ModelAndView mav= new ModelAndView("admin/board/update");
 		boardDTO dto=bs.selectOne(board_number);
+		
 		mav.addObject("dto",dto);
+		mav.addObject("page", page);
 		
 		return mav;
 	}
 	@PostMapping("/board/update/{board_number}")
-	public String update1(boardDTO dto) {
+	public String update1(boardDTO dto,@RequestParam int page) {
 		int row =bs.update(dto);
 		
-		return "redirect:/admin/board/read/"+dto.getBoard_number();
+		return "redirect:/admin/board/read/"+dto.getBoard_number()+"?page="+page;
 	}
 	
 	
 	@GetMapping("/board/delete/{board_number}")
 	public String delete(@PathVariable int board_number) {
 	
-		return "redirect:/admin/board";
+		return "redirect:/admin/board/?page=1";
 	}
 }

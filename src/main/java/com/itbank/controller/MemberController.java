@@ -118,12 +118,10 @@ public class MemberController {
 			mav.setViewName("redirect:/member/modify");
 			return mav;
 			// 인터셉터로 다른페이지가 뜰때 modify 라는 session 이 존재하면 removeAttribute("modify") 로 삭제하고 뷰를 띄어준다.
-		}else {
-			mav.addObject("msg", "잘못된 비밀번호입니다.");
-			mav.setViewName("message");
-			return mav;
-			
 		}
+		mav.addObject("msg", "잘못된 비밀번호입니다.");
+		mav.setViewName("message");
+		return mav;
 	}
 	
 	
@@ -174,5 +172,9 @@ public class MemberController {
 		mav.addObject("member", member);
 		return mav;
 	}
+	
+
+
+	
 	
 }

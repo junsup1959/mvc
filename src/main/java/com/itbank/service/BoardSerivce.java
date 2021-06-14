@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDAO;
 import com.itbank.admin_board.boardDTO;
 
@@ -15,9 +16,11 @@ public class BoardSerivce {
 	@Autowired private boardDAO dao;
 	
 	
-	public List<boardDTO> boardAll() {
+	public List<boardDTO> list(Paging paging,HashMap<String, Object>param) {
 		// TODO Auto-generated method stub
-		return dao.list();
+		param.put("offset", paging.getOffset());
+		param.put("perPage",paging.getPerPage());
+		return dao.list(param);
 	}
 	public int insert(boardDTO dto) {
 		// TODO Auto-generated method stub
@@ -41,6 +44,10 @@ public class BoardSerivce {
 		dto.ready();
 		return dao.update(dto);
 		
+	}
+	public int boardCount() {
+		// TODO Auto-generated method stub
+		return dao.boardCount();
 	}
 
 }

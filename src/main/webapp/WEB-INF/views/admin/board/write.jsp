@@ -16,7 +16,7 @@
 $(document).ready(function() {
 	//여기 아래 부분
 	$('#summernote').summernote({
-		  height: 300,                 // 에디터 높이
+		  height: 350,                 // 에디터 높이
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
@@ -61,26 +61,29 @@ $(document).ready(function() {
 });
 </script>
 
+<section id="bodyWrap">
+	<div class="noticeWrap">
+		<form method="post" enctype="multipart/form-data">
+			<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
+			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
+		  	<p><input type="date" name="board_date"></p>
+		  	<p>
+			  	<select name="board_store">
+			  		<option value="부산">서울점</option>
+			  		<option value="서울">부산점</option>
+			  	</select>
+		  	</p>
+		  	<p>
+		  		<select name="board_notice">
+		  			<option value="N">공지</option>
+		  			<option value="E">이벤트</option>
+		  		</select>
+		  	</p>
+		  	<p>파일 업로드 : <input name="file" type="file"></p>
+		   	<p><textarea id="summernote" name="board_content"></textarea></p>
+		 	<button class="btn2">공지/이벤트작성</button>
+	 	</form>
+	</div>
+</section>
 
-	<h2>공지사항 작성하기</h2>
-	<form method="post" enctype="multipart/form-data">
-	<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
-	<p><input type="text" name="board_title" placeholder="제목" ></p>
-  	<p><input type="date" name="board_date"></p>
-  	<p>
-	  	<select name="board_store">
-	  		<option value="부산">서울점</option>
-	  		<option value="서울">부산점</option>
-	  	</select>
-  	</p>
-  	<p>
-  		<select name="board_notice">
-  			<option value="N">공지</option>
-  			<option value="E">이벤트</option>
-  		</select>
-  	</p>
-  	<p>링크용 파일?<input name="file" type="file"></p>
-   	<p><textarea id="summernote" name="board_content"></textarea></p>
- 	<button>작성</button>
- 	</form>
 <%@include file="../footer.jsp" %>

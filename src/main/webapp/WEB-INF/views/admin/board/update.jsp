@@ -98,6 +98,7 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
   	</p>
   	<p>링크용 파일?<input name="file" type="file"></p>
    	<p><textarea id="summernote" name="board_content"></textarea></p>
+   	<br>
  	<button id="write">작성</button>
  	</form>
  	

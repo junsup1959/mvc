@@ -5,12 +5,23 @@
 			
 <mapper namespace="com.itbank.admin_board.boardDAO">
 
-	<select id="list" resultType="board">
-		select * from board order by board_number desc
+	<select id="list" resultType="board" parameterType="hashmap">
+			select * from board
+   	 		order by 
+				board_number desc
+			<if test="keyword!=null and keyword.equals('')==false">
+   	 		where ${search} like '%${keyword}%'
+   	 		</if>
+			offset ${offset} rows
+   	 		fetch first ${perPage} rows only
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="board">
 		select * from board where board_number=#{number}
+	</select>
+	
+	<select id="boardCount" resultType="int">
+		select count(*) from board
 	</select>
 	
 	<insert id="insert" parameterType="board">

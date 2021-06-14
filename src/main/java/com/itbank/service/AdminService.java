@@ -26,6 +26,11 @@ public class AdminService {
 		return dao.login(dto);
 	}
 
+	public Admin_memberDTO selectOne(String admin_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(admin_num);
+	}
+
 	
 	
 }

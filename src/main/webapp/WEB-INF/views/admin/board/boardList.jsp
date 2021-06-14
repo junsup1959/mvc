@@ -4,6 +4,11 @@
 
 <div>
 
+<c:if test="${empty list}">
+	<h2>입력된 게시글이 없습니다.</h2>
+</c:if>
+
+<c:if test="${not empty list }">
 	<div>
 		<span>글번호</span>
 		<span>제목</span>
@@ -13,14 +18,35 @@
 	<c:forEach var="board" items="${list}">
 	<div>
 		<span>${board.board_number}</span>
-		<span><a href="${cpath}/admin/board/read/${board.board_number}">${board.board_title}<a></span>
+		<span><a href="${cpath}/admin/board/read/${board.board_number}?page=${paging.page}">${board.board_title}<a></span>
 		<span>${board.board_date}</span>
 		<span>${board.board_store }</span>
 	</div>
 	</c:forEach>
 	<br>
-	<a href="${cpath}/admin/board/write"><input type="button" value="글쓰기"></a>
+	<c:if test="${paging.prev }">
+	   	<a href="${cpath }/admin/board/?page=${paging.begin-1}">
+	   	[이전]</a>
+   	</c:if>
+	<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
+		<a href="${cpath }/admin/board/?page=${i}">[${i}]</a>
+	</c:forEach>
+	<c:if test="${paging.next }">
+	   	<a href="${cpath }/admin/board/?page=${paging.end+1}">
+	   	[다음]</a>
+   	</c:if>
+
+</c:if>
 	<br>
+	<form>
+	<select name="search">
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+	</select>
+	<input type="text" name="keyword">
+	<button>검색</button>
+	</form>
+	<a href="${cpath}/admin/board/write"><input type="button" value="글쓰기"></a>
 </div>
 
 <%@include file="../footer.jsp" %>
