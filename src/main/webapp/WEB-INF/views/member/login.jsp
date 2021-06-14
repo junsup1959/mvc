@@ -7,7 +7,9 @@
 <form method="post">
 	<p><input type="text" name="member_email" placeholder="아이디"  value="${cookie.user_check.value}" required autofocus></p>
 	<p><input type="text" name="member_password" placeholder="비밀번호" required></p>
-	<p><input type="submit" value="로그인"></p>
+	<p><input type="button" id="checkLogin" value="로그인"></p>
+	<div id="checkLoginMsg"></div>
+	
 
 </form>
 </div>	
@@ -41,6 +43,39 @@
 		alert("${kakaoError}")
 	</script>
 </c:if>
+
+
+
+<script>
+
+
+document.getElementById('checkLogin').onsubmit = function(event) {	// form을 submit하면
+	event.preventDefault();						// 기본 작동을 막고
+	
+	const formData = new FormData(event.target)	// submit된 form을 기반으로 formData를 생성
+	// 여기서부터 ajax
+	const url = '${cpath}/member/checkLogin'
+	const opt = {
+		method: 'POST',
+		body: formData,
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		console.log(text)
+		if(+text == 1) {
+			event.target.reset();
+		} 
+		else {
+			// 원래 form 제출 확인
+			document.getElementById('msg').innerText = '';
+			alert('가입하지 않은 아이디거나, 잘못된 비밀번호입니다.');
+		}
+	})
+}
+</script>
+
+
 
 </body>
 </html>

@@ -12,6 +12,9 @@ public interface MemberDAO {
 	
 	MemberDTO selectOne2(MemberDTO member);
 
+	@Select("select count(0) from member where member_email = #{member_email} and member_password = #{member_password}")
+	int selectOne3(MemberDTO dto);
+	
 	@Select("select count(*) from member where member_email = #{member_email}")
 	int select(String member_email);
 
@@ -32,6 +35,7 @@ public interface MemberDAO {
 
 	@Update("update member set member_password = #{member_password} where member_email = #{member_email}")
 	int updatePw(MemberDTO member);
+
 
 	
 

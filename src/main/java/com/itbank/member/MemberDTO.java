@@ -12,15 +12,15 @@ package com.itbank.member;
 
 public class MemberDTO {
 
-	private int member_number;
+	private String member_number;
 	private String member_email, member_name, member_password, member_phone, member_addr, member_gender, member_nick, member_deleted;
 	private String member_addr1, member_addr2;
 
 	
-	public int getMember_number() {
+	public String getMember_number() {
 		return member_number;
 	}
-	public void setMember_number(int member_number) {
+	public void setMember_number(String member_number) {
 		this.member_number = member_number;
 	}
 	public String getMember_email() {

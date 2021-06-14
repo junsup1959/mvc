@@ -10,7 +10,7 @@
    		 member_number, member_email, member_name, member_password, member_nick, member_phone, member_addr,  member_gender   
 		)
 	values(
-   		 member_seq.nextval, #{member_email}, #{member_name}, #{member_password}, #{member_nick}, #{member_phone}, #{member_addr} , #{member_gender}
+   		 #{member_number} || to_char(member_seq.nextval,'FM00000'), #{member_email}, #{member_name}, #{member_password}, #{member_nick}, #{member_phone}, #{member_addr} , #{member_gender}
 		)
 	
 	</insert>

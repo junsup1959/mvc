@@ -3,7 +3,9 @@ package com.itbank.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +20,14 @@ public class AjaxController {
 	@Autowired MemberService ms;
 	private ObjectMapper mapper = new ObjectMapper();
 
+	
+	@PostMapping("/checkLogin")
+	@ResponseBody
+	public String member(MemberDTO dto) {
+		int row = ms.selectOne3(dto);
+		return row + "";
+	}
+	
 	
 	@GetMapping(value = "/{member_email}/", produces = "application/json; charset=utf-8")
 	public String member(@PathVariable String member_email) throws JsonProcessingException{

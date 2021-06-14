@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class MemberService {
 	
 	public int insert(MemberDTO member) {
 //		member.setMember_password(getHash(member.getMember_password()));
+		String[] user_num = UUID.randomUUID().toString().split("-");
+		member.setMember_number(user_num[0]);
+		System.out.println(user_num[0]);
 		return dao.insert(member);
 	}
 
@@ -46,6 +50,12 @@ public class MemberService {
 		return dao.selectOne2(member);
 	}
 		
+
+	public int selectOne3(MemberDTO dto) {
+//		member.setMember_password(getHash(member.getMember_password()));
+		return dao.selectOne3(dto);
+	}
+
 
 	public int select(String member_email) {
 		return dao.select(member_email);
@@ -86,6 +96,8 @@ public class MemberService {
 	public int updatePw(MemberDTO member) {
 		return dao.updatePw(member);
 	}
+
+
 
 
 
