@@ -1,0 +1,83 @@
+@charset "UTF-8";
+    * {margin:0;padding:0;box-sizing:border-box;font-size:20px;color:#333;font-weight:normal;}
+	ul {list-style:none;}
+	a {text-decoration:none;}
+    
+	.cf:after {content:"";display:block;clear:both;}
+	body {width : 1900px; margin : 0 auto;}
+
+ /*-------------------------------- header ---------------------------------------*/
+    header { height:100px;}
+	header h1 a {display : inline-block; float : left; width : 85%; margin-left : 5%; text-align:center;line-height:100px;font-size:50px;font-weight: bolder; color : teal;}
+	
+	header .adminMy  {position: relative; float : left;}
+	header .adminMy h4{margin-top : 40px;}
+	header .adminMy ul {position: absolute; width : 240px; left : -50px;}
+	header .adminMy ul li { float : left; width : 80px; text-align : center; font-size: 14px; border-right: 1px solid teal}
+	header .adminMy ul li:last-child {border : none;}
+	header .adminMy ul li a {display:block; font-size: 14px;}
+ /*line-height:100px;세로 중앙정렬*/
+ 
+ /*-------------------------------- admin_main ---------------------------------------*/
+	.adminMenu {background: teal;}
+	.adminMenu>ul {width:1200px;margin:0 auto;padding:0 15px;}
+	.adminMenu>ul>li {float:left;width:20%;border-left:1px solid #fff;}
+	.adminMenu>ul>li:last-child {border-right:1px solid #fff;}
+	.adminMenu>ul>li>a {display:block;text-align:center;line-height:40px; color : #fff;}
+
+	#visual {height:400px;padding:100px 0 0 0;background:url(https://jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/board/9be517a74f72e96b014f831392ca0fe0/original/3073f925-475c-45f4-bd90-36cd94eb66e9.jpg) no-repeat center center/cover;text-align:center; }
+	#visual h2 {color:#ddd;font-size:75px;font-weight:bold;} 
+	#visual p {color:#ddd;font-size:18px;} 
+
+	#contents {padding:50px 0;}
+    #contents>div {width:1200px; margin:0 auto;}
+    #contents>div:after {content:""; display:table; clear:both;}
+    #contents>div>div {float:left; width:33.333333%; padding:0 15px; }
+
+    #contents>div>div h3 {line-height:30px; border-bottom:2px solid teal; margin-bottom:10px; }
+    #contents>div>div h3>small {float:right; font-size:12px; line-height:30px;}
+
+    #contents ul>li {border-bottom:1px dotted #ddd;}
+    #contents ul>li>a {display:block; line-height:30px; }
+    #contents ul>li>a>small {float:right; line-height:30px; font-size:14px;}
+
+    #contents>div>div h2 {border-bottom:2px solid teal; margin-bottom:25px; text-align:right;}
+    #contents>div>div h2>a {font-size:30px; font-weight:700; letter-spacing:-0.025em; line-height: 80px;}
+    #contents>div>div p {text-align:right; }
+
+
+    /*-------------------------------- body 통합 ---------------------------------------*/
+    #bodyWrap {width : 1500px; height : 600px; margin : 0 auto; paddig : 50px;}
+	#bodyWrap .wrap { width : 1000px; margin-top : 100px; margin-left : 200px; border-top : 2px solid #66cccc;  border-bottom : 2px solid #66cccc;}
+	#bodyWrap .wrap>div {width : 100%; height : 50px; margin : 0;    border-bottom : 1px dotted #66cccc;}
+	#bodyWrap .wrap>div span,p {display: inline-block; height : 50px; line-height : 50px; text-align : center;}
+	#bodyWrap .wrap>div span {width : 200px; background : #32bebe; color : #fff; border-bottom: 1px solid #fff;}
+	#bodyWrap .wrap>div:last-child {border-bottom: none;}
+	#bodyWrap .wrap>div:last-child span {border-bottom: none;}
+	#bodyWrap .wrap>div p {width : 780px;}
+	#bodyWrap .btn { width : 120px; height: 45px; margin-top : 20px; margin-left : 200px; line-height : 45px; background : #32bebe; border-radius : 15px; text-align : center; color : #fff; font-size : 18px;}
+	#bodyWrap .btn:hover {background : coral; }
+
+
+ /*-------------------------------- admin_mem통합 ---------------------------------------*/
+ 		.left {float: left; width: 200px; background: #ddd;}
+        .left ul li {width: 200px;height: 30px;background: #369; cursor: pointer; border-bottom : 1px solid #fff}
+        .left ul li:hover {color : #fff}
+        .right {position: relative; float:right; width: 1000px; }
+        .right div {position : absolute; display : none; width: 500px; height: 300px; top: 10px; left: 10px; background: coral; }
+ 
+ 
+ 
+ /*-------------------------------- footer ---------------------------------------*/
+	footer{padding:20px 0; background:teal;}
+    footer>div {width:1200px; margin:0 auto;}
+    footer>div>div {float: left; padding:0 15px;}
+    footer>div>div:nth-child(1) {width:25%; color:#fff;}
+    footer>div>div:nth-child(2) {width:60%; padding-top:30px; font-size:12px;  color:#fff;}
+    footer>div>div:nth-child(3) {width:15%; text-align:right; padding-top:30px;}
+    footer>div>div h2 {font-size: 24px; font-weight: bold; color : #fff;}
+    footer i{color:#fff; font-size:30px;}
+
+    
+
+    

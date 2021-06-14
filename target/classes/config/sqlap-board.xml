@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+			"-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="com.itbank.admin_board.boardDAO">
+
+	<select id="list" resultType="board">
+		select * from board order by board_number desc
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="board">
+		select * from board where board_number=#{number}
+	</select>
+	
+	<insert id="insert" parameterType="board">
+		insert into board values(
+		board_seq.nextval
+		,#{board_content}
+		,#{board_date}
+		,#{board_title}
+		,#{board_store}
+		,#{board_file}
+		,#{board_notice}
+		,#{admin_num}
+		)
+	</insert>
+	
+	<update id="update" parameterType="board">
+		UPDATE board SET 
+		board_content=#{board_content} 
+		,board_date=#{board_date}
+		,board_title=#{board_title}
+		,board_store=#{board_store}
+		,board_notice=#{board_notice}
+		<if test="board_file.equals('')==false">
+		,board_file= #{board_file}
+		</if>
+		where board_number=#{board_number}
+	</update>
+</mapper>
+
+
+
+
+
+

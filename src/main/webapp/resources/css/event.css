@@ -1,0 +1,80 @@
+@charset "UTF-8";
+.wrap{
+	display:block;clear:both; width:1000px; margin : 0 auto; padding-top: 50px;
+}
+.wrap > div {
+	
+	margin:10px; float:left; width:200px; height:300px; border-radius:10px; background: #ddd;
+}
+.wrap > div > img{
+	width: 200px;height: 200px; margin: 0 auto;
+}
+
+.tit{
+	padding: 0 13px 16px 13px;
+    font-size: .8667em;
+    line-height: 1.1;
+    color: #666;
+}
+.date{
+	
+	padding: 0 13px 16px 13px;
+    font-size: .8667em;
+    line-height: 1.1;
+    color: #666;
+}
+h2.tit{
+	margin-top:20px;
+	padding: 0 0 26px 0;
+    font-size: 1.8666em;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: #222;
+    text-align: center;
+    line-height: 30px;
+}
+
+
+.tap_list >ul{
+    position: relative;
+    width: 100%;
+    height: 42px;
+}
+
+.tap_list>ul>li {
+	width: 15%;
+    float: left;
+    height: 42px;
+    margin: 0;
+    border: 1px solid #ebebeb;
+    border-width: 1px 0 1px 1px;
+}
+.tap-list>ul>li>a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 41px;
+    line-height: 40px;
+    padding: 0;
+    text-align: center;
+    color: #222;
+    font-size: 1.0667em;
+    text-decoration: none;
+}
+.right{
+	float: right;
+	margin-right: 590px;
+}
+.event_ctnt>li{
+	display: list-item;
+}
+.event_ctnt>ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}

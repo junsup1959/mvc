@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+
+
+<div>
+<form method="post">
+	<p><input type="text" name="member_email" placeholder="아이디"  value="${cookie.user_check.value}" required autofocus></p>
+	<p><input type="text" name="member_password" placeholder="비밀번호" required></p>
+	<p><input type="submit" value="로그인"></p>
+
+</form>
+</div>	
+<div>
+
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked"/>
+	</c:if>
+
+
+<%-- ${checked} 값 넣어주기--%>
+	<p><input type="checkbox"  id="remember_us" name="remember_userId" ${checked} >아이디 저장</p>
+	<p><a href="${cpath }/member/join">회원가입</a> |</p>
+	<p><a href="${cpath }/member/findId">아이디 찾기</a> |</p>
+	<p><a href="${cpath }/member/findPw">비밀번호 찾기</a> </p>
+	
+</div>
+<div>
+	<a href="https://kauth.kakao.com/oauth/authorize?client_id=7d7a89444c3dc7117978512358c75028&redirect_uri=http://localhost:8081/team/member/auth/kakao/callback&response_type=code"><img src="${cpath }/resources/kakaoImage/kakao_login_medium_narrow.png"/></a>
+	<p>네이버 로그인</p>
+	
+
+</div>
+
+</body>
+</html>
