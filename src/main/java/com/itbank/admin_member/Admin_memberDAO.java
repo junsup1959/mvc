@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface Admin_memberDAO {
 
@@ -27,6 +28,13 @@ public interface Admin_memberDAO {
 
 	@Select("select * from admin_member where admin_num = #{admin_num}")
 	Admin_memberDTO selectOne(String admin_num);
+
+	@Update("update admin_member set "
+			+ "admin_name=#{admin_name}, admin_phone = #{admin_phone}, "
+			+ "admin_addr= #{admin_addr}, admin_store = #{admin_store},"
+			+ "admin_dept = #{admin_dept} "
+			+ "where admin_num=#{admin_num}")
+int adminMemberUpdate(Admin_memberDTO dto);
 
 	
 }

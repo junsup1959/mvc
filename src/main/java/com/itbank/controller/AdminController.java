@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,14 +91,17 @@ public class AdminController {
 	
 
 	@PostMapping("/admin_member/insert")
-	public String admin_minsert(Admin_memberDTO dto) {
+	@ResponseBody
+	public String admin_insert(Admin_memberDTO dto) {
 		System.out.println(dto.getAdmin_name());
 		int row =as.insert(dto);
 		System.out.println(row);
 		return row+"";
 	}
+	
 
 	@GetMapping(value="/admin_member/{admin_num}", produces = "application/json; charset=utf-8")
+	@ResponseBody					// 그냥 컨트롤러에서 json을 받을려면 ReponseBody 해줘야함
 	public String selectOne(@PathVariable String admin_num) throws JsonProcessingException {
 		System.out.println(admin_num);
 		String json = null;
@@ -107,6 +111,15 @@ public class AdminController {
 		
 		return json;
 	}
+	
+	@PostMapping("/admin_member/update")
+	@ResponseBody
+	public String update(Admin_memberDTO dto) {
+		System.out.println(dto.getAdmin_name());
+		int row = as.update(dto);
+		return row+"";
+	}
+
 
 	
 	//////////////////////////////////////////////////////////////

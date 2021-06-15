@@ -31,6 +31,10 @@ public class AdminService {
 		return dao.selectOne(admin_num);
 	}
 
+	public int update(Admin_memberDTO dto) {
+		return dao.adminMemberUpdate(dto);
+	}
+
 	
 	
 }

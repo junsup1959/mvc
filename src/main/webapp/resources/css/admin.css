@@ -3,12 +3,12 @@
 	ul {list-style:none;}
 	a {text-decoration:none;}
     
-	.cf:after {content:"";display:block;clear:both;}
-	body {width : 1900px; margin : 0 auto;}
+	.cf::before, .cf::after {content:"";display:block;clear:both;}
+	body {width : 1920px; margin : 0 auto;}
 
  /*-------------------------------- header ---------------------------------------*/
     header { height:100px;}
-	header h1 a {display : inline-block; float : left; width : 85%; margin-left : 5%; text-align:center;line-height:100px;font-size:50px;font-weight: bolder; color : teal;}
+	header h1 a {display : inline-block; float : left; width : 80%; margin-left : 10%; text-align:center;line-height:100px;font-size:50px;font-weight: bolder; color : teal;}
 	
 	header .adminMy  {position: relative; float : left;}
 	header .adminMy h4{margin-top : 40px;}
@@ -21,7 +21,7 @@
  /*-------------------------------- admin_main ---------------------------------------*/
 	.adminMenu {background: teal;}
 	.adminMenu>ul {width:1200px;margin:0 auto;padding:0 15px;}
-	.adminMenu>ul>li {float:left;width:20%;border-left:1px solid #fff;}
+	.adminMenu>ul>li {float:left;width:16.66666%;border-left:1px solid #fff;}
 	.adminMenu>ul>li:last-child {border-right:1px solid #fff;}
 	.adminMenu>ul>li>a {display:block;text-align:center;line-height:40px; color : #fff;}
 
@@ -46,30 +46,65 @@
     #contents>div>div p {text-align:right; }
 
 
-    /*-------------------------------- body 통합 ---------------------------------------*/
-    #bodyWrap {width : 1500px; height : 600px; margin : 0 auto; paddig : 50px;}
-	#bodyWrap .wrap { width : 1000px; margin-top : 100px; margin-left : 200px; border-top : 2px solid #66cccc;  border-bottom : 2px solid #66cccc;}
-	#bodyWrap .wrap>div {width : 100%; height : 50px; margin : 0;    border-bottom : 1px dotted #66cccc;}
-	#bodyWrap .wrap>div span,p {display: inline-block; height : 50px; line-height : 50px; text-align : center;}
-	#bodyWrap .wrap>div span {width : 200px; background : #32bebe; color : #fff; border-bottom: 1px solid #fff;}
-	#bodyWrap .wrap>div:last-child {border-bottom: none;}
-	#bodyWrap .wrap>div:last-child span {border-bottom: none;}
-	#bodyWrap .wrap>div p {width : 780px;}
-	#bodyWrap .btn { width : 120px; height: 45px; margin-top : 20px; margin-left : 200px; line-height : 45px; background : #32bebe; border-radius : 15px; text-align : center; color : #fff; font-size : 18px;}
+    /*--------------------------------admin section#bodyWrap > div.wrap ---------------------------------------*/
+    #bodyWrap {width : 1500px; height : 675px; margin : 0 auto; padding : 30px;}
+	
+	
+	 /*--------------------------------admin-Mypage ---------------------------------------*/
+	 #bodyWrap>h2 {margin-left: 250px; margin-top: 50px; text-decoration: underline; font-weight: bold}
+	#bodyWrap .conWrap { width : 1000px;  margin : 10px auto; border-top : 2px solid #66cccc;  border-bottom : 2px solid #66cccc;}
+	#bodyWrap .conWrap>div {width : 100%; height : 50px; margin : 0;    border-bottom : 1px dotted #66cccc;}
+	#bodyWrap .conWrap>div span,p {display: inline-block; height : 50px; line-height : 50px; text-align : center;}
+	#bodyWrap .conWrap>div span {width : 200px; background : #32bebe; color : #fff; border-bottom: 1px solid #fff;}
+	#bodyWrap .conWrap>div:last-child {border-bottom: none;}
+	#bodyWrap .conWrap>div:last-child span {border-bottom: none;}
+	#bodyWrap .conWrap>div p {width : 780px;}
+	#bodyWrap .btn { width : 120px; height: 45px; margin-top : 10px; margin-left : 1100px; line-height : 45px; background : #32bebe; border-radius : 15px; text-align : center; color : #fff; font-size : 18px;}
 	#bodyWrap .btn:hover {background : coral; }
 
 
- /*-------------------------------- admin_mem통합 ---------------------------------------*/
- 		.left {float: left; width: 200px; background: #ddd;}
-        .left ul li {width: 200px;height: 30px;background: #369; cursor: pointer; border-bottom : 1px solid #fff}
-        .left ul li:hover {color : #fff}
-        .right {position: relative; float:right; width: 1000px; }
-        .right div {position : absolute; display : none; width: 500px; height: 300px; top: 10px; left: 10px; background: coral; }
- 
- 
+ /*-------------------------------- admin_member ---------------------------------------*/
+ 	
+ 	.leftWrap {float: left;}
+    .leftWrap ul li {width: 200px;height: 50px; line-height : 50px; font-size : 22px; text-align : center; cursor: pointer; border-bottom : 1px dotted teal}
+    .leftWrap ul li:hover {color : coral;}
+
+    .rightWrap {position: relative; float:left; margin-left : 120px;}
+    .rightWrap div {position : absolute; display : none; width : 1100px; margin:0; padding:0;}
+ 	.rightWrap div h2 {font-size : 20px; font-weight : bold; text-decoration : underline; margin-bottom : 10px;}
+ 	
+ 	.con1 .list-title {display: block; width : 100%; height : 50px; line-height : 50px; background : #32bebe;}
+ 	.con1 .list-title span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; color : #fff;}
+ 	.con1 .list-title span:nth-child(7) {width : 40%;}
+ 	.con1 .list {display : block; width : 100%;  margin-top : 50px;   }
+ 	.con1 .list p {width : 100%; height : 40px; line-height : 40px;}
+ 	.con1 .list span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; border-bottom : 1px dotted #66cccc;}
+ 	.con1 .list span:nth-child(7) {width : 40%;}
+ 	.con1 .list p:hover span {background : rgba(255,240,120,0.4); font-weight : bold;}
+ 	
+ 	.con2 .insertForm {display: block; width : 500px; height: 500px; border : 1px solid #32bebe;}
+ 	.con2 .insertForm form {width : 300px; margin : 10px auto;}
+ 	.con2 .insertForm form select {margin-left : 0}
+ 	.con2 .insertForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-bottom : 7px; border : 1px solid #ddd; border-radius : 5px;}
+
+	.con4 .updateForm {display: block; width : 500px; height: 500px; border : 1px solid #32bebe;}
+ 	.con4 .updateForm form {width : 100%; margin : 10px auto;}
+ 	.con4 .updateForm form span {display : inline-block; width : 160px; margin-left: 10px; font-size: 18px; }
+ 	.con4 .updateForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-left: 10px; margin-bottom : 7px; padding-left : 10px; border : 1px solid #ddd; border-radius : 5px;}
+ 	.btn3 {width : 180px; background: #32bebe; color : #fff;}
+ 	.btn3:hover {background: coral}
+ -------------------------------- admin_notice ---------------------------------------*/
+ 	.noticeWrap {width : 100%;font-size : 18px;}
+ 	.noticeWrap form {width :1200px; margin : 0 auto;}
+ 	.noticeWrap form p {display: inline-block; height: 40px;}
+ 	.noticeWrap form input.b-title {width : 1000px;}
+ 	.noticeWrap form p input,select {width : 300px; height : 35px; line-height : 35px; border : 1px sloid #fff;}	
+ 	.noticeWrap form p textarea {width : 100%;}
+ 	.noticeWrap form .btn2 {display:inline-block; width : 200px; height: 40px; line-height : 40px; margin-top : 10px; background : #32bebe; border : 1px solid #ddd; border-radius : 15px; text-align : center; color : #fff; font-size : 18px;}
+	.noticeWrap form .btn2:hover {background : coral; }
  
  /*-------------------------------- footer ---------------------------------------*/
-	footer{padding:20px 0; background:teal;}
+	footer{height : 120px; padding:20px 0; background:teal;}
     footer>div {width:1200px; margin:0 auto;}
     footer>div>div {float: left; padding:0 15px;}
     footer>div>div:nth-child(1) {width:25%; color:#fff;}
