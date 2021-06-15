@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDTO;
 import com.itbank.admin_member.Admin_memberDTO;
+import com.itbank.member.MemberDTO;
 import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
 import com.itbank.service.MemberService;
@@ -237,13 +238,27 @@ public class AdminController {
 	@GetMapping("/customer/customerList")
 	public ModelAndView customerList() {
 		ModelAndView mav = new ModelAndView("admin/customer/customerList");
-		
-		
-		
-		
+
 		
 		return mav;
 	}
 	
 
+	
+
+	//////////////////////////////////////////////////////////////
+	// -----------------------customer-------------------------
+	
+	@GetMapping("/customer/customerList")
+	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page) {
+		ModelAndView mav= new ModelAndView("admin/customer/customerList");
+		int memberCount = ms.memberCount();
+		Paging paging = new Paging(page, memberCount);
+		
+		List<MemberDTO> customerList = ms.customerList(paging,param);
+		mav.addObject("list", customerList);
+		mav.addObject("paging", paging);
+		return mav;
+	}
+	
 }

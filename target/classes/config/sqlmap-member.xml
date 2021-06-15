@@ -5,6 +5,22 @@
 			
 <mapper namespace="com.itbank.member.MemberDAO">
 
+
+	<select id="customerList" resultType="member" parameterType="hashmap">
+		select * from member
+		where member_deleted = 'n'
+		<if test="keyword!=null and keyword.equals('')==false">
+  	 		and ${search} like '%${keyword}%'
+ 	 	</if>
+  	 	order by 
+			member_date desc
+<!-- 		offset ${offset} rows -->
+<!-- 	 		fetch first ${perPage} rows only -->
+	</select>
+
+
+
+
 	<insert id="insert" parameterType="member">
 	insert into member(
    		 member_number, member_email, member_name, member_password, member_nick, member_phone, member_addr,  member_gender   
@@ -46,7 +62,7 @@
 		where
 			member_email = #{member_email}
 	</update>
-	
+
 </mapper>
 
 
