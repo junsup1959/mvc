@@ -152,8 +152,22 @@ public class AdminController {
 	public ModelAndView read(@PathVariable int board_number) {
 		ModelAndView mav= new ModelAndView("admin/board/read");
 		boardDTO dto=bs.selectOne(board_number);
+		boardDTO np=bs.next(board_number);
+		dto.setBoard_next(np.getBoard_next());
+		np=bs.prev(board_number);
+		dto.setBoard_prev(np.getBoard_prev());
+		
+		
 		mav.addObject("dto",dto);
 		
+		if(dto.getBoard_next()!=0) {
+			boardDTO next = bs.selectOne(dto.getBoard_next());
+			mav.addObject("next", next);
+		}
+		if(dto.getBoard_prev()!=0) {
+			boardDTO prev = bs.selectOne(dto.getBoard_prev());
+			mav.addObject("prev", prev);
+		}
 		return mav;
 	}
 	
@@ -196,7 +210,25 @@ public class AdminController {
 		int row = bs.delete(board_number);
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
 	}
+
 	
+
+	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) throws JsonProcessingException {
+		
+		//JsonObject jsonObject = new JsonObject();
+		String json=null;
+		HashMap<String, String> jm=new HashMap<>();		
+		String savedFileName = bs.summernote(multipartFile,jm);
+					String cpath = request.getContextPath();
+			jm.put("url",cpath+"/upload/"+savedFileName);
+			jm.put("responseCode", "success");		
+		
+		json=mapper.writeValueAsString(jm);
+		return json;
+	}
+
 	
 
 	//////////////////////////////////////////////////////////////
@@ -213,42 +245,5 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-
-	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) throws JsonProcessingException {
-		
-		//JsonObject jsonObject = new JsonObject();
-		String json=null;
-		HashMap<String, String> jm=new HashMap<>();
-		
-		String fileRoot = "D:\\upload\\";	//저장될 외부 파일 경로
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-				
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		
-		File targetFile = new File(fileRoot + savedFileName);	
-		
-		try {
-			multipartFile.transferTo(targetFile);	//파일 저장
-			//jsonObject.addProperty("url", "/upload/"+savedFileName);
-			//jsonObject.addProperty("responseCode", "success");
-			String cpath = request.getContextPath();
-			jm.put("url",cpath+"/upload/"+savedFileName);
-			jm.put("responseCode", "success");
-		} catch (IOException e) {
-			targetFile.delete();	//저장된 파일 삭제
-			//jsonObject.addProperty("responseCode", "error");
-			jm.put("responseCode", "error");
-			e.printStackTrace();
-		}
-		
-		
-		json=mapper.writeValueAsString(jm);
-		//return jsonObject;
-		return json;
-	}
 
 }

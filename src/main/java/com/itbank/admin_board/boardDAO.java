@@ -20,5 +20,9 @@ public interface boardDAO {
 	@Update("UPDATE board SET board_deleted='y' where board_number=#{board_number}")
 	int delete(int board_number);
 
+	boardDTO next(int board_number);
+
+	boardDTO prev(int board_number);
+
 	
 }

@@ -30,8 +30,21 @@
 	<div>
 		${dto.board_content }
 	</div>
+	<c:if test="${not empty next }">
 	<div>
-		<a href="${cpath}/admin/board/update/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">수정</a>
+		[다음글]<a href="${cpath}/admin/board/read/${next.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${next.board_title}</a>
+	</div>
+	</c:if>
+	<div>
+		[현재] ${dto.board_title }
+	</div>
+	<c:if test="${not empty prev }">
+	<div>
+		[이전글] <a href="${cpath}/admin/board/read/${prev.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${prev.board_title}</a>
+	</div>
+	</c:if>
+	<div>
+		<a href="${cpath}/admin/board/update/${dto.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">수정</a>
 		<button id="del">삭제</button>
 	</div>
 </div>
@@ -41,7 +54,7 @@ const btn = document.getElementById('del')
 btn.onclick=function(event){
 	let btntest= confirm('정말 삭제 하시겠습니까?')
 	if(btntest==true)
-		location.href='${cpath}/admin/board/delete/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'
+		location.href='${cpath}/admin/board/delete/${dto.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'
 				
 }
 

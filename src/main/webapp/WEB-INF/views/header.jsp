@@ -138,7 +138,7 @@ $(document).ready(function(){
                 </li>
                 <li><a href="">이벤트</a>
                     <ul class="sub clearfix">
-                        <li><a href="${cpath }/event">이벤트</a></li>
+                        <li><a href="${cpath }/event/?search=&keyword=&page=1">이벤트</a></li>
                         <li><a href="">시사회</a></li>
                         <li><a href="">제휴/할인</a></li>
                         <li><a href="">지난이벤트</a></li>

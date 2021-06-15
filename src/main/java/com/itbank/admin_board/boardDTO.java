@@ -9,7 +9,27 @@ import org.springframework.web.multipart.MultipartFile;
 public class boardDTO {
 	
 	private final String root="D:\\upload\\";
-	private int board_number;
+	private int board_number,board_prev,board_next;
+	public int getBoard_prev() {
+		return board_prev;
+	}
+
+
+	public void setBoard_prev(int board_prev) {
+		this.board_prev = board_prev;
+	}
+
+
+	public int getBoard_next() {
+		return board_next;
+	}
+
+
+	public void setBoard_next(int board_next) {
+		this.board_next = board_next;
+	}
+
+
 	private String board_content,board_bdate,board_edate,board_title,board_store,board_file,admin_num;
 	private char board_notice;
 	MultipartFile file;

@@ -22,7 +22,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		String requestURL = request.getRequestURL().toString();
-		System.out.println("preHandle : " + requestURL);
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("ad_login") == null) {
