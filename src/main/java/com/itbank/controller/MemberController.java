@@ -169,8 +169,12 @@ public class MemberController {
 	public ModelAndView join(MemberDTO member) {
 		ModelAndView mav = new ModelAndView("member/join_complete");
 		int row = ms.insert(member);
-		mav.addObject("member", member);
-		return mav;
+		if(row == 1) {
+			mav.addObject("member", member);
+			return mav;
+		}
+		mav.setViewName("member/join");
+		return mav;	
 	}
 	
 

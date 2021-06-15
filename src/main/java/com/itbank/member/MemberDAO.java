@@ -12,7 +12,7 @@ public interface MemberDAO {
 	
 	MemberDTO selectOne2(MemberDTO member);
 
-	@Select("select count(0) from member where member_email = #{member_email} and member_password = #{member_password}")
+	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password}")
 	int selectOne3(MemberDTO dto);
 	
 	@Select("select count(*) from member where member_email = #{member_email}")

@@ -5,9 +5,9 @@
 
 <div>
 <form method="post">
-	<p><input type="text" name="member_email" placeholder="아이디"  value="${cookie.user_check.value}" required autofocus></p>
+	<p><input type="text" name="member_email" placeholder="아이디" required autofocus></p>
 	<p><input type="text" name="member_password" placeholder="비밀번호" required></p>
-	<p><input type="button" id="checkLogin" value="로그인"></p>
+	<p><input type="submit" id="checkLogin" value="로그인"></p>
 	<div id="checkLoginMsg"></div>
 	
 
@@ -15,9 +15,9 @@
 </div>	
 <div>
 
-	<c:if test="${not empty cookie.user_check}">
-		<c:set value="checked" var="checked"/>
-	</c:if>
+<%-- 	<c:if test="${not empty cookie.user_check}"> --%>
+<%-- 		<c:set value="checked" var="checked"/> --%>
+<%-- 	</c:if> --%>
 
 
 <%-- ${checked} 값 넣어주기--%>
@@ -49,11 +49,11 @@
 <script>
 
 
-document.getElementById('checkLogin').onsubmit = function(event) {	// form을 submit하면
-	event.preventDefault();						// 기본 작동을 막고
+document.forms[0].onsubmit = function(event) {	
+	event.preventDefault();						
 	
-	const formData = new FormData(event.target)	// submit된 form을 기반으로 formData를 생성
-	// 여기서부터 ajax
+	const formData = new FormData(event.target)	
+	
 	const url = '${cpath}/member/checkLogin'
 	const opt = {
 		method: 'POST',
@@ -64,12 +64,15 @@ document.getElementById('checkLogin').onsubmit = function(event) {	// form을 su
 	.then(text => {
 		console.log(text)
 		if(+text == 1) {
-			event.target.reset();
+// 			event.target.reset();
+			event.target.submit();
 		} 
 		else {
-			// 원래 form 제출 확인
-			document.getElementById('msg').innerText = '';
-			alert('가입하지 않은 아이디거나, 잘못된 비밀번호입니다.');
+			document.getElementById('checkLoginMsg').innerText = '가입하지 않은 아이디거나, 잘못된 비밀번호입니다.';
+			document.getElementById('checkLoginMsg').style.fontWeight = 'bold'
+			document.getElementById('checkLoginMsg').style.color = 'red'
+			
+			document.querySelector('input[name="member_email"]').select()
 		}
 	})
 }

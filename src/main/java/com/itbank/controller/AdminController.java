@@ -32,7 +32,7 @@ import com.itbank.service.BoardSerivce;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired private AdminService as;
+	@Autowired private AdminService as; 
 	@Autowired private BoardSerivce bs;
 	
 	private ObjectMapper mapper = new ObjectMapper();

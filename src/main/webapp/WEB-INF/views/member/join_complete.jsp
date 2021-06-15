@@ -10,7 +10,7 @@
 	<p>지금부터 MVC의 다양한 멤버십 혜택을 이용해 보세요!</p>
 </div>
 <div>
-	<input type="button" value="홈으로 가기">
+	<button type="button" onClick="location.href='${cpath }/member/login'">홈으로 가기</button>
 </div>
 </body>
 </html>
