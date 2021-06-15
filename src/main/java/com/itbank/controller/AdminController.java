@@ -212,7 +212,7 @@ public class AdminController {
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
 	}
 
-	
+
 
 	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -236,6 +236,7 @@ public class AdminController {
 	// -----------------------customer-------------------------
 	
 	@GetMapping("/customer/customerList")
+
 	public ModelAndView customerList() {
 		ModelAndView mav = new ModelAndView("admin/customer/customerList");
 
@@ -250,6 +251,7 @@ public class AdminController {
 	// -----------------------customer-------------------------
 	
 	@GetMapping("/customer/customerList")
+
 	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
 		int memberCount = ms.memberCount();

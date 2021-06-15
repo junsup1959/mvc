@@ -1,5 +1,8 @@
 package com.itbank.member;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -39,6 +42,11 @@ public interface MemberDAO {
 
 	@Update("update member set member_deleted = 'y' where member_email = #{member_email} and member_password = #{member_password}")
 	int deleteMember(MemberDTO member);
+
+	@Select("select count(*) from member")
+	int memberCount();
+
+	List<MemberDTO> customerList(HashMap<String, Object> param);
 
 
 	

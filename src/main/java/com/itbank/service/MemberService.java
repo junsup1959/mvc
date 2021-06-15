@@ -4,11 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itbank.admin_board.Paging;
 import com.itbank.member.MemberDAO;
 import com.itbank.member.MemberDTO;
 
@@ -102,6 +105,20 @@ public class MemberService {
 	public int deleteMember(MemberDTO member) {
 //		member.setMember_password(getHash(member.getMember_password()));
 		return dao.deleteMember(member);
+	}
+
+
+
+	public int memberCount() {
+		return dao.memberCount();
+	}
+
+
+
+	public List<MemberDTO> customerList(Paging paging, HashMap<String, Object> param) {
+		param.put("offset", paging.getOffset());
+		param.put("perPage",paging.getPerPage());
+		return dao.customerList(param);
 	}
 
 
