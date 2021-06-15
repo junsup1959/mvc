@@ -50,7 +50,7 @@ $(document).ready(function() {
 		$.ajax({
 			data : data,
 			type : "POST",
-			url : "/uploadSummernoteImageFile",
+			url : "${cpath}/admin/board/write/uploadSummernoteImageFile",
 			contentType : false,
 			processData : false,
 			success : function(data) {
