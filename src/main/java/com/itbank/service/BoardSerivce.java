@@ -49,5 +49,9 @@ public class BoardSerivce {
 		// TODO Auto-generated method stub
 		return dao.boardCount();
 	}
+	public int delete(int board_number) {
+		// TODO Auto-generated method stub
+		return dao.delete(board_number);
+	}
 
 }

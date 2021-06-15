@@ -10,7 +10,7 @@ public class boardDTO {
 	
 	private final String root="D:\\upload\\";
 	private int board_number;
-	private String board_content,board_date,board_title,board_store,board_file,admin_num;
+	private String board_content,board_bdate,board_edate,board_title,board_store,board_file,admin_num;
 	private char board_notice;
 	MultipartFile file;
 	
@@ -51,14 +51,7 @@ public class boardDTO {
 		this.board_content = board_content;
 	}
 
-	public String getBoard_date() {
-		return board_date;
-	}
-
-	public void setBoard_date(String board_date) {
-		this.board_date = board_date;
-	}
-
+	
 	public String getBoard_title() {
 		return board_title;
 	}
@@ -107,6 +100,26 @@ public class boardDTO {
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+
+
+	public String getBoard_bdate() {
+		return board_bdate;
+	}
+
+
+	public void setBoard_bdate(String board_bdate) {
+		this.board_bdate = board_bdate;
+	}
+
+
+	public String getBoard_edate() {
+		return board_edate;
+	}
+
+
+	public void setBoard_edate(String board_edate) {
+		this.board_edate = board_edate;
 	}
 
 	

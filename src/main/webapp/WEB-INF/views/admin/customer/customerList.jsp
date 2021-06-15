@@ -4,23 +4,33 @@
 
 <div>
 
-<c:if test="${empty list}">
+<c:if test="${empty customerList}">
 	<h2>입력된 게시글이 없습니다.</h2>
 </c:if>
 
-<c:if test="${not empty list }">
+
+<!-- 셀렉트박스 or 목록하나 생성 -->
+<!-- 회원번호 , 이름 , 이메일, 전화번호, 주소, 등급, 가입일, 올해사용금액, 전년도사용금액 -->
+<!-- 고객관리    - 셀렉트 박스에 등급, 가입, 사용금액 순 -->
+<!-- ----------- -->
+<!-- 탈퇴회원     - del  -->
+<!-- ------------ -->
+
+<c:if test="${not empty customerList }">
 	<div>
-		<span>글번호</span>
-		<span>제목</span>
-		<span>날짜</span>
-		<span>부서</span>
+		<span>회원번호</span>
+		<span>회원가입 일시</span>
+		<span>이름</span>
+		<span>ID</span>
+		<span>연락처</span>
+		<span>주소</span>
+		<span>성별</span>
 	</div>
 	<c:forEach var="board" items="${list}">
 	<div>
 		<span>${board.board_number}</span>
 		<span><a href="${cpath}/admin/board/read/${board.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${board.board_title}<a></span>
-		<span>${board.board_bdate}</span>
-		<span>${board.board_edate}</span>
+		<span>${board.board_date}</span>
 		<span>${board.board_store }</span>
 	</div>
 	</c:forEach>
@@ -48,7 +58,7 @@
 	<input type="hidden" name="page" value="${param.page }">
 	<button>검색</button>
 	</form>
-	<a href="${cpath}/admin/board/write/?search=${param.search }&keyword=${param.keyword }&page=${param.page}"><input type="button" value="글쓰기"></a>
+	<a href="${cpath}/admin/board/write"><input type="button" value="글쓰기"></a>
 </div>
 
 <%@include file="../footer.jsp" %>

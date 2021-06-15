@@ -1,11 +1,15 @@
 package com.itbank.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -188,11 +193,12 @@ public class AdminController {
 	@GetMapping("/board/delete/{board_number}")
 	public String delete(@PathVariable int board_number,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
 		String word= URLEncoder.encode(keyword, "UTF-8");
-		
+		int row = bs.delete(board_number);
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
 	}
 	
 	
+
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------
 	
@@ -208,4 +214,41 @@ public class AdminController {
 	}
 	
 	
+
+	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) throws JsonProcessingException {
+		
+		//JsonObject jsonObject = new JsonObject();
+		String json=null;
+		HashMap<String, String> jm=new HashMap<>();
+		
+		String fileRoot = "D:\\upload\\";	//저장될 외부 파일 경로
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+				
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		
+		File targetFile = new File(fileRoot + savedFileName);	
+		
+		try {
+			multipartFile.transferTo(targetFile);	//파일 저장
+			//jsonObject.addProperty("url", "/upload/"+savedFileName);
+			//jsonObject.addProperty("responseCode", "success");
+			String cpath = request.getContextPath();
+			jm.put("url",cpath+"/upload/"+savedFileName);
+			jm.put("responseCode", "success");
+		} catch (IOException e) {
+			targetFile.delete();	//저장된 파일 삭제
+			//jsonObject.addProperty("responseCode", "error");
+			jm.put("responseCode", "error");
+			e.printStackTrace();
+		}
+		
+		
+		json=mapper.writeValueAsString(jm);
+		//return jsonObject;
+		return json;
+	}
+
 }
