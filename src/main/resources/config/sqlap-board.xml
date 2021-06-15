@@ -7,11 +7,11 @@
 
 	<select id="list" resultType="board" parameterType="hashmap">
 			select * from board
-   	 		order by 
-				board_number desc
 			<if test="keyword!=null and keyword.equals('')==false">
    	 		where ${search} like '%${keyword}%'
    	 		</if>
+   	 		order by 
+				board_number desc
 			offset ${offset} rows
    	 		fetch first ${perPage} rows only
 	</select>
