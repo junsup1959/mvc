@@ -18,7 +18,7 @@
 	<c:forEach var="board" items="${list}">
 	<div>
 		<span>${board.board_number}</span>
-		<span><a href="${cpath}/admin/board/read/${board.board_number}?page=${paging.page}">${board.board_title}<a></span>
+		<span><a href="${cpath}/admin/board/read/${board.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${board.board_title}<a></span>
 		<span>${board.board_date}</span>
 		<span>${board.board_store }</span>
 	</div>
@@ -29,7 +29,7 @@
 	   	[이전]</a>
    	</c:if>
 	<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
-		<a href="${cpath }/admin/board/?page=${i}">[${i}]</a>
+		<a href="${cpath }/admin/board/?search=${param.search }&keyword=${param.keyword }&page=${i}">[${i}]</a>
 	</c:forEach>
 	<c:if test="${paging.next }">
 	   	<a href="${cpath }/admin/board/?page=${paging.end+1}">
@@ -40,10 +40,11 @@
 	<br>
 	<form>
 	<select name="search">
-		<option value="title">제목</option>
-		<option value="content">내용</option>
+		<option value="board_title">제목</option>
+		<option value="board_content">내용</option>
 	</select>
 	<input type="text" name="keyword">
+	<input type="hidden" name="page" value="${param.page }">
 	<button>검색</button>
 	</form>
 	<a href="${cpath}/admin/board/write"><input type="button" value="글쓰기"></a>
