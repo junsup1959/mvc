@@ -22,7 +22,6 @@
 <c:if test="${not empty msg }">
 	<script>
 		alert('${msg}')
-		console.log('${url}')
 		location.href="${capth}/team"
 	</script>
 </c:if>

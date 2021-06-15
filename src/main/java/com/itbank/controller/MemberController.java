@@ -133,7 +133,8 @@ public class MemberController {
 	@PostMapping("/mypage")
 	public ModelAndView mypage(MemberDTO member, HttpSession modify) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(member.getMember_email());
+		String[] member_email2 = member.getMember_email().toString().split(",");
+		member.setMember_email(member_email2[0]);
 		MemberDTO dto = ms.doubleCheck(member);
 		if(dto != null) {
 			String[] addr = dto.getMember_addr().toString().split(",");

@@ -9,7 +9,7 @@
 		<p>비밀번호 확인</p>
 		<p>
 			<form method="post">
-				<input type="hidden" value="${login.member_email }">
+				<input type="hidden" name="member_email" value="${login.member_email }">
 				<input type="text" name="member_password">
 				<input type="submit" id="checkPw" value="확인">
 				<div id="checkPwMsg"></div>
