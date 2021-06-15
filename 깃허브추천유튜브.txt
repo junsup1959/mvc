@@ -1,9 +1,0 @@
-
-	https://www.youtube.com/watch?v=Z9dvM7qgN9s
-
-	https://www.youtube.com/watch?v=lPrxhA4PLoA
-
-
-아래 링크를 이용하여 Oracle Linux 7 ISO 파일 다운로드
-
-https://yum.oracle.com/ISOS/OracleLinux/OL7/u9/x86_64/OracleLinux-R7-U9-Server-x86_64-dvd.iso
