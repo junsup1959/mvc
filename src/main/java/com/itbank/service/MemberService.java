@@ -99,6 +99,13 @@ public class MemberService {
 
 
 
+	public int deleteMember(MemberDTO member) {
+//		member.setMember_password(getHash(member.getMember_password()));
+		return dao.deleteMember(member);
+	}
+
+
+
 
 
 

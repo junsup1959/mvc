@@ -21,6 +21,30 @@ public class MemberController {
 	@Autowired MemberService ms;
 	
 	
+	
+	@GetMapping("/membership")
+	public void membership() {}
+	
+	@PostMapping("/deleteMember")
+	public ModelAndView deleteMember(MemberDTO member, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String[] member_email2 = member.getMember_email().toString().split(",");
+		member.setMember_email(member_email2[0]);
+		int row = ms.deleteMember(member);
+		if(row == 1) {
+			mav.addObject("msg", "회원 탈퇴가 성공적으로 이루어졌습니다.");
+			session.invalidate();
+			return mav;
+		}
+		mav.addObject("msg", "회원 탈퇴를 실패하였습니다.\n관리자에게 문의하세요.");
+		return mav;
+	}
+	
+	
+	@GetMapping("/deleteMember")
+	public void deleteMember() {}
+	
+	
 	@GetMapping("/findPwResult")
 	public void findPwResult() {}
 	
@@ -109,6 +133,7 @@ public class MemberController {
 	@PostMapping("/mypage")
 	public ModelAndView mypage(MemberDTO member, HttpSession modify) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println(member.getMember_email());
 		MemberDTO dto = ms.doubleCheck(member);
 		if(dto != null) {
 			String[] addr = dto.getMember_addr().toString().split(",");

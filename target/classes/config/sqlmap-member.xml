@@ -22,6 +22,8 @@
 			member_email = #{member_email}
 			and
 			member_password = #{member_password}
+			and
+			member_deleted = 'n'
 	
 	</select>
 	
@@ -29,6 +31,8 @@
 	select * from member
 		where
 			member_email = #{member_email}
+			and
+			member_deleted = 'n'
 
 	</select>
 	

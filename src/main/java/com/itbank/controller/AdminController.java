@@ -27,6 +27,7 @@ import com.itbank.admin_board.boardDTO;
 import com.itbank.admin_member.Admin_memberDTO;
 import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
+import com.itbank.service.MemberService;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +35,7 @@ public class AdminController {
 
 	@Autowired private AdminService as; 
 	@Autowired private BoardSerivce bs;
+	@Autowired private MemberService ms;
 	
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -189,4 +191,21 @@ public class AdminController {
 		
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
 	}
+	
+	
+	//////////////////////////////////////////////////////////////
+	// -----------------------customer-------------------------
+	
+	@GetMapping("/customer/customerList")
+	public ModelAndView customerList() {
+		ModelAndView mav = new ModelAndView("admin/customer/customerList");
+		
+		
+		
+		
+		
+		return mav;
+	}
+	
+	
 }

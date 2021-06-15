@@ -34,6 +34,8 @@
 	<view-controller path="/" view-name="home"/>
 	<view-controller path="/admin" view-name="admin/admin_main"/>
 	
+<!-- 	<view-controller path="" status-code="404" /> -->
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**"/>

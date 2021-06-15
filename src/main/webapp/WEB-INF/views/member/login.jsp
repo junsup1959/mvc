@@ -62,16 +62,13 @@ document.forms[0].onsubmit = function(event) {
 	fetch(url, opt)
 	.then(resp => resp.text())
 	.then(text => {
-		console.log(text)
 		if(+text == 1) {
-// 			event.target.reset();
 			event.target.submit();
 		} 
 		else {
 			document.getElementById('checkLoginMsg').innerText = '가입하지 않은 아이디거나, 잘못된 비밀번호입니다.';
 			document.getElementById('checkLoginMsg').style.fontWeight = 'bold'
 			document.getElementById('checkLoginMsg').style.color = 'red'
-			
 			document.querySelector('input[name="member_email"]').select()
 		}
 	})

@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MVC12222</title>
+    <title>MVC</title>
     <link href="${cpath }/resources/css/event.css" rel="stylesheet">
     <link href="${cpath }/resources/css/slick.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -87,7 +87,7 @@ $(document).ready(function(){
             
             <div class="top-right-nav">
                 <ul class="clearfix">
-                    <li><a href="">멤버쉽</a></li>
+                    <li><a href="${cpath }/member/membership">멤버십</a></li>
 					<c:if test="${empty login }">                    
 	                    <li><a href="${cpath }/member/login">로그인</a></li>
 	                    <li><a href="${cpath }/member/join">회원가입</a></li>
@@ -95,6 +95,9 @@ $(document).ready(function(){
 					<c:if test="${not empty login }">                    
 	                    <li><a href="${cpath }/member/logout">로그아웃</a></li>
 	                    <li><a href="${cpath }/member/mypage?member_email=${login.member_email }" >마이페이지</a></li>
+	                    
+	                    
+	                    
                     </c:if>
                     
                 </ul>

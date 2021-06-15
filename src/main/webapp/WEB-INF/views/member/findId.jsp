@@ -20,6 +20,7 @@
 <c:if test="${not empty msg }">
 	<script>
 		alert("${msg}")
+		opener.location.href="${capth}/team/member/login"
 	</script>
 </c:if>
 

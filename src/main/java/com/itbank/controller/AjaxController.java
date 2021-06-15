@@ -21,6 +21,15 @@ public class AjaxController {
 	private ObjectMapper mapper = new ObjectMapper();
 
 	
+	
+	
+	@PostMapping("/checkPw")
+	@ResponseBody
+	public String checkPw(MemberDTO dto) {
+		int row = ms.selectOne3(dto);
+		return row + "";
+	}
+	
 	@PostMapping("/checkLogin")
 	@ResponseBody
 	public String member(MemberDTO dto) {

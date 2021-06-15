@@ -1,5 +1,6 @@
 package com.itbank.member;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -12,7 +13,7 @@ public interface MemberDAO {
 	
 	MemberDTO selectOne2(MemberDTO member);
 
-	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password}")
+	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password} and member_deleted = 'n' ")
 	int selectOne3(MemberDTO dto);
 	
 	@Select("select count(*) from member where member_email = #{member_email}")
@@ -35,6 +36,9 @@ public interface MemberDAO {
 
 	@Update("update member set member_password = #{member_password} where member_email = #{member_email}")
 	int updatePw(MemberDTO member);
+
+	@Update("update member set member_deleted = 'y' where member_email = #{member_email} and member_password = #{member_password}")
+	int deleteMember(MemberDTO member);
 
 
 	
