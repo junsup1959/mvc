@@ -1,14 +1,9 @@
 package com.itbank.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -230,19 +224,6 @@ public class AdminController {
 		return json;
 	}
 
-	
-
-	//////////////////////////////////////////////////////////////
-	// -----------------------customer-------------------------
-	
-	@GetMapping("/customer/customerList")
-
-	public ModelAndView customerList() {
-		ModelAndView mav = new ModelAndView("admin/customer/customerList");
-
-		
-		return mav;
-	}
 	
 
 	
