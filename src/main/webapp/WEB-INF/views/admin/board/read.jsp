@@ -32,11 +32,20 @@
 	</div>
 	<div>
 		<a href="${cpath}/admin/board/update/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">수정</a>
-		<a href="${cpath}/admin/board/delete/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">삭제</a>
+		<button id="del">삭제</button>
 	</div>
 </div>
 
+<script>
+const btn = document.getElementById('del')
+btn.onclick=function(event){
+	let btntest= confirm('정말 삭제 하시겠습니까?')
+	if(btntest==true)
+		location.href='${cpath}/admin/board/delete/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'
+				
+}
 
+</script>
 
 
 <%@include file="../footer.jsp"%>
