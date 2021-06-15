@@ -7,8 +7,9 @@
 
 	<select id="list" resultType="board" parameterType="hashmap">
 			select * from board
+			where board_deleted = 'n'
 			<if test="keyword!=null and keyword.equals('')==false">
-   	 		where ${search} like '%${keyword}%'
+   	 		and ${search} like '%${keyword}%'
    	 		</if>
    	 		order by 
 				board_number desc
@@ -28,19 +29,22 @@
 		insert into board values(
 		board_seq.nextval
 		,#{board_content}
-		,#{board_date}
+		,#{board_bdate}
 		,#{board_title}
 		,#{board_store}
 		,#{board_file}
 		,#{board_notice}
 		,#{admin_num}
+		,#{board_edate}
+		,'n'
 		)
 	</insert>
 	
 	<update id="update" parameterType="board">
 		UPDATE board SET 
 		board_content=#{board_content} 
-		,board_date=#{board_date}
+		,board_bdate=#{board_bdate}
+		,board_edate=#{board_edate}
 		,board_title=#{board_title}
 		,board_store=#{board_store}
 		,board_notice=#{board_notice}
@@ -48,6 +52,10 @@
 		,board_file= #{board_file}
 		</if>
 		where board_number=#{board_number}
+	</update>
+	
+	<update id="">
+	
 	</update>
 </mapper>
 

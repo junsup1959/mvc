@@ -186,7 +186,7 @@ public class AdminController {
 	@GetMapping("/board/delete/{board_number}")
 	public String delete(@PathVariable int board_number,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
 		String word= URLEncoder.encode(keyword, "UTF-8");
-		
+		int row = bs.delete(board_number);
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
 	}
 }

@@ -8,7 +8,8 @@
 		<span>제목</span>
 		<span>지점</span>
 		<span>공지/이벤트</span>
-		<span>날짜</span>
+		<span>시작날짜</span>
+		<span>마감날짜</span>
 	</div>
 	<div>
 		<span>${dto.board_number}</span>
@@ -23,7 +24,8 @@
 			<span>이벤트</span>
 		</c:otherwise>
 	</c:choose>
-		<span>${dto.board_date}</span>
+		<span>${dto.board_bdate}</span>
+		<span>${dto.board_edate}</span>
 	</div>
 	<div>
 		${dto.board_content }

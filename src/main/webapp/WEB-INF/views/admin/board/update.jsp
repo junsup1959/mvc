@@ -83,7 +83,8 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 	<form method="post" enctype="multipart/form-data">
 	<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
 	<p><input type="text" name="board_title" value="${dto.board_title}" ></p>
-  	<p><input type="date" name="board_date" value="${dto.board_date}"></p>
+  	<p><input type="date" name="board_bdate" value="${dto.board_bdate}"></p>
+  	<p><input type="date" name="board_edate" value="${dto.board_edate}"></p>
   	<p>
 	  	<select name="board_store" id="store">
 	  		<option value="부산">서울점</option>

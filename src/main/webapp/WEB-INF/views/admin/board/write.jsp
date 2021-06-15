@@ -66,7 +66,8 @@ $(document).ready(function() {
 		<form method="post" enctype="multipart/form-data">
 			<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
 			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
-		  	<p><input type="date" name="board_date"></p>
+		  	<p><input type="date" name="board_bdate" required></p>
+		  	<p><input type="date" name="board_edate" required></p>
 		  	<p>
 			  	<select name="board_store">
 			  		<option value="부산">서울점</option>
