@@ -29,8 +29,8 @@
 		${dto.board_content }
 	</div>
 	<div>
-		<a href="${cpath}/admin/board/update/${board_number}?page=${page}">수정</a>
-		<a href="${cpath}/admin/board/delete/${board_number}?page=${page}">삭제</a>
+		<a href="${cpath}/admin/board/update/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">수정</a>
+		<a href="${cpath}/admin/board/delete/${board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">삭제</a>
 	</div>
 </div>
 
