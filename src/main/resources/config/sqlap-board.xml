@@ -26,7 +26,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
-		insert into board values(
+		insert into board(board_number,board_content,board_bdate,board_title,board_store,board_file,board_notice,admin_num,board_edate,board_deleted) values(
 		board_seq.nextval
 		,#{board_content}
 		,#{board_bdate}
