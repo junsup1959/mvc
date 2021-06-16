@@ -4,7 +4,7 @@
 <!-- dept 1.본사 2.매니저(지점장?) 3.사원 4.말단 => -->
 <section id="bodyWrap">
 
-	<div class="wrap">
+	<div class="conWrap">
 		<div><span>사원번호</span> <p>${ad_login.admin_num }</p></div>
 		<div><span>이름</span> <p>${ad_login.admin_name }</p></div>
 		<div><span>지점</span> <p>${ad_login.admin_store }</p></div>
