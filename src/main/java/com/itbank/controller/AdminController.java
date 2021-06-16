@@ -236,6 +236,21 @@ public class AdminController {
 		json=mapper.writeValueAsString(jm);
 		return json;
 	}
+	
+	//////////////////영화관 ////////////////////////////////////
+	@GetMapping("/cinema")
+	public ModelAndView cinema() {
+		ModelAndView mav= new ModelAndView("/admin/cinema/cinema");
+		List<TheaterDTO> list = cs.selectAll();
+		mav.addObject("list", list);
+		return mav;
+	}
+	@PostMapping("cinema")
+	@ResponseBody
+	public String  c_insert(TheaterDTO dto) {
+		int row = cs.insert(dto);
+		return row+"";
+	}
 
 
 
