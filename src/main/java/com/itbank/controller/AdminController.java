@@ -230,15 +230,29 @@ public class AdminController {
 	// -----------------------customer-------------------------
 	
 	@GetMapping("/customer/customerList")
-
-	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page) {
+	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
+		System.out.println(page);
 		int memberCount = ms.memberCount();
 		Paging paging = new Paging(page, memberCount);
-		
-		List<MemberDTO> customerList = ms.customerList(paging,param);
-		mav.addObject("list", customerList);
+		List<MemberDTO> customerList = null;
+		switch(number) {
+			case 1:	customerList = ms.customerDateList(paging,param); break;
+			case 2: customerList = ms.customerGradeList(paging,param); break;
+			case 3: customerList = ms.customerThisList(paging,param); break;
+			case 4: customerList = ms.customerLastList(paging,param); break;
+		}
+		mav.addObject("customerList", customerList);
 		mav.addObject("paging", paging);
+		return mav;
+	}
+	
+	
+	@GetMapping("/customer/customerRead/{member_number}")
+	public ModelAndView customerRead(@PathVariable String member_number) {
+		ModelAndView mav= new ModelAndView("admin/customer/customerRead");
+		MemberDTO dto= ms.selectOne4(member_number);
+		mav.addObject("dto",dto);
 		return mav;
 	}
 	

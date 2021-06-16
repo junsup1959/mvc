@@ -14,6 +14,7 @@ public class MemberDTO {
 
 	private String member_number;
 	private String member_email, member_name, member_password, member_phone, member_addr, member_gender, member_nick, member_deleted;
+	private String member_grade, amount_this, amount_last, member_date;
 	private String member_addr1, member_addr2;
 
 	
@@ -85,6 +86,30 @@ public class MemberDTO {
 	}
 	public void setMember_addr2(String member_addr2) {
 		this.member_addr2 = member_addr2;
+	}
+	public String getMember_grade() {
+		return member_grade;
+	}
+	public void setMember_grade(String member_grade) {
+		this.member_grade = member_grade;
+	}
+	public String getAmount_this() {
+		return amount_this;
+	}
+	public void setAmount_this(String amount_this) {
+		this.amount_this = amount_this;
+	}
+	public String getAmount_last() {
+		return amount_last;
+	}
+	public void setAmount_last(String amount_last) {
+		this.amount_last = amount_last;
+	}
+	public String getMember_date() {
+		return member_date;
+	}
+	public void setMember_date(String member_date) {
+		this.member_date = member_date;
 	}
 	
 	

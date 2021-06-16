@@ -141,6 +141,8 @@
  	.content .list span:nth-child(2) {width : 50%}
  	.content .list span:nth-child(4),span:nth-child(5) {width : 16%}  
  	
+ 	.pages {width : 800px; height : 30px; line-height : 30px; margin : 0 auto;}
+ 	
  	.searchWrap {width : 700px; margin : 0 auto;}
   	.searchWrap select {width : 150px;}
   	.searchWrap select,input {height : 30px; line-height: 30px;  }

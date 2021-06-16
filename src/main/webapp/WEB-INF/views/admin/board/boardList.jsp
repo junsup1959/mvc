@@ -24,8 +24,7 @@
 					<span>${board.board_title}</span>
 					<span>${board.board_store }</span>
 					<span>${board.board_bdate}</span>
-					<span>${board.board_edate}</span>
-					
+					<span>${board.board_edate}</span>	
 				</div>
 			</c:forEach>
 		</div>
