@@ -26,7 +26,7 @@
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1"><span>회원 가입순</span></a>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=2"><span>등급순</span></a>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=3"><span>올해 사용 금액순</span></a>
-		<a href=""><span>작년 사용 금액순</span></a>
+		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=4"><span>작년 사용 금액순</span></a>
 	</form>	
 </div>
 
@@ -54,7 +54,22 @@
 			<span>${dto.member_number}</span>
 			<span>${dto.member_name}</span>
 			<span>${dto.member_date}</span>
-			<span>${dto.member_grade }</span>
+			<span>		
+				<c:choose>
+					<c:when test="${dto.member_grade  == 'P' }">
+								플레티넘
+					</c:when>
+					<c:when test="${dto.member_grade  == 'G' }">
+								골드
+					</c:when>	
+					<c:when test="${dto.member_grade  == 'V'}">
+								VIP
+					</c:when>	
+					<c:when test="${dto.member_grade  == 'N' }">
+								일반
+					</c:when>		
+				</c:choose>
+			</span>
 			<span><fmt:formatNumber value="${dto.amount_this }"/></span>
 			<span>${dto.amount_last }</span>
 			<span><a href="${cpath}/admin/customer/customerRead/${dto.member_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">조회하기</a></span>
