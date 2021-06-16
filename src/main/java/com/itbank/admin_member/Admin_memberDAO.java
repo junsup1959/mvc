@@ -34,7 +34,10 @@ public interface Admin_memberDAO {
 			+ "admin_addr= #{admin_addr}, admin_store = #{admin_store},"
 			+ "admin_dept = #{admin_dept} "
 			+ "where admin_num=#{admin_num}")
-int adminMemberUpdate(Admin_memberDTO dto);
+	int adminMemberUpdate(Admin_memberDTO dto);
+
+	@Select("select count(*) from admin_member")
+	int adminCount();
 
 	
 }

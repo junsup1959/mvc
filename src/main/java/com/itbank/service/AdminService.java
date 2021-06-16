@@ -35,6 +35,10 @@ public class AdminService {
 		return dao.adminMemberUpdate(dto);
 	}
 
+	public int adminCount() {
+		return dao.adminCount();
+	}
+
 	
 	
 }

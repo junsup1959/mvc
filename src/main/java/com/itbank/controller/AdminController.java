@@ -85,10 +85,23 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+//	@GetMapping("/customer/customerList")
+//	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
+//		ModelAndView mav= new ModelAndView("admin/customer/customerList");
+//		int memberCount = ms.memberCount();
+//		Paging paging = new Paging(page, memberCount);
+//		mav.addObject("paging", paging);
+//		return mav;
+//	}
+	
 	@GetMapping("/admin_member")
-	public ModelAndView admin_member() {
+	public ModelAndView admin_member(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav=new ModelAndView("admin/admin_member/admin_member");
+		int adminCount = as.adminCount();
+		Paging paging = new Paging(page, adminCount);
 		List<Admin_memberDTO>list=as.selectAll();
+		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		return mav;
 	}
@@ -232,7 +245,6 @@ public class AdminController {
 	@GetMapping("/customer/customerList")
 	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
-		System.out.println(page);
 		int memberCount = ms.memberCount();
 		Paging paging = new Paging(page, memberCount);
 		List<MemberDTO> customerList = null;

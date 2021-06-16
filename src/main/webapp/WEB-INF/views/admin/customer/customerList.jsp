@@ -94,9 +94,8 @@
 <!-- 		<form> -->
 	 	<!-- 	옵션을 클릭하고 보여주는 페이지에서 asc desc 순서 클릭하면 순서대로 보여주기 --> 
 <!-- 		<select name="search"> -->
-<!-- 			<option value="board_content">등급</option>			 -->
-<!-- 			<option value="board_content">올해 사용금액 순</option> -->
-<!-- 			<option value="board_content">전년도 사용금액 순</option> -->
+<!-- 			<option value="board_content">회원번호</option>			 -->
+<!-- 			<option value="board_content">이름</option> -->
 <!-- 		</select> -->
 <!-- 			<input type="text" name="keyword"> -->
 <%-- 			<input type="hidden" name="page" value="${param.page }"> --%>
