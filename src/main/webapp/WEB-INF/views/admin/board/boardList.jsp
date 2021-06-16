@@ -18,7 +18,7 @@
 	<c:forEach var="board" items="${list}">
 	<div>
 		<span>${board.board_number}</span>
-		<span><a href="${cpath}/admin/board/read/${board.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${board.board_title}<a></span>
+		<span><a href="${cpath}/admin/board/read/${board.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}">${board.board_title}</a></span>
 		<span>${board.board_bdate}</span>
 		<span>${board.board_edate}</span>
 		<span>${board.board_store }</span>

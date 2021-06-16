@@ -3,7 +3,6 @@ package com.itbank.member;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -18,6 +17,9 @@ public interface MemberDAO {
 
 	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password} and member_deleted = 'n' ")
 	int selectOne3(MemberDTO dto);
+	
+	@Select("select * from member where member_number = #{member_number} and member_deleted = 'n' ")
+	MemberDTO selectOne4(String member_number);
 	
 	@Select("select count(*) from member where member_email = #{member_email}")
 	int select(String member_email);
@@ -46,7 +48,14 @@ public interface MemberDAO {
 	@Select("select count(*) from member")
 	int memberCount();
 
-	List<MemberDTO> customerList(HashMap<String, Object> param);
+	List<MemberDTO> customerDateList(HashMap<String, Object> param);
+
+	List<MemberDTO> customerGradeList(HashMap<String, Object> param);
+
+	List<MemberDTO> customerThisList(HashMap<String, Object> param);
+
+	List<MemberDTO> customerLastList(HashMap<String, Object> param);
+
 
 
 	

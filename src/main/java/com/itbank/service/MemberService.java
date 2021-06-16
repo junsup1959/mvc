@@ -59,6 +59,10 @@ public class MemberService {
 		return dao.selectOne3(dto);
 	}
 
+	
+	public MemberDTO selectOne4(String member_number) {
+		return dao.selectOne4(member_number);
+	}
 
 	public int select(String member_email) {
 		return dao.select(member_email);
@@ -115,12 +119,35 @@ public class MemberService {
 
 
 
-	public List<MemberDTO> customerList(Paging paging, HashMap<String, Object> param) {
+	public List<MemberDTO> customerDateList(Paging paging, HashMap<String, Object> param) {
 		param.put("offset", paging.getOffset());
 		param.put("perPage",paging.getPerPage());
-		return dao.customerList(param);
+		return dao.customerDateList(param);
 	}
 
+
+
+	public List<MemberDTO> customerGradeList(Paging paging, HashMap<String, Object> param) {
+		param.put("offset", paging.getOffset());
+		param.put("perPage",paging.getPerPage());
+		return dao.customerGradeList(param);
+	}
+
+
+
+	public List<MemberDTO> customerThisList(Paging paging, HashMap<String, Object> param) {
+		param.put("offset", paging.getOffset());
+		param.put("perPage",paging.getPerPage());
+		return dao.customerThisList(param);
+	}
+
+
+
+	public List<MemberDTO> customerLastList(Paging paging, HashMap<String, Object> param) {
+		param.put("offset", paging.getOffset());
+		param.put("perPage",paging.getPerPage());
+		return dao.customerLastList(param);
+	}
 
 
 
