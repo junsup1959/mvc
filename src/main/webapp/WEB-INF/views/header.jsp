@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>MVC</title>
-    <link href="${cpath }/resources/css/event.css" rel="stylesheet">
+    <link href="${cpath }/resources/css/style.css" rel="stylesheet">
+    <link href="${cpath }/resources/css/body.css" rel="stylesheet">
     <link href="${cpath }/resources/css/slick.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="${cpath }/resources/js/jquery-1.12.4.js"></script>

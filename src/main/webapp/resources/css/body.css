@@ -1,0 +1,49 @@
+@charset "UTF-8";
+#bodyWrap { width : 1500px; margin : 0 auto;}
+#bodyWrap>div>h2 {font-size: 38px; color : teal; font-weight: bold;}
+#bodyWrap>div>h2, h3 {margin-left : 20px; margin-bottom : 5px;}
+
+.btn1{height : 40px; line-height: 40px; background: #444; color : #fff; border: none; border-radius: 5px;}
+.btn1:hover {background : coral; font-weight: bold;}
+input,p,label,output { display: inline-block;}
+input { border : none; border-radius: 5px;}
+/*----------------------------------------- join -----------------------------------------*/
+.joinWrap {width : 800px; height : 950px; margin : 0 auto; padding : 30px 10px; background: #eee; }
+.joinWrap .formWrap {width : 700px; margin : 0 auto; padding : 20px 10px;}
+.formWrap>form>div {width : 100%; padding : 5px 0;  border-bottom: 2px dotted #fff;}
+.formWrap>form>div:last-child {border:none;}
+.formWrap p,label { margin-bottom: 3px}
+.formWrap label {width : 200px; height: 40px; line-height: 40px; font-size : 20px;}
+.formWrap input {width : 470px; padding-left:10px; height: 40px; line-height: 40px; font-size : 20px;}
+.formWrap output {margin-left : 200px; width : 450px;}
+.formWrap input.btn1 { width : 150px;  }
+
+.formWrap .radio p {width : 200px; height : 30px;  line-height: 30px;}
+.formWrap .radio input {width : 100px;height : 25px; }
+
+/*----------------------------------------- login -----------------------------------------*/
+.loginWrap {width : 800px; height : 400px; margin : 180px auto; padding : 10px; background : #eee;}
+
+.loginForm { width : 350px; margin : 0 auto; margin-top: 30px; margin-bottom : 5px;}
+.loginForm input {width : 330px; height : 45px; line-height: 45px; padding-left: 10px; margin-bottom : 5px;}
+
+.loginMenu {width : 340px; margin : 0 auto; font-size: 18px; padding : 0 20px; margin-bottom: 10px;}
+.loginMenu input[type=checkbox] {zoom: 1.5;}
+.loginMenu p {margin-bottom:3px}
+.loginMenu p a:hover{color: coral;}
+
+.loginApi {width : 350px; margin : 0 auto; padding : 0 10px;}
+.loginApi img{width : 150px;}
+
+/*----------------------------------------- join -----------------------------------------*/
+
+
+
+
+
+/*----------------------------------------- join -----------------------------------------*/
+
+
+/*----------------------------------------- join -----------------------------------------*/
+
+
