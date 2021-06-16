@@ -27,7 +27,9 @@ import com.itbank.admin_member.Admin_memberDTO;
 import com.itbank.member.MemberDTO;
 import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
+import com.itbank.service.CinemaService;
 import com.itbank.service.MemberService;
+import com.itbank.theater.TheaterDTO;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,6 +38,7 @@ public class AdminController {
 	@Autowired private AdminService as; 
 	@Autowired private BoardSerivce bs;
 	@Autowired private MemberService ms;
+	@Autowired private CinemaService cs;
 	
 	private ObjectMapper mapper = new ObjectMapper();
 	

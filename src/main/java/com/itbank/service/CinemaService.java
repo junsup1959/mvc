@@ -24,3 +24,5 @@ public class CinemaService {
 		branchcode += UUID.randomUUID().toString().split("-")[0];
 		dto.setBranchcode(branchcode);
 		return dao.insert(dto);
+		}
+}
