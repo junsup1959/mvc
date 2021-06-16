@@ -59,9 +59,11 @@
 		
 		<div class="btn3" onclick="location.href='${cpath}/admin/board/write/?search=${param.search }&keyword=${param.keyword }&page=${param.page}'">
 			글쓰기
-		</div>
-		
+		</div>	
 	</div>
 </section>
+
+
+
 
 <%@include file="../footer.jsp" %>
