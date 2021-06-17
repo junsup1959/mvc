@@ -13,6 +13,7 @@
 	<mybatis-spring:scan base-package="com.itbank.member" />		
 	<mybatis-spring:scan base-package="com.itbank.admin_member"/>
 	<mybatis-spring:scan base-package="com.itbank.admin_board"/>
+	<mybatis-spring:scan base-package="com.itbank.theater"/>
 	
 	<bean id="multipartResolver" 
 		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

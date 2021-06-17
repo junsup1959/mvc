@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,9 @@ import com.itbank.admin_member.Admin_memberDTO;
 import com.itbank.member.MemberDTO;
 import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
+import com.itbank.service.CinemaService;
 import com.itbank.service.MemberService;
+import com.itbank.theater.TheaterDTO;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,6 +40,7 @@ public class AdminController {
 	@Autowired private AdminService as; 
 	@Autowired private BoardSerivce bs;
 	@Autowired private MemberService ms;
+	@Autowired private CinemaService cs;
 	
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -228,8 +233,38 @@ public class AdminController {
 		json=mapper.writeValueAsString(jm);
 		return json;
 	}
+	
+	//////////////////영화관 ////////////////////////////////////
+	@GetMapping("/cinema")
+	public ModelAndView cinema() {
+		ModelAndView mav= new ModelAndView("/admin/cinema/cinema");
+		List<TheaterDTO> list = cs.selectAll();
+		mav.addObject("list", list);
+		return mav;
+	}
+	@PostMapping("/cinema")
+	@ResponseBody
+	public String  c_insert(TheaterDTO dto) {
+		int row = cs.insert(dto);
+		return row+"";
+	}
 
-
+	@GetMapping(value = "/cinema/{branchcode}", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String c_upate(@PathVariable String branchcode) throws JsonProcessingException {
+		TheaterDTO dto = cs.selectOne(branchcode);
+		String json = mapper.writeValueAsString(dto);
+		System.out.println(json);
+		return json;
+	}
+	
+	@PutMapping(value = "/cinema" ,consumes = "application/json; charset=utf-8")
+	@ResponseBody
+	public String c_update(@RequestBody TheaterDTO dto) {
+		int row = cs.update(dto);
+		return row+"";
+	}
+	
 
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------

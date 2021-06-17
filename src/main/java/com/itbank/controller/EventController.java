@@ -26,7 +26,7 @@ public class EventController {
 	@Autowired private BoardSerivce bs;
 	@GetMapping("")
 	public ModelAndView event(@RequestParam HashMap<String, Object>param, int page) {
-		ModelAndView mav= new ModelAndView("event/test");
+		ModelAndView mav= new ModelAndView("event/event");
 		int boardCount =  bs.boardCount();
 		Paging paging = new Paging(page, boardCount);
 		List<boardDTO>list=bs.list(paging, param);
