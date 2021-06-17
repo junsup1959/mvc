@@ -24,5 +24,8 @@ public interface TheaterDAO {
 	@Update("update theater set capacity=#{capacity} , usable =#{usable} where branchcode = #{branchcode}")
 	int update(TheaterDTO dto);
 
+	@Update("update theater set deleted ='y' where branchcode = #{branchcode}")
+	int delete(String branchcode);
+
 
 }

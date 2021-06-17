@@ -32,27 +32,35 @@
 		<span class="">수용인원</span>
 		<span class="">가용여부</span>
 	</div>
+	
 	<c:forEach var="theater" items="${list }">
 	<div id="theaterList">
 		<span class="">${theater.branch }</span>
 		<span class="">${theater.branchcode }</span>
 		<span class="">${theater.capacity }</span>
-		<span class="">${theater.usable }</span>
+		<c:choose>
+			<c:when test="${theater.usable eq 'y' }">
+				<span class="">사용가능</span>
+			</c:when>
+			<c:otherwise>
+				<span class="">사용불가</span>
+			</c:otherwise>
+		</c:choose>
 		<span><button onclick="update('${theater.branchcode}')">수정</button></span>
-		<span><button>삭제</button></span>
+		<span><button onclick="del('${theater.branchcode}')">삭제</button></span>
 	</div>
 	</c:forEach>
 	<div>
 		<span><button onclick="insert()">추가</button></span>
 	</div>
-	<div id="t_input" style="display: none;">
+	<div id="t_input" class="hidden">
 		<form id="t_inputform">
 			<p><input type="text" name="branch" placeholder="지점"></p>
 			<p><input type="number" name="capacity" placeholder="가용인원"></p>
 			<p><input type="submit" value="작성"></p>
 		</form>
 	</div>
-	<div id="t_update" style="display: none;">
+	<div id="t_update" class="hidden">
 		<form id="t_updateform">
 			<p><input type="text" name="branchcode" id="up_branchcode"></p>
 			<p><input type="number" name="capacity" id="up_capacity"></p>	
@@ -69,12 +77,16 @@
 
 <script>
 const input = document.getElementById('t_input')
-const tdelete = document.getElementById('t_delete')
 const inputform = document.getElementById('t_inputform')
 const t_update = document.getElementById('t_update')
+const hidden = document.querySelectorAll('.hidden')
+for(let i = 0 ; i < hidden.length ;i++){
+	hidden[i].style.display = "none"
+}
+
 
 function insert(){
-	input.style.display="block"
+	hidden[0].style.display="block"
 	inputform.focus()
 	inputform.onsubmit = function(event){
 		event.preventDefault()
@@ -125,7 +137,7 @@ function update(data){
 			default : break
 			}
 	})
-	t_update.style.display="block"
+	hidden[1].style.display="block"
 	t_update.focus()
 	t_update.onsubmit = function(event){
 		event.preventDefault()
@@ -153,6 +165,25 @@ function update(data){
 			}
 	})
 	}	
+}
+
+function del(data){
+	if(confirm('정말 삭제하시겠습니까?')){
+		const url ='${cpath}/admin/cinema/'+data
+		const opt={
+				method : 'DELETE'
+		}
+		fetch(url,opt)
+		.then(resp => resp.text())
+		.then(text =>{
+			if(+text==1){
+				alert('삭제 성공')
+				location.reload()
+			}else{
+				alert('삭제 실패')
+			}
+		})
+	} 
 }
 
 </script>

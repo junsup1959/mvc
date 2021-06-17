@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -254,7 +255,6 @@ public class AdminController {
 	public String c_upate(@PathVariable String branchcode) throws JsonProcessingException {
 		TheaterDTO dto = cs.selectOne(branchcode);
 		String json = mapper.writeValueAsString(dto);
-		System.out.println(json);
 		return json;
 	}
 	
@@ -264,7 +264,14 @@ public class AdminController {
 		int row = cs.update(dto);
 		return row+"";
 	}
+	@DeleteMapping("/cinema/{branchcode}")
+	@ResponseBody
+	public String c_delete(@PathVariable String branchcode) {
 	
+		System.out.println(branchcode);
+		int row = cs.delete(branchcode);
+		return row+"";
+	}
 
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------

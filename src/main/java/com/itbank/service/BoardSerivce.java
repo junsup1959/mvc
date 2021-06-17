@@ -37,7 +37,8 @@ public class BoardSerivce {
 	}
 	public boardDTO selectOne(int board_number) {
 		// TODO Auto-generated method stub
-		return dao.selectOne(board_number);
+		boardDTO dto = dao.selectOne(board_number);
+		return dto;
 	}
 	public int update(boardDTO dto) {
 		// TODO Auto-generated method stub

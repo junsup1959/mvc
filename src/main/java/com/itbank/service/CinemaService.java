@@ -36,4 +36,9 @@ public class CinemaService {
 
 		return dao.update(dto);
 	}
+
+	public int delete(String branchcode) {
+		// TODO Auto-generated method stub
+		return dao.delete(branchcode);
+	}
 }

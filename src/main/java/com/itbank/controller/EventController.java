@@ -44,4 +44,31 @@ public class EventController {
 	  json = mapper.writeValueAsString(dto);
 	  return json;
 	}
+	@GetMapping(value = "/read/prev/{number}",produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String prev(@PathVariable int number) throws JsonProcessingException {
+		  String json = null;
+		  boardDTO pre= bs.prev(number);
+		  int prev = pre.getBoard_prev();
+		  if(prev != 0) {
+		  boardDTO dto = bs.selectOne(prev);
+			  json = mapper.writeValueAsString(dto);
+		  }
+		  return json;
+	}
+
+	@GetMapping(value = "/read/next/{number}",produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String next(@PathVariable int number) throws JsonProcessingException {
+		
+		
+		  String json = null;
+		  boardDTO nex= bs.next(number);
+		  int next = nex.getBoard_next();
+		  if(next != 0) {
+		  boardDTO dto = bs.selectOne(next);
+			  json = mapper.writeValueAsString(dto);
+		  }
+		  return json;
+		}
 }
