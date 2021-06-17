@@ -59,10 +59,10 @@
 
 	<insert id="insert" parameterType="member">
 	insert into member(
-   		 member_number, member_email, member_name, member_password, member_nick, member_phone, member_addr,  member_gender   
+   		 member_number, member_email, member_name, member_password, member_nick, member_phone, member_addr1, member_addr2,  member_gender   
 		)
 	values(
-   		 #{member_number} || to_char(member_seq.nextval,'FM00000'), #{member_email}, #{member_name}, #{member_password}, #{member_nick}, #{member_phone}, #{member_addr} , #{member_gender}
+   		 #{member_number} || to_char(member_seq.nextval,'FM00000'), #{member_email}, #{member_name}, #{member_password}, #{member_nick}, #{member_phone}, #{member_addr1}, #{member_addr2} , #{member_gender}
 		)
 	
 	</insert>
@@ -93,7 +93,8 @@
 		update member set
 			member_nick = #{member_nick},
 			member_phone = #{member_phone},
-			member_addr = #{member_addr},
+			member_addr1 = #{member_addr1},
+			member_addr2 = #{member_addr2},
 			member_gender = #{member_gender}
 		where
 			member_email = #{member_email}

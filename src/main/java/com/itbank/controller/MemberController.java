@@ -21,6 +21,8 @@ public class MemberController {
 	@Autowired MemberService ms;
 	
 	
+	@GetMapping("/modifyPw")
+	public void modifyPw() {}
 	
 	@GetMapping("/membership")
 	public void membership() {}
@@ -113,8 +115,8 @@ public class MemberController {
 	@PostMapping("/modify")
 	public ModelAndView modify(MemberDTO member, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
 		int row = ms.modify(member);
+		
 		if(row == 1) {
 			mav.addObject("msg", "회원정보를 수정하였습니다. 다시 로그인 해주세요.");
 			mav.setViewName("redirect:/member/login");
@@ -133,13 +135,11 @@ public class MemberController {
 	@PostMapping("/mypage")
 	public ModelAndView mypage(MemberDTO member, HttpSession modify) {
 		ModelAndView mav = new ModelAndView();
-		String[] member_email2 = member.getMember_email().toString().split(",");
-		member.setMember_email(member_email2[0]);
+		String Email = member.getMember_email().split(",")[0];
+		member.setMember_email(Email);
 		MemberDTO dto = ms.doubleCheck(member);
+		
 		if(dto != null) {
-			String[] addr = dto.getMember_addr().toString().split(",");
-			dto.setMember_addr1(addr[0]);
-			dto.setMember_addr2(addr[1]);
 			modify.setAttribute("modify", dto);
 			mav.setViewName("redirect:/member/modify");
 			return mav;

@@ -39,7 +39,6 @@ public class MemberService {
 //		member.setMember_password(getHash(member.getMember_password()));
 		String[] user_num = UUID.randomUUID().toString().split("-");
 		member.setMember_number(user_num[0]);
-		System.out.println(user_num[0]);
 		return dao.insert(member);
 	}
 

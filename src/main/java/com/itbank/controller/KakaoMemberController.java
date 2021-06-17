@@ -151,7 +151,8 @@ public class KakaoMemberController {
 		member.setMember_password(tempPw);
 		member.setMember_nick(kakaoProfile.getKakao_account().getProfile().getNickname());
 		member.setMember_gender(kakaoProfile.getKakao_account().getGender().toUpperCase().substring(0, 1));
-		member.setMember_addr("United State");
+		member.setMember_addr1("United State");
+		member.setMember_addr2("123");
 		member.setMember_phone("01012345678");
 		
 	

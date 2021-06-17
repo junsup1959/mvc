@@ -139,20 +139,19 @@ var choice =  document.querySelector('.con'+t)
 						<span>${a.admin_addr}</span>
 						</p>	
 					</c:forEach>
-					</div>
-					
-					<div>
+					<article>
 						<c:if test="${paging.prev }">
 						   	<a href="${cpath }/admin/admin_member?page=${paging.begin-1}">
 						   	[이전]</a>
 					   	</c:if>
 						<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
-							<a href="${cpath }/admin/admin_member?page=${i}">[${i}]</a>
+							<span onclick="name(${i})">[${i}]</span>
 						</c:forEach>
 						<c:if test="${paging.next }">
 						   	<a href="${cpath }/admin/admin_member?page=${paging.end+1}">
 						   	[다음]</a>
 					   	</c:if>
+					</article>
 					</div>
 					
 				</c:if>
@@ -226,6 +225,14 @@ var choice =  document.querySelector('.con'+t)
 				alert('실패');
 			}
 		});
+	}
+	
+	
+	
+	
+	function name(data){
+		location.href="${cpath }/admin/admin_member?page="+data
+		
 	}
 </script>
 

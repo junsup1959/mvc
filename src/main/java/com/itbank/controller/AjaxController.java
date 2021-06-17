@@ -18,7 +18,6 @@ import com.itbank.service.MemberService;
 public class AjaxController {
 
 	@Autowired MemberService ms;
-	private ObjectMapper mapper = new ObjectMapper();
 
 	
 	

@@ -43,13 +43,12 @@
 	
 		
 	<p><input type="submit" value="수정완료"></p>
-	<p><button type="button" onclick="location.href ='${cpath}/member/modify'">비밀번호 변경</button></p>
-<%-- 	<p><button type="button" onclick="location.href ='${cpath}/member/deleteMember'">회원탈퇴</button></p> --%>
-	<p><button type="button" onclick="delChk()">회원탈퇴</button></p>
 		
 	
 </form>
 
+	<p><button type="button" onclick="location.href ='${cpath}/member/modifyPw'">비밀번호 변경</button></p>
+	<p><button type="button" onclick="delChk()">회원탈퇴</button></p>
 
 <script>
 	

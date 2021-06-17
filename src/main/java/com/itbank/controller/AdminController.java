@@ -86,14 +86,6 @@ public class AdminController {
 	}
 	
 	
-//	@GetMapping("/customer/customerList")
-//	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
-//		ModelAndView mav= new ModelAndView("admin/customer/customerList");
-//		int memberCount = ms.memberCount();
-//		Paging paging = new Paging(page, memberCount);
-//		mav.addObject("paging", paging);
-//		return mav;
-//	}
 	
 	@GetMapping("/admin_member")
 	public ModelAndView admin_member(@RequestParam HashMap<String, Object> param, int page) {

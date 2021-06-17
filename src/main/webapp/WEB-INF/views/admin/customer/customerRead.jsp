@@ -50,7 +50,8 @@
 	<div>
 		<p>
 			<span>주소</span>
-			<span>${dto.member_addr}</span>
+			<span>${dto.member_addr1}</span>
+			<span>${dto.member_addr2}</span>
 		</p>
 	</div>
 	<div>

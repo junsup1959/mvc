@@ -8,7 +8,7 @@
 			<h3>회원가입 : 회원정보를 입력 후 회원가입버튼을 누르세요</h3>
 			<hr color="#fff">
 			<div class="formWrap">
-				<form method="post" id="joinForm">
+				<form method="post" id="joinForm" onsubmit="check()">
 				<div>
 					<label>이름</label>
 					<p><input type="text" name="member_name" placeholder="이름을 적어주세요." required autofocus></p>
@@ -85,35 +85,41 @@
 			</div>
 	</div>
 </section>
-
-
+<script>
+function check(){
+	const p1 = document.getElementById('pw1').value
+	const p2 = document.getElementById('pw2').value
+	if(!p1.equals(p2)){
+		alert('실패')
+		return false;
+	}
+}
+</script>
+<script>
+	/* 
+	const submitForm = document.forms[0]
+	submitHandler = function(event){
+		event.preventDefault()
+		const p1 = document.getElementById('pw1').value
+		console.log(p1)
+		const p2 = document.getElementById('pw2').value
+		console.log(p2)
+		return false;
+		if(p1 != p2){
+			alert('비밀번호가 일치하지 않습니다.')
+			
+	}
+	
+		submitForm.onsubmit = submitHandler
+ */
+</script>
 <script>
 
-
-/* 	$(function() {
-	    $('#select').change(function() {
-	        if ($('#select').val() == 'directly') {
-	            $('#member_email').attr("disabled", false);
-	            $('#member_email').val("");
-	            $('#member_email').focus();
-	        } else {
-	        	$('#member_email').val() = $('#member_email').val() +'@'+ $('#select').val()
-	        	
-	        	/* const joinForm = document.getElementById('joinForm')
-	        	const input = document.createElement('input')			
-				'member_email' : input.type = 'hidden';break;
-				input.name = 'member_email'
-				input.value = member_email
-				updateForm.appendChild(input) 
-	        }
-	    })
-	}); */
 
 	function emailCheck(email) {
 		if (email != "") {
 			const exptext = /[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]/;
 			if (!exptext.test(email)) {
-// 				if($('#select').val() == 'directly')|| $('#select').val() == '')){
 				document.getElementById('emailChk').value = "유효하지 않은 email 형식입니다."
 				document.getElementById('emailChk').style.color = "red"
 //				}
@@ -128,9 +134,9 @@
 	}
 	
 	
-	function jusoCallBack(roadFullAddr, addrDetail){
+	function jusoCallBack(roadAddrPart1, addrDetail){
 		var addrEl = document.querySelector("#member_addr1")
-		addrEl.value = roadFullAddr
+		addrEl.value = roadAddrPart1
 		
 		var addrEl2 = document.querySelector("#member_addr2")
 		addrEl2.value = addrDetail 
@@ -207,7 +213,7 @@
 				document.getElementById('checkNickMsg').style.color = 'blue'
 				document.querySelector('input[name="member_phone"]').focus()
 			}
-				document.getElementById('msg').style.fontWeight = 'bold'
+				document.getElementById('checkNickMsg').style.fontWeight = 'bold'
 		})
 	}
 	

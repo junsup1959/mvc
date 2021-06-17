@@ -13,7 +13,7 @@ package com.itbank.member;
 public class MemberDTO {
 
 	private String member_number;
-	private String member_email, member_name, member_password, member_phone, member_addr, member_gender, member_nick, member_deleted;
+	private String member_email, member_name, member_password, member_phone, member_gender, member_nick, member_deleted;
 	private String member_grade, amount_this, amount_last, member_date;
 	private String member_addr1, member_addr2;
 
@@ -47,15 +47,6 @@ public class MemberDTO {
 	}
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
-	}
-	public String getMember_addr() {
-		if(member_addr1 != null) {
-			return member_addr1 + member_addr2;
-		}
-		return member_addr;
-	}
-	public void setMember_addr(String member_addr) {
-		this.member_addr = member_addr;
 	}
 	public String getMember_gender() {
 		return member_gender;
