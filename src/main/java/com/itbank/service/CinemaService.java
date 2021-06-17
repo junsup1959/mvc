@@ -25,4 +25,15 @@ public class CinemaService {
 		dto.setBranchcode(branchcode);
 		return dao.insert(dto);
 		}
+
+	public TheaterDTO selectOne(String branchcode) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(branchcode);
+	}
+
+	public int update(TheaterDTO dto) {
+		// TODO Auto-generated method stub
+
+		return dao.update(dto);
+	}
 }

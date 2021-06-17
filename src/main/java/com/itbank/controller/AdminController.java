@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -248,14 +250,29 @@ public class AdminController {
 		mav.addObject("list", list);
 		return mav;
 	}
-	@PostMapping("cinema")
+	@PostMapping("/cinema")
 	@ResponseBody
 	public String  c_insert(TheaterDTO dto) {
 		int row = cs.insert(dto);
 		return row+"";
 	}
 
-
+	@GetMapping(value = "/cinema/{branchcode}", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String c_upate(@PathVariable String branchcode) throws JsonProcessingException {
+		TheaterDTO dto = cs.selectOne(branchcode);
+		String json = mapper.writeValueAsString(dto);
+		System.out.println(json);
+		return json;
+	}
+	
+	@PutMapping(value = "/cinema" ,consumes = "application/json; charset=utf-8")
+	@ResponseBody
+	public String c_update(@RequestBody TheaterDTO dto) {
+		int row = cs.update(dto);
+		return row+"";
+	}
+	
 
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------
