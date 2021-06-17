@@ -244,7 +244,7 @@ public class AdminController {
 	}
 	@PostMapping("/cinema")
 	@ResponseBody
-	public String  c_insert(TheaterDTO dto) {
+	public String  cs_insert(TheaterDTO dto) {
 		int row = cs.insert(dto);
 		return row+"";
 	}
