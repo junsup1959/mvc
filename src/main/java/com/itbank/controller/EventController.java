@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itbank.admin_board.Paging;
@@ -50,10 +51,8 @@ public class EventController {
 		  String json = null;
 		  boardDTO pre= bs.prev(number);
 		  int prev = pre.getBoard_prev();
-		  if(prev != 0) {
 		  boardDTO dto = bs.selectOne(prev);
-			  json = mapper.writeValueAsString(dto);
-		  }
+		  json = mapper.writeValueAsString(dto);
 		  return json;
 	}
 
@@ -65,10 +64,8 @@ public class EventController {
 		  String json = null;
 		  boardDTO nex= bs.next(number);
 		  int next = nex.getBoard_next();
-		  if(next != 0) {
 		  boardDTO dto = bs.selectOne(next);
-			  json = mapper.writeValueAsString(dto);
-		  }
+		  json = mapper.writeValueAsString(dto);
 		  return json;
 		}
 }
