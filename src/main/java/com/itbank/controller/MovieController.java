@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
  
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/movie")
 public class MovieController {
  
     // 상수 설정
@@ -35,8 +35,6 @@ public class MovieController {
  
 
     
-	
- 
     // API요청
     @GetMapping("/movie")
     public ModelAndView requestAPI() {
@@ -77,7 +75,6 @@ public class MovieController {
             StringBuffer response = new StringBuffer();
             while ((readline = br.readLine()) != null) {
                 response.append(readline);
-                System.out.println(readline);
             }
  
             // JSON 객체로  변환
@@ -88,18 +85,10 @@ public class MovieController {
  
             // 박스오피스 주제 출력
             String boxofficeType = boxOfficeResult.getString("boxofficeType");
-            System.out.println(boxofficeType);
             
             // 박스오피스 목록 출력
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
-            Iterator<Object> iter = dailyBoxOfficeList.iterator();
-            
-            while(iter.hasNext()) {
-                JSONObject boxOffice = (JSONObject) iter.next();
-                System.out.printf("  %s - %s\n", boxOffice.get("rnum"), boxOffice.get("movieNm"));
-            	ArrayList<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
-            }
-            String movie = String.valueOf(iter);
+
             mav.setViewName("member/movie");
             mav.addObject("movie", response);
             return mav;
