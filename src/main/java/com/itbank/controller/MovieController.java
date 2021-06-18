@@ -89,7 +89,7 @@ public class MovieController {
             // 박스오피스 목록 출력
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
 
-            mav.setViewName("member/movie");
+            mav.setViewName("movie/movie");
             mav.addObject("movie", response);
             return mav;
         } catch (IOException e) {

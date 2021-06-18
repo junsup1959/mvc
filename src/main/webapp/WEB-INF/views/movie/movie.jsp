@@ -30,7 +30,7 @@
 		
 	const test2 = JSON.parse(test1)
 	
-	for(let i = 0; test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
+	for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
 		const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
 		const client_id = "p3EkwlpyD99frDpNN5th";
 		const client_secret = "_t4XeBaQvU";
