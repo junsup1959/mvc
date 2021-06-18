@@ -50,7 +50,15 @@
 		  	 		and ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			member_date desc
+			member_date
+			<choose>
+				<when test = "!sorted.equals('asc')">
+					desc
+				</when>
+				<otherwise>
+					asc
+				</otherwise>
+			</choose>
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
