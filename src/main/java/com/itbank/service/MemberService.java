@@ -118,34 +118,21 @@ public class MemberService {
 
 
 
-	public List<MemberDTO> customerDateList(Paging paging, HashMap<String, Object> param) {
+	public List<MemberDTO> customerList(int number, Paging paging, HashMap<String, Object> param) {
+	
+		List<MemberDTO> customerList = null;
 		param.put("offset", paging.getOffset());
 		param.put("perPage",paging.getPerPage());
-		return dao.customerDateList(param);
+		switch(number) {
+		case 1:	customerList = dao.customerDateList(param); break;
+		case 2: customerList = dao.customerGradeList(param); break;
+		case 3: customerList = dao.customerThisList(param); break;
+		case 4: customerList = dao.customerLastList(param); break;
+		case 5: customerList = dao.customerDeletedList(param); break;
 	}
-
-
-
-	public List<MemberDTO> customerGradeList(Paging paging, HashMap<String, Object> param) {
-		param.put("offset", paging.getOffset());
-		param.put("perPage",paging.getPerPage());
-		return dao.customerGradeList(param);
-	}
-
-
-
-	public List<MemberDTO> customerThisList(Paging paging, HashMap<String, Object> param) {
-		param.put("offset", paging.getOffset());
-		param.put("perPage",paging.getPerPage());
-		return dao.customerThisList(param);
-	}
-
-
-
-	public List<MemberDTO> customerLastList(Paging paging, HashMap<String, Object> param) {
-		param.put("offset", paging.getOffset());
-		param.put("perPage",paging.getPerPage());
-		return dao.customerLastList(param);
+		
+	
+		return customerList;
 	}
 
 

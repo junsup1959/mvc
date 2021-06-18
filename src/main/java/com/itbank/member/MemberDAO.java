@@ -56,6 +56,8 @@ public interface MemberDAO {
 
 	List<MemberDTO> customerLastList(HashMap<String, Object> param);
 
+	List<MemberDTO> customerDeletedList(HashMap<String, Object> param);
+
 
 
 	

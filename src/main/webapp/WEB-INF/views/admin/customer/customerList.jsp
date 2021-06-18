@@ -4,40 +4,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div>
-
-
-
-<!-- 셀렉트박스 or 목록하나 생성 -->
-<!-- 회원번호 , 이름 , 이메일, 전화번호, 주소, 등급, 가입일, 올해사용금액, 전년도사용금액 -->
-<!-- ----------- -->
 <!-- 탈퇴회원     - del  -->
-<!-- ------------ -->
-<!-- 		조회하면 보이는 목록 -->
-<!-- 		 -->
-<!-- 		<span>ID</span> -->
-<!-- 		<span>전화번호</span> -->
-<!-- 		<span>주소</span> -->
-<!-- 		<span>성별</span> -->
-
-<!-- 고객관리    - 셀렉트 박스에 등급, 가입, 사용금액 순 -->
 <div>
-<%--  name="${param.listSort }" value="dateSort" --%>
 	<form>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1"><span>회원 가입순</span></a>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=2"><span>등급순</span></a>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=3"><span>올해 사용 금액순</span></a>
 		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=4"><span>작년 사용 금액순</span></a>
+		<a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=5"><span>탈퇴 회원 목록</span></a>
 	</form>	
 </div>
 
 
-<%-- <h2><fmt:formatNumber value="${1000000 }" /></h2>  숫자 점찍기 --%>
 
 <c:if test="${empty customerList}">
 	<div>
-		<h2>가입된 회원이 없습니다.</h2>
+		<h2>회원 목록이 없습니다.</h2>
 	</div>
 </c:if>
+
 
 <c:if test="${not empty customerList }">
 	<div>

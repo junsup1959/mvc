@@ -5,6 +5,18 @@
 			
 <mapper namespace="com.itbank.member.MemberDAO">
 
+	<select id="customerDeletedList" resultType="member" parameterType="hashmap">
+		select * from member
+			where member_deleted = 'y'
+				<if test="keyword!=null and keyword.equals('')==false">
+		  	 		and ${search} like '%${keyword}%'
+		 	 	</if>
+  	 	order by 
+			member_date desc
+		offset ${offset} rows
+	 		fetch first ${perPage} rows only
+	</select>
+
 
 	<select id="customerLastList" resultType="member" parameterType="hashmap">
 		select * from member
