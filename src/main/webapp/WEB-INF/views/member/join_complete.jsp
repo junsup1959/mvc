@@ -13,4 +13,4 @@
 	<button type="button" onClick="location.href='${cpath }/member/login'">홈으로 가기</button>
 </div>
 </body>
-</html>
+</html>z

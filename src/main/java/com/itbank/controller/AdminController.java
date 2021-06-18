@@ -281,13 +281,8 @@ public class AdminController {
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
 		int memberCount = ms.memberCount();
 		Paging paging = new Paging(page, memberCount);
-		List<MemberDTO> customerList = null;
-		switch(number) {
-			case 1:	customerList = ms.customerDateList(paging,param); break;
-			case 2: customerList = ms.customerGradeList(paging,param); break;
-			case 3: customerList = ms.customerThisList(paging,param); break;
-			case 4: customerList = ms.customerLastList(paging,param); break;
-		}
+		List<MemberDTO> customerList = ms.customerList(number, paging, param);
+		
 		mav.addObject("customerList", customerList);
 		mav.addObject("paging", paging);
 		return mav;

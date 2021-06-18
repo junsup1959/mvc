@@ -9,6 +9,7 @@
     <title>MVC</title>
     <link href="${cpath }/resources/css/style.css" rel="stylesheet">
     <link href="${cpath }/resources/css/body.css" rel="stylesheet">
+    <link href="${cpath }/resources/css/movie.css" rel="stylesheet">
     <link href="${cpath }/resources/css/slick.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="${cpath }/resources/js/jquery-1.12.4.js"></script>
@@ -16,7 +17,6 @@
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" href="${cpath }/resources/css/style.css">
 </head>
-
 
 <script>
 $(document).ready(function(){
@@ -117,9 +117,9 @@ $(document).ready(function(){
         <nav class="menu">
            <div class="mbg"></div>
             <ul class="clearfix">
-                <li><a href="">예매</a>
+                <li><a href="${cpath }/movie/ticket">예매</a>
                     <ul class="sub clearfix">
-                        <li><a href="">예매하기</a></li>
+                        <li><a href="${cpath }/movie/ticket">예매하기</a></li>
                         <li><a href="">상영시간표</a></li>
                     </ul>
                 </li>
@@ -130,9 +130,9 @@ $(document).ready(function(){
                         <li><a href="">리뷰/평점</a></li>
                     </ul>
                 </li>
-                <li><a href="">영화관</a>
+                <li><a href="${cpath }/movie/cinema">영화관</a>
                     <ul class="sub clearfix">
-                        <li><a href="">해운대점</a></li>
+                        <li><a href="${cpath }/movie/cinema">해운대점</a></li>
                         <li><a href="">서면점</a></li>
                         <li><a href="">기타등등</a></li>
                     </ul>
