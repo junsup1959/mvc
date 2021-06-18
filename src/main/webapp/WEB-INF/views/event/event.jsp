@@ -32,7 +32,7 @@ a {
 
 .layer .box {
 	overflow: auto;
-	width: 80%;
+	width: 60%;
 	height: 80%;
 	padding: 20px 20px 60px;
 	margin: 20px;
@@ -41,15 +41,11 @@ a {
 }
 
 .layer .close {
-	position: absolute;
-	right: 20px;
-	bottom: 20px;
-	display: block;
-	background: #09F;
-	color: #fff;
-	text-align: center;
-	padding: 5px 20px;
-	font-size: 13px;
+    position: absolute;
+    right: 0;
+    width: 70px;
+    display: block;
+    top: 20px;
 }
 
 .layer:target {
@@ -67,13 +63,9 @@ to {
 }
 
 }
+
 .rgt {
 	text-align: center;
-	content: '*';
-	width: 30px; /* 사이즈 */
-	height: 30px; /* 사이즈 */
-	border-top: 5px solid #121212; /* 선 두께 */
-	border-right: 5px solid #121212; /* 선 두께 */
 	display: block;
 	position: absolute;
 	right: 15px;
@@ -82,16 +74,38 @@ to {
 
 .lft {
 	text-align: center;
-	content: '*';
-	width: 30px; /* 사이즈 */
-	height: 30px; /* 사이즈 */
-	border-top: 5px solid #121212; /* 선 두께 */
-	border-right: 5px solid #121212; /* 선 두께 */
 	display: block;
 	position: absolute;
 	left: 15px;
 	top: 45%;
 }
+
+.bcont_wrap{
+	display: flex;
+	justify-content: center;
+}
+.bcont_wrap>*{
+	flex-shrink: 1;
+}
+.b_param{
+	display:flex;
+	width:100%;
+	justify-content:space-evenly;
+	margin-bottom: 20px;
+}
+.b_param>span{
+	display: inline-block;
+	width: 25%;
+}
+
+.b_title{
+	margin-left : 54px;
+	margin-bottom: 20px;
+}
+.b_title>span{
+	padding: 30px
+}
+
 </style>
 <div class="e_wrap">
 	<div class="">
@@ -113,19 +127,26 @@ to {
 		</div>
 		<div id="popup1" class="layer">
 			<div class="box">
-
-				<button class="lft">이전</button>
-				<button class="rgt">다음</button>
-				<div class="">
-					<span class="">글번호</span> <span class="">제목</span> <span class="">시작일</span>
+				<a class="lft"><i class="xi-angle-left"></i></a>
+				<a class="rgt"><i class="xi-angle-right"></i></a>
+				<div class="b_param">
+					<span class="values">글번호</span>
+					<span class="values">시작일</span>
 					<span class="">마감일</span>
 				</div>
 				<div class="b_param">
-					<span class="" id="bnumber"></span> <span class="" id="btitle"></span>
-					<span class="" id="bdate"></span> <span class="" id="edate"></span>
+					<span class="values" id="bnumber"></span>
+					<span class="values" id="bdate"></span>
+					<span class="values" id="edate"></span>
 				</div>
-				<div id="bcontent" class=""></div>
-				<a href="#" class="close">닫기</a>
+				<div class="b_title">
+					<span> 제목 </span>
+					<span class="" id="btitle"></span>
+				</div>
+				<div class="bcont_wrap">
+					<div id="bcontent" class=""></div>
+				</div>
+				<a href="#" class="close"><i class="xi-close"></i></a>
 			</div>
 		</div>
 	</div>
@@ -177,6 +198,7 @@ to {
 		})
 	}
 	right.onclick = function(event){
+		event.preventDefault()
 		let url = '${cpath}/event/read/next/'+bnum.innerText
 		const opt = {method : 'GET' }
 		fetch(url,opt)
@@ -209,6 +231,7 @@ to {
 }
 		
 	left.onclick = function(event){
+		event.preventDefault()
 		let url = '${cpath}/event/read/prev/'+bnum.innerText
 		const opt = {method : 'GET' }
 		fetch(url,opt)

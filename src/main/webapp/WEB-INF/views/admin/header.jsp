@@ -35,7 +35,7 @@
             <li><a href="#">리뷰관리</a></li>
             <li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1">고객관리</a></li>
             <li><a href="${cpath }/admin/board/?search=&keyword=&page=1">공지/이벤트관리</a></li>           
-            <li><a href="#">사내게시판</a></li>
+            <li><a href="${cpath }/admin/c_board">사내게시판</a></li>
            
         </ul>
     </nav>
