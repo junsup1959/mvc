@@ -1,6 +1,5 @@
 package com.itbank.controller;
 
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
  
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/movie")
 public class MovieController {
  
     // 상수 설정
@@ -35,12 +34,9 @@ public class MovieController {
  
 
     
-	
- 
     // API요청
     @GetMapping("/movie")
     public ModelAndView requestAPI() {
-    	
 
 //        // 변수설정
 //        //   - 하루전 닐짜
@@ -56,8 +52,8 @@ public class MovieController {
         paramMap.put("key"          , AUTH_KEY);                        // 발급받은 인증키
         paramMap.put("targetDt"     , DATE_FMT.format(cal.getTime()));  // 조회하고자 하는 날짜
         paramMap.put("itemPerPage"  , "10");                            // 결과 ROW 의 개수( 최대 10개 )
-        paramMap.put("multiMovieYn" , "N");                             // Y:다양성 영화, N:상업영화, Default:전체
-        paramMap.put("repNationCd"  , "F");                             // K:한국영화, F:외국영화, Default:전체
+//        paramMap.put("multiMovieYn" , );                             // Y:다양성 영화, N:상업영화, Default:전체
+//        paramMap.put("repNationCd"  , );                             // K:한국영화, F:외국영화, Default:전체
  
         
         ModelAndView mav = new ModelAndView();
@@ -94,14 +90,17 @@ public class MovieController {
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
             Iterator<Object> iter = dailyBoxOfficeList.iterator();
             
+//            ArrayList<String> movieList = new ArrayList<String>();
             while(iter.hasNext()) {
                 JSONObject boxOffice = (JSONObject) iter.next();
-                System.out.printf("  %s - %s\n", boxOffice.get("rnum"), boxOffice.get("movieNm"));
-            	ArrayList<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+                System.out.printf("  %s \n",  boxOffice.get("movieNm"));
+//                System.out.printf("  %s - %s\n", boxOffice.get("rnum"), boxOffice.get("movieNm"));
+//                movieList.add(boxOffice.get("movieNm").toString());
             }
             String movie = String.valueOf(iter);
-            mav.setViewName("member/movie");
+            mav.setViewName("movie/movie");
             mav.addObject("movie", response);
+//            mav.addObject("movieList", movieList);
             return mav;
         } catch (IOException e) {
             e.printStackTrace();

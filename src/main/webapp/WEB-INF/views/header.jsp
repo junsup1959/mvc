@@ -123,9 +123,9 @@ $(document).ready(function(){
                         <li><a href="">상영시간표</a></li>
                     </ul>
                 </li>
-                <li><a href="">영화</a>
+                <li><a href="${cpath }/movie/movie">영화</a>
                     <ul class="sub clearfix" >
-                        <li><a href="">현재상영작</a></li>
+                        <li><a href="${cpath }/movie/movie">현재상영작</a></li>
                         <li><a href="">상영예정작</a></li>
                         <li><a href="">리뷰/평점</a></li>
                     </ul>
