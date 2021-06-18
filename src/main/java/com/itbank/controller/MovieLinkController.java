@@ -13,5 +13,5 @@ public class MovieLinkController {
 	
 	@GetMapping("/cinema")
 	public void cinema() {}
-	
+
 }

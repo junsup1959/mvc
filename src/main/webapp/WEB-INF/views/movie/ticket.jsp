@@ -4,7 +4,6 @@
 
 <section id="movieWrap">
         <div class="ticket"> 
-             
              <nav class="nav" id="choice1">  
                  <h1 class="text">영화관</h1>     
                   <ul>

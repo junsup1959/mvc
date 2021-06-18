@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="${cpath }/resources/css/style.css">
 </head>
 
-
 <script>
 $(document).ready(function(){
     ////////////////////제이쿼리 시작///////////////////////////////////////////
