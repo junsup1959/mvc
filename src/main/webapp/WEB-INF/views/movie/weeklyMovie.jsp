@@ -9,15 +9,14 @@
 <hr>
 
 <div style="display: none">
-<a href="${cpath }/member/movie">영화목록</a>
+<a href="${cpath }/member/dailymovie">영화목록</a>
 </div>
 
 
 <!-- 네이버에서 받아온 영화  띄우기 -->
-<div id="daily"></div>
 
 
-
+저번주 일주일간 영화 랭킹
 <div id="weekly"></div>
 
 
@@ -26,12 +25,12 @@
 
 <script>
 
-	const test1 = '${movie }'
+	const test1 = '${weeklyMovie }'
 		
 	const test2 = JSON.parse(test1)
 	
-	for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
-		const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
+	for(let i = 0;i< test2.boxOfficeResult.weeklyBoxOfficeList.length ; i++ ){
+		const movieName = test2.boxOfficeResult.weeklyBoxOfficeList[i].movieNm
 		const client_id = "p3EkwlpyD99frDpNN5th";
 		const client_secret = "_t4XeBaQvU";
 		const encText = encodeURI(movieName);
@@ -68,7 +67,7 @@
 				wrap.appendChild(p)
 				}
 				
-			document.getElementById('daily').appendChild(wrap)
+			document.getElementById('weekly').appendChild(wrap)
 		
 		})
 
