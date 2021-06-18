@@ -13,18 +13,16 @@
 			<div class="listTitle">
 				<span>글번호</span>
 				<span>제목</span>
-				<span>지점</span>
-				<span>시작날짜</span>
-				<span>종료날짜</span>
+				<span>작성자</span>
+				<span>작성일</span>
 			</div>
 			
-			<c:forEach var="board" items="${list}">
-				<div class="list" onclick="location.href='${cpath}/admin/board/read/${board.board_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'"'>
-					<span>${board.board_number}</span>
-					<span>${board.board_title}</span>
-					<span>${board.board_store }</span>
-					<span>${board.board_bdate}</span>
-					<span>${board.board_edate}</span>	
+			<c:forEach var="cboard" items="${list}">
+				<div class="list" onclick="location.href='${cpath}/admin/c_board/read/${cboard.co_idx}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'">
+					<span>${cboard.co_idx}</span>
+					<span>${cboard.co_title}</span>
+					<span>${cboard.co_writer }</span>
+					<span>${cboard.co_date}</span>
 				</div>
 			</c:forEach>
 		</div>

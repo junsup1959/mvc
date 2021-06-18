@@ -40,7 +40,7 @@
 			<list>
 				<value>classpath:config/sqlmap-member.xml</value>
 				<value>classpath:config/sqlap-board.xml</value>
-<!-- 				<value>classpath:config/sqlmap-reply2.xml</value> -->
+				<value>classpath:config/sqlmap-cboard.xml</value>
 			</list>
 		</property>
 	</bean>

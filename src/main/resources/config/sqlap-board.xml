@@ -61,6 +61,7 @@
 	select * from (select board_number, lag(board_number) over(order by board_number) board_prev from board where board_deleted='n') 
 	where board_number=#{board_number}
 	</select>
+	
 </mapper>
 
 

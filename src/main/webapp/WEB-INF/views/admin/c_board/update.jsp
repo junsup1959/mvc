@@ -76,30 +76,17 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 
 <section id="bodyWrap">
 	<div class="noticeWrap">
-		<form method="post" enctype="multipart/form-data">
-		<input type="hidden" name="admin_num" value="${ad_login.admin_num}" >
-		<p><input type="text" name="board_title" value="${dto.board_title}" class="b-title" ></p>
+		<form method="post">
+		<input type="hidden" name="co_num" value="${ad_login.admin_num}" >
+		<input type="hidden" name="co_idx" value="${dto.co.idx }">
+		<p><input type="text" name="co_title" value="${dto.co_title}" class="b-title" ></p>
 	  	<p>
-	  		<span>시작일</span>
-	  		<input type="date" name="board_bdate" value="${dto.board_bdate}">
-	  		<span>종료일</span>
-	  		<input type="date" name="board_edate" value="${dto.board_edate}">
+	
+	  		<span>작성자</span>
+	  		<input type="text" name="co_writer" value="${dto.co_writer}" readonly>
 	  	</p>
-	  	<p>
-		  	<span>지점</span> 
-		  	<select name="board_store" id="store">
-		  		<option value="부산">서울점</option>
-		  		<option value="서울">부산점</option>
-		  	</select>
-	  		&nbsp;&nbsp;<span>구분</span>
-	  		<select name="board_notice" id="notice">
-	  			<option value="N">공지</option>
-	  			<option value="E">이벤트</option>
-	  		</select>
-	  	</p>
-	  	<p><input name="file" type="file"></p>
 	   	<p>
-	   		<textarea id="summernote" name="board_content"></textarea>
+	   		<textarea id="summernote" name="co_content"></textarea>
 	   	</p>
 	   	<p>
 	 		<button id="write" class="btn2">작성</button>
