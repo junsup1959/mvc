@@ -20,11 +20,18 @@
 
 
 
-
-
-
 <script>
 
+// 요소명.setStlye({key : value, key : value ...}) 형식으로 스타일 만드는 함수
+/// CSSStyleDeclaration 일치시켜야함. css 스타일 과  CSSStyleDeclaration 다를경우 에러발생 
+// ex) cssstlye에서는 flex-wrap 이지만 CSSStyleDeclaration에서는 flexWrap이다. 찾느라 고생함..ㅠ
+// 주로 margin-left  => marginLeft 이런식으로 바뀌는듯
+
+Element.prototype.setStyle = function(styles) {
+	for (let k in styles) this.style[k] = styles[k];
+	return this;
+	};
+	
 	const test1 = '${dailyMovie }'
 		
 	const test2 = JSON.parse(test1)
@@ -54,26 +61,53 @@
 			const wrap = document.createElement('div')
 			const data = json.items[0]
 			for(key in data) {
-				const p = document.createElement('p')
+				
 				switch(key) {
 				case 'title': 
-					p.innerHTML =  data[key]
+					const span = document.createElement('span')
+					span.setStyle({
+						display:'inline-block',
+						position: 'absolute',
+						bottom: '50px',
+					    left: '20px'
+					})
+					span.innerHTML =  data[key]
+					wrap.appendChild(span)
 					break;
 				case 'image':
-					p.innerHTML = '<img src="' + data[key] + '" style="width:200px;">'
+					const span1 = document.createElement('span')
+					span1.style.display = 'inline-block'
+					span1.innerHTML = '<img src="' + data[key] + '" style="width:200px; height :200px">'
+					wrap.appendChild(span1)
 					break;
-				}
-				
-				wrap.appendChild(p)
-				}
-				
+			}
+							
+		}
+			
 			document.getElementById('daily').appendChild(wrap)
-		
+			wrap.setStyle({
+				position: 'relative',
+				display: 'flex',
+		      	flexFlow: 'column',
+		      	marginLeft: '10px',
+		      	width: '200px',
+		      	height: '300px',
+		      	marginTop: '50px'
+			})
 		})
-
+		
 }
+	document.getElementById('daily').setStyle({
+		display : 'flex',
+		flexWrap: "wrap",
+		justifyContent: "space-evenly",
+		width : '1200px',
+		hieght : '1000px',
+		marginLeft: 'auto',
+		marginRight: 'auto'
+	})
 	
-	
+
 </script>
 </body>
 </html>
