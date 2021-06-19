@@ -27,9 +27,9 @@
 // ex) cssstlye에서는 flex-wrap 이지만 CSSStyleDeclaration에서는 flexWrap이다. 찾느라 고생함..ㅠ
 // 주로 margin-left  => marginLeft 이런식으로 바뀌는듯
 
-Element.prototype.setStyle = function(styles) {
-	for (let k in styles) this.style[k] = styles[k];
-	return this;
+	Element.prototype.setStyle = function(styles) {
+		for (let k in styles) this.style[k] = styles[k];
+		return this;
 	};
 	
 	const test1 = '${dailyMovie }'
@@ -87,8 +87,6 @@ Element.prototype.setStyle = function(styles) {
 			document.getElementById('daily').appendChild(wrap)
 			wrap.setStyle({
 				position: 'relative',
-				display: 'flex',
-		      	flexFlow: 'column',
 		      	marginLeft: '10px',
 		      	width: '200px',
 		      	height: '300px',
@@ -96,7 +94,8 @@ Element.prototype.setStyle = function(styles) {
 			})
 		})
 		
-}
+	}
+	
 	document.getElementById('daily').setStyle({
 		display : 'flex',
 		flexWrap: "wrap",
@@ -106,7 +105,7 @@ Element.prototype.setStyle = function(styles) {
 		marginLeft: 'auto',
 		marginRight: 'auto'
 	})
-	
+		 
 
 </script>
 </body>
