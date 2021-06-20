@@ -79,10 +79,11 @@ function tab(t, admin_num){
 var choice =  document.querySelector('.con'+t)
   var all = document.querySelectorAll('.rightWrap>div')
   for(var i =0; i < all.length;i++){
-      all[i].style.display = "none"
+	  all[i].classList.remove('on')
+      
   }
-  
-  choice.style.display="block"  
+  choice.classList.add('on')
+    
 	
 }
 </script>
@@ -97,7 +98,7 @@ var choice =  document.querySelector('.con'+t)
         </div>
 
         <div class="rightWrap">
-            <div class="con1">
+            <div class="con1 on">
                 <h2>사원목록</h2>
                 <c:if test="${empty list }">
                 	<h2>사원 목록이 없습니다.</h2>

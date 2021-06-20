@@ -80,25 +80,27 @@
     .leftWrap ul li {width: 200px;height: 50px; line-height : 50px; font-size : 22px; text-align : center; cursor: pointer; border-bottom : 1px dotted teal}
     .leftWrap ul li:hover {color : coral;}
 
-    .rightWrap {position: relative; float:left; margin-left : 120px;}
-    .rightWrap div {position : absolute; display : none; width : 1100px; margin:0; padding:0;}
+    .rightWrap {position: relative; float:left; margin-left : 120px; padding-top : 10px;}
+    .rightWrap > div {position : absolute; display : none; width : 1100px; margin:0; padding:0;}
+    .rightWrap > div.on {display : block}
  	.rightWrap div h2 {font-size : 20px; font-weight : bold; text-decoration : underline; margin-bottom : 10px;}
  	
- 	.con1 .list-title {display: block; width : 100%; height : 50px; line-height : 50px; background : #32bebe;}
+ 	
+ 	.con1 .list-title {width : 100%; height : 50px; line-height : 50px; background : #32bebe;}
  	.con1 .list-title span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; color : #fff;}
  	.con1 .list-title span:nth-child(7) {width : 40%;}
- 	.con1 .list {display : block; width : 100%;  margin-top : 50px;   }
+ 	.con1 .list { width : 100%;}
  	.con1 .list p {width : 100%; height : 40px; line-height : 40px;}
  	.con1 .list span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; border-bottom : 1px dotted #66cccc;}
  	.con1 .list span:nth-child(7) {width : 40%;}
  	.con1 .list p:hover span {background : rgba(255,240,120,0.4); font-weight : bold;}
  	
- 	.con2 .insertForm {display: block; width : 500px; height: 500px; border : 1px solid #32bebe;}
+ 	.con2 .insertForm {width : 500px; height: 500px; border : 1px solid #32bebe;}
  	.con2 .insertForm form {width : 300px; margin : 10px auto;}
  	.con2 .insertForm form select {margin-left : 0}
  	.con2 .insertForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-bottom : 7px; border : 1px solid #ddd; border-radius : 5px;}
 
-	.con4 .updateForm {display: block; width : 500px; height: 500px; border : 1px solid #32bebe;}
+	.con4 .updateForm {width : 500px; height: 500px; border : 1px solid #32bebe;}
  	.con4 .updateForm form {width : 100%; margin : 10px auto;}
  	.con4 .updateForm form span {display : inline-block; width : 160px; margin-left: 10px; font-size: 18px; }
  	.con4 .updateForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-left: 10px; margin-bottom : 7px; padding-left : 10px; border : 1px solid #ddd; border-radius : 5px;}
