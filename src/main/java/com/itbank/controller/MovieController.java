@@ -1,17 +1,14 @@
 package com.itbank.controller;
 
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
  
 import org.json.JSONArray;
@@ -33,9 +30,13 @@ public class MovieController {
     private final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd");
  
 
+	@GetMapping("/cinema")
+	public void cinema() {}
+    
+    
     
     // API요청
-    @GetMapping("/dailyMovie")
+    @GetMapping(value = {"/dailyMovie","/ticket"})
     public ModelAndView dailyMovie() {
     	
     	String REQUEST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -86,8 +87,13 @@ public class MovieController {
             
             // 박스오피스 목록 출력
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
-
-            mav.setViewName("movie/dailyMovie");
+            
+            if(requestURL.equals("dailyMovie")) {
+            	mav.setViewName("movie/dailyMovie");
+            	}
+            if(requestURL.equals("ticket")){
+        		mav.setViewName("movie/ticket");
+            	}
             mav.addObject("dailyMovie", response);
             return mav;
         } catch (IOException e) {

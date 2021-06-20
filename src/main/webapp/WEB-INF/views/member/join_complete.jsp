@@ -12,7 +12,7 @@
         지금부터 MVC의 다양한 멤버십 혜택을 이용해 보세요!
         </p>
     </div>
-    <div class="btn2" onClick="location.href='${cpath }/member/login'" style="margin: 0 auto;">홈으로 가기</div>
+    <div class="btn2" onClick="location.href='${cpath }/member/login'" style="margin: 0 auto;">로그인 화면으로 가기</div>
 </div>
 
 <%@ include file="../footer.jsp" %>

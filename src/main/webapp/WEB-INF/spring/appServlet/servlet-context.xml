@@ -40,8 +40,17 @@
 		<interceptor>
 			<mapping path="/admin/**"/>
 				<exclude-mapping path="/admin/login"/>			
-<!-- 				<exclude-mapping path="/member/login"/>			 -->
 			<beans:bean id="loginInterceptor" class="com.itbank.interceptor.LoginInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/**"/>
+				<exclude-mapping path="/home"/>			
+				<exclude-mapping path="/member/join"/>			
+				<exclude-mapping path="/member/login"/>			
+				<exclude-mapping path="/member/membership"/>			
+				<exclude-mapping path="/member/findId"/>			
+				<exclude-mapping path="/member/findPw"/>			
+			<beans:bean id="MemberLoginInterceptor" class="com.itbank.interceptor.MemberLoginInterceptor" />
 		</interceptor>
 	</interceptors>
 </beans:beans> 

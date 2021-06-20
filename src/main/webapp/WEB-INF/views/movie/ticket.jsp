@@ -38,17 +38,19 @@
             
             <nav class="nav" id="choice2">
                 <h1 class="text">영화선택</h1>
-                <ul class="movie">
-                    <li><span>[등급]</span><b>영화1</b></li>
-                    <li><span>[등급]</span><b>영화2</b></li>
-                    <li><span>[등급]</span><b>영화3</b></li>
-                    <li><span>[등급]</span><b>영화4</b></li>
-                    <li><span>[등급]</span><b>영화5</b></li>
-                    <li><span>[등급]</span><b>영화6</b></li>
-                    <li><span>[등급]</span><b>영화7</b></li>
-                    <li><span>[등급]</span><b>영화8</b></li>
-                    <li><span>[등급]</span><b>영화9</b></li>
-                    <li><span>[등급]</span><b>영화10</b></li>
+                <ul class="movie" id="daily">
+                
+                
+<!--                     <li><span>[등급]</span><b>영화1</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화2</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화3</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화4</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화5</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화6</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화7</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화8</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화9</b></li> -->
+<!--                     <li><span>[등급]</span><b>영화10</b></li> -->
                 </ul>
             </nav>
             
@@ -65,6 +67,46 @@
         
         
     </section>
+    
+    
+    
+    
+    
+    
+	<script>
+	
+	const test1 = '${dailyMovie }'
+		
+	const test2 = JSON.parse(test1)
+		
+	console.log(test2)
+	
+		for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
+			const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
+			console.log(movieName)
+			
+			const li = document.createElement('li')
+			const span = document.createElement('span')
+			const b = document.createElement('b')
+			span.append(b)
+			li.append(span)
+			
+			b.innerHTML = movieName
+			
+			document.getElementById('daily').appendChild(li)
+			
+		}
+	
+	</script>    
+    
+    <script>
+    
+    
+    
+    
+    </script>
+    
+    
     
     
     <script>
