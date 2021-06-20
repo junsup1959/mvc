@@ -42,15 +42,6 @@
                 
                 
 <!--                     <li><span>[등급]</span><b>영화1</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화2</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화3</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화4</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화5</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화6</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화7</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화8</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화9</b></li> -->
-<!--                     <li><span>[등급]</span><b>영화10</b></li> -->
                 </ul>
             </nav>
             
@@ -74,39 +65,42 @@
     
     
 	<script>
-	
+	const key = "0c5277606b20ef880a6c3aec340bb83b"
+
+	const client_id = "p3EkwlpyD99frDpNN5th";
+	const client_secret = "_t4XeBaQvU";
 	const test1 = '${dailyMovie }'
-		
 	const test2 = JSON.parse(test1)
-		
-	console.log(test2)
-	
 		for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
 			const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
-			console.log(movieName)
 			
-			const li = document.createElement('li')
-			const span = document.createElement('span')
-			const b = document.createElement('b')
-			span.append(b)
-			li.append(span)
+			const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
+    		const movieCd = encodeURI(movieCode);
+    		
+    		const url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
+    		const opt ={
+    				method : 'GET'
+    		}
+    		fetch(url, opt)
+    		.then(resp => resp.json())
+    		.then(json => {
+    			watchGradeNm = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
+				const li = document.createElement('li')
+				const span = document.createElement('span')
+				const b = document.createElement('b')
+				li.append(span)
+				li.append(b)
+				
+				span.innerHTML = watchGradeNm
+				b.innerHTML = movieName
+				
+				document.getElementById('daily').appendChild(li)
+    		})
 			
-			b.innerHTML = movieName
-			
-			document.getElementById('daily').appendChild(li)
 			
 		}
 	
 	</script>    
-    
-    <script>
-    
-    
-    
-    
-    </script>
-    
-    
     
     
     <script>
