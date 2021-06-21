@@ -9,12 +9,16 @@ public interface CoboardDAO {
 
 	int cboardCount();
 
-	CoboardDTO cselectOne(int board_number);
+	CoboardDTO cselectOne(int co_idx);
 
-	CoboardDTO cnext(int board_number);
+	CoboardDTO cnext(int co_idx);
 
-	CoboardDTO cprev(int board_number);
+	CoboardDTO cprev(int co_idx);
 
 	int cupdate(CoboardDTO dto);
+
+	int cinsert(CoboardDTO dto);
+
+	int cdelete(int co_idx);
 
 }

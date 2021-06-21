@@ -63,34 +63,18 @@ $(document).ready(function() {
 
 <section id="bodyWrap">
 	<div class="noticeWrap">
-		<form method="post" enctype="multipart/form-data">
-			<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
-			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
+		<form method="post">
+			<input type="hidden" name="co_num" value="${ad_login.admin_num}">
+			<p><input type="text" name="co_title" placeholder="제목" class="b-title"></p>
 		  	<p>
-		  		<span>시작일</span>
-		  		<input type="date" name="board_bdate" required>
-				<span>종료일</span>
-				<input type="date" name="board_edate" required>
+		  		<span>작성자</span>
+		  		<input type="text" name="co_writer" value="${ad_login.admin_name}" required readonly>
 			</p>
-		  	<p>
-			  <span>지점</span> 
-			  <select name="board_store">
-			  		<option value="부산">서울점</option>
-			  		<option value="서울">부산점</option>
-			  	</select>
-
-		  		&nbsp;&nbsp;<span>구분</span>
-		  		<select name="board_notice">
-		  			<option value="N">공지</option>
-		  			<option value="E">이벤트</option>
-		  		</select>
-		  	</p>
-		  	<p><input name="file" type="file"></p>
 		   	<p>
-		   		<textarea id="summernote" name="board_content"></textarea>
+		   		<textarea id="summernote" name="co_content"></textarea>
 		   	</p>
 		 	<p>
-		 		<button class="btn2">공지/이벤트작성</button>
+		 		<button class="btn2">작성</button>
 		 	</p>
 	 	</form>
 	</div>

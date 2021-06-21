@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,7 @@ import com.itbank.admin_board.CoboardDTO;
 import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDAO;
 import com.itbank.admin_board.boardDTO;
+import com.itbank.admin_member.Admin_memberDTO;
 
 @Service
 public class BoardSerivce {
@@ -94,24 +97,37 @@ public class BoardSerivce {
 		return c_dao.clist(param);
 	}
 	public int cboardCount() {
-		// TODO Auto-generated method stub
+		
 		return c_dao.cboardCount();
 	}
-	public CoboardDTO cselectOne(int board_number) {
-		// TODO Auto-generated method stub
-		return c_dao.cselectOne(board_number);
+	public CoboardDTO cselectOne(int co_idx) {
+		
+		return c_dao.cselectOne(co_idx);
 	}
-	public CoboardDTO cnext(int board_number) {
-		// TODO Auto-generated method stub
-		return c_dao.cnext(board_number);
+	public CoboardDTO cnext(int co_idx) {
+	
+		return c_dao.cnext(co_idx);
 	}
-	public CoboardDTO cprev(int board_number) {
-		// TODO Auto-generated method stub
-		return c_dao.cprev(board_number);
+	public CoboardDTO cprev(int co_idx) {
+		
+		return c_dao.cprev(co_idx);
 	}
 	public int cupdate(CoboardDTO dto) {
-		// TODO Auto-generated method stub
+		
 		return c_dao.cupdate(dto);
+	}
+	public int cinsert(CoboardDTO dto) {
+		
+		return c_dao.cinsert(dto);
+	}
+	public int cdelete(int co_idx,HttpSession session) {
+		
+		CoboardDTO dto =c_dao.cselectOne(co_idx);
+		Admin_memberDTO ad_login = (Admin_memberDTO) session.getAttribute("ad_login");
+		if(dto.getCo_num().equals(ad_login.getAdmin_num())) {
+			return c_dao.cdelete(co_idx);
+		}
+		return 0;
 	}
 
 }

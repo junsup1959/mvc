@@ -1,9 +1,12 @@
 package com.itbank.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,35 +41,68 @@ public class C_boardController {
 		return mav;
 	}
 	
-	@GetMapping("read/{board_number}")
-	public ModelAndView read(@PathVariable int board_number) {
+	@GetMapping("read/{co_idx}")
+	public ModelAndView read(@PathVariable int co_idx) {
 		ModelAndView mav= new ModelAndView("admin/c_board/read");
-		CoboardDTO dto=bs.cselectOne(board_number);
-		CoboardDTO np=bs.cnext(board_number);
-		dto.setBoard_next(np.getCo_next());
-		np=bs.cprev(board_number);
+		CoboardDTO dto=bs.cselectOne(co_idx);
+		CoboardDTO np=bs.cnext(co_idx);
+		System.out.println();
+		dto.setCo_next(np.getCo_next());
+		np=bs.cprev(co_idx);
+		System.out.println(np);
 		dto.setCo_prev(np.getCo_prev());
 		
 		
 		mav.addObject("dto",dto);
 		
 		if(dto.getCo_next()!=0) {
-			boardDTO next = bs.selectOne(dto.getCo_next());
+			CoboardDTO next = bs.cselectOne(dto.getCo_next());
 			mav.addObject("next", next);
 		}
+		System.out.println(dto.getCo_prev());
 		if(dto.getCo_prev()!=0) {
-			boardDTO prev = bs.selectOne(dto.getCo_prev());
+			CoboardDTO prev = bs.cselectOne(dto.getCo_prev());
 			mav.addObject("prev", prev);
 		}
 		return mav;
 	}
-	@GetMapping("update/{board_number}")
-	public ModelAndView update(@PathVariable int board_number) {
+	@GetMapping("update/{co_idx}")
+	public ModelAndView update(@PathVariable int co_idx) {
 		
 		ModelAndView mav= new ModelAndView("admin/c_board/update");
-		CoboardDTO dto = bs.cselectOne(board_number);
+		CoboardDTO dto = bs.cselectOne(co_idx);
 		mav.addObject("dto",dto);
 		return mav;
+	}
+	@PostMapping("update/{co_idx}")
+	public String update(CoboardDTO dto,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+		String word = URLEncoder.encode(keyword, "UTF-8");
+		int row = bs.cupdate(dto);
+		return "redirect:/admin/c_board/read/"+dto.getCo_idx()+"?search="+search+"&keyword="+keyword+"&page="+page;
+	}
+	
+	//'${cpath}/admin/c_board/delete/${dto.co_idx}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'
+	@GetMapping("delete/{co_idx}")
+	public String delete(@PathVariable int co_idx,HttpSession session,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+		String word = URLEncoder.encode(keyword, "UTF-8");
+		
+		int row =bs.cdelete(co_idx,session);
+		System.out.println(row);
+		return "redirect:/admin/c_board/?search="+search+"&keyword="+keyword+"&page="+page;
+	}
+	
+	@GetMapping("write")
+	public String write() {
+		return "admin/c_board/write";
+	}
+	
+	@PostMapping("write")
+	public String write(CoboardDTO dto,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+		
+		String word = URLEncoder.encode(keyword, "UTF-8");
+		int row =bs.cinsert(dto);
+		
+		return "redirect:/admin/c_board/?search="+search+"&keyword="+keyword+"&page=1";
 	}
 
 	

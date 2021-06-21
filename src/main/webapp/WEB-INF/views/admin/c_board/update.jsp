@@ -42,7 +42,7 @@ $(document).ready(function() {
 			}	
 		}
 	});
-	$("#summernote").summernote('code',  '${dto.board_content}');
+	$("#summernote").summernote('code',  '${dto.co_content}');
 	
 	function uploadSummernoteImageFile(file, editor) {
 		data = new FormData();
@@ -64,21 +64,13 @@ $(document).ready(function() {
 });
 
 
-
-for (i = 0; i < document.getElementById("store").options.length; i++) {
-    if (document.getElementById("store").options[i].value == '${dto.board_store}') {
-        document.getElementById("store").options[i].selected = "selected";
-    }
-}
-
-
 </script>
 
 <section id="bodyWrap">
 	<div class="noticeWrap">
 		<form method="post">
 		<input type="hidden" name="co_num" value="${ad_login.admin_num}" >
-		<input type="hidden" name="co_idx" value="${dto.co.idx }">
+		<input type="hidden" name="co_idx" value="${dto.co_idx }">
 		<p><input type="text" name="co_title" value="${dto.co_title}" class="b-title" ></p>
 	  	<p>
 	

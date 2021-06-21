@@ -42,10 +42,12 @@
 		</li>
 		</c:if>
 	</ul>
-	<div class="cf btnWrap">
-		<div onclick="location.href='${cpath}/admin/c_board/update/${dto.co_idx}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'"  class="btn3">수정</div>
-		<div id="del" class="btn3" style="right: 10px">삭제</div>
-	</div>
+	<c:if test="${dto.co_num == ad_login.admin_num}">
+		<div class="cf btnWrap">
+			<div onclick="location.href='${cpath}/admin/c_board/update/${dto.co_idx}?search=${param.search }&keyword=${param.keyword }&page=${param.page}'"  class="btn3">수정</div>
+			<div id="del" class="btn3" style="right: 10px">삭제</div>
+		</div>
+	</c:if>
 	</div>
 </section>
 
