@@ -83,88 +83,114 @@ const hidden = document.querySelectorAll('.hidden')
 for(let i = 0 ; i < hidden.length ;i++){
 	hidden[i].style.display = "none"
 }
+let iflag=false;
+let uflag=false;
 
+function insertchk(){
+	if(iflag){
+		hidden[0].style.display="none"
+		iflag=false;
+		return false;
+	}else{
+		hidden[0].style.display="block"
+		iflag=true;
+		return true;
+	}
+}
+function updatechk(){
+	if(uflag){
+		hidden[1].style.display="none"
+		uflag = false;
+		return false;
+	}else{
+		hidden[1].style.display="block"
+		uflag = true;
+		return true;
+	}
+}
 
 function insert(){
-	hidden[0].style.display="block"
-	inputform.focus()
-	inputform.onsubmit = function(event){
-		event.preventDefault()
-		const formData = new FormData(event.target)
-		const url='${cpath}/admin/cinema'
-		const opt={
-				method: 'POST',
-				body: formData
-		}
-		fetch(url,opt)
-		.then(resp => resp.text())
-		.then(text =>{
-			if(+text==1){
-				alert('추가 성공')
-				location.reload();
-				}else{
-					alert('추가 실패')
+	if(insertchk()){
+		inputform.focus()
+		inputform.onsubmit = function(event){
+			event.preventDefault()
+			const formData = new FormData(event.target)
+			const url='${cpath}/admin/cinema'
+			const opt={
+					method: 'POST',
+					body: formData
+			}
+			fetch(url,opt)
+			.then(resp => resp.text())
+			.then(text =>{
+				if(+text==1){
+					alert('추가 성공')
 					location.reload();
-				}
-		})
+					}else{
+						alert('추가 실패')
+						location.reload();
+					}
+			})
+		}
 	}
 }
 function update(data){
-	const up_branchcode = document.getElementById('up_branchcode')
-	const up_capacity = document.getElementById('up_capacity')
-	const up_usable = document.getElementById('up_usable')
-	
-	const url='${cpath}/admin/cinema/'+data
-	const opt={
-			method: 'GET'
-	}
-	fetch(url,opt)
-	.then(resp => resp.json())
-	.then(json =>{
-		console.log(json)
-		for(key in json)
-			switch(key){
-			
-			case 'branchcode' : up_branchcode.value=json[key];up_branchcode.readOnly=true; break
-			case 'capacity' : up_capacity.value=json[key]; break
-			case 'usable' : 
-				for (i = 0; i < up_usable.options.length; i++) {
-			    if (up_usable.options[i].value == json[key]) {
-			    	up_usable.options[i].selected = "selected"
-			    	break;
-			    }
-			}; break
-			default : break
-			}
-	})
-	hidden[1].style.display="block"
-	t_update.focus()
-	t_update.onsubmit = function(event){
-		event.preventDefault()
-		const formData = new FormData(event.target)
-		const ob = {}
-		for(key of formData.keys()){
-			ob[key] = formData.get(key)
-		}
-		const url='${cpath}/admin/cinema'
+	if(updatechk()){
+		const up_branchcode = document.getElementById('up_branchcode')
+		const up_capacity = document.getElementById('up_capacity')
+		const up_usable = document.getElementById('up_usable')
+		
+		const url='${cpath}/admin/cinema/'+data
 		const opt={
-				method: 'PUT',
-				body : JSON.stringify(ob),
-				headers: { 
-					'Content-Type' : 'application/json; charset=utf-8'}
+				method: 'GET'
 		}
 		fetch(url,opt)
-		.then(resp => resp.text())
-		.then(text =>{
-			console.log(text)
-			if(+text==1){
-			alert('수정 성공')
-			location.reload();
-			}else{
-				alert('수정 실패')
+		.then(resp => resp.json())
+		.then(json =>{
+			console.log(json)
+			for(key in json)
+				switch(key){
+				
+				case 'branchcode' : up_branchcode.value=json[key];up_branchcode.readOnly=true; break
+				case 'capacity' : up_capacity.value=json[key]; break
+				case 'usable' : 
+					for (i = 0; i < up_usable.options.length; i++) {
+				    if (up_usable.options[i].value == json[key]) {
+				    	up_usable.options[i].selected = "selected"
+				    	break;
+				    }
+				}; break
+				default : break
+				}
+		})
+		t_update.focus()
+		t_update.onsubmit = function(event){
+			event.preventDefault()
+			const formData = new FormData(event.target)
+			const ob = {}
+			for(key of formData.keys()){
+				ob[key] = formData.get(key)
 			}
-	})
-	}	
+			const url='${cpath}/admin/cinema'
+			const opt={
+					method: 'PUT',
+					body : JSON.stringify(ob),
+					headers: { 
+						'Content-Type' : 'application/json; charset=utf-8'}
+			}
+			fetch(url,opt)
+			.then(resp => resp.text())
+			.then(text =>{
+				console.log(text)
+				if(+text==1){
+				alert('수정 성공')
+				location.reload();
+				}else{
+					alert('수정 실패')
+				}
+		})
+		}
+	}
 }
 
 function del(data){
