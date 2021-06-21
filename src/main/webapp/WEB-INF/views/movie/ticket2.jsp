@@ -206,6 +206,7 @@
     
     <script>
         // ticket form onsubmit 
+    
     function ticket(event,seatNum){
         console.log("어른 : " + adult  + " 어린이 : "+ youth + " 우대 : " + ct)
         const div  = document.querySelector('.ticketinfo')
@@ -228,12 +229,59 @@
         p3.innerText = '결제 금액 : ' + (10000 * adult + 8000 * youth + 7000 * ct) + '원' 
         div.appendChild(p3)
         const ticketForm = document.getElementById('ticket')
+		ticketForm.addEventListener('submit', function(event){
+			event.preventDefault();
+			if('${login}' == '' || '${login}' == null){return;} //로그인 안되면 입력못하게 막음. 비로그인 예약이 있다면 새로운 함수로 ㅋㅋㅋ
+				IMP.init('imp22022976');
+				  IMP.request_pay({
+		                pg : 'kakaopay',
+		                pay_method : 'kakaopay',
+		                merchant_uid : 'merchant_' + new Date().getTime(),
+		                name : '주문명:결제테스트',
+		                amount : 1500,
+		                buyer_email : '${login.member_email}',
+		                buyer_name : '${login.member_name}',
+		                buyer_tel : '${login.member_phone}',
+		                buyer_addr : '${login.member_addr1}'+'${login.member_addr2}',
+		               
+		            }, function(rsp) {
+		                if ( rsp.success ) {
+		                	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+		                	const obj ={
+		                			imp_uid : rsp.imp_uid,
+		                			merchant_uid : rsp.merchant_uid
+		                			//db에 입력할 데이터 추가입력
+		                			//필수정보 좌석,결제 예정금액(script 내의 값이 아니라 html에서 불러와야함. 대조 증명하기위해)
+		                	}
+		                	const url ="${cpath}/payments"
+		                	const opt ={
+		                			method : "POST",
+		                			body: JSON.stringify(obj),
+	                	 			headers: {	
+		                	 				'Content-Type': 'application/json; charset=utf-8'	                	 			
+	               					}
+		                	}
+		       				fetch(url,opt).then(resp=>resp.text())
+		       				.then(text=>{
+		       						console.log(text)
+		       					if(+text==1){
+		       						alert('결제 성공하셨습니다.')
+		       					}else{
+		       						alert('데이터 위변조 가능성이 있습니다. 고객센터에 문의해주세요.')
+		       					}
+		       				})	
+		                } else {
+		                    var msg = '결제에 실패하였습니다.';
+		                    msg += '에러내용 : ' + rsp.error_msg;
+	
+		                    alert(msg);
+		                }
+		            });
+			
+		});
+               
+        
 
-        ticketHandler = function(evnet){
-            event.preventDefault();
-        }
-
-        ticketForm.onsubmit = ticketHandler  
     }
     </script>
 

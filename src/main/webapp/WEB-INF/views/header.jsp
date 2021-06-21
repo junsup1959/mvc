@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="${cpath }/resources/js/jquery-1.12.4.js"></script>
     <script src="${cpath }/resources/js/slick.min.js"></script>
+    <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" href="${cpath }/resources/css/style.css">
 </head>
