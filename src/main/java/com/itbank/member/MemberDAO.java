@@ -58,6 +58,17 @@ public interface MemberDAO {
 
 	List<MemberDTO> customerDeletedList(HashMap<String, Object> param);
 
+	List<MemberDTO> listAll();
+
+	List<MemberDTO> list(String listType);
+//	List<MemberDTO> listNormal(String listType);
+//	
+//	List<MemberDTO> listGold(String listType);
+//
+//	List<MemberDTO> listVip(String listType);
+//	
+//	List<MemberDTO> listPlatinum(String listType);
+
 
 
 	

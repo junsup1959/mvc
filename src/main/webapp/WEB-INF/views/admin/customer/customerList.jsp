@@ -97,7 +97,7 @@
 	</div>
 
 	<div>
-		<div class="btn2" onclick="location.herf='${cpath}/admin/customer/mail'" style="margin-left: 200px">회원 메일 발송</div>
+		<div class="btn2" onclick="location.href='${cpath}/admin/customer/mail'" style="margin-left: 200px">회원 메일 발송</div>
 	</div>
 </section>
 

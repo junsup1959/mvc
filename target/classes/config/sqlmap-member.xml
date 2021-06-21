@@ -5,6 +5,41 @@
 			
 <mapper namespace="com.itbank.member.MemberDAO">
 
+<!-- ============= 고객이메일 아이디 리스티 ================== -->
+	<select id="listAll" resultType="member" >
+		select member_email from member
+			where member_deleted = 'n'
+			</select>
+
+			
+	<select id="list"  parameterType="String"  resultType="member" >
+		select member_email from member
+			where member_deleted = 'n'
+			<if test="keyword!=null and keyword.equals('')==false">
+		  	 		and member_grade = #{listType}
+		 	 	</if>
+			
+	</select>
+
+<!-- 	<select id="listGold" resultType="member" > -->
+<!-- 		select member_email from member -->
+<!-- 			where member_deleted = 'n' -->
+<!-- 	</select> -->
+
+<!-- 	<select id="listVip" resultType="member" > -->
+<!-- 		select member_email from member -->
+<!-- 			where member_deleted = 'n' -->
+<!-- 	</select> -->
+
+<!-- 	<select id="listPlatinum" resultType="member" > -->
+<!-- 		select member_email from member -->
+<!-- 			where member_deleted = 'n' -->
+<!-- 	</select> -->
+
+
+
+
+<!-- ============고객관리 페이지 리스트================== -->
 	<select id="customerDeletedList" resultType="member" parameterType="hashmap">
 		select * from member
 			where member_deleted = 'y'

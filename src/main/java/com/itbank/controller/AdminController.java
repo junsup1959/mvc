@@ -297,4 +297,8 @@ public class AdminController {
 		return mav;
 	}
 	
+	@GetMapping("/customer/mail")
+	public void mail() {}
+	
+	
 }
