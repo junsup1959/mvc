@@ -182,6 +182,8 @@ public class MovieController {
     }
     
     
+    @GetMapping("/ticket2")
+    public void ticket() {}
     
     
 }

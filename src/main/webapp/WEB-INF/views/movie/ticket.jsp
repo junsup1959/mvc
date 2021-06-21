@@ -56,7 +56,7 @@
         </div>
         </div>
         
-        
+        <div class="btn1" onclick="location.href='${cpath}/movie/ticket2'">좌석선택하기</div>
     </section>
     
     
