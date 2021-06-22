@@ -67,7 +67,6 @@ public static final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee
 			con.disconnect();
 			 System.out.println(response.toString());
 			 
-			 String rsp = response.toString();
 			 JSONObject token = new JSONObject(response.toString());
 			 return token;
 			

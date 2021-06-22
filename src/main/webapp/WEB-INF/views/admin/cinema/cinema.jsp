@@ -3,7 +3,7 @@
 <%@include file="../header.jsp" %>
 
 <style>
-.t_cont{
+.c_cont{
 	display: flex;
 	flex-direction: column;
 	justify-content:center;
@@ -11,39 +11,44 @@
 	width: 100%;
 	height: 500px;
 }
-.theaterList{
+#theaterList{
 	display: flex;
 	flex-wrap: wrap;
-	width: 30%;
+	justify-content: space-evenly;
+	width: 800px;
 	margin-bottom: 10px;
+	margin-right: auto;
 }
-.theaterList>span{
+#theaterList>span{
 	display: inline-block;
 	width:100px;
 	text-align:center;
 	flex-grow: 1;
 }
+
 </style>
 <div class="c_cont">
 
-	<div id="theaterList">
-		<span class="">지점</span>
-		<span class="">상영관 코드</span>
-		<span class="">수용인원</span>
-		<span class="">가용여부</span>
+	<div class="theaterList listT">
+		<span class="branch">지점</span>
+		<span class="branchcode">상영관 코드</span>
+		<span class="capacity">수용인원</span>
+		<span class="usable">가용여부</span>
 	</div>
 	
 	<c:forEach var="theater" items="${list }">
-	<div id="theaterList">
-		<span class="">${theater.branch }</span>
-		<span class="">${theater.branchcode }</span>
-		<span class="">${theater.capacity }</span>
+	<div class="theaterList">
+		<span class="branch">${theater.branch }</span>
+		<span class="branchcode">${theater.branchcode }</span>
+		<span class="capacity">${theater.capacity }</span>
+		<span></span>
+		<span></span>
 		<c:choose>
 			<c:when test="${theater.usable eq 'y' }">
-				<span class="">사용가능</span>
+				<span class="usable">사용가능</span>
 			</c:when>
 			<c:otherwise>
-				<span class="">사용불가</span>
+				<span class="usable">사용불가</span>
 			</c:otherwise>
 		</c:choose>
 		<span><button onclick="update('${theater.branchcode}')">수정</button></span>

@@ -45,12 +45,13 @@
 		<interceptor>
 			<mapping path="/member/**"/>
 				<exclude-mapping path="/home"/>			
+				<exclude-mapping path="/member/checkLogin"/>			
 				<exclude-mapping path="/member/join"/>			
 				<exclude-mapping path="/member/login"/>			
 				<exclude-mapping path="/member/membership"/>			
 				<exclude-mapping path="/member/findId"/>			
 				<exclude-mapping path="/member/findPw"/>			
-				<exclude-mapping path="/member/addrPopup"/>			
+				<exclude-mapping path="/member/addrPopup"/>	
 			<beans:bean id="MemberLoginInterceptor" class="com.itbank.interceptor.MemberLoginInterceptor" />
 		</interceptor>
 	</interceptors>

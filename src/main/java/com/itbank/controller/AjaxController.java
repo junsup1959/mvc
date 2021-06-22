@@ -33,6 +33,7 @@ public class AjaxController {
 	@ResponseBody
 	public String member(MemberDTO dto) {
 		int row = ms.selectOne3(dto);
+		System.out.println(row);
 		return row + "";
 	}
 	

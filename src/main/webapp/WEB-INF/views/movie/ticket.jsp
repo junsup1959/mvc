@@ -71,6 +71,14 @@
 	const client_secret = "_t4XeBaQvU";
 	const test1 = '${dailyMovie }'
 	const test2 = JSON.parse(test1)
+	
+	     	        
+       
+   
+	
+	
+	
+	function list(){
 		for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
 			const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
 			
@@ -96,14 +104,18 @@
 				
 				document.getElementById('daily').appendChild(li)
     		})
-			
-			
 		}
+		
+	}			
+	list();	
 	
 	</script>    
     
     
     <script>
+    
+	
+   
         $('#choice1 p').on('click', function(){
             $(this).css({
                'border':'1px dotted #ccc',
@@ -136,18 +148,7 @@
             console.log(t)
         })
         
-                
-        $('#choice2 li').on('click', function(){
-            $(this).css({
-               'border':'1px dotted #ccc',
-                'color' : 'red',
-            }).siblings().css({
-                'border':'none',
-                'color' : '#000',                
-            });
-            const t2= $(this).find('b').text();
-            console.log(t2)
-        })
+ 
     </script>
     
     
