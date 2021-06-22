@@ -1,5 +1,7 @@
 package com.itbank.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +22,17 @@ public class AjaxController {
 	@Autowired MemberService ms;
 
 	
-	
+	@PostMapping("/modifyPw")
+	@ResponseBody
+	public String modifyPw(HttpSession session, MemberDTO dto) {
+		MemberDTO member = (MemberDTO) session.getAttribute("login");
+		member.setMember_password(dto.getMember_password());
+		int row = ms.modifyPw(member);
+		if(session != null) {
+			session.invalidate();
+		}
+		return row + "";
+	}
 	
 	@PostMapping("/checkPw")
 	@ResponseBody
