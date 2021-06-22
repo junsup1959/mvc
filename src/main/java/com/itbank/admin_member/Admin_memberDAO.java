@@ -17,7 +17,8 @@ public interface Admin_memberDAO {
 			+ ",#{admin_store}"
 			+ ",#{admin_jday}"
 			+ ",#{admin_dept}"
-			+ ",'n')")
+			+ ",'n'"
+			+ ",null)")
 	int insert(Admin_memberDTO dto);
 
 	@Select("select * from admin_member")

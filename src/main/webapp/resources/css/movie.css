@@ -83,6 +83,9 @@
 .ticket #dateForm li.on {font-weight: bold; background : #eee; border : 1px dotted #ccc;  }
 .ticket #movieList {width : 100%; height : 517px;padding: 10px 0; overflow-y: scroll;}
 
+#choice2 > ul.movie {width : 298px;}
+#choice2 > ul.movie li {width : 100%; font-size : 14px; cursor: pointer;}
+#choice2 > ul.movie > li > span {display : inline-block; width : 40px; border-radius: 50%; text-align: center; color : #fff;}
 
 /*-------------------------------- ticket2 ------------------------------------- */
 		#stWrap {width: 1200px; margin: 0 auto;}
