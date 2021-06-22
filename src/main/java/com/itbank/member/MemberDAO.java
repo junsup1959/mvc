@@ -32,6 +32,8 @@ public interface MemberDAO {
 	MemberDTO doubleCheck(MemberDTO member);
 
 	int modify(MemberDTO member);
+	
+	int modifyPw(MemberDTO member);
 
 	@Select("select * from member where member_name = #{member_name} and member_phone = #{member_phone}")
 	MemberDTO findId(MemberDTO member);
@@ -68,6 +70,7 @@ public interface MemberDAO {
 //	List<MemberDTO> listVip(String listType);
 //	
 //	List<MemberDTO> listPlatinum(String listType);
+
 
 
 

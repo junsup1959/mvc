@@ -89,8 +89,6 @@ function passcheck2(pw1){
 	}			
 }
 
-
-
 function passcheck(pw2){
 	const pw1 = document.getElementById('pw1').value
 	if(pw1 != pw2){
@@ -101,6 +99,38 @@ function passcheck(pw2){
 		document.getElementById('pwCheck').style.color= "blue"
 	}
 }
+
+</script>
+
+<script>
+
+
+const modifyPwForm= document.forms[1]
+
+const modifyPwHandler = function(event) {	
+	event.preventDefault();						
+	
+	const formData2 = new FormData(event.target)	
+	
+	const url = '${cpath}/member/modifyPw'
+	const opt = {
+		method: 'POST',
+		body: formData2,
+	}
+	fetch(url, opt)
+	.then(resp => resp.text())
+	.then(text => {
+		console.log(text)
+		if(+text == 1) {
+			alert('비밀번호를 변경하였습니다.\n로그인을 다시 해주세요.');
+			location.href="${cpath}/member/login"
+		} 
+		else {
+			alert('비밀번호를 확인해 주세요.');
+		}
+	})
+}
+modifyPwForm.onsubmit = modifyPwHandler
 
 </script>
 
