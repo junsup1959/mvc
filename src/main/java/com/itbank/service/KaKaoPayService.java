@@ -1,8 +1,10 @@
 package com.itbank.service;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
@@ -37,7 +39,7 @@ public static final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee
 			con.setDoOutput(true); //파라미터 전달할때(바디에..)
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "application/json");
-			System.out.println(con.getDoOutput());
+			
 			
 			
 			JsonObject auth = new JsonObject();
@@ -65,10 +67,10 @@ public static final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee
 			}
 			in.close();
 			con.disconnect();
-			 System.out.println(response.toString());
+			System.out.println(response.toString());
 			 
-			 JSONObject token = new JSONObject(response.toString());
-			 return token;
+			JSONObject token = new JSONObject(response.toString());
+			return token;
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -78,7 +80,40 @@ public static final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee
 			e.printStackTrace();
 		}
 		return null;
-		
-
 	}
+	
+	
+	//GET /payments/prepare/{merchant_uid}
+	public JSONObject prepare1(String merchant_uid,String accesstoken) {
+		
+		try {
+			URL url=new URL("/payments/prepare/"+merchant_uid);
+			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Authorization", accesstoken);
+			
+			
+			StringBuilder response = new StringBuilder();
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String line;
+			while((line = in.readLine()) !=null) {
+				response.append(line);
+			}
+			in.close();
+			con.disconnect();
+			System.out.println(response.toString());
+			
+			JSONObject jsonobj =new JSONObject(response.toString());
+			return jsonobj;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+		
 }

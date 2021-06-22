@@ -52,7 +52,7 @@ public class MailService {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(un, pw);
 			}
-		});			
+		});			// httpSession 이 아니라 javaMail 의 Session이다,		// Authenticator() 는 가상메소드기 때문에 람다식으로 처리
 		mailSession.setDebug(true);
 		
 		// 메일의 전반적인 내용을 설정 (보내는 사람, 받는사람, 제목, 내용)
