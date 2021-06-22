@@ -7,8 +7,8 @@
 		<hr color="#fff">
 		<div class="text">
 			<p>
-			<i class="xi-lock xi-2x"></i>
-				 비밀번호 변경을 위해 본인인증이 필요합니다</p>		
+				<i class="xi-lock xi-2x"></i>
+				비밀번호 변경을 위해 본인인증이 필요합니다</p>		
 		</div>
 		<div  class="checkPw" id="oldPw">
 			<p>현재 비밀번호 확인</p>

@@ -12,8 +12,8 @@
 				<label>이름</label>
 				<p><input type="text" name="member_name"  value="${modify.member_name }"  readonly></p>
 			</div>		
-			<!-- <p><input type="button" value="본인확인"></p>
-			휴대폰 api 로 이름받아와서 자동으로 변경 -->
+				<!-- <p><input type="button" value="본인확인"></p>
+				휴대폰 api 로 이름받아와서 자동으로 변경 -->
 			<div>
 				<label>아이디</label>
 				<p><input type="text" name="member_email"  value="${modify.member_email }"  readonly></p>

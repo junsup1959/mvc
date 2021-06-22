@@ -66,3 +66,4 @@ input { border : none; border-radius: 5px;}
 #changePw #newPw {height : 220px; } 
 #changePw .checkPw:last-child {border-color: red; display : none; }
 #changePw .checkPw input {height : 40px; line-height: 40px;}
+

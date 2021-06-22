@@ -19,8 +19,8 @@
 	<div class="loginMenu">
 <%-- 	<c:if test="${not empty cookie.user_check}"> --%>
 <%-- 		<c:set value="checked" var="checked"/> --%>
-<%-- 	</c:if> --%>
-<%-- ${checked} 값 넣어주기--%>
+<%-- 	</c:if> 
+${checked} 값 넣어주기--%>
 	<p>
 		<input type="checkbox"  name="remember" value="rememberOk" >
 		<span>아이디 저장</span>
