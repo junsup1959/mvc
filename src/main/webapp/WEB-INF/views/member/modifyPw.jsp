@@ -1,37 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
-<div>
-	<p>비밀번호 변경</p>
-</div>
-<div>
-<label>현재 비밀번호 확인</label>
-	<form>
-			<input type="hidden" name="member_email" value="${login.member_email }">
-			<input type="text" name="member_password">
-			<input type="submit" value="확인">
-			<div id="checkPwMsg"></div>
-	</form>
-	
-</div>
-<div>	
-	<form>
-		<label>변경 비밀번호</label>
-		<p>
-			<input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required>
-		</p>
-		<output id="pwCheck2"></output>					
-		<label>변경 비밀번호 확인</label>
-		<p>
-			<input type="text" id="pw2" onkeyup="passcheck(this.value)" placeholder="영문,숫자로 조합해주세요." required>
-		</p>
-		<output id="pwCheck"></output>
-	</form>
-</div>
-
+<section id="bodyWrap">
+	<div class="loginWrap" id="changePw">
+		<h2>비밀번호 변경</h2>
+		<hr color="#fff">
+		<div class="text">
+			<p>
+			<i class="xi-lock xi-2x"></i>
+				 비밀번호 변경을 위해 본인인증이 필요합니다</p>		
+		</div>
+		<div  class="checkPw" id="oldPw">
+			<p>현재 비밀번호 확인</p>
+			<form>
+				<p><input type="hidden" name="member_email" value="${login.member_email }"></p>
+				<p><input type="text" name="member_password"></p>
+				<p><input type="submit" value="확인" class="btn1"></p>
+				<div id="checkPwMsg"></div>
+			</form>
+		</div>
+		<div  class="checkPw" id="newPw">	
+			<form>
+			<p>변경 비밀번호</pl>
+			<p>
+				<input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required>
+			</p>
+			<output id="pwCheck2"></output>					
+			<label>변경 비밀번호 확인</label>
+			<p>
+				<input type="text" id="pw2" onkeyup="passcheck(this.value)" placeholder="영문,숫자로 조합해주세요." required>
+			</p>
+				<output id="pwCheck"></output>
+				<p><input type="submit" value="확인" class="btn1"></p>
+			</form>
+		</div>
+	</div>
+</section>
 
 <script>
+const oldPw = document.getElementById('oldPw')
+const newPw = document.getElementById('newPw')
 
 
 const loginForm= document.forms[0]
@@ -54,6 +62,7 @@ const loginHandler = function(event) {
 			checkMsg.innerText = '비밀번호 인증 성공!';
 			checkMsg.style.fontWeight = 'bold'
 			checkMsg.style.color = 'blue'
+			newPw.style.display = 'block'
 		} 
 		else {
 			checkMsg.innerText = '잘못된 비밀번호입니다.';
@@ -98,5 +107,4 @@ function passcheck(pw2){
 
 
 
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

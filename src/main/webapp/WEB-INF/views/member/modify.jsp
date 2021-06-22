@@ -2,54 +2,67 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-
-<h1>MY PAGE 정보 수정하기</h1>
-
-<form method="post">
-	<p>기본 회원정보</p>
-	<p>이름</p>  
-	<p><input type="text" name="member_name"  value="${modify.member_name }"  readonly></p>
-	
-	<p><button type="button" value="본인확인"></button>휴대폰 api 로 이름받아와서 자동으로 변경</p>
-
-	<p>아이디</p>
-	<p><input type="text" name="member_email"  value="${modify.member_email }"  readonly></p>
-	
-	<p>닉네임</p>
-	<p><input type="text" name="member_nick" placeholder="활동명을 적어주세요." value="${modify.member_nick }" required></p>
-	<p><input type="button" id="checkNick" value="중복확인"></p>
-	<div id="checkNickMsg"></div>
-	
-	<p>전화번호</p>
-	<p>
-		<input type="tel" name="member_phone" placeholder="'-' 없이 숫자만 입력해주세요." value="${modify.member_phone }" required>휴대폰 api 로 이름받아와서 자동으로 변경
-	</p>
-
-	<div>
-		<input type="text" name="member_addr1" id="member_addr1" value = "${modify.member_addr1 }" placeholder="주소를 입력해주세요." required readonly>
-		<input type="text" name="member_addr2" id="member_addr2" value = "${modify.member_addr2 }" placeholder="주소를 입력해주세요." required>
-		<button type="button" onClick="goPopup()">주소검색</button>
+<section id="bodyWrapBg" id="bodyWrap">
+<div class = "joinWrap" id="joinWrap">
+<h2 style="margin-left : 40px;">MY PAGE - 정보수정</h2>
+<hr color="#fff">
+	<div class="formWrap">
+		<form method="post"  id="joinForm" >
+			<div>
+				<label>이름</label>
+				<p><input type="text" name="member_name"  value="${modify.member_name }"  readonly></p>
+			</div>		
+			<!-- <p><input type="button" value="본인확인"></p>
+			휴대폰 api 로 이름받아와서 자동으로 변경 -->
+			<div>
+				<label>아이디</label>
+				<p><input type="text" name="member_email"  value="${modify.member_email }"  readonly></p>
+			</div>
+			<div>
+			<label>닉네임</label>
+				<p><input type="text" name="member_nick" placeholder="활동명을 적어주세요." value="${modify.member_nick }" required style="width:300px"></p>
+				<p><input type="button" id="checkNick" value="중복확인" class="btn1"></p>
+				<div id="checkNickMsg"></div>
+			</div>
+			<div>
+			<label>전화번호</label>
+				<p>
+					<input type="tel" name="member_phone" placeholder="'-' 없이 숫자만 입력해주세요." value="${modify.member_phone }" required>
+					<!-- 휴대폰 api 로 이름받아와서 자동으로 변경 -->
+				</p>
+			</div>
+			<div>
+				<label>주소입력</label>
+				<p style="padding-left : 20px;">
+					<input type="text" name="member_addr1" id="member_addr1" value = "${modify.member_addr1 }" placeholder="주소를 입력해주세요." required readonly>		
+					<input type="button" onClick="goPopup()" value="주소검색"  class="btn1" >
+				</p>
+				<p style="padding-left : 20px;">
+					<input type="text" name="member_addr2" id="member_addr2" value = "${modify.member_addr2 }" placeholder="주소를 입력해주세요." required>
+				</p>
+			</div>
+			<div class="radio">
+				<label>성별</label>
+				<c:if test="${modify.member_gender=='M' }">	
+					<p>남자<input type="radio" name="member_gender" value="M" required checked></p>
+					<p>여자<input type="radio" name="member_gender" value="F" required></p>
+				</c:if>
+				<c:if test="${modify.member_gender=='F' }">	
+					<p>남자<input type="radio" name="member_gender" value="M" required></p>
+					<p>여자<input type="radio" name="member_gender" value="F" required checked></p>
+				</c:if>
+			</div>
+			<div class="btnWrap">
+				<p><input type="submit" value="수정완료"  class="btn1"></p>	
+				<p><input type="button" onclick="location.href ='${cpath}/member/modifyPw'" class="btn1" value="비밀번호 변경"></button></p>
+				<p><input type="button" onclick="delChk()" class="btn1" value="회원탈퇴" style="margin-right:0"></p>
+			</div>
+		</form>
 	</div>
-	<p>
-	</p>
-	<c:if test="${modify.member_gender=='M' }">	
-		<p>남자<input type="radio" name="member_gender" value="M" required checked></p>
-		<p>여자<input type="radio" name="member_gender" value="F" required></p>
-	</c:if>
-	<c:if test="${modify.member_gender=='F' }">	
-		<p>남자<input type="radio" name="member_gender" value="M" required></p>
-		<p>여자<input type="radio" name="member_gender" value="F" required checked></p>
-	</c:if>
 	
-		
-	<p><input type="submit" value="수정완료"></p>
-		
 	
-</form>
-
-	<p><button type="button" onclick="location.href ='${cpath}/member/modifyPw'">비밀번호 변경</button></p>
-	<p><button type="button" onclick="delChk()">회원탈퇴</button></p>
-
+	</div>
+</section>
 <script>
 	
 	function delChk(){
@@ -132,5 +145,4 @@
 </script>
 
 
-</body>
-</html>
+<%@ include file="../footer.jsp" %>
