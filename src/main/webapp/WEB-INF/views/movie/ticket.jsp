@@ -69,7 +69,7 @@
 	const test2 = JSON.parse(test1)
 	const ul = document.createElement('ul')
 	ul.id = "daily"
-	
+	ul.className = 'movie'
 	for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
 		const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
 		const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
@@ -86,13 +86,13 @@
 			const li = document.createElement('li')
 			const span = document.createElement('span')
 			const b = document.createElement('b')
-			li.append(span)
-			li.append(b)
+			li.appendChild(span)
+			li.appendChild(b)
 			
 			span.innerHTML = watchGradeNm
 			b.innerHTML = movieName
 			
-			document.getElementById('daily').appendChild(li)
+			ul.appendChild(li)
    		})
 		document.getElementById('choice2').appendChild(ul)
 		
@@ -135,7 +135,7 @@
         })
         
                 
-        $('#choice2 li').on('click', function(){
+        $('#choice2 li > span').on('click', function(){
             $(this).css({
                'border':'1px dotted #ccc',
                 'color' : 'red',

@@ -4,7 +4,7 @@
 
 <section id="bodyWrap">
 <div class="loginWrap">
-	<h2>MVC</h2>
+	<h1>MVC</h1>
 	<h3>로그인 : ID와 비밀번호를 입력하고 로그인 버튼을 누르세요</h3>
 	<hr color="#fff">
 	<div class="loginForm">
