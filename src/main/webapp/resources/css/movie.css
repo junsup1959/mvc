@@ -1,5 +1,25 @@
 @charset "UTF-8";
-
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box; 
+            font-size:inherit;
+            font-weight:normal; 
+            line-height:1.25;
+            color: inherit;
+        }
+        body {
+            width: 1900px;
+            margin: 0 auto;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        ul { list-style:none; }
+        a { text-decoration: none; }
+        .clreafix::before, .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
 
 #movieWrap {width : 1500px; margin: 0 auto; padding : 20px 10px;}
 

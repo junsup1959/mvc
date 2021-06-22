@@ -7,7 +7,7 @@
 			<h2>MVC</h2>
 			<h3>회원가입 : 회원정보를 입력 후 회원가입버튼을 누르세요</h3>
 			<hr color="#fff">
-			<div class="formWrap">
+			<div class="formWrap" style="border:none">
 				<form method="post" id="joinForm" name="send">
 				<div>
 					<label>이름</label>
@@ -30,7 +30,7 @@
 				       
 					
 					<p> 
-						<input type="button" id="checkId" value="중복확인"  class="btn1" style="margin-left : 200px;">
+						<input type="button" id="checkId" value="중복확인"  class="btn1" style="margin-left : 190px;">
 						&nbsp;&nbsp;<span id="checkIdMsg"></span>
 					 </p>
 					
@@ -48,7 +48,7 @@
 					<label>닉네임</label>
 					<p><input type="text" name="member_nick" placeholder="활동명을 적어주세요." required></p>
 					<p>
-						<input type="button" id="checkNick" value="중복확인"  class="btn1" style="margin-left : 200px;">
+						<input type="button" id="checkNick" value="중복확인"  class="btn1" style="margin-left : 190px;">
 						&nbsp;&nbsp; <span id="checkNickMsg"></span>
 					</p>
 					
