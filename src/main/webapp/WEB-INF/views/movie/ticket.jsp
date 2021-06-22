@@ -38,11 +38,7 @@
             
             <nav class="nav" id="choice2">
                 <h1 class="text">영화선택</h1>
-                <ul class="movie" id="daily">
-                
-                
-<!--                     <li><span>[등급]</span><b>영화1</b></li> -->
-                </ul>
+               
             </nav>
             
         <div class="nav" id="choice3">
@@ -71,35 +67,37 @@
 	const client_secret = "_t4XeBaQvU";
 	const test1 = '${dailyMovie }'
 	const test2 = JSON.parse(test1)
-		for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
-			const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
-			
-			const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
-    		const movieCd = encodeURI(movieCode);
-    		
-    		const url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
-    		const opt ={
-    				method : 'GET'
-    		}
-    		fetch(url, opt)
-    		.then(resp => resp.json())
-    		.then(json => {
-    			watchGradeNm = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
-				const li = document.createElement('li')
-				const span = document.createElement('span')
-				const b = document.createElement('b')
-				li.append(span)
-				li.append(b)
-				
-				span.innerHTML = watchGradeNm
-				b.innerHTML = movieName
-				
-				document.getElementById('daily').appendChild(li)
-    		})
-			
-			
-		}
+	const ul = document.createElement('ul')
+	ul.id = "daily"
 	
+	for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
+		const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
+		const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
+   		const movieCd = encodeURI(movieCode);
+   		
+   		const url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
+   		const opt ={
+   				method : 'GET'
+   		}
+   		fetch(url, opt)
+   		.then(resp => resp.json())
+   		.then(json => {
+   			watchGradeNm = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
+			const li = document.createElement('li')
+			const span = document.createElement('span')
+			const b = document.createElement('b')
+			li.append(span)
+			li.append(b)
+			
+			span.innerHTML = watchGradeNm
+			b.innerHTML = movieName
+			
+			document.getElementById('daily').appendChild(li)
+   		})
+		document.getElementById('choice2').appendChild(ul)
+		
+	}
+
 	</script>    
     
     
