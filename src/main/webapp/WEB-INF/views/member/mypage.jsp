@@ -1,23 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
-	<div>
-		<h1>MY PAGE</h1>
-		<p>본인인증하기</p>
-		<p>개인정보 수정을 위해 본인인증이 필요합니다.</p>
+<section id="bodyWrap">
+	<div class="loginWrap">
+		<h2>MY PAGE - 본인인증하기</h2>
+		<hr color="#fff">
+		<div class="text">
+			<p>
+				<i class="xi-lock xi-2x"></i>
+				개인정보 수정을 위해 본인인증이 필요합니다</p>		
+		</div>
+		<div  class="checkPw">
 		<p>비밀번호 확인</p>
-		<div>
 			<form method="post">
-				<input type="hidden" name="member_email" value="${login.member_email }">
-				<input type="text" name="member_password">
-				<input type="submit" value="확인">
+				<p><input type="hidden" name="member_email" value="${login.member_email }"></p>
+				<p><input type="text" name="member_password"></p>
+				<p><input type="submit" value="확인"  class="btn1"></p>
 				<div id="checkPwMsg"></div>
 	
 			</form>
 		</div>
 	</div>
-
+</section>
 
 
 <script>

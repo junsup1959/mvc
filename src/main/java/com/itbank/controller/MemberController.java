@@ -170,7 +170,7 @@ public class MemberController {
 		MemberDTO login = ms.selectOne(member);
 		ModelAndView mav = new ModelAndView();
 		if(login != null) {
-			mav.setViewName("home");
+			mav.setViewName("redirect:/");
 			session.setAttribute("login", login);
 			session.setMaxInactiveInterval(60*60*3);
 			return mav;
