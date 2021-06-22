@@ -4,7 +4,7 @@
 // interceptor 로 로그인 실패시에도 로그인 화면으로 가게됨.
 	const msg = '${msg}'
 	alert(msg);
-	location.href = '${cpath}/admin'
+	location.href = history.back(-1)
 </script>
 </body>
 </html>
