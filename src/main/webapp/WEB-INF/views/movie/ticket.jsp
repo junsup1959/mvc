@@ -89,7 +89,22 @@
 			li.appendChild(span)
 			li.appendChild(b)
 			
-			span.innerHTML = watchGradeNm
+			switch(watchGradeNm){
+			case '전체관람가': span.innerHTML = 'All';
+										span.style.background = 'green';
+										break;
+			case '12세이상관람가': span.innerHTML  = '12세' ; 
+			span.style.background = 'blue';
+			break;
+			case '15세이상관람가': span.innerHTML  = '15세' ;
+			span.style.background = 'orange';
+			break;
+			case '청소년관람불가': span.innerHTML  = '청불' ;
+												span.style.background = 'red';
+												break;
+			default : break;
+		}
+			
 			b.innerHTML = movieName
 			
 			ul.appendChild(li)

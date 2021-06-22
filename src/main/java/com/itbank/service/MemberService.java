@@ -137,6 +137,13 @@ public class MemberService {
 
 
 
+	public int modifyPw(MemberDTO member) {
+//		member.setMember_password(getHash(member.getMember_password()));
+		return dao.modifyPw(member);
+	}
+
+
+
 
 
 

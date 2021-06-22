@@ -31,7 +31,7 @@ public class KakaoPay {
 	public String Kakaopay(@RequestBody HashMap<String, String>param) {
 		System.out.println(param); //주문번호 가맹점번호 파라미터로 받아옴. DB에 저장할 데이터도 차후 받아오기.
 		JSONObject token =kp.getImportToken();
-		//{"code":0,"message":null,"response":{"access_token":"c659d28525e034bfe0e75be9d71122585da0c97e","now":1624322656,"expired_at":1624324456}}
+	
 		JSONObject response =token.getJSONObject("response");
 		
 		String accesstoken = response.getString("access_token");

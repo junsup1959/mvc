@@ -2,29 +2,34 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<h1>회원 탈퇴를 위해 비밀번호를 입력해 주세요.</h1>
-
-<form method="post">	
-	<p>비밀번호</p>
-	<p>
-		<input type="hidden" name="member_email" value="${modify.member_email}">
+<section id="bodyWrap">
+	<div class="loginWrap"  id="heightPx">
+			<h2>회원탈퇴</h2>
+		<hr color="#fff">
+		<div class="text">
+			<p>
+				<i class="xi-lock xi-2x"></i>
+				회원 탈퇴를 위해 비밀번호를 입력해 주세요.</p>		
+		</div>
+		<div  class="checkPw">
+		<form method="post">	
+			<p>비밀번호</p>
+			<input type="hidden" name="member_email" value="${modify.member_email}">	
+			<p><input type="text" name="member_password" placeholder="비밀번호를 입력해 주세요." required></p>	
+			<p><input type="submit" id="checkPw" value="회원 탈퇴" class="btn1"></p>
+			<div id="checkPwMsg"></div>
+			</form>
+		</div>
 		
-		<input type="text" name="member_password" placeholder="비밀번호를 입력해 주세요." required>
-	</p>
-	
-		<p><input type="submit" id="checkPw" value="회원 탈퇴"></p>
-		<div id="checkPwMsg"></div>
-	
-</form>
+		<c:if test="${not empty msg }">
+		<script>
+			alert('${msg}')
+			location.href="${capth}/team"
+		</script>
+		</c:if>
+	</div>
+</section>
 
-
-
-<c:if test="${not empty msg }">
-	<script>
-		alert('${msg}')
-		location.href="${capth}/team"
-	</script>
-</c:if>
 
 <script>
 
@@ -54,10 +59,5 @@ document.forms[0].onsubmit = function(event) {
 		}
 	})
 }
-
-
-
-
 </script>
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

@@ -146,6 +146,14 @@
 		where
 			member_email = #{member_email}
 	</update>
+	
+	<update id="modifyPw" parameterType="member">
+		update member set
+			member_password = #{member_password}
+		where
+			member_email = #{member_email}
+	
+	</update>
 
 </mapper>
 

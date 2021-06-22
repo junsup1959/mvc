@@ -23,7 +23,6 @@
 	</div>
 </section>
 
-
 <script>
 	const loginForm= document.forms[0]
 	const checkMsg = document.getElementById('checkPwMsg')
@@ -56,5 +55,4 @@
 	
 </script>
 
-</body>
-</html>
+<%@ include file="../footer.jsp" %>
