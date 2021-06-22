@@ -55,16 +55,8 @@
 		
 		fetch(url, opt).then(resp =>resp.text())
 		.then(text=> {
-// 			if(text.length == 128){
-// 				authMailForm.classList.remove('hidden')
-// 				sendMailMsg.innerText = '입력한 이메일로 인증 번호를 전송했습니다.'
-// 				sendMailMsg.style.color = 'blue'
-// 				sendMailMsg.style.fontWeight = 'bold'
-// 			}else{
-// 				sendMailMsg.innerText = '이메일을 확인하지 못했습니다.'
-// 				sendMailMsg.style.color = 'red'
-// 				sendMailMsg.style.fontWeight = 'bold'
-// 			}		
+				alert(text)
+				history.back(-1)
 		})
 	}
 	

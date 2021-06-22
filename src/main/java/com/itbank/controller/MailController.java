@@ -27,7 +27,7 @@ public class MailController {
 	@Autowired private MailService mailService;
 	
 	@GetMapping(value = "/customer/mailList", produces = "application/text; charset=utf-8")
-	public String mail(@RequestParam String title,String textBody,String listType , HttpSession session) throws IOException {
+	public String mail(String title,String textBody,String listType , HttpSession session) throws IOException {
 		
 		System.out.println(title);
 		System.out.println(listType);
@@ -53,9 +53,8 @@ public class MailController {
 			System.out.println(dto.getMember_email());
 			mailService.sendMail(account, dto.getMember_email() ,title,textBody,listType);
 		}
-//		return result;
 		
-		return "";
+		return "메일을 성공적으로 전송하였습니다.";
 	}
 	
 	
