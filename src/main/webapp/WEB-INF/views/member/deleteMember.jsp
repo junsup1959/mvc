@@ -60,5 +60,4 @@ document.forms[0].onsubmit = function(event) {
 	})
 }
 </script>
-
 <%@ include file="../footer.jsp" %>

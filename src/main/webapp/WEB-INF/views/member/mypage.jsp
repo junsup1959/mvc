@@ -23,7 +23,6 @@
 	</div>
 </section>
 
-
 <script>
 	const loginForm= document.forms[0]
 	const checkMsg = document.getElementById('checkPwMsg')

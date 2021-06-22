@@ -69,7 +69,7 @@
 						<input type="text" name="member_addr2" id="member_addr2" placeholder="주소를 입력해주세요." required>
 					</p>
 				</div>
-
+				
 				<div class="radio">
 					<label>성별</label>
 					<p><input type="radio" name="member_gender" value="M" required>남자</p>
