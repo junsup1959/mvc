@@ -1,7 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
+<script>
+// cookie저장
+function setCookie(cookieName, value, exdays){
+    var date = new Date();
+    date.setDate(date.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + date.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+	// alert(document.cookie)
+}
+// cookie 삭제
+function deleteCookie(cookieName){
+    var date = new Date();
+    date.setDate(date.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + date.toGMTString();
+}
+//저장된 cookie 가져오기
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);	//저장된 cookie 값 반환
+}
+</script>
 <section id="bodyWrap">
 <div class="loginWrap">
 	<h1>MVC</h1>
@@ -9,7 +38,7 @@
 	<hr color="#fff">
 	<div class="loginForm">
 		<form method="post" id="loginForm">
-			<p><input type="text" name="member_email" placeholder="아이디" required autofocus></p>
+			<p><input type="text" name="member_email" id="userid" placeholder="아이디" required autofocus></p>
 			<p><input type="text" name="member_password" placeholder="비밀번호" required></p>
 			<p><input type="submit" id="checkLogin" value="로그인" class="btn1"></p>
 			<div id="checkLoginMsg"></div>
@@ -22,7 +51,7 @@
 <%-- 	</c:if> 
 	${checked} 값 넣어주기--%>
 	<p>
-		<input type="checkbox"  name="remember" value="rememberOk" >
+		<input type="checkbox"  name="remember" value="rememberOk" id="chk">
 		<span>아이디 저장</span>
 	</p>
 	<br>
@@ -49,59 +78,32 @@
 
 
 <script>
-    window.onload = function() {
- 
-        if (getCookie("remember_id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
-            document.loginForm.member_email.value = getCookie("remember_id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
-            document.loginForm.remember.checked = true; // 체크는 체크됨으로
-        }
- 
-    }
- 
-    function setCookie(name, value, expiredays) //쿠키 저장함수
-    {
-        var todayDate = new Date();
-        todayDate.setDate(todayDate.getDate() + expiredays);
-        document.cookie = name + "=" + escape(value) + "; path=/; expires="
-                + todayDate.toGMTString() + ";"
-    }
- 
-    function getCookie(Name) { // 쿠키 불러오는 함수
-        var search = Name + "=";
-        if (document.cookie.length > 0) { // if there are any cookies
-            offset = document.cookie.indexOf(search);
-            if (offset != -1) { // if cookie exists
-                offset += search.length; // set index of beginning of value
-                end = document.cookie.indexOf(";", offset); // set index of end of cookie value
-                if (end == -1)
-                    end = document.cookie.length;
-                return unescape(document.cookie.substring(offset, end));
-            }
-        }
-    }
- 
-    function sendit() {
- 
-        if (document.loginForm.remember.checked == true) { // 아이디 저장을 체크 하였을때
-            setCookie("remember_id", document.loginForm.member_email.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
-        } else { // 아이디 저장을 체크 하지 않았을때
-            setCookie("remember_id", document.loginForm.member_email.value, 0); //날짜를 0으로 저장하여 쿠키삭제
-        }
- 
-        document.loginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
- 
-    }
+function getcheck(){									// 저장된 cookie id가 있을 경우 input id란에 입력하기
+	console.log(getCookie("userInId"))
+	var input = document.getElementById('userid')
+	input.setAttribute("value", getCookie("userInId"))
+	if(getCookie("userInId")  != ""){
+		var check = document.getElementById('chk')
+		check.checked =true
+	}
+}
+getcheck()
 </script>
- 
-
 
 
 <script>
-
-
 document.forms[0].onsubmit = function(event) {	
 	event.preventDefault();						
+	// onsubmit할 때 체크박스 체크 여부로 cookie 저장 
+	var chk = document.getElementById('chk')
+	if(chk.checked){
+		var userid = document.getElementById('userid').value
+		setCookie("userInId", userid, 7)		// 체크박스가 checked= true cookie 생성
+	}else{
+		deleteCookie("userInId")					// 체크박스가 checked= false cookie 삭제
+	}
 	
+	// login 
 	const formData = new FormData(event.target)	
 	
 	const url = '${cpath}/member/checkLogin'

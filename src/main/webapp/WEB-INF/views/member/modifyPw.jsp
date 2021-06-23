@@ -28,7 +28,7 @@
 			<output id="pwCheck2"></output>					
 			<label>변경 비밀번호 확인</label>
 			<p>
-				<input type="text" id="pw2" onkeyup="passcheck(this.value)" placeholder="영문,숫자로 조합해주세요." required>
+				<input type="text" id="pw2"  placeholder="영문,숫자로 조합해주세요." required>
 			</p>
 				<output id="pwCheck"></output>
 				<p><input type="submit" value="확인" class="btn1"></p>
@@ -40,11 +40,8 @@
 <script>
 const oldPw = document.getElementById('oldPw')
 const newPw = document.getElementById('newPw')
-
-
 const loginForm= document.forms[0]
 const checkMsg = document.getElementById('checkPwMsg')
-
 const loginHandler = function(event) {	
 	event.preventDefault();						
 	
@@ -79,7 +76,6 @@ function passcheck2(pw1){
 	const t1= /[0-9]/
 	const t2= /[a-zA-Z]/
 	const t3= /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/
-
 	if(!t1.test(pw1) || !t2.test(pw1)|| t3.test(pw1) || !(pw1.length >= 8 && pw1.length <= 14) ){
 	document.getElementById('pwCheck2').value = "비밀번호는 8~14자리. 영문,숫자 조합"
 		document.getElementById('pwCheck2').style.color = "red"
@@ -88,7 +84,6 @@ function passcheck2(pw1){
 		document.getElementById('pwCheck2').style.color= "blue"
 	}			
 }
-
 function passcheck(pw2){
 	const pw1 = document.getElementById('pw1').value
 	if(pw1 != pw2){
@@ -99,20 +94,23 @@ function passcheck(pw2){
 		document.getElementById('pwCheck').style.color= "blue"
 	}
 }
-
 </script>
 
 <script>
-
-
 const modifyPwForm= document.forms[1]
-
 const modifyPwHandler = function(event) {	
 	event.preventDefault();						
 	
 	const formData2 = new FormData(event.target)	
-	
 	const url = '${cpath}/member/modifyPw'
+	const pw1 = document.getElementById('pw1').value
+	const pw2 = document.getElementById('pw2').value
+
+	if(pw1 != pw2){
+		alert("비밀번호가 일치하지 않습니다.")
+		return false
+	}
+
 	const opt = {
 		method: 'POST',
 		body: formData2,
@@ -131,10 +129,7 @@ const modifyPwHandler = function(event) {
 	})
 }
 modifyPwForm.onsubmit = modifyPwHandler
-
 </script>
-
-
 
 
 <%@ include file="../footer.jsp" %>

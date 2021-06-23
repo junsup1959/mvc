@@ -40,7 +40,7 @@
 					<p><input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required></p>
 					<output id="pwCheck2"></output>					
 					<label>비밀번호 확인</label>
-					<p><input type="text" id="pw2" onkeyup="passcheck(this.value)" placeholder="영문,숫자로 조합해주세요." required></p>
+					<p><input type="text" id="pw2" placeholder="영문,숫자로 조합해주세요." required></p>
 					<output id="pwCheck"></output>
 				</div>
 				
@@ -86,15 +86,12 @@
 	</div>
 </section>
 <script>
-
 </script>
 
 <script>
-
 var check1 = false
 var check2 = false
 var check3 = false
-
 	function emailCheck(email) {
 		if (email != "") {
 			const exptext = /[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]/;
@@ -106,7 +103,6 @@ var check3 = false
 				}
 			}
 		}
-
 	function goPopup(){
 		var pop = window.open("/team/member/addrPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 	}
@@ -119,10 +115,6 @@ var check3 = false
 		var addrEl2 = document.querySelector("#member_addr2")
 		addrEl2.value = addrDetail 
 	}
-
-
-
-
 	function passcheck2(pw1){
 		const t1= /[0-9]/
 		const t2= /[a-zA-Z]/
@@ -139,21 +131,19 @@ var check3 = false
 	}
 	
 	
-
-	function passcheck(pw2){
-		const pw1 = document.getElementById('pw1').value
-		if(pw1 != pw2){
-			document.getElementById('pwCheck').value = "비밀번호 불일치"
-			document.getElementById('pwCheck').style.color = "red"
-				check1 = false
-		}else{
-			document.getElementById('pwCheck').value= "비밀번호 일치"
-			document.getElementById('pwCheck').style.color= "blue"
-				check1 = true
-		}
-	}
+// 	function passcheck(pw2){
+// 		const pw1 = document.getElementById('pw1').value
+// 		if(pw1 != pw2){
+// 			document.getElementById('pwCheck').value = "비밀번호 불일치"
+// 			document.getElementById('pwCheck').style.color = "red"
+// 				check1 = false
+// 		}else{
+// 			document.getElementById('pwCheck').value= "비밀번호 일치"
+// 			document.getElementById('pwCheck').style.color= "blue"
+// 				check1 = true
+// 		}
+// 	}
 	
-
 	document.getElementById('checkId').onclick = function(event) {
 		const member_email = document.querySelector('input[name="member_email"]').value
 		const url = '${cpath}/member/' + member_email + '/'			
@@ -210,7 +200,6 @@ var check3 = false
 			}
 				document.getElementById('checkNickMsg').style.fontWeight = 'bold'
 		})
-
 		}
 	}
 	
@@ -220,14 +209,6 @@ var check3 = false
 	const send = document.forms[0]
 	submitHandler = function(event){
 		
-		console.log(check1)
-		console.log(check2)
-		console.log(check3)
-		if(!check1){
-			event.preventDefault()
-			alert('비밀번호를 확인해주세요')
-			return false
-		}
 		if(!check2){
 			event.preventDefault()
 			alert('아이디를 확인해주세요')
@@ -237,6 +218,12 @@ var check3 = false
 			event.preventDefault()
 			alert('닉네임을 확인해주세요')
 			return false
+		}
+		const pw1 = document.getElementById('pw1').value
+		const pw2 = document.getElementById('pw2').value
+		if(pw1 != pw2){
+			alert("비밀번호가 일치하지 않습니다.")
+			event.preventDefault()
 		}
 // 		location.href = "${cpath}/member/join_complete"	
 	}

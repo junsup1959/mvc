@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
     <section id="visual">
-        <h2>Movie reView C</h2>
+        <h2>Movie reView Container</h2>
         <p>영화관 <br>사내 홈페이지</p>
     </section>
 

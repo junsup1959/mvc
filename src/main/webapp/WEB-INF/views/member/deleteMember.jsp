@@ -24,7 +24,7 @@
 		<c:if test="${not empty msg }">
 		<script>
 			alert('${msg}')
-			location.href="${capth}/team"
+			location.href="redirect:/"
 		</script>
 		</c:if>
 	</div>

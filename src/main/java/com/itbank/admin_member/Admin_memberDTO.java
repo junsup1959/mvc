@@ -3,8 +3,9 @@ package com.itbank.admin_member;
 public class Admin_memberDTO {
 
 	private String admin_num, admin_name, admin_password, admin_phone, admin_addr, admin_store;
-	private String admin_jday, admin_dept;
-	private char deleted;
+	private String admin_jday, admin_dept, admin_lday;
+	private String deleted;
+	
 	public String getAdmin_num() {
 		return admin_num;
 	}
@@ -53,11 +54,17 @@ public class Admin_memberDTO {
 	public void setAdmin_dept(String admin_dept) {
 		this.admin_dept = admin_dept;
 	}
-	public char getDeleted() {
+	public String getDeleted() {
 		return deleted;
 	}
-	public void setDeleted(char deleted) {
+	public void setDeleted(String deleted) {
 		this.deleted = deleted;
+	}
+	public String getAdmin_lday() {
+		return admin_lday;
+	}
+	public void setAdmin_lday(String admin_lday) {
+		this.admin_lday = admin_lday;
 	}
 	
 	

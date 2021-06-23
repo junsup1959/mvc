@@ -3,6 +3,7 @@ package com.itbank.member;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -15,10 +16,10 @@ public interface MemberDAO {
 	
 	MemberDTO selectOne2(MemberDTO member);
 
-	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password} and member_deleted = 'n' ")
+	@Select("select count(*) from member where member_email = #{member_email} and member_password = #{member_password}")
 	int selectOne3(MemberDTO dto);
 	
-	@Select("select * from member where member_number = #{member_number} and member_deleted = 'n' ")
+	@Select("select * from member where member_number = #{member_number}")
 	MemberDTO selectOne4(String member_number);
 	
 	@Select("select count(*) from member where member_email = #{member_email}")
@@ -44,7 +45,7 @@ public interface MemberDAO {
 	@Update("update member set member_password = #{member_password} where member_email = #{member_email}")
 	int updatePw(MemberDTO member);
 
-	@Update("update member set member_deleted = 'y' where member_email = #{member_email} and member_password = #{member_password}")
+	@Delete("delete from member where member_email = #{member_email} and member_password = #{member_password}")
 	int deleteMember(MemberDTO member);
 
 	@Select("select count(*) from member")
@@ -63,13 +64,9 @@ public interface MemberDAO {
 	List<MemberDTO> listAll();
 
 	List<MemberDTO> list(String listType);
-//	List<MemberDTO> listNormal(String listType);
-//	
-//	List<MemberDTO> listGold(String listType);
-//
-//	List<MemberDTO> listVip(String listType);
-//	
-//	List<MemberDTO> listPlatinum(String listType);
+
+	int insertDelMember(MemberDTO member_del);
+
 
 
 

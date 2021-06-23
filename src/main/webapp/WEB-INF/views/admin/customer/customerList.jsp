@@ -60,7 +60,9 @@
 			</span>
 			<span><fmt:formatNumber value="${dto.amount_this }"/></span>
 			<span>${dto.amount_last }</span>
-			<span><a href="${cpath}/admin/customer/customerRead/${dto.member_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}&sorted=${param.sorted}">조회하기</a></span>
+			<span>
+				<a href="${cpath}/admin/customer/customerRead/${dto.member_number}?search=${param.search }&keyword=${param.keyword }&page=${param.page}&sorted=${param.sorted}" class="btn5">조회하기</a>
+			</span>
 		</div>
 	</c:forEach>
 	

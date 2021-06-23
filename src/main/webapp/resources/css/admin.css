@@ -31,8 +31,8 @@
  
  /*-------------------------------- admin_main ---------------------------------------*/
 	.adminMenu {background: teal;}
-	.adminMenu>ul {width:1200px;height : 40px; margin:0 auto;padding:0 15px;}
-	.adminMenu>ul>li {float:left;width:16.66666%; height : 40px; border-left:1px solid #fff;}
+	.adminMenu>ul {width:1200px;height : 40px; margin:0 auto;padding:0 15px;font-size : 18px;}
+	.adminMenu>ul>li {float:left; width : 16.6666%; height : 40px; border-left:1px solid #fff;}
 	.adminMenu>ul>li:last-child {border-right:1px solid #fff;}
 	.adminMenu>ul>li>a {display:block;text-align:center;line-height:40px; color : #fff;}
 
@@ -81,19 +81,24 @@
     .leftWrap ul li:hover {color : coral;}
 
     .rightWrap {position: relative; float:left; margin-left : 120px; padding-top : 10px;}
-    .rightWrap > div {position : absolute; display : none; width : 1100px; margin:0; padding:0;}
+    .rightWrap > div {position : absolute; display : none; width : 1200px; margin:0; padding:0;}
     .rightWrap > div.on {display : block}
  	.rightWrap div h2 {font-size : 20px; font-weight : bold; text-decoration : underline; margin-bottom : 10px;}
  	
  	
- 	.con1 .list-title {width : 100%; height : 50px; line-height : 50px; background : #32bebe;}
- 	.con1 .list-title span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; color : #fff;}
- 	.con1 .list-title span:nth-child(7) {width : 40%;}
- 	.con1 .list { width : 100%;}
- 	.con1 .list p {width : 100%; height : 40px; line-height : 40px;}
- 	.con1 .list span {display : block; float : left; width : 10%; font-size : 14px; text-align : center; border-bottom : 1px dotted #66cccc;}
- 	.con1 .list span:nth-child(7) {width : 40%;}
- 	.con1 .list p:hover span {background : rgba(255,240,120,0.4); font-weight : bold;}
+ 	.rightWrap div .list-title {width : 100%; height : 50px; line-height : 45px; background : #32bebe; margin : 0}
+ 	.rightWrap div .list-title span {display : inline-block; width : 10%; font-size : 14px; text-align : center; color : #fff;}
+ 	.rightWrap div .list-title span:nth-child(7) {width : 40%;}
+ 	.rightWrap div .list { width : 100%;}
+ 	.rightWrap div .list p {width : 100%; height : 40px; line-height : 40px;  border-bottom : 1px dotted #66cccc; }
+ 	.rightWrap div .list span {display : block; float : left; width : 10%; margin : 0; font-size : 14px; text-align : center;}
+ 	.rightWrap div .list span:nth-child(7) {width : 40%;}
+ 	.rightWrap div .list p:hover span {background : rgba(255,240,120,0.4); font-weight : bold;}
+ 	 
+ 	 .rightWrap div.con3 .list-title span:nth-child(7) {width : 10%}
+ 	.rightWrap div.con3 .list-title span:last-child {width : 30%}
+ 	 .rightWrap div.con3 .list span:nth-child(7) {width : 10%}
+ 	.rightWrap div.con3 .list span:last-child {width : 30%}
  	
  	.con2 .insertForm {width : 500px; height: 500px; border : 1px solid #32bebe;}
  	.con2 .insertForm form {width : 300px; margin : 10px auto;}
@@ -151,15 +156,17 @@
   	.searchWrap div.btn4 {display: inline-block; margin : 0 0 0 10px; }
   	
   /*-------------------------------- customer ---------------------------------------*/
-  .orderBy {width : 1000px; margin : 0 auto;}
+  .btn5 {}
+  .orderBy {width : 1000px; margin : 0 auto; padding-top : 10px;}
  .orderBy  li {width : 150px;display: inline-block;}
  .orderBy  li:last-child {width : 200px;}
   .orderBy  li a {display: inline-block; width : 100%; height : 25px; line-height: 25px;  font-size : 16px;}
   .listTitle2 {width : 100%; margin : 0;  background : #32bebe;  text-align: center;}
-  .listTitle2 > span {display : inline-block; width : 12.8888%; color : #fff; height : 40px; line-height: 40px; font-size : 18px;}
+  .listTitle2 > span {display : inline-block; width : 13.5%; color : #fff; height : 40px; line-height: 40px; font-size : 18px;}
    .list2 {width : 100%; text-align : center; border-bottom: 1px dotted #66cccc;}
-  .list2 > span {display : inline-block; width : 12.8888%; height : 35px; line-height: 35px; font-size : 16px;}
-  
+  .list2 > span {display : inline-block; width : 13.5%; height : 35px; line-height: 35px; font-size : 16px;}
+  .list2 > span > a {display : inline-block; width : 80px; height : 30px; line-height : 30px; font-size : 14px; border-radius : 5px; background : #66cccc; color:#fff; }
+   .list2 > span > a:hover {background: coral;} 
  /*-------------------------------- footer ---------------------------------------*/
 	footer{height : 120px; padding:20px 0; background:teal;}
     footer>div {width:1200px; margin:0 auto;}

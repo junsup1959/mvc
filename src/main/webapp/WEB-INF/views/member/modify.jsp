@@ -60,7 +60,12 @@
 		</form>
 	</div>
 	
-	
+	<c:if test="${not empty msg }">
+		<script>
+			alert('${msg}')
+			location.href="${capth}/team/"
+		</script>
+	</c:if>
 	</div>
 </section>
 <script>

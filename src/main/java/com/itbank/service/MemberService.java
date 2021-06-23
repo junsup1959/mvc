@@ -107,6 +107,10 @@ public class MemberService {
 
 	public int deleteMember(MemberDTO member) {
 //		member.setMember_password(getHash(member.getMember_password()));
+		if(dao.insertDelMember(member) == 0) {
+			return dao.insertDelMember(member);
+		}
+		
 		return dao.deleteMember(member);
 	}
 

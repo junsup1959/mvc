@@ -119,12 +119,10 @@ public class MemberController {
 		
 		if(row == 1) {
 			mav.addObject("msg", "회원정보를 수정하였습니다. 다시 로그인 해주세요.");
-			mav.setViewName("redirect:/member/login");
 			session.invalidate();
 			return mav;
 		}
-		mav.addObject("msg", "회원정보 수정을 실패하였습니다. 다시 시도해주세요.");
-		mav.setViewName("redirect:/member/modify");
+		mav.addObject("msg", "회원정보 수정을 실패하였습니다.\\n관리자에게 문의하세요.");
 		return mav;
 	}
 	
