@@ -8,6 +8,14 @@
 	<select id="list" resultType="board" parameterType="hashmap">
 			select * from board
 			where board_deleted = 'n'
+			<choose>
+			<when test="cate==2">
+			and board_notice = 'E'
+			</when>
+			<when test="cate==3">
+			and board_notice = 'N'
+			</when>			
+			</choose>
 			<if test="keyword!=null and keyword.equals('')==false">
    	 		and ${search} like '%${keyword}%'
    	 		</if>
@@ -21,8 +29,17 @@
 		select * from board where board_number=#{number}
 	</select>
 	
-	<select id="boardCount" resultType="int">
+	<select id="boardCount" resultType="int" parameterType="hashmap">
+		
 		select count(*) from board
+			<choose>
+				<when test="cate==2">
+				where board_notice = 'E'
+				</when>
+				<when test="cate==3">
+				where board_notice = 'N'
+				</when>	
+			</choose>		
 	</select>
 	
 	<insert id="insert" parameterType="board">
@@ -53,13 +70,31 @@
 		</if>
 		where board_number=#{board_number}
 	</update>
-	<select id="next" resultType="board" parameterType="int">
+	<select id="next" resultType="board" parameterType="hashmap">
 	select * from (select board_number, lead(board_number) over(order by board_number) board_next from board where board_deleted='n') 
-	where board_number=#{board_number}
+	where board_number=${board_number}
+		<choose>
+			<when test="cate==2">
+			and board_notice = 'E'
+			</when>
+			<when test="cate==3">
+			and board_notice = 'N'
+			</when>			
+		</choose>
 	</select>
-	<select id="prev" resultType="board" parameterType="int">
+	
+	
+	<select id="prev" resultType="board" parameterType="hashmap">
 	select * from (select board_number, lag(board_number) over(order by board_number) board_prev from board where board_deleted='n') 
-	where board_number=#{board_number}
+	where board_number=${board_number}
+		<choose>
+			<when test="cate==2">
+			and board_notice = 'E'
+			</when>
+			<when test="cate==3">
+			and board_notice = 'N'
+			</when>			
+		</choose>
 	</select>
 	
 </mapper>

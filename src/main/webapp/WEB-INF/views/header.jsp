@@ -81,7 +81,7 @@ $(document).ready(function(){
                 <ul class="clearfix">
                     <li><a href="">사이트맵</a></li>
                     <li><a href="">고객센터</a></li>
-                    <li><a href="">공지사항</a></li>
+                    <li><a href="${cpath }/notice/?search=&keyword=&cate=3&page=1">공지사항</a></li>
                 </ul>
             </div>
             
@@ -140,7 +140,7 @@ $(document).ready(function(){
                 </li>
                 <li><a href="">이벤트</a>
                     <ul class="sub clearfix">
-                        <li><a href="${cpath }/event/?search=&keyword=&page=1">이벤트</a></li>
+                        <li><a href="${cpath }/event/?search=&keyword=&cate=2&page=1">이벤트</a></li>
                         <li><a href="">시사회</a></li>
                         <li><a href="">제휴/할인</a></li>
                         <li><a href="">지난이벤트</a></li>

@@ -67,10 +67,10 @@ $(document).ready(function() {
 			<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
 			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
 		  	<p>
-		  		<span>시작일</span>
-		  		<input type="date" name="board_bdate" required>
-				<span>종료일</span>
-				<input type="date" name="board_edate" required>
+		  		<span id="bdate_span">시작일</span>
+		  		<input type="date" name="board_bdate" id='bdate'>
+				<span id="edate_span">종료일</span>
+				<input type="date" name="board_edate" id='edate'>
 			</p>
 		  	<p>
 			  <span>지점</span> 
@@ -80,9 +80,9 @@ $(document).ready(function() {
 			  	</select>
 
 		  		&nbsp;&nbsp;<span>구분</span>
-		  		<select name="board_notice">
-		  			<option value="N">공지</option>
+		  		<select name="board_notice" id="ne">
 		  			<option value="E">이벤트</option>
+		  			<option value="N">공지</option>
 		  		</select>
 		  	</p>
 		  	<p><input name="file" type="file"></p>
@@ -95,5 +95,41 @@ $(document).ready(function() {
 	 	</form>
 	</div>
 </section>
+
+<script>
+	const select = document.getElementById('ne')
+	const bdate = document.getElementById('bdate')
+	const edate = document.getElementById('edate')
+	const bspan=document.getElementById('bdate_span')
+	const espan=document.getElementById('edate_span')
+	
+	function getToday(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
+	}
+	
+	
+	select.onchange = function(event){
+		if(select.selectedIndex==1){//공지 선택
+			bspan.innerText ='작성일';
+			espan.innerText ='';
+			bdate.value = getToday();
+			bdate.required=true;
+			edate.setAttribute("type", "hidden");
+			edate.required=false;
+		}else{
+			bspan.innerText ='시작일';
+			espan.innerText ='종료일';
+			bdate.value = '';
+			edate.setAttribute("type", "date");
+			edate.required=true;
+		}
+	}
+	
+</script>
 
 <%@include file="../footer.jsp" %>

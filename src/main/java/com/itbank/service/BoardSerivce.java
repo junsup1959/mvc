@@ -55,9 +55,9 @@ public class BoardSerivce {
 		return dao.update(dto);
 		
 	}
-	public int boardCount() {
+	public int boardCount(HashMap<String, Object> param) {
 		// TODO Auto-generated method stub
-		return dao.boardCount();
+		return dao.boardCount(param);
 	}
 	public int delete(int board_number) {
 		// TODO Auto-generated method stub
@@ -78,13 +78,15 @@ public class BoardSerivce {
 		}
 		return savedFileName;
 	}
-	public boardDTO next(int board_number) {
-		// TODO Auto-generated method stub
-		return dao.next(board_number);
+	public boardDTO next(int board_number, HashMap<String, Object> param) {
+
+		param.put("board_number", board_number);
+		return dao.next(param);
 	}
-	public boardDTO prev(int board_number) {
-		// TODO Auto-generated method stub
-		return dao.prev(board_number);
+	public boardDTO prev(int board_number, HashMap<String, Object> param) {
+
+		param.put("board_number", board_number);
+		return dao.prev(param);
 	}
 /////////--------------------------사내 게시판 -------------------------------------------------////////////////////////////////////
 	

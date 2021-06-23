@@ -146,21 +146,20 @@ public class AdminController {
 	@GetMapping("/board")
 	public ModelAndView board(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav= new ModelAndView("admin/board/boardList");
-		int baordCount = bs.boardCount();
+		int baordCount = bs.boardCount(param);
 		Paging paging = new Paging(page, baordCount);
-		
 		List<boardDTO> list=bs.list(paging,param);
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
 		return mav;
 	}
 	@GetMapping("/board/read/{board_number}")
-	public ModelAndView read(@PathVariable int board_number) {
+	public ModelAndView read(@PathVariable int board_number,HashMap<String, Object> param) {
 		ModelAndView mav= new ModelAndView("admin/board/read");
 		boardDTO dto=bs.selectOne(board_number);
-		boardDTO np=bs.next(board_number);
+		boardDTO np=bs.next(board_number,param);
 		dto.setBoard_next(np.getBoard_next());
-		np=bs.prev(board_number);
+		np=bs.prev(board_number,param);
 		dto.setBoard_prev(np.getBoard_prev());
 		
 		
@@ -184,11 +183,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("/board/write")
-	public String board(boardDTO dto,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+	public String board(boardDTO dto) throws UnsupportedEncodingException {
 		int row=bs.insert(dto);
-		String word= URLEncoder.encode(keyword, "UTF-8");
 		
-	return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
+	return "redirect:/admin/board?search=&keyword=&cate=1&page=1";
 	}
 	
 	@GetMapping("/board/update/{board_number}")
@@ -202,19 +200,19 @@ public class AdminController {
 		return mav;
 	}
 	@PostMapping("/board/update/{board_number}")
-	public String update(boardDTO dto,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+	public String update(boardDTO dto,@RequestParam String search,String keyword,int cate,int page) throws UnsupportedEncodingException {
 		String word= URLEncoder.encode(keyword, "UTF-8");
 		int row =bs.update(dto);
 		
-		return "redirect:/admin/board/read/"+dto.getBoard_number()+"?search="+search+"&keyword="+word+"&page="+page;
+		return "redirect:/admin/board/read/"+dto.getBoard_number()+"?search="+search+"&keyword="+word+"&cate="+cate+"&page="+page;
 	}
 	
 	
 	@GetMapping("/board/delete/{board_number}")
-	public String delete(@PathVariable int board_number,@RequestParam String search,String keyword,int page) throws UnsupportedEncodingException {
+	public String delete(@PathVariable int board_number,@RequestParam String search,String keyword,int cate,int page) throws UnsupportedEncodingException {
 		String word= URLEncoder.encode(keyword, "UTF-8");
 		int row = bs.delete(board_number);
-		return "redirect:/admin/board?search="+search+"&keyword="+word+"&page="+page;
+		return "redirect:/admin/board?search="+search+"&keyword="+word+"&cate="+cate+"&page="+page;
 	}
 
 

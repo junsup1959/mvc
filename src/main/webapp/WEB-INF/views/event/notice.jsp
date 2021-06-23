@@ -4,19 +4,7 @@
 
 <section id="bodyWrap">
 	<div class="boardList">
-	<c:if test="${empty list}">
-		<h2>입력된 게시글이 없습니다.</h2>
-	</c:if>
-
 	<c:if test="${not empty list }">
-		<div id="selectedNE" style="display: none;">
-			${param.cate}
-		</div>
-		<div id="selectNE"><!-- 왼쪽 마진 30px 라인 일치.. -->
-			<span>전체목록</span>
-			<span>이벤트</span>
-			<span>공지</span>
-		</div>
 		<div class="content">
 			<div class="listTitle">
 				<span>글번호</span>
@@ -27,7 +15,7 @@
 			</div>
 			
 			<c:forEach var="board" items="${list}">
-				<div class="list" onclick="location.href='${cpath}/admin/board/read/${board.board_number}?search=${param.search }&cate=${param.cate}&keyword=${param.keyword }&page=${param.page}'"'>
+				<div class="list" onclick="location.href='${cpath}/notice/${board.board_number}?search=${param.search }&keyword=${param.keyword }&cate=3&page=${param.page}'"'>
 					<span>${board.board_number}</span>
 					<span>${board.board_title}</span>
 					<span>${board.board_store }</span>
@@ -39,14 +27,14 @@
 
 		<div class="pages">
 			<c:if test="${paging.prev }">
-			   	<a href="${cpath }/admin/board/?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${paging.begin-1}">
+			   	<a href="${cpath }/notice/?search=${param.search }&keyword=${param.keyword }&cate=3&page=${paging.begin-1}">
 			   	[이전]</a>
 		   	</c:if>
 			<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
-				<a href="${cpath }/admin/board/?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${i}">[${i}]</a>
+				<a href="${cpath }/notice/?search=${param.search }&keyword=${param.keyword }&cate=3&page=${i}">[${i}]</a>
 			</c:forEach>
 			<c:if test="${paging.next }">
-			   	<a href="${cpath }/admin/board/?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${paging.end+1}">
+			   	<a href="${cpath }/notice/?search=${param.search }&keyword=${param.keyword }&cate=3&page=${paging.end-1}">
 			   	[다음]</a>
 		   	</c:if>
 		</div>
@@ -63,10 +51,6 @@
 			<div class="btn4">검색</div>
 			</form>
 		</div>
-		
-		<div class="btn3" onclick="location.href='${cpath}/admin/board/write">
-			글쓰기
-		</div>	
 	</div>
 </section>
 
@@ -76,8 +60,7 @@
  btn.onclick=function(event){
 	 searchForm.submit();
  }
-
 </script>
 
-
-<%@include file="../footer.jsp" %>
+</body>
+</html>

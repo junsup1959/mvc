@@ -199,7 +199,7 @@ to {
 	}
 	right.onclick = function(event){
 		event.preventDefault()
-		let url = '${cpath}/event/read/next/'+bnum.innerText
+		let url = '${cpath}/event/read/next/'+bnum.innerText+'/?cate=2'
 		const opt = {method : 'GET' }
 		fetch(url,opt)
 		.then(resp => resp.json())
@@ -232,7 +232,7 @@ to {
 		
 	left.onclick = function(event){
 		event.preventDefault()
-		let url = '${cpath}/event/read/prev/'+bnum.innerText
+		let url = '${cpath}/event/read/prev/'+bnum.innerText+'/?cate=2'
 		const opt = {method : 'GET' }
 		fetch(url,opt)
 		.then(resp => resp.json())
