@@ -30,7 +30,9 @@
 
     <nav class="adminMenu">
         <ul class="cf">
+        <c:if test="${ ad_login.admin_dept <= 2}">
             <li><a href="${cpath }/admin/admin_member?page=1">인사관리</a></li>
+         </c:if>
             <li><a href="${cpath }/admin/cinema">영화관관리</a></li>
             <li><a href="#">리뷰관리</a></li>
             <li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1">고객관리</a></li>
