@@ -1,13 +1,13 @@
 package com.itbank.admin_board;
 
 public class Paging {
-	private int perPage =10;
+	private int perPage;
 	private int page; 
 	private int boardCount;
 	private int pageCount;
 	private int offset; 
 	
-	private int perSection=10;
+	private int perSection;
 	private int begin;
 	private int end;
 	private int section;
@@ -15,7 +15,9 @@ public class Paging {
 	private boolean prev;
 	private boolean next;
 	
-	public Paging(int page,int boardCount) {
+	public Paging(int page,int boardCount,int perPage) {
+		this.perPage = perPage;
+		this.perSection = perPage;
 		this.page=page;
 		this.boardCount=boardCount;
 		

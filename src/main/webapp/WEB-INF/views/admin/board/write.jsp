@@ -68,9 +68,9 @@ $(document).ready(function() {
 			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
 		  	<p>
 		  		<span id="bdate_span">시작일</span>
-		  		<input type="date" name="board_bdate" id='bdate'>
+		  		<input type="date" name="board_bdate" onchange="date()" id='bdate' required="required">
 				<span id="edate_span">종료일</span>
-				<input type="date" name="board_edate" id='edate'>
+				<input type="date" name="board_edate" onchange="date()" id='edate' required="required">
 			</p>
 		  	<p>
 			  <span>지점</span> 
@@ -129,6 +129,23 @@ $(document).ready(function() {
 			edate.required=true;
 		}
 	}
+	
+	////// 날짜 계산 함수/////////
+	function date(){
+		if(edate.required){
+			if(bdate.value == ''){
+				alert('시작일을 정해주세요')
+				bdate.focus();
+			}else{
+				if(edate.value != '' && bdate.value.replaceAll('-','')>=edate.value.replaceAll('-','')){
+					alert('날짜를 다시 선택해주세요.')
+					bdate.focus();
+				}
+				return;
+			}
+		}else{return;}
+	}
+	
 	
 </script>
 

@@ -143,7 +143,7 @@ $(document).ready(function(){
                         <li><a href="${cpath }/event/?search=&keyword=&cate=2&page=1">이벤트</a></li>
                         <li><a href="">시사회</a></li>
                         <li><a href="">제휴/할인</a></li>
-                        <li><a href="">지난이벤트</a></li>
+                        <li><a href="${cpath }/event/last/?search=&keyword=&cate=4&page=1">지난이벤트</a></li>
                     </ul>
                 </li>
             </ul>

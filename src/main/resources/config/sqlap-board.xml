@@ -11,10 +11,16 @@
 			<choose>
 			<when test="cate==2">
 			and board_notice = 'E'
+			and board_edate>sysdate
 			</when>
 			<when test="cate==3">
 			and board_notice = 'N'
-			</when>			
+			</when>
+			<when test="cate==4">
+			<!-- 위 현상을 해결하는 방법은 <![CDATA[ here]]> 의 here 부분에 비교 연산자를 넣거나 전체 쿼리문을 넣어서 사용하면 됩니다.-->
+			and board_notice = 'E'
+			<![CDATA[ and board_edate<sysdate]]>
+			</when>
 			</choose>
 			<if test="keyword!=null and keyword.equals('')==false">
    	 		and ${search} like '%${keyword}%'
@@ -35,9 +41,14 @@
 			<choose>
 				<when test="cate==2">
 				where board_notice = 'E'
+				and board_edate>sysdate
 				</when>
 				<when test="cate==3">
 				where board_notice = 'N'
+				</when>
+				<when test="cate==4">
+				where board_notice='E'
+				<![CDATA[ and board_edate<sysdate]]>
 				</when>	
 			</choose>		
 	</select>
@@ -71,30 +82,44 @@
 		where board_number=#{board_number}
 	</update>
 	<select id="next" resultType="board" parameterType="hashmap">
-	select * from (select board_number, lead(board_number) over(order by board_number) board_next from board where board_deleted='n') 
-	where board_number=${board_number}
-		<choose>
+	select * from (select board_number, lead(board_number) over(order by board_number) board_next from board
+	 where board_deleted='n'
+ 		<choose>
 			<when test="cate==2">
-			and board_notice = 'E'
+			and board_notice='E'
+			and board_edate>sysdate
 			</when>
 			<when test="cate==3">
-			and board_notice = 'N'
+			and board_notice='N'
+			</when>
+			<when test="cate==4">
+			and board_notice='E'
+			<![CDATA[ and board_edate<sysdate]]>
 			</when>			
 		</choose>
+	 ) 
+	where board_number=${board_number}
 	</select>
 	
 	
 	<select id="prev" resultType="board" parameterType="hashmap">
-	select * from (select board_number, lag(board_number) over(order by board_number) board_prev from board where board_deleted='n') 
-	where board_number=${board_number}
+	select * from (select board_number, lag(board_number) over(order by board_number) board_prev from board 
+	where board_deleted='n'
 		<choose>
 			<when test="cate==2">
-			and board_notice = 'E'
+			and board_notice='E'
+			and board_edate > sysdate
 			</when>
 			<when test="cate==3">
-			and board_notice = 'N'
+			and board_notice='N'
+			</when>
+			<when test="cate==4">
+			and board_notice='E'
+			and <![CDATA[board_edate<sysdate]]>
 			</when>			
 		</choose>
+	) 
+	where board_number=${board_number}
 	</select>
 	
 </mapper>

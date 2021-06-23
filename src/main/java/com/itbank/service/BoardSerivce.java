@@ -32,7 +32,7 @@ public class BoardSerivce {
 		return dao.list(param);
 	}
 	public int insert(boardDTO dto) {
-		// TODO Auto-generated method stub
+
 		if(dto.getFile().isEmpty()) {
 		dto.setBoard_file("");
 		return dao.insert(dto);
@@ -41,12 +41,12 @@ public class BoardSerivce {
 		return dao.insert(dto);
 	}
 	public boardDTO selectOne(int board_number) {
-		// TODO Auto-generated method stub
+
 		boardDTO dto = dao.selectOne(board_number);
 		return dto;
 	}
 	public int update(boardDTO dto) {
-		// TODO Auto-generated method stub
+
 		if(dto.getFile().isEmpty()) {
 			dto.setBoard_file("");
 			return dao.update(dto);
@@ -56,11 +56,11 @@ public class BoardSerivce {
 		
 	}
 	public int boardCount(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
+
 		return dao.boardCount(param);
 	}
 	public int delete(int board_number) {
-		// TODO Auto-generated method stub
+
 		return dao.delete(board_number);
 	}
 	public String summernote(MultipartFile multipartFile, HashMap<String, String> jm) {
@@ -92,7 +92,6 @@ public class BoardSerivce {
 	
 	
 	public List<CoboardDTO> clist(Paging paging, HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
 		
 		param.put("offset", paging.getOffset());
 		param.put("perPage",paging.getPerPage());

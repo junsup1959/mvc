@@ -15,6 +15,8 @@
 }
 .listT{
 margin-top: 50px;
+margin-left : auto;
+margin-right : auto;
 border-top: outset;
 }
 
@@ -22,11 +24,13 @@ border-top: outset;
 	font-weight: bold;
 }
 .theaterList{
-	width: 740px;
+	width: 750px;
     height: 40px;
     border-bottom: outset;
     border-left: outset;
    	border-right: outset;
+   	margin-left : auto;
+	margin-right : auto;
 }
 
 .theaterList>span{
@@ -36,14 +40,28 @@ border-top: outset;
 	margin : 0 0 0 0;
 	padding : 0 0 0 0;
 	font-size: 14px;
-  
+  	margin-left : auto;
+	margin-right : auto;
+
 }
 .TheaterInsert{
 	display: block;
 	margin-top: 15px;
-	margin-left: 30%;
+	margin-left: 50%;
 }
-
+.Theater_del{
+	cursor: pointer;
+    background-color: gray;
+	color: white;
+	
+}
+	
+.Theater_update{
+	cursor: pointer;
+    background-color: gray;
+   	color: white;
+   	
+}
 </style>
 <div class="c_cont">
 
@@ -69,12 +87,12 @@ border-top: outset;
 				<span class="usable">사용불가</span>
 			</c:otherwise>
 		</c:choose>
-		<span><button onclick="update('${theater.branchcode}')">수정</button></span>
-		<span><button onclick="del('${theater.branchcode}')">삭제</button></span>
+		<span class="Theater_update" onclick="update('${theater.branchcode}')">수정</span>
+		<span class="Theater_del" onclick="del('${theater.branchcode}')">삭제</span>
 	</div>
 	</c:forEach>
 	<div class="TheaterInsert">
-		<span><button onclick="insert()">추가</button></span>
+		<span><i onclick="insert()" class="xi-plus" style='cursor:pointer;'></i></span>
 	</div>
 	<div id="t_input" class="hidden">
 		<form id="t_inputform">
@@ -96,6 +114,16 @@ border-top: outset;
 			<p><input type="submit" value="수정"></p>
 		</form>
 	</div>
+</div>
+<div style="margin-left: 39%; margin-bottom: 100px">
+	<form id="T_search">
+		<select name="search"  style="width: 80px; margin-right: 20px">
+			<option value="branch">지점</option>
+			<option value="branchcode">코드</option>
+		</select>
+		<p><input type="text" name="" ></p>
+		<p><span onclick="Tsubmit()" style="padding-right:5px; padding-left:5px; font-size:20px; text-align:center; cursor: pointer; background-color: gray; color: white;">검색</span></p>
+	</form>
 </div>
 
 <script>

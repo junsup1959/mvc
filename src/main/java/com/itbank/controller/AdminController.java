@@ -43,6 +43,7 @@ public class AdminController {
 	@Autowired private MemberService ms;
 	@Autowired private CinemaService cs;
 	
+	private final int perPage = 10;
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	@GetMapping({"", "/"})
@@ -97,7 +98,7 @@ public class AdminController {
 	public ModelAndView admin_member(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav=new ModelAndView("admin/admin_member/admin_member");
 		int adminCount = as.adminCount();
-		Paging paging = new Paging(page, adminCount);
+		Paging paging = new Paging(page, adminCount,perPage);
 		List<Admin_memberDTO>list=as.selectAll();
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
@@ -147,7 +148,7 @@ public class AdminController {
 	public ModelAndView board(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav= new ModelAndView("admin/board/boardList");
 		int baordCount = bs.boardCount(param);
-		Paging paging = new Paging(page, baordCount);
+		Paging paging = new Paging(page, baordCount,perPage);
 		List<boardDTO> list=bs.list(paging,param);
 		mav.addObject("list", list);
 		mav.addObject("paging", paging);
@@ -278,7 +279,7 @@ public class AdminController {
 	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
 		int memberCount = ms.memberCount();
-		Paging paging = new Paging(page, memberCount);
+		Paging paging = new Paging(page, memberCount,perPage);
 		List<MemberDTO> customerList = ms.customerList(number, paging, param);
 		
 		mav.addObject("customerList", customerList);

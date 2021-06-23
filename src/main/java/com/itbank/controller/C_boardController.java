@@ -1,7 +1,6 @@
 package com.itbank.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.admin_board.CoboardDTO;
 import com.itbank.admin_board.Paging;
-import com.itbank.admin_board.boardDTO;
 import com.itbank.service.BoardSerivce;
 
 @Controller
@@ -28,12 +26,13 @@ import com.itbank.service.BoardSerivce;
 public class C_boardController {
 	
 	@Autowired private BoardSerivce bs;
+	private final int perPage =10;
 	
 	@GetMapping({"","/"})
 	public ModelAndView board(@RequestParam HashMap<String, Object> param, int page) {
 		ModelAndView mav= new ModelAndView("admin/c_board/boardList");
 		int baordCount = bs.cboardCount();
-		Paging paging = new Paging(page, baordCount);
+		Paging paging = new Paging(page, baordCount,perPage);
 		
 		List<CoboardDTO> list=bs.clist(paging,param);
 		mav.addObject("list", list);

@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itbank.admin_board.Paging;
@@ -24,13 +21,17 @@ import com.itbank.service.BoardSerivce;
 
 public class EventController {
 
-	private ObjectMapper mapper = new ObjectMapper();
+	
 	@Autowired private BoardSerivce bs;
+	
+	private ObjectMapper mapper = new ObjectMapper();
+	
 	@GetMapping("/event")
 	public ModelAndView event(@RequestParam HashMap<String, Object>param, int page) {
+		int perPage = 8;
 		ModelAndView mav= new ModelAndView("event/event");
 		int boardCount =  bs.boardCount(param);
-		Paging paging = new Paging(page, boardCount);
+		Paging paging = new Paging(page, boardCount,perPage);
 		List<boardDTO>list=bs.list(paging,param);
 		mav.addObject("list", list);
 		mav.addObject("paging",paging);
@@ -50,7 +51,6 @@ public class EventController {
 	@ResponseBody
 	public String prev(@PathVariable int number,@RequestParam HashMap<String, Object> param) throws JsonProcessingException {
 		  String json = null;
-		  System.out.println(param);
 		  boardDTO pre= bs.prev(number,param);
 		  int prev = pre.getBoard_prev();
 		  boardDTO dto = bs.selectOne(prev);
@@ -62,24 +62,26 @@ public class EventController {
 	@ResponseBody
 	public String next(@PathVariable int number,@RequestParam HashMap<String, Object> param) throws JsonProcessingException {
 		
-		System.out.println(param);
 		  String json = null;
 		  boardDTO nex= bs.next(number,param);
 		  int next = nex.getBoard_next();
 		  boardDTO dto = bs.selectOne(next);
 		  json = mapper.writeValueAsString(dto);
 		  return json;
-		}
+	}
+	
 	@GetMapping("/notice")
 	public ModelAndView notice(@RequestParam HashMap<String, Object>param, int page) {
+		int perPage=10;
 		ModelAndView mav=new ModelAndView("/event/notice");
 		int boardCount =  bs.boardCount(param);
-		Paging paging = new Paging(page, boardCount);
+		Paging paging = new Paging(page, boardCount,perPage);
 		List<boardDTO>list=bs.list(paging, param);
 		mav.addObject("list", list);
 		mav.addObject("paging",paging);
 		return mav;
 	}
+	
 	@GetMapping("notice/{board_number}")
 	public ModelAndView notice(@PathVariable int board_number) {
 		ModelAndView mav = new ModelAndView("/event/read");
@@ -88,4 +90,18 @@ public class EventController {
 		return mav;
 	}
 	
+	@GetMapping("/event/last")
+	public ModelAndView last(@RequestParam HashMap<String, Object> param, int page) {
+		int perPage = 8;
+		ModelAndView mav= new ModelAndView("event/last");
+		int boardCount =  bs.boardCount(param);
+		Paging paging = new Paging(page, boardCount,perPage);
+		List<boardDTO>list=bs.list(paging,param);
+		mav.addObject("list", list);
+		mav.addObject("paging",paging);
+		
+		return mav;
+	}
+	
 }
+
