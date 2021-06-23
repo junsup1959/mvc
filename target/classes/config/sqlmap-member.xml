@@ -41,7 +41,7 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			amount_last desc
+			amount_last desc, member_date desc
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
@@ -53,7 +53,7 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			amount_this desc
+			amount_this desc, member_date desc
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
