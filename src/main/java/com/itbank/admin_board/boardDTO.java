@@ -11,7 +11,7 @@ public class boardDTO {
 	private final String root="D:\\upload\\";
 	private int board_number,board_prev,board_next;
 	private String board_content,board_bdate,board_edate,board_title,board_store,board_file,admin_num;
-	private char board_notice;
+	private String board_notice;
 	MultipartFile file;
 	
 	public void ready() {
@@ -102,11 +102,11 @@ public class boardDTO {
 		this.admin_num = admin_num;
 	}
 
-	public char getBoard_notice() {
+	public String getBoard_notice() {
 		return board_notice;
 	}
 
-	public void setBoard_notice(char board_notice) {
+	public void setBoard_notice(String board_notice) {
 		this.board_notice = board_notice;
 	}
 

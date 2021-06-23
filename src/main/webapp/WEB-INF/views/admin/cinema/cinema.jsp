@@ -5,25 +5,43 @@
 <style>
 .c_cont{
 	display: flex;
-	flex-direction: column;
-	justify-content:center;
-	align-items:center;
-	width: 100%;
-	height: 500px;
-}
-#theaterList{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	width: 800px;
-	margin-bottom: 10px;
+	flex-wrap:wrap;
+	width: 60%;
 	margin-right: auto;
+	height: 500px;
+	margin-left: auto;
+	flex-flow: column;
+	position: relative;
 }
-#theaterList>span{
+.listT{
+margin-top: 50px;
+border-top: outset;
+}
+
+.listT>span{
+	font-weight: bold;
+}
+.theaterList{
+	width: 740px;
+    height: 40px;
+    border-bottom: outset;
+    border-left: outset;
+   	border-right: outset;
+}
+
+.theaterList>span{
 	display: inline-block;
-	width:100px;
+	width:calc(700px/6);
 	text-align:center;
-	flex-grow: 1;
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
+	font-size: 14px;
+  
+}
+.TheaterInsert{
+	display: block;
+	margin-top: 15px;
+	margin-left: 30%;
 }
 
 </style>
@@ -34,6 +52,8 @@
 		<span class="branchcode">상영관 코드</span>
 		<span class="capacity">수용인원</span>
 		<span class="usable">가용여부</span>
+		<span>수정</span>
+		<span>삭제</span>
 	</div>
 	
 	<c:forEach var="theater" items="${list }">
@@ -41,8 +61,6 @@
 		<span class="branch">${theater.branch }</span>
 		<span class="branchcode">${theater.branchcode }</span>
 		<span class="capacity">${theater.capacity }</span>
-		<span></span>
-		<span></span>
 		<c:choose>
 			<c:when test="${theater.usable eq 'y' }">
 				<span class="usable">사용가능</span>
@@ -55,7 +73,7 @@
 		<span><button onclick="del('${theater.branchcode}')">삭제</button></span>
 	</div>
 	</c:forEach>
-	<div>
+	<div class="TheaterInsert">
 		<span><button onclick="insert()">추가</button></span>
 	</div>
 	<div id="t_input" class="hidden">
@@ -102,8 +120,8 @@ function insertchk(){
 		return true;
 	}
 }
-function updatechk(){
-	if(uflag){
+function updatechk(data){
+	if(uflag & document.getElementById('up_branchcode').value == data){
 		hidden[1].style.display="none"
 		uflag = false;
 		return false;
@@ -140,7 +158,7 @@ function insert(){
 	}
 }
 function update(data){
-	if(updatechk()){
+	if(updatechk(data)){
 		const up_branchcode = document.getElementById('up_branchcode')
 		const up_capacity = document.getElementById('up_capacity')
 		const up_usable = document.getElementById('up_usable')

@@ -32,8 +32,8 @@ a {
 
 .layer .box {
 	overflow: auto;
-	width: 60%;
-	height: 80%;
+	width: 90%;
+	height: 90%;
 	padding: 20px 20px 60px;
 	margin: 20px;
 	background: #fff;
@@ -43,7 +43,7 @@ a {
 .layer .close {
     position: absolute;
     right: 0;
-    width: 70px;
+    width: 30px;
     display: block;
     top: 20px;
 }
@@ -84,64 +84,88 @@ to {
 	display: flex;
 	justify-content: center;
 }
-.bcont_wrap>*{
-	flex-shrink: 1;
-}
+
 .b_param{
 	display:flex;
 	width:100%;
 	justify-content:space-evenly;
 	margin-bottom: 20px;
+	border-bottom: groove;
 }
 .b_param>span{
 	display: inline-block;
 	width: 25%;
 }
 
-.b_title{
-	margin-left : 54px;
-	margin-bottom: 20px;
+.List_wrap{
+	width: 1400px;
+	height: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-wrap: wrap;
 }
-.b_title>span{
-	padding: 30px
+
+.ev{
+	display: flex;
+	flex-flow: column;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 300px;
+	height: 350px;
+    border: groove;
+}
+.ev>img{
+	display: block;
+	width: 295px;
+	height: 250px;
+	
+}
+
+.ev>.evtitle{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+.evtdate{
+	text-align: center;
+}
+.evtdate>span{
+    margin-right: 10px;
 }
 
 </style>
 <div class="e_wrap">
-	<div class="">
 		<div class="">
 			<h2>이벤트 리스트</h2>
 			<!-- 자바스크립트 수정필요 차후함. -->
 		</div>
-		<div class="e1">
+	<div class="List_wrap">
 			<c:forEach var="board" items="${list }">
-				<div class="">
-					<img src="${board_file }">
-					<!-- 이미지 첨부는 필수 -->
-					<span><a href="#popup1"
-						onclick="e_read(${board.board_number})">${board.board_title }</a></span>
-					<!-- 읽기 이동 -->
-					<span>${board.board_bdate }</span> <span>${board.board_edate }</span>
-				</div>
+			<div class="ev">
+				<img alt="파일첨부해줘요잉" src="${cpath }/upload/${board.board_file }">
+				<!-- 이미지 첨부는 필수 -->
+				<span class="evtitle" ><a href="#popup1" onclick="e_read(${board.board_number})">${board.board_title }</a></span>
+			<div class="evtdate">
+				<span >${board.board_bdate }</span> <span>${board.board_edate }</span>
+			</div>	
+			</div>	
 			</c:forEach>
 		</div>
+	</div>
 		<div id="popup1" class="layer">
 			<div class="box">
 				<a class="lft"><i class="xi-angle-left"></i></a>
 				<a class="rgt"><i class="xi-angle-right"></i></a>
 				<div class="b_param">
-					<span class="values">글번호</span>
+					<span class="values">제목</span>
 					<span class="values">시작일</span>
 					<span class="">마감일</span>
 				</div>
 				<div class="b_param">
-					<span class="values" id="bnumber"></span>
+					<span class="" id="btitle"></span>
 					<span class="values" id="bdate"></span>
 					<span class="values" id="edate"></span>
-				</div>
-				<div class="b_title">
-					<span> 제목 </span>
-					<span class="" id="btitle"></span>
 				</div>
 				<div class="bcont_wrap">
 					<div id="bcontent" class=""></div>
@@ -149,18 +173,11 @@ to {
 				<a href="#" class="close"><i class="xi-close"></i></a>
 			</div>
 		</div>
-	</div>
-	<div>
-		<button>
-			<a class="e1"
-				href="${cpath }/event/?search=${param.search }&keyword=${param.keyword }&page=${param.page+1}"
-				data-transition="slide"> 다음 </a>
-		</button>
-	</div>
-</div>
+	
 
 
 
+<div id="bnumber" style="display: none;"></div> <!--  지우면 안됨 다음 글 추출하는 파라미터 담는곳 -->
 
 <script>
 	const e1 = document.querySelectorAll('.e1')

@@ -27,7 +27,7 @@
 			</div>
 			
 			<c:forEach var="board" items="${list}">
-				<div class="list" onclick="location.href='${cpath}/admin/board/read/${board.board_number}?search=${param.search }&cate=${param.cate}&keyword=${param.keyword }&page=${param.page}'"'>
+				<div class="list" onclick="location.href='${cpath}/admin/board/read/${board.board_number}?search=${param.search }&cate=${param.cate}&keyword=${param.keyword }&page=${param.page}'">
 					<span>${board.board_number}</span>
 					<span>${board.board_title}</span>
 					<span>${board.board_store }</span>
@@ -60,11 +60,12 @@
 			</select>
 			<input type="text" name="keyword">
 			<input type="hidden" name="page" value="${param.page }">
+			<input type="hidden" name="cate" value="${param.cate }">
 			<div class="btn4">검색</div>
 			</form>
 		</div>
 		
-		<div class="btn3" onclick="location.href='${cpath}/admin/board/write">
+		<div class="btn3" onclick="location.href='${cpath}/admin/board/write'">
 			글쓰기
 		</div>	
 	</div>

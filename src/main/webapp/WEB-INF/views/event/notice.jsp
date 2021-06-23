@@ -48,6 +48,7 @@
 			</select>
 			<input type="text" name="keyword">
 			<input type="hidden" name="page" value="${param.page }">
+			<input type="hidden" name="cate" value="3">
 			<div class="btn4">검색</div>
 			</form>
 		</div>
