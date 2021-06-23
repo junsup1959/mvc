@@ -28,9 +28,7 @@ function getCookie(cookieName) {
         if(end == -1)end = cookieData.length;
         cookieValue = cookieData.substring(start, end);
     }
-
     return unescape(cookieValue);	//저장된 cookie 값 반환
-
 }
 </script>
 <section id="bodyWrap">
@@ -94,7 +92,6 @@ getcheck()
 
 
 <script>
-
 document.forms[0].onsubmit = function(event) {	
 	event.preventDefault();						
 	// onsubmit할 때 체크박스 체크 여부로 cookie 저장 

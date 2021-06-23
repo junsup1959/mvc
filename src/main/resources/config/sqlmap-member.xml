@@ -14,37 +14,19 @@
 			
 	<select id="list"  parameterType="String"  resultType="member" >
 		select member_email from member
-			where member_deleted = 'n'
 			<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and member_grade = #{listType}
+		  	 		where member_grade = #{listType}
 		 	 	</if>
 			
 	</select>
-
-<!-- 	<select id="listGold" resultType="member" > -->
-<!-- 		select member_email from member -->
-<!-- 			where member_deleted = 'n' -->
-<!-- 	</select> -->
-
-<!-- 	<select id="listVip" resultType="member" > -->
-<!-- 		select member_email from member -->
-<!-- 			where member_deleted = 'n' -->
-<!-- 	</select> -->
-
-<!-- 	<select id="listPlatinum" resultType="member" > -->
-<!-- 		select member_email from member -->
-<!-- 			where member_deleted = 'n' -->
-<!-- 	</select> -->
-
 
 
 
 <!-- ============고객관리 페이지 리스트================== -->
 	<select id="customerDeletedList" resultType="member" parameterType="hashmap">
-		select * from member
-			where member_deleted = 'y'
+		select * from member_del
 				<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and ${search} like '%${keyword}%'
+		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
 			member_date desc
@@ -55,9 +37,8 @@
 
 	<select id="customerLastList" resultType="member" parameterType="hashmap">
 		select * from member
-			where member_deleted = 'n'
 				<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and ${search} like '%${keyword}%'
+		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
 			amount_last desc
@@ -68,9 +49,8 @@
 
 	<select id="customerThisList" resultType="member" parameterType="hashmap">
 		select * from member
-			where member_deleted = 'n'
 				<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and ${search} like '%${keyword}%'
+		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
 			amount_this desc
@@ -80,9 +60,8 @@
 
 	<select id="customerDateList" resultType="member" parameterType="hashmap">
 		select * from member
-			where member_deleted = 'n'
 				<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and ${search} like '%${keyword}%'
+		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
 			member_date desc
@@ -92,9 +71,8 @@
 
 		<select id="customerGradeList" resultType="member" parameterType="hashmap">
 		select * from member
-			where member_deleted = 'n'
 				<if test="keyword!=null and keyword.equals('')==false">
-		  	 		and ${search} like '%${keyword}%'
+		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by decode(member_grade, 'P', 1, 'G', 2, 'V', 3, 'N', 4) asc, member_date desc
 		offset ${offset} rows
@@ -121,8 +99,6 @@
 			member_email = #{member_email}
 			and
 			member_password = #{member_password}
-			and
-			member_deleted = 'n'
 	
 	</select>
 	
@@ -130,9 +106,6 @@
 	select * from member
 		where
 			member_email = #{member_email}
-			and
-			member_deleted = 'n'
-
 	</select>
 	
 	
@@ -154,6 +127,19 @@
 			member_email = #{member_email}
 	
 	</update>
+
+	
+	<insert id="insertDelMember" parameterType="member">
+		insert into member_del
+			(member_number,member_email, member_name, member_password, member_phone, member_addr1, member_addr2, member_gender,
+    		member_nick , member_grade, amount_this, amount_last, member_date)
+    		(select 
+    		member_number, member_email, member_name, member_password, member_phone, member_addr1, member_addr2, member_gender,
+		    member_nick, member_grade, amount_this, amount_last, member_date
+			from member where member_email = #{member_email})
+	
+	</insert>
+
 
 </mapper>
 
