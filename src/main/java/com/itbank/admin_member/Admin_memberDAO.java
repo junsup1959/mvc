@@ -33,7 +33,7 @@ public interface Admin_memberDAO {
 	@Update("update admin_member set "
 			+ "admin_name=#{admin_name}, admin_phone = #{admin_phone}, "
 			+ "admin_addr= #{admin_addr}, admin_store = #{admin_store},"
-			+ "admin_dept = #{admin_dept} "
+			+ "admin_dept = #{admin_dept}, admin_lday=#{admin_lday}, deleted=#{deleted} "
 			+ "where admin_num=#{admin_num}")
 	int adminMemberUpdate(Admin_memberDTO dto);
 

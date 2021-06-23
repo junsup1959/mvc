@@ -130,7 +130,13 @@ public class AdminController {
 	@PostMapping("/admin_member/update")
 	@ResponseBody
 	public String update(Admin_memberDTO dto) {
-		System.out.println(dto.getAdmin_name());
+		System.out.println("퇴사일 : " + dto.getAdmin_lday());
+		if(!dto.getAdmin_lday().equals( "")) {
+			dto.setDeleted("y");
+		}else {
+			dto.setDeleted("n");	
+		}
+//		System.out.println(dto.getAdmin_name());
 		int row = as.update(dto);
 		return row+"";
 	}

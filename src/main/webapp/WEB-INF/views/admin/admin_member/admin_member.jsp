@@ -36,16 +36,17 @@ function tab(t, admin_num){
 //				console.log(key, ':', json[key])
 					const span = document.createElement('span');
 					const input = document.createElement('input');
-					if(key != 'admin_password'){
+					switch(key){
+					case 'admin_password':;
+					case 'deleted' : break;
+					default : 
 						span.innerText = key;
-						input.name = key;
-						input.value = json[key];
-						switch(key){
-						case 'admin_num' : input.readOnly = 'readonly'; break;
-						}
-						updateForm.appendChild(span);
-						updateForm.appendChild(input);
+					input.name = key;
+					input.value = json[key];
+					updateForm.appendChild(span);
+					updateForm.appendChild(input);
 					}
+				
 			}	
 			const submit = document.createElement('input');
 			submit.type='submit';
@@ -98,7 +99,7 @@ var choice =  document.querySelector('.con'+t)
         </div>
 
         <div class="rightWrap">
-            <div class="con1 on">
+            <div class="con1 on">				<!--  사원 리스트  -->
                 <h2>사원목록</h2>
                 <c:if test="${empty list }">
                 	<h2>사원 목록이 없습니다.</h2>
@@ -115,6 +116,7 @@ var choice =  document.querySelector('.con'+t)
 	                </div>
 	                <div class="list cf">
 	                <c:forEach var="a" items="${list}"> 
+	                <c:if test="${a.deleted eq 'n'}"> 
 					<p onclick="tab(4, ${a.admin_num})">
 	                	<span>${a.admin_num}</span>
 	                	<span>${a.admin_store}</span>
@@ -138,7 +140,8 @@ var choice =  document.querySelector('.con'+t)
 						<span>${a.admin_jday}</span>
 						<span>${a.admin_phone}</span>		
 						<span>${a.admin_addr}</span>
-						</p>	
+						</p>
+						</c:if>	
 					</c:forEach>
 					<article>
 						<c:if test="${paging.prev }">
@@ -158,7 +161,7 @@ var choice =  document.querySelector('.con'+t)
 				</c:if>
             </div>
             
-            <div class="con2">
+            <div class="con2">								<!-- 사원계정 생성 -->
                 <h2>사원입력</h2>
                 <div class="insertForm">
 	                <form id="insertForm">
@@ -184,13 +187,71 @@ var choice =  document.querySelector('.con'+t)
             
             <div class="con3">
             	<h2>퇴사자관리</h2>
-            	<p>
-            		퇴사일 - 기본값 x, 퇴사여부 - 기본값 n 입력(db 2열 추가)
-            	</p>
+            	 <c:if test="${empty list }">
+                	<h2>퇴사자 목록이 없습니다.</h2>
+                </c:if>
+                <c:if test="${not empty list }">
+
+	                <div class="list-title cf">
+	                	<span>사원번호</span>
+	                	<span>지점</span>
+	                	<span>직급</span>
+	                	<span>사원명</span>
+	                	<span>입사일</span>
+	                	<span>퇴사일</span>
+	                	<span>연락처</span>
+	                	<span>주소</span>
+	                </div>
+	                <div class="list cf">
+	                <c:forEach var="a" items="${list}"> 
+					<c:if test="${a.deleted eq 'y'}"> 
+					<p onclick="tab(4, ${a.admin_num})">
+	                	<span>${a.admin_num}</span>
+	                	<span>${a.admin_store}</span>
+	                	<span>
+							<c:choose>
+								<c:when test="${a.admin_dept  == 1 }">
+											총괄관리자
+								</c:when>
+								<c:when test="${a.admin_dept  == 2}">
+											지점장
+								</c:when>	
+								<c:when test="${a.admin_dept == 3 }">
+											매니저
+								</c:when>	
+								<c:when test="${a.admin_dept == 4 }">
+											사원
+								</c:when>		
+							</c:choose>
+						</span>
+						<span>${a.admin_name}</span>
+						<span>${a.admin_jday}</span>
+						<span>${a.admin_lday}</span>
+						<span>${a.admin_phone}</span>		
+						<span>${a.admin_addr}</span>
+						</p>	
+					</c:if>
+					</c:forEach>
+					<article>
+						<c:if test="${paging.prev }">
+						   	<a href="${cpath }/admin/admin_member?page=${paging.begin-1}">
+						   	[이전]</a>
+					   	</c:if>
+						<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
+							<span onclick="name(${i})">[${i}]</span>
+						</c:forEach>
+						<c:if test="${paging.next }">
+						   	<a href="${cpath }/admin/admin_member?page=${paging.end+1}">
+						   	[다음]</a>
+					   	</c:if>
+					</article>
+					</div>
+
+				</c:if>
             </div>
             
             
-            <div class="con4">
+            <div class="con4">							<!-- 사원 정보 수정 - 퇴사일 입력 가능 -->
                 <h2>사원정보수정</h2>
                 <div class="updateForm">
 	                <form id="updateForm">

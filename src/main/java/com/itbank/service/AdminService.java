@@ -32,6 +32,7 @@ public class AdminService {
 	}
 
 	public int update(Admin_memberDTO dto) {
+		System.out.println("deleted : " + dto.getDeleted());
 		return dao.adminMemberUpdate(dto);
 	}
 
