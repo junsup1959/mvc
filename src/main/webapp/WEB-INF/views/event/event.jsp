@@ -83,10 +83,19 @@ to {
 	cursor:pointer;
 }
 
-.bcont_wrap{
-	display: flex;
+.bcont_wrap {
+	width : 100%;
+	margin : 0 auto;
 	justify-content: center;
 }
+.bcont_wrap div {
+	width : 700px;
+	margin : 0 auto;
+}
+#bimg img {
+	width: 100%
+}
+
 
 .b_param{
 	display:flex;
@@ -148,7 +157,8 @@ to {
 			<div class="ev">
 				<img alt="파일첨부해줘요잉" src="${cpath }/upload/${board.board_file }">
 				<!-- 이미지 첨부는 필수 -->
-				<span class="evtitle" ><a href="#popup1" onclick="e_read(${board.board_number})">${board.board_title }</a></span>
+				<span class="evtitle" ><a href="#popup1" onclick="e_read(${board.board_number})">
+				<b style="color:orange">[${board.board_store}점] </b>${board.board_title }</a></span>
 			<div class="evtdate">
 				<span >${board.board_bdate }</span> <span>${board.board_edate }</span>
 			</div>	
@@ -171,6 +181,7 @@ to {
 					<span class="values" id="edate"></span>
 				</div>
 				<div class="bcont_wrap">
+					<div id="bimg" class=""></div>
 					<div id="bcontent" class=""></div>
 				</div>
 				<a href="#" class="close"><i class="xi-close"></i></a>
@@ -203,7 +214,7 @@ to {
 			const btitle= document.getElementById('btitle')
 			const bdate= document.getElementById('bdate')
 			const edate= document.getElementById('edate')
-			
+			const bimg= document.getElementById('bimg')
 			
 			for(key in json){
 				switch(key){
@@ -212,6 +223,7 @@ to {
 					case 'board_bdate' : bdate.innerText = json[key]; break
 					case 'board_content' : bcontent.innerHTML = json[key]; break
 					case 'board_edate' : edate.innerText = json[key]; break
+					case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 					default : break
 				}
 			}
@@ -234,7 +246,7 @@ to {
 				const btitle= document.getElementById('btitle')
 				const bdate= document.getElementById('bdate')
 				const edate= document.getElementById('edate')
-				
+				const bimg= document.getElementById('bimg')
 			
 				for(key in json){
 					switch(key){
@@ -243,6 +255,7 @@ to {
 						case 'board_bdate' : bdate.innerText = json[key]; break
 						case 'board_content' : bcontent.innerHTML = json[key]; break
 						case 'board_edate' : edate.innerText = json[key]; break
+						case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 						default : break
 					}
 				}
@@ -267,7 +280,7 @@ to {
 				const btitle= document.getElementById('btitle')
 				const bdate= document.getElementById('bdate')
 				const edate= document.getElementById('edate')
-			
+				const bimg= document.getElementById('bimg')
 			
 				for(key in json){
 					switch(key){
@@ -276,6 +289,7 @@ to {
 						case 'board_bdate' : bdate.innerText = json[key]; break
 						case 'board_content' : bcontent.innerHTML = json[key]; break
 						case 'board_edate' : edate.innerText = json[key]; break
+						case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 						default : break
 					}
 				}
