@@ -237,9 +237,9 @@ to {
 		.then(resp => resp.json())
 		.then(json => {
 			if(json !=null){
-				for(let i=0;i<childs.length;i++){
+				/* for(let i=0;i<childs.length;i++){
 					childs[i].innerHTML=""
-				}
+				} */
 				bcontent.innerHTML = ""
 					
 				const bnumber= document.getElementById('bnumber')
@@ -271,9 +271,9 @@ to {
 		.then(resp => resp.json())
 		.then(json => {
 			if(json !=null){
-				for(let i=0;i<childs.length;i++){
+				/* for(let i=0;i<childs.length;i++){
 					childs[i].innerHTML=""
-				}
+				} */
 				bcontent.innerHTML = ""
 					
 				const bnumber= document.getElementById('bnumber')
