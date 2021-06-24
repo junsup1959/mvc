@@ -82,23 +82,23 @@
                             <tbody>
                                 <tr>
                                     <td rowspan="2">월~목</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
                                     <td>8,000</td>
                                     <td>6,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
+                                    <td>일반(11:00~)</td>
                                     <td>12,000</td>
                                     <td>10,000</td>
                                 </tr>
                                 <tr>
                                     <td rowspan="2">금~일<br>공휴일</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
                                     <td>9,000</td>
                                     <td>6,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
+                                    <td>일반(11:00~)</td>
                                     <td>13,000</td>
                                     <td>10,000</td>
                                 </tr>
@@ -126,25 +126,25 @@
                             <tbody>
                                 <tr>
                                     <td rowspan="2">월~목</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
+                                    <td>10,000</td>
                                     <td>8,000</td>
-                                    <td>6,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
-                                    <td>12,000</td>
-                                    <td>10,000</td>
+                                    <td>일반(11:00~)</td>
+                                    <td>14,000</td>
+                                    <td>11,000</td>
                                 </tr>
                                 <tr>
                                     <td rowspan="2">금~일<br>공휴일</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
+                                    <td>11,000</td>
                                     <td>9,000</td>
-                                    <td>6,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
-                                    <td>13,000</td>
-                                    <td>10,000</td>
+                                    <td>일반(11:00~)</td>
+                                    <td>15,000</td>
+                                    <td>12,000</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -170,25 +170,25 @@
                             <tbody>
                                 <tr>
                                     <td rowspan="2">월~목</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
                                     <td>9,000</td>
                                     <td>7,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
+                                    <td>일반(11:00~)</td>
                                     <td>13,000</td>
                                     <td>10,000</td>
                                 </tr>
                                 <tr>
                                     <td rowspan="2">금~일<br>공휴일</td>
-                                    <td>조조</td>
+                                    <td>조조(06:00~)</td>
                                     <td>10,000</td>
-                                    <td>6,000</td>
+                                    <td>7,000</td>
                                 </tr>
                                 <tr>
-                                    <td>일반</td>
-                                    <td>13,000</td>
-                                    <td>10,000</td>
+                                    <td>일반(11:00~)</td>
+                                    <td>14,000</td>
+                                    <td>11,000</td>
                                 </tr>
                             </tbody>
                         </table>
