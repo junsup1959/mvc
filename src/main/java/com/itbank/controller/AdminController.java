@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.admin_board.Board_likeDTO;
 import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDTO;
 import com.itbank.admin_member.Admin_memberDTO;
@@ -161,10 +162,13 @@ public class AdminController {
 		boardDTO np=bs.next(board_number,param);
 		dto.setBoard_next(np.getBoard_next());
 		np=bs.prev(board_number,param);
+		
+		int blcount= bs.blcount(board_number);
 		dto.setBoard_prev(np.getBoard_prev());
 		
 		
 		mav.addObject("dto",dto);
+		mav.addObject("blcount", blcount);
 		
 		if(dto.getBoard_next()!=0) {
 			boardDTO next = bs.selectOne(dto.getBoard_next());
@@ -215,7 +219,7 @@ public class AdminController {
 		int row = bs.delete(board_number);
 		return "redirect:/admin/board?search="+search+"&keyword="+word+"&cate="+cate+"&page="+page;
 	}
-
+	
 
 
 	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")

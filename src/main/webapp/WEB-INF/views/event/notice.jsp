@@ -15,7 +15,7 @@
 			</div>
 			
 			<c:forEach var="board" items="${list}">
-				<div class="list" onclick="location.href='${cpath}/notice/${board.board_number}?search=${param.search }&keyword=${param.keyword }&cate=3&page=${param.page}'"'>
+				<div class="list" onclick="location.href='${cpath}/notice/${board.board_number}?search=${param.search }&keyword=${param.keyword }&cate=3&page=${param.page}'">
 					<span>${board.board_number}</span>
 					<span>${board.board_title}</span>
 					<span>${board.board_store }</span>

@@ -227,7 +227,8 @@ function update(data){
 					method: 'PUT',
 					body : JSON.stringify(ob),
 					headers: { 
-						'Content-Type' : 'application/json; charset=utf-8'}
+						'Content-Type' : 'application/json; charset=utf-8'
+					}
 			}
 			fetch(url,opt)
 			.then(resp => resp.text())

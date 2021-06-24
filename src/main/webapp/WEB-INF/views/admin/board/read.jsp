@@ -5,6 +5,7 @@
 <section id="bodyWrap">
 	<div class="noticeWrap">
 
+	
 	<ul class="cf read">
 		<li>
 			<p>글번호</p>
@@ -77,6 +78,7 @@
 </section>
 
 <script>
+
 const btn = document.getElementById('del')
 btn.onclick=function(event){
 	event.preventDefault()

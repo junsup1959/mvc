@@ -48,6 +48,17 @@
 			<div id="del" class="btn3" style="right: 10px">삭제</div>
 		</div>
 	</c:if>
+	<c:if test="${not empty ad_login }">	
+		<div>
+			<form method="post">
+				<input type="text" name="" value="${ad_login.admin_name}" required="required">
+				<textarea name="" style="width: 300px;height: 300px;"></textarea>
+				<br><input type="submit" value="작성">
+			</form>
+		</div>
+	</c:if>
+		<div>
+		</div>
 	</div>
 </section>
 

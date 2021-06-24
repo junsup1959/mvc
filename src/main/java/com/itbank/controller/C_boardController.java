@@ -45,12 +45,9 @@ public class C_boardController {
 		ModelAndView mav= new ModelAndView("admin/c_board/read");
 		CoboardDTO dto=bs.cselectOne(co_idx);
 		CoboardDTO np=bs.cnext(co_idx);
-		System.out.println();
 		dto.setCo_next(np.getCo_next());
 		np=bs.cprev(co_idx);
-		System.out.println(np);
 		dto.setCo_prev(np.getCo_prev());
-		
 		
 		mav.addObject("dto",dto);
 		
@@ -58,7 +55,7 @@ public class C_boardController {
 			CoboardDTO next = bs.cselectOne(dto.getCo_next());
 			mav.addObject("next", next);
 		}
-		System.out.println(dto.getCo_prev());
+		
 		if(dto.getCo_prev()!=0) {
 			CoboardDTO prev = bs.cselectOne(dto.getCo_prev());
 			mav.addObject("prev", prev);
@@ -86,7 +83,7 @@ public class C_boardController {
 		String word = URLEncoder.encode(keyword, "UTF-8");
 		
 		int row =bs.cdelete(co_idx,session);
-		System.out.println(row);
+		
 		return "redirect:/admin/c_board/?search="+search+"&keyword="+keyword+"&page="+page;
 	}
 	

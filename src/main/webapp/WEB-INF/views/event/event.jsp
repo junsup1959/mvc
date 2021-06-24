@@ -32,7 +32,7 @@ a {
 
 .layer .box {
 	overflow: auto;
-	width: 90%;
+	width: 70%;
 	height: 90%;
 	padding: 20px 20px 60px;
 	margin: 20px;
@@ -98,17 +98,35 @@ to {
 
 
 .b_param{
-	display:flex;
+	position:relative;
 	width:100%;
-	justify-content:space-evenly;
+	height:100px;
 	margin-bottom: 20px;
 	border-bottom: groove;
 }
-.b_param>span{
-	display: inline-block;
-	width: 25%;
+#bdate{
+	position: absolute;
+	bottom: 10px;
+	right: 200px;
+}
+#bdate::after{
+    content: "~";
+    font-size: 45px;
+    position: absolute;
+    bottom: 0px;
+    right: -31px;
 }
 
+#edate{
+	position: absolute;
+	bottom: 10px;
+	right: 80px;
+}
+#btitle{
+    position: absolute;
+    right: 450px;
+    top: -7px;
+}
 .List_wrap{
 	width: 1400px;
 	height: 1000px;
@@ -145,11 +163,21 @@ to {
 .evtdate>span{
     margin-right: 10px;
 }
-
+#likey{
+    position: absolute;
+    left: 46px;
+    top: 8px;
+}
+#likey-count{
+    position: absolute;
+    left: 91px;
+    top: 4px;
+    font-size: 15px;
+}
 </style>
 <div class="e_wrap">
 		<div class="">
-			<h2>이벤트 리스트</h2>
+			<h2>이벤트 리스트 cate : ${param.cate }</h2>
 			<!-- 자바스크립트 수정필요 차후함. -->
 		</div>
 	<div class="List_wrap">
@@ -171,11 +199,15 @@ to {
 				<a class="lft"><i class="xi-angle-left"></i></a>
 				<a class="rgt"><i class="xi-angle-right"></i></a>
 				<div class="b_param">
-					<span class="values">제목</span>
-					<span class="values">시작일</span>
-					<span class="">마감일</span>
-				</div>
-				<div class="b_param">
+					<c:choose>
+						<c:when test="${not empty login }">
+							<i class="xi-heart-o xi-2x" id="likey" onclick="likey()"></i>
+						</c:when>
+						<c:otherwise>
+							<i class="xi-heart-o xi-2x" id="likey"></i>
+						</c:otherwise>
+					</c:choose>
+							<span id="likey-count">0</span>
 					<span class="" id="btitle"></span>
 					<span class="values" id="bdate"></span>
 					<span class="values" id="edate"></span>
@@ -191,19 +223,36 @@ to {
 
 
 
-<div id="bnumber" style="display: none;">${board.board_number }</div> <!--  지우면 안됨 다음 글 추출하는 파라미터 담는곳 -->
-
+<div id="bnumber" style="display: none;"></div> <!--  지우면 안됨 다음 글 추출하는 파라미터 담는곳 -->
+<div id="cate" style="display: none;">${param.cate }</div>
 <script>
+	
 	const e1 = document.querySelectorAll('.e1')
 	const b_param = document.querySelector('.b_param')
 	const bcontent= document.getElementById('bcontent')
-	const childs= b_param.childNodes
 	const right = document.querySelector('.rgt')
 	const left = document.querySelector('.lft')
 	const bnum = document.getElementById('bnumber')
+	const cate = document.getElementById('cate')
+	let flag = false;
 	
+		function getCount(number){
+		let url = '${cpath}/event/read/like/'+number
+		let opt = {
+				method : "GET"
+		}
+		fetch(url,opt)
+		.then(resp=>resp.text())
+		.then(text=>{
+			if(!text == 0){
+				document.getElementById('likey-count').innerText = text;
+			}
+		})
+	}
 	
 	function e_read(number){
+		getCount(number);
+		already(number);
 		let url = '${cpath}/event/read/'+number
 		const opt = {method : 'GET' }
 		fetch(url,opt)
@@ -214,7 +263,7 @@ to {
 			const btitle= document.getElementById('btitle')
 			const bdate= document.getElementById('bdate')
 			const edate= document.getElementById('edate')
-			const bimg= document.getElementById('bimg')
+		
 			
 			for(key in json){
 				switch(key){
@@ -223,49 +272,48 @@ to {
 					case 'board_bdate' : bdate.innerText = json[key]; break
 					case 'board_content' : bcontent.innerHTML = json[key]; break
 					case 'board_edate' : edate.innerText = json[key]; break
-					case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 					default : break
 				}
 			}
 		})
 	}
 	right.onclick = function(event){
+		
 		event.preventDefault()
-		let url = '${cpath}/event/read/next/'+bnum.innerText+'/?cate=2'
+		let url = '${cpath}/event/read/next/'+document.getElementById('bnumber').innerText+'/?cate='+cate.innerText
 		const opt = {method : 'GET' }
 		fetch(url,opt)
 		.then(resp => resp.json())
 		.then(json => {
 			if(json !=null){
-				/* for(let i=0;i<childs.length;i++){
-					childs[i].innerHTML=""
-				} */
 				bcontent.innerHTML = ""
 					
 				const bnumber= document.getElementById('bnumber')
 				const btitle= document.getElementById('btitle')
 				const bdate= document.getElementById('bdate')
 				const edate= document.getElementById('edate')
-				const bimg= document.getElementById('bimg')
+				
 			
 				for(key in json){
 					switch(key){
 						case 'board_number': bnumber.innerText = json[key]; break
 						case 'board_title' : btitle.innerText = json[key]; break
-						case 'board_bdate' : bdate.innerText = json[key]; break
+						case 'board_bdate' : bdate.innerText = json[key];  break
 						case 'board_content' : bcontent.innerHTML = json[key]; break
+								
 						case 'board_edate' : edate.innerText = json[key]; break
-						case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 						default : break
 					}
 				}
-		}
-	})
-}
+			}
+				getCount(document.getElementById('bnumber').innerText);
+				already(document.getElementById('bnumber').innerText);
+		})
+	}
 		
 	left.onclick = function(event){
 		event.preventDefault()
-		let url = '${cpath}/event/read/prev/'+bnum.innerText+'/?cate=2'
+		let url = '${cpath}/event/read/prev/'+document.getElementById('bnumber').innerText+'/?cate='+cate.innerText
 		const opt = {method : 'GET' }
 		fetch(url,opt)
 		.then(resp => resp.json())
@@ -280,23 +328,86 @@ to {
 				const btitle= document.getElementById('btitle')
 				const bdate= document.getElementById('bdate')
 				const edate= document.getElementById('edate')
-				const bimg= document.getElementById('bimg')
+				
 			
 				for(key in json){
 					switch(key){
 						case 'board_number': bnumber.innerText = json[key]; break
 						case 'board_title' : btitle.innerText = json[key]; break
 						case 'board_bdate' : bdate.innerText = json[key]; break
-						case 'board_content' : bcontent.innerHTML = json[key]; break
+						case 'board_content' : bcontent.innerHTML = json[key];break
 						case 'board_edate' : edate.innerText = json[key]; break
-						case 'board_file' : bimg.innerHTML = '<img src="${cpath}/upload/' + json[key] + '" >'; break
 						default : break
 					}
 				}
-		}
-	})
-}
+			}
+			getCount(document.getElementById('bnumber').innerText);	
+			already(document.getElementById('bnumber').innerText);
+		})
+	}
+
+	const BL=document.getElementById('likey');
 	
+	
+	
+	
+	
+
+	
+	
+	function already(number){
+		if('${login.member_email}'==''){return flag}
+		const url = '${cpath}/event/read/already/?board_number='+number+'&user_email=${login.member_email}'
+		const opt = {
+				method : "GET"
+		}
+		fetch(url,opt)
+		.then(resp => resp.text())
+		.then(text=>{
+			if(text == 1){
+				flag = true;
+				BL.setAttribute('class','xi-heart xi-2x')
+				BL.style.cursor = 'default'
+				return flag;
+			}else{
+				flag =false;
+				BL.setAttribute('class','xi-heart-o xi-2x')
+				BL.style.cursor = 'pointer'
+				return flag;
+			}
+		})
+	}
+
+	
+	function likey (){
+		if('${login.member_email}'==''){alert('로그인을 하셔야합니다,');location.href='${cpath}/member/login'}
+		if(flag){return;}
+		
+		const obj={
+				board_number :bnumber.innerText,
+				user_email :'${login.member_email}'
+		}
+		const url='${cpath}/event/like/'
+		const opt={
+				method : "POST",
+				body : JSON.stringify(obj),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		fetch(url,opt).then(resp=>resp.text())
+		.then(text=>{
+				console.log(text)
+				if(text != 'n'){
+				BL.setAttribute('class','xi-heart xi-2x')
+				BL.style.cursor = 'default'
+				document.getElementById('likey-count').innerText = text;
+				flag = true;
+			}
+		})
+	}
+
+
 	
 </script>
 

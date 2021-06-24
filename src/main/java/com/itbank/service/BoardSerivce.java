@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itbank.admin_board.Board_likeDAO;
+import com.itbank.admin_board.Board_likeDTO;
 import com.itbank.admin_board.CoboardDAO;
 import com.itbank.admin_board.CoboardDTO;
 import com.itbank.admin_board.Paging;
@@ -24,6 +26,7 @@ public class BoardSerivce {
 
 	@Autowired private boardDAO dao;
 	@Autowired private CoboardDAO c_dao;
+	@Autowired private Board_likeDAO bl_dao;
 	
 	public List<boardDTO> list(Paging paging,HashMap<String, Object>param) {
 		// TODO Auto-generated method stub
@@ -88,6 +91,21 @@ public class BoardSerivce {
 		param.put("board_number", board_number);
 		return dao.prev(param);
 	}
+///////////////////////// 좋아요 구현
+	
+	public int blselectOne(Board_likeDTO dto) {
+
+		return bl_dao.blselectOne(dto);
+	}
+	public int blcount(int board_number) {
+		
+		return bl_dao.blcount(board_number);
+	}
+	public int BLinsert(Board_likeDTO dto) {
+		
+		return bl_dao.BLinsert(dto);
+	}
+
 /////////--------------------------사내 게시판 -------------------------------------------------////////////////////////////////////
 	
 	
