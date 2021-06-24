@@ -174,7 +174,7 @@ public class KakaoMemberController {
 			}
 		// 전부 다 실패 했을 경우 msg 를 alert 로 보내주는 코드 하나 작성 !!!!
 		mav.addObject("kakaoError", "로그인을 실행할 수 없습니다. 관리자에게 문의하세요");
-		mav.setViewName("home");
+		mav.setViewName("member/login");
 		return mav;
 		
 	}
@@ -188,12 +188,12 @@ public class KakaoMemberController {
 			mav.setViewName("home");
 			session.setAttribute("login", login);
 			session.setMaxInactiveInterval(60*60*3);
-			System.out.println("로그인 성공");
+//			System.out.println("로그인 성공");
 			return mav;
 			
 		}
 		mav.setViewName("member/login");
-		System.out.println("로그인 실패");
+//		System.out.println("로그인 실패");
 		return mav;
 	}
 	

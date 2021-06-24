@@ -42,8 +42,6 @@
 		const client_secret = "_t4XeBaQvU";
 		const encText = encodeURI(movieName);
 		const url = "https://cors-anywhere.herokuapp.com/https://openapi.naver.com/v1/search/movie.json?query=" + encText; // json 결과
-		//원래 요청주소 url = "https://openapi.naver.com/v1/search/movie.json?query=" + encText;
-		//url = "https://cors-anywhere.herokuapp.com/https://openapi.naver.com/v1/search/movie.json?query=" + encText; //cross origin문제시 
 		const opt ={
 				method : 'GET',
 				headers : {
@@ -57,10 +55,10 @@
 		fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			console.log(json)
 			const wrap = document.createElement('div')
 			const data = json.items[0]
 			for(key in data) {
+			console.log(key)
 				
 				switch(key) {
 				case 'title': 
