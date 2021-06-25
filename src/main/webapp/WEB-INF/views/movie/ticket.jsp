@@ -150,8 +150,8 @@
             console.log(t)
         })
         
-                
-        $('#choice2 li > span').on('click', function(){
+        
+        $(document).on('click', '#choice2 li', function(){
             $(this).css({
                'border':'1px dotted #ccc',
                 'color' : 'red',
@@ -162,6 +162,7 @@
             const t2= $(this).find('b').text();
             console.log(t2)
         })
+
     </script>
     
     
