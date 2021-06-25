@@ -9,13 +9,14 @@
 	</c:if>
 
 	<c:if test="${not empty list }">
-		<div id="selectedNE" style="display: none;">
-			${param.cate}
-		</div>
-		<div id="selectNE"><!-- 왼쪽 마진 30px 라인 일치.. -->
-			<span>전체목록</span>
-			<span>이벤트</span>
-			<span>공지</span>
+		<div class="tplist">
+			<ul>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=1&keyword=${param.keyword }&page=${param.page}'">[전체목록]</li>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=3&keyword=${param.keyword }&page=${param.page}'">[공지]</li>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=2&keyword=${param.keyword }&page=${param.page}'">[진행중인 이벤트]</li>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=4&keyword=${param.keyword }&page=${param.page}'">[지난 이벤트]</li>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=&keyword=${param.keyword }&page=${param.page}'">[이벤트 전체목록]</li>
+			</ul>
 		</div>
 		<div class="content">
 			<div class="listTitle">
