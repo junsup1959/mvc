@@ -63,6 +63,32 @@ border-top: outset;
    	
 }
 </style>
+<!-- -----영화관 생성 button css-------- -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .clearfix::before, .clearfix::after {content: ''; display: block; clear: both}
+        
+        .btn {width : 200px; height : 50px; line-height: 50px; background: teal; color: #fff; font-size: 25px; text-align: center; border-radius: 7px; margin: 20px;}
+        .btn:hover {background: coral; font-weight: bold;}
+        
+        .modal {position: absolute; width: 550px; height: 400px; top: 50%; left: 50%; padding: 10px; background: #fff; border-radius: 10px; transform: translate(-50%,-50%); z-index: 10}
+        .remove {display: none; }
+        .modal h2 {color : teal; font-weight: 600; font-size: 26px;}
+        .modalCon {padding: 10px 0;}
+        .modal #createScreen p {display: block; width: 350px; height: 40px; line-height: 40px; margin: 10px auto; }
+        .modal #createScreen p input,select { width: 100%;height: 40px; margin : 0 auto; line-height: 40px; border: 1px solid #ccc; border-radius: 7px;}
+        .modal #createScreen p select { width: 100%;height: 40px; line-height: 40px; border: 1px solid #ccc; border-radius: 7px;}
+        .modal #createScreen p:nth-child(4) input {display: inline-block; width:30px; height: 20px; }
+        .modal #createScreen p:nth-child(5) {width : 530px;}
+        .modal #createScreen p:nth-child(5) input {display: inline-block; width:160px; }
+        input.btn {margin: 0;}
+        .bg {position : absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 5}
+    </style>
+    
+<!-- ------------------- -->
 <div class="c_cont">
 
 	<div class="theaterList listT">
@@ -125,6 +151,132 @@ border-top: outset;
 		<p><span onclick="Tsubmit()" style="padding-right:5px; padding-left:5px; font-size:20px; text-align:center; cursor: pointer; background-color: gray; color: white;">검색</span></p>
 	</form>
 </div>
+
+
+
+
+<!-- -----------영화관 생성 button-------------------- -->
+<div class="btn" onclick="modalUp()">영화관 생성</div>
+ 
+ <div id="branchList"> 만든 상영관 목록 띄우기</div>
+ 
+  <dib class="bg remove"></dib>
+   <div class="modal remove">
+   <h2>영화관 생성</h2>
+   <hr style="border-color: teal">
+   <div class="modalCon">
+    <form id="createScreen" method="post">
+        <p><input type="text" name="branch" placeholder="지점명" required></p>
+        <p>
+           <select name="screen_code">
+            <option>선택하세요</option>
+            <option value="1">1관</option>
+            <option value="2">2관</option>
+            <option value="3">3관</option>
+            <option value="4">4관</option>
+            <option value="5">5관</option>
+            <option value="6">6관</option>
+            <option value="7">7관</option>
+            </select>
+        </p>
+        
+        <p>
+            <select name="seat_amount">
+<!--
+               //row 12 :  120 132 144  156 168 180 192
+                //row 14 :  224 238
+-->
+                <option value="80">80명</option>
+                <option value="120">120명</option>
+                <option value="156">156명</option>
+                <option value="180">180명</option>
+                <option value="224">224명</option>
+                <option value="252">252명</option>
+            </select>
+        </p>
+        <p class="clearfix">
+            <label for="usable">사용</label><input type="radio" name="usable" id="usable" value="y" onchange="deldate()" checked>
+            &nbsp;&nbsp;
+            <label for="nusable">사용안함</label><input type="radio" name="usable"  id="nusable" value="n" onchange="createdate()">
+        </p>
+        <p id="ndate" class="clearfix"></p>
+        <p><input type="submit" class="btn" value="상영관생성"></p>
+    </form>
+    </div>
+   </div> 
+   시작일 <input type="date" name="branch_sdate" required>  <br> 종료일<input type="date" name="branch_edate" required>
+
+<!-- ------------------------------- -->
+
+<!-- -------------영화관 생성 button script------------------ -->
+
+<script>
+	
+	document.forms.createScreen.onsubmit =	function(event){
+		event.preventDefault()
+		const formData = new FormData(event.target)	
+		
+		const url = '${cpath}/admin/cinema/cinema'
+		const opt = {
+			method: 'POST',
+			body: formData,
+		}
+		fetch(url, opt)
+		.then(resp => resp.text())
+		.then(text => {
+			console.log(text)
+			if(+text == 1){
+				alert("입력이 완료되었습니다.")
+				close();
+			}else{
+				alert("이미 존재하는 상영관입니다.")
+				return false
+			}
+		})
+	}
+	
+	
+
+
+
+
+
+        const modal = document.querySelector('.modal')
+        const bg = document.querySelector('.bg')
+        function modalUp(){                
+            modal.classList.remove('remove')
+            bg.classList.remove('remove')
+        }
+        
+        function close(){
+            modal.classList.add('remove')
+            bg.classList.add('remove')
+        }
+        bg.addEventListener('click', close)
+        
+       function createdate(){
+           let check = document.getElementById('nusable')
+           let ndate = document.getElementById('ndate')
+          if(check.checked){       
+        	  ndate.innerHTML = '시작일 <input type="date" name="startDay"> &nbsp;&nbsp; 종료일<input type="date" name="endtDay">'
+          }
+              
+      }
+        
+       
+      function deldate(){	
+          let check = document.getElementById('usable')
+           let ndate = document.getElementById('ndate')
+          if(check.checked){
+              ndate.innerHTML = ''
+          } 
+      }
+      
+  
+</script>
+
+
+
 
 <script>
 const input = document.getElementById('t_input')

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+			"-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="com.itbank.cinema.CinemaDAO">
+
+	<insert id="insertCinema" parameterType="cinema">
+		insert into theater (branch, branch_code, branch_sdate, branch_edate, usable, screen_code, seat_amount)
+			values(
+			#{branch}, 
+			 #{branch} || to_char(theater_seq.nextval,'FM0000'),
+				<if test="branch!=null">
+					<choose>
+						<when test="branch_sdate!=null and branch_sdate.equals('')==false and branch_edate!=null and branch_edate.equals('')==false">
+				  	 		#{branch_sdate}, #{branch_edate}, 'n',
+						</when>
+						<otherwise>
+				 			'', '', 'y',
+						</otherwise>
+					</choose>
+		 	 	</if>
+				#{screen_code},
+				${seat_amount}		 	 	
+		 	 	)
+	
+	</insert>
+	
+</mapper>
+
+
+
+
+
+

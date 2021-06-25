@@ -31,7 +31,7 @@
     <nav class="adminMenu">
         <ul class="cf">
             <li><a href="${cpath }/admin/admin_member?page=1">인사관리</a></li>
-            <li><a href="${cpath }/admin/cinema">영화관관리</a></li>
+            <li><a href="${cpath }/admin/cinema/cinema">영화관관리</a></li>
             <li><a href="#">리뷰관리</a></li>
             <li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1">고객관리</a></li>
             <li><a href="${cpath }/admin/board/?search=&keyword=&cate=1&page=1">공지/이벤트관리</a></li>           
