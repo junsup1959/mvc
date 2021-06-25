@@ -35,7 +35,7 @@
 		</div>
 		<div style="margin-top: 10px;font-size : 15px; line-height : 18px; font-weight: bold; "">* 원활한 서비스 이용을 위한 최소한의 개인정보이므로 동의하지 않을 경우 서비스를 이용하실 수 없습니다</div>
 		<div class="qnaForm">
-		<form method="post" >
+		<form method="post" action="">
 			<table>
 				<tr>
 					<td>문의지점</td>
