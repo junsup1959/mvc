@@ -33,7 +33,6 @@ import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
 import com.itbank.service.CinemaService;
 import com.itbank.service.MemberService;
-import com.itbank.theater.TheaterDTO;
 
 @Controller
 @RequestMapping("/admin")
@@ -238,43 +237,6 @@ public class AdminController {
 		return json;
 	}
 	
-	//////////////////영화관 ////////////////////////////////////
-	@GetMapping("/cinema")
-	public ModelAndView cinema() {
-		ModelAndView mav= new ModelAndView("/admin/cinema/cinema");
-		List<TheaterDTO> list = cs.selectAll();
-		mav.addObject("list", list);
-		return mav;
-	}
-	@PostMapping("/cinema")
-	@ResponseBody
-	public String  cs_insert(TheaterDTO dto) {
-		int row = cs.insert(dto);
-		return row+"";
-	}
-
-	@GetMapping(value = "/cinema/{branchcode}", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String c_upate(@PathVariable String branchcode) throws JsonProcessingException {
-		TheaterDTO dto = cs.selectOne(branchcode);
-		String json = mapper.writeValueAsString(dto);
-		return json;
-	}
-	
-	@PutMapping(value = "/cinema" ,consumes = "application/json; charset=utf-8")
-	@ResponseBody
-	public String c_update(@RequestBody TheaterDTO dto) {
-		int row = cs.update(dto);
-		return row+"";
-	}
-	@DeleteMapping("/cinema/{branchcode}")
-	@ResponseBody
-	public String c_delete(@PathVariable String branchcode) {
-	
-		System.out.println(branchcode);
-		int row = cs.delete(branchcode);
-		return row+"";
-	}
 
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------

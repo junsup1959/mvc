@@ -82,6 +82,7 @@
    		fetch(url, opt)
    		.then(resp => resp.json())
    		.then(json => {
+   			console.log(json)
    			watchGradeNm = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
 			const li = document.createElement('li')
 			const span = document.createElement('span')
