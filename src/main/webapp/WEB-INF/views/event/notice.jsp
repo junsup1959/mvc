@@ -49,14 +49,14 @@
 			<input type="text" name="keyword">
 			<input type="hidden" name="page" value="${param.page }">
 			<input type="hidden" name="cate" value="3">
-			<div class="btn4">검색</div>
+			<div class="btn3">검색</div>
 			</form>
 		</div>
 	</div>
 </section>
 
 <script>
- const btn = document.querySelector('.btn4')
+ const btn = document.querySelector('.btn3')
  const searchForm= document.getElementById('searchB')
  btn.onclick=function(event){
 	 searchForm.submit();

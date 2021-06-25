@@ -9,7 +9,13 @@
             line-height:1.25;
             color: inherit;
         }
+        .cleatfix::before, .cleatfix::after {
+        	display: block;
+        	content: '';
+        	clear: both;
+        }
         body {
+        	overflow: scroll;
             width: 1900px;
             margin: 0 auto;
             font-family: 'Noto Sans KR', sans-serif;
@@ -27,11 +33,15 @@
 #bodyWrap>div>h2 {font-size: 30px; color : teal; }
 #bodyWrap>div>h2, h3 {margin-left : 20px; margin-bottom : 5px;}
 
-.btn1{height : 40px; line-height: 40px; background: #444; color : #fff; border: none; border-radius: 5px;}
+.btn1{height : 40px; line-height: 40px; background: #444; color : #fff; border: none; border-radius: 5px; text-align : center;}
 .btn1:hover {background : coral; font-weight: bold;}
 
-.btn2{width : 200px; height : 40px; line-height: 40px; background: #444; color : #fff; border: none; border-radius: 5px;}
+.btn2{width : 200px; height : 40px; line-height: 40px; background: #444; color : #fff; border: none; border-radius: 5px; text-align : center;}
 .btn2:hover {background : coral; font-weight: bold;}
+
+.btn3{width : 100px; height : 35px; line-height: 35px; background: #444; color : #fff; border: none; border-radius: 5px; text-align : center;}
+.btn3:hover {background : coral; font-weight: bold;}
+
 input,p,label,output { display: inline-block;}
 input { border : none; border-radius: 5px;}
 /*----------------------------------------- join -----------------------------------------*/
@@ -89,3 +99,75 @@ input { border : none; border-radius: 5px;}
 #changePw .checkPw:last-child {border-color: red; display : none; }
 #changePw .checkPw input {height : 40px; line-height: 40px;}
 
+
+/*----------------------------------------- notice - list -----------------------------------------*/
+.boardList { width : 1200px; height : 620px; margin : 20px auto;}
+.content {width :100%; height : 450px; padding : 0; text-align : center; }
+.boardList .content .listTitle {background: #555; color : #fff;height : 45px; line-height: 45px;border-top: 2px solid #333;}
+.boardList .content > div > span {display : inline-block; width : 13%;height : 20px; }
+.boardList .content span:nth-child(1) {width : 9%}
+.boardList .content span:nth-child(2) {width : 50%}
+
+.boardList .content  .list {height : 40px; line-height : 40px; border-bottom : 1px solid #ddd; }
+.boardList .content  .list:last-child {border-bottom: 2px solid #333;}
+.pages {width : 400px; margin : 10px auto;}
+
+.searchWrap {width : 550px; margin : 10px auto;}
+.searchWrap select { width : 100px; height : 35px; line-height: 35px; border : 1px solid #555; border-radius: 5px;}
+.searchWrap input { width : 300px; height : 35px; line-height: 35px; border : 1px solid #555; border-radius: 5px;}
+.searchWrap form > div.btn3 {display: inline-block;}
+
+/*----------------------------------------- notice - read-----------------------------------------*/
+.nwrap{
+	display: flex;
+	flex-flow: column;
+	width: 50%;
+	height: 700px;
+	margin :0 auto;
+	padding : 20px 0;
+	background: #fff
+}
+.nup-wrap{
+	height: 100px;
+	position: relative;
+	width: 100%;
+	border-bottom: 2px solid #ddd;
+}
+.nup-wrap>.ntitle{
+	display:block;
+	text-align:center;
+    font-size: 33px;
+	line-height: 80px;
+}
+.nup-wrap>.ndate{
+	position: absolute;
+    bottom: 25px;
+    left: 100px;
+}
+.ncontent{
+	width: 100%;
+	height:500px;
+	padding : 20px;
+	border-bottom: 2px solid #ddd;
+	overflow: auto;
+}
+
+#likey{
+    position: absolute;
+    left: 97px;
+    bottom:55px;
+}
+#likey-count{
+    position: absolute;
+    left: 138px;
+    bottom: 50px;
+    font-size: 25px;
+}
+.nwrap div.btCont {width : 100%; height : 100px; padding : 5px 20px; }
+.nwrap div.btCont > ul {float : left; width : 85%;}
+.nwrap div.btCont > ul li:hover {font-weight: bold;}
+.nwrap div.btCont > div.btn3 {float : left; margin-top : 10px;}
+
+
+.qnaContent {width : 1000px; height : 700px; margin : 0 auto; background: #fff; padding : 20px; }
+.qnaForm input {border : 1px solid #555;}

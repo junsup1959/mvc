@@ -176,5 +176,8 @@ public class EventController {
 		}
 	}
 
+	@GetMapping("/event/qna")
+	public void qna() {
+}
 }
 
