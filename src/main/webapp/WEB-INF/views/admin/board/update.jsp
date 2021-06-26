@@ -78,12 +78,12 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 	<div class="noticeWrap">
 		<form method="post" enctype="multipart/form-data">
 		<input type="hidden" name="admin_num" value="${ad_login.admin_num}" >
-		<p><input type="text" name="board_title" value="${dto.board_title}" class="b-title" ></p>
+		<p><input type="text" name="board_title" value="${dto.board_title}" class="b-title" required></p>
 	  	<p>
 	  		<span>시작일</span>
-	  		<input type="date" name="board_bdate" value="${dto.board_bdate}">
+	  		<input type="date" name="board_bdate" value="${dto.board_bdate}" required>
 	  		<span>종료일</span>
-	  		<input type="date" name="board_edate" value="${dto.board_edate}">
+	  		<input type="date" name="board_edate" value="${dto.board_edate}" required>
 	  	</p>
 	  	<p>
 		  	<span>지점</span> 
@@ -99,7 +99,7 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 	  	</p>
 	  	<p><input name="file" type="file"></p>
 	   	<p>
-	   		<textarea id="summernote" name="board_content"></textarea>
+	   		<textarea id="summernote" name="board_content" required></textarea>
 	   	</p>
 	   	<p>
 	 		<button id="write" class="btn2">작성</button>
@@ -107,5 +107,65 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 	 	</form>
  	</div>
 </section>
+
+<script>
+	const select = document.getElementById('ne')
+	const bdate = document.getElementById('bdate')
+	const edate = document.getElementById('edate')
+	const bspan=document.getElementById('bdate_span')
+	const espan=document.getElementById('edate_span')
+	
+	function getToday(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
+	}
+	
+	
+	select.onchange = function(event){
+		if(select.selectedIndex==1){//공지 선택
+			bspan.innerText ='작성일';
+			espan.innerText ='';
+			bdate.value = getToday();
+			bdate.required=true;
+			edate.setAttribute("type", "hidden");
+			edate.required=false;
+		}else{
+			bspan.innerText ='시작일';
+			espan.innerText ='종료일';
+			bdate.value = '';
+			edate.setAttribute("type", "date");
+			edate.required=true;
+		}
+	}
+	
+	////// 날짜 계산 함수/////////
+	function date(){
+		if(edate.required){
+			if(bdate.value == ''){
+				alert('시작일을 정해주세요')
+				bdate.focus();
+				return true;
+			}else{
+				if(edate.value != '' && bdate.value.replaceAll('-','')>=edate.value.replaceAll('-','')){
+					alert('날짜를 다시 선택해주세요.')
+					bdate.focus();
+					return true;
+				}
+				return false;
+			}
+		}else{return false}
+	}
+	
+	function date2(event){
+		if(date()){
+			event.preventDefault()
+		}
+	}
+</script>	
+
  	
 <%@include file="../footer.jsp" %>

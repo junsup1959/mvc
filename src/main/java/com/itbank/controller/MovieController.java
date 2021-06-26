@@ -84,7 +84,6 @@ public class MovieController {
             // 데이터 추출
             JSONObject boxOfficeResult = responseBody.getJSONObject("boxOfficeResult");
  
-            
             // 박스오피스 목록 출력
             JSONArray dailyBoxOfficeList = boxOfficeResult.getJSONArray("dailyBoxOfficeList");
             

@@ -71,14 +71,14 @@ $(document).ready(function() {
 		<form method="post">
 		<input type="hidden" name="co_num" value="${ad_login.admin_num}" >
 		<input type="hidden" name="co_idx" value="${dto.co_idx }">
-		<p><input type="text" name="co_title" value="${dto.co_title}" class="b-title" ></p>
+		<p><input type="text" name="co_title" value="${dto.co_title}" class="b-title" required="required"></p>
 	  	<p>
 	
 	  		<span>작성자</span>
 	  		<input type="text" name="co_writer" value="${dto.co_writer}" readonly>
 	  	</p>
 	   	<p>
-	   		<textarea id="summernote" name="co_content"></textarea>
+	   		<textarea id="summernote" name="co_content" required="required"></textarea>
 	   	</p>
 	   	<p>
 	 		<button id="write" class="btn2">작성</button>

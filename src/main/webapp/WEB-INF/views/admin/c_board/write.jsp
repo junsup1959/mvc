@@ -65,13 +65,13 @@ $(document).ready(function() {
 	<div class="noticeWrap">
 		<form method="post">
 			<input type="hidden" name="co_num" value="${ad_login.admin_num}">
-			<p><input type="text" name="co_title" placeholder="제목" class="b-title"></p>
+			<p><input type="text" name="co_title" placeholder="제목" class="b-title" required="required"></p>
 		  	<p>
 		  		<span>작성자</span>
 		  		<input type="text" name="co_writer" value="${ad_login.admin_name}" required readonly>
 			</p>
 		   	<p>
-		   		<textarea id="summernote" name="co_content"></textarea>
+		   		<textarea id="summernote" name="co_content" required="required"></textarea>
 		   	</p>
 		 	<p>
 		 		<button class="btn2">작성</button>
