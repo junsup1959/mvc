@@ -137,32 +137,41 @@
     <!-- 아이콘 끝 -->
     
     <section id="event" class="clearfix">
-        <div>event1</div>
-        <div>event2</div>
-        <div>event3</div>
+    	<c:if test="${not empty event }">
+	    	<c:forEach var="event" items="${event}">
+		        <div>${event.board_title }</div>
+		    </c:forEach>
+        </c:if>
     </section>
     <!-- 이벤트 끝 -->
     
     <section id="content" class="clearfix">
         <div class="notice">
             공지사항
+            <c:if test="${not empty notice }">
             <ul>
-                <li><a href="">공지사항입니다 1 <span>2021.06.08</span></a></li>
-                <li><a href="">공지사항입니다 2 <span>2021.06.08</span></a></li>
-                <li><a href="">공지사항입니다 3 <span>2021.06.08</span></a></li>
+            <c:forEach var="no" items="${notice }">
+                <li><a href="">${no.board_title } <span>${no.board_bdate } </span></a></li>
+            </c:forEach>
             </ul>
+            </c:if>
         </div>
         <div class="store-notice">
            지점 공지
+            <c:if test="${not empty notice }">
             <ul>
-                <li><a href="">공지사항입니다 1 <span>2021.06.08</span></a></li>
-                <li><a href="">공지사항입니다 2 <span>2021.06.08</span></a></li>
-                <li><a href="">공지사항입니다 3 <span>2021.06.08</span></a></li>
+            <c:forEach var="no" items="${notice }">
+                <li><a href="">[${no.board_store }] ${no.board_title } <span>${no.board_bdate } </span></a></li>
+            </c:forEach>
             </ul>
+            </c:if>
         </div>
+        
+        
     </section>
     <!-- 공지사항(전체, 지점) 끝 -->
     
+   
 
     
     

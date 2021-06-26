@@ -161,5 +161,13 @@ return bl_dao.BLdelete(dto);
 		}
 		return 0;
 	}
+	
+	//  - - - - - - - - - - - 메인 페이지 출력용  - - - - - - - - - - -
+	public List<boardDTO> homeNotice() {
+		return dao.getNotice();
+	}
+	public List<boardDTO> homeEvent() {
+		return dao.getEvent();
+	}
 
 }
