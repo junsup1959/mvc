@@ -79,7 +79,6 @@ function getCookie(cookieName) {
 
 <script>
 function getcheck(){									// 저장된 cookie id가 있을 경우 input id란에 입력하기
-	console.log(getCookie("userInId"))
 	var input = document.getElementById('userid')
 	input.setAttribute("value", getCookie("userInId"))
 	if(getCookie("userInId")  != ""){

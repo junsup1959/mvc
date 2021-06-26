@@ -22,7 +22,7 @@
        <div>
            <form id="ticket">
               <!-- 전페이지에서 영화 제목, 영화관, 날짜, 시간 가져와서 같이 넘기기-->
-               <input type="submit" class="ticketSubmit" value="예약">
+               
            </form>
         </div>
    </article>
@@ -83,7 +83,8 @@
             // 인원 변경시 좌석 선택 reset()        
             alert('인원에 맞게 좌석을 선택해주세요')
             $('.row').removeClass('on')
-
+			ticket(this,0)
+			
             if(person == 0){
                 cover.style.display = 'block'
             }
@@ -180,15 +181,17 @@
     // 좌석 선택 여러명일 경우 연석만 선택 가능
     $('.row > span').click(function(){
     	var flag = true
+    	var seatNum
     	if($(this).parent().hasClass('off') === true){
             alert('선택할수 없는 좌석입니다')
+            $('.row').removeClass('on')
             flag = false
         }else{
             // 예약 인원
             console.log('인원 : ' + person)
             $('.row').removeClass('on')
             $(this).parent().addClass('on')
-            
+            seatNum  = [$(this).text()]
         }
          
         
@@ -198,11 +201,10 @@
         
         
         if(person > 1 && flag == true){                             // 다수 인원 예매시       
-        	const seatNum = [$(this).text()]
-            
+        	
             const text = $(this).text().split('-')[0]    
             var index = $(this).parent().index()
-            
+           
             for(i = 1; i < person; i++){            // 연석으로만 예매 가능
                 index++
                 const id = '#' + text + '-' + index
@@ -226,8 +228,12 @@
         if(flag){
         alert(seatNum + '좌석을 선택하셨습니다')
         console.log(seatNum)
+        ticket(this, seatNum)
+        }else{
+        	reset()
+        	ticket(this, 0)
         }
-       ticket(this, seatNum)
+       
     })
         
         
@@ -241,26 +247,47 @@
     
     function ticket(event,seatNum){
         console.log("어른 : " + adult  + " 어린이 : "+ youth + " 우대 : " + ct)
-        const div  = document.querySelector('.ticketinfo')
+        const div  = document.querySelector('.ticketinfo')			// 화면 출력용
         div.innerHTML = ''
         div.innerHTML = '<img src="' + '">'
         
-        for(let i = 0;  i < seatNum.length ; i++){
-            const p = document.createElement('p')
-            p.innerText = ''
-            p.innerText = '좌석 : ' + seatNum[i]     
-            div.appendChild(p)
-        }
-        const p1  = document.createElement('p')
-        p1.innerText = '어른 : ' + adult  + '명, 어린이 : '+ youth + '명, 우대 : ' + ct + '명'
-        div.appendChild(p1)
-        const p2  = document.createElement('p')
-        p2.innerText = '총인원 : ' + person + '명'
-        div.appendChild(p2)
-        const p3  = document.createElement('p')
-        p3.innerText = '결제 금액 : ' + (10000 * adult + 8000 * youth + 7000 * ct) + '원' 
-        div.appendChild(p3)
         const ticketForm = document.getElementById('ticket')
+		ticketForm.innerHTML=''									// 선택된 인원이 없을 경우 form 내용 reset
+		
+		
+        if(seatNum != 0){
+			for(let i = 0;  i < seatNum.length ; i++){
+	            const p = document.createElement('p')			// 화면 출력용
+	            p.innerText = ''
+	            p.innerText = '좌석 : ' + seatNum[i]     
+	            div.appendChild(p)
+	                
+	            ticketForm.innerHTML += '<input type="hidden" name="seatNum" value="' + seatNum[i] + '">'			// formData 생성
+        	}
+			
+	        const p1  = document.createElement('p')
+	        p1.innerText = '어른 : ' + adult  + '명, 어린이 : '+ youth + '명, 우대 : ' + ct + '명'
+	        div.appendChild(p1)
+	        const p2  = document.createElement('p')
+	        p2.innerText = '총인원 : ' + person + '명'
+	        div.appendChild(p2)
+	        const p3  = document.createElement('p')
+	        p3.innerText = '결제 금액 : ' + (10000 * adult + 8000 * youth + 7000 * ct) + '원' 
+	        div.appendChild(p3)
+	        
+	        
+	        ticketForm.innerHTML += '<input type="hidden" name="adult" value="' + adult + '">'
+	        ticketForm.innerHTML += '<input type="hidden" name="youth" value="' + youth + '">'
+	        ticketForm.innerHTML += '<input type="hidden" name="ct" value="' + ct + '">'
+	        ticketForm.innerHTML += '<input type="hidden" name="person" value="' + person + '">'
+	        ticketForm.innerHTML += '<input type="hidden" name="pay" value="' + (10000 * adult + 8000 * youth + 7000 * ct) + '">'
+	        
+	        
+        
+       		/* <input type="submit" class="ticketSubmit" value="예약"> */
+        	ticketForm.innerHTML += '<input type="submit" class="ticketSubmit" value="예약" style="width : 310px;">'
+        
+        
 		ticketForm.addEventListener('submit', function(event){
 			event.preventDefault();
 			if('${login}' == '' || '${login}' == null){return;} //로그인 안되면 입력못하게 막음. 비로그인 예약이 있다면 새로운 함수로 ㅋㅋㅋ
@@ -312,7 +339,7 @@
 			
 		});
                
-        
+        }
 
     }
     </script>
