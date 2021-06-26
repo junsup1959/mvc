@@ -152,40 +152,72 @@
 
            wrap.appendChild(div)     
        }
+    
+
+
+       
     </script>
    
     
     <script>
+
+    // 예매 좌석을 배열로 받아오기
+ $(document).ready(function(){
+    var nseat = ["1-1", "3-5", "4-7","8-9"]     // 예매한 좌석이 있을 경우    
+    for(var i = 0; i < nseat.length; i++){		// 예매수만큼 좌석 번호를 확인 하여
+        var nSeatNum = nseat[i]
+        var resSeat = $('#'+ nSeatNum)
+        resSeat.addClass('off')					// 새로운 className 부여
+        resSeat.click(function(){
+//            alert('예매된 좌석입니다')
+            return false
+        })
+    }
+    
+ });
+
+    
     // 좌석 선택 여러명일 경우 연석만 선택 가능
     $('.row > span').click(function(){
+    	var flag = true
+    	if($(this).parent().hasClass('off') === true){
+            alert('선택할수 없는 좌석입니다')
+            flag = false
+        }else{
+            // 예약 인원
+            console.log('인원 : ' + person)
+            $('.row').removeClass('on')
+            $(this).parent().addClass('on')
+            
+        }
+         
         
-                 // 예약 인원
-        console.log('인원 : ' + person)
-        $('.row').removeClass('on')
-        $(this).parent().addClass('on')
         
-        const seatNum = [$(this).text()]
-        
-        const text = $(this).text().split('-')[0]    
-        var index = $(this).parent().index()
 //        console.log(col)        // 행 끝번호
         
-        var flag = true
         
-        if(person > 1){                             // 다수 인원 예매시       
+        
+        if(person > 1 && flag == true){                             // 다수 인원 예매시       
+        	const seatNum = [$(this).text()]
+            
+            const text = $(this).text().split('-')[0]    
+            var index = $(this).parent().index()
+            
             for(i = 1; i < person; i++){            // 연석으로만 예매 가능
                 index++
                 const id = '#' + text + '-' + index
                 const target = $(id)
                 target.addClass('on')
-                const t = target.find('span').text()
-                seatNum[i] = t
                 
-                if(index > col){                    // (인원수 > 한행 끝번호) 보다 클 경우 선택 불가
+                
+                if(index > col || target.hasClass('off') === true){                    // (인원수 > 한행 끝번호) 보다 클 경우 선택 불가
                     alert('선택할수 없는 좌석입니다')
                     $('.row > span').parent().removeClass('on')
                     flag = false
                     break
+                }else{
+                	const t = target.find('span').text()
+                    seatNum[i] = t
                 }     
                 flag = true
             }

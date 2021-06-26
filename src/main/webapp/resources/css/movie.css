@@ -104,7 +104,7 @@
         .rowWrap .row {position: relative; display: inline-block; width: 23px; height: 23px; margin: 0 3px; padding: 0; background: #fff; border: 1px solid #333; border-radius: 7px 7px 0 0; color: #fff;  }
         .rowWrap .row:first-child {width: 30px; border : none; font-size: 12px; }
         .rowWrap .row > p {margin: 0; padding: 0; border: none; color: #000;  height: 20px;}
-        
+        .rowWrap .row.off {background: #000; color : #000}
         .rowWrap .row.on {background: teal; color: teal}
         .rowWrap .row > span {position: absolute; display: inline-block; width :99%; height : 21px; line-height: 6px; margin: 0;font-size: xx-small; border-radius: 7px 7px 0 0; cursor: pointer}
         
