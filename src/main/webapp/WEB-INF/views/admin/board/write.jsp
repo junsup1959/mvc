@@ -65,7 +65,7 @@ $(document).ready(function() {
 	<div class="noticeWrap">
 		<form method="post" enctype="multipart/form-data">
 			<input type="hidden" name="admin_num" value="${ad_login.admin_num}">
-			<p><input type="text" name="board_title" placeholder="제목" class="b-title"></p>
+			<p><input type="text" name="board_title" placeholder="제목" class="b-title" required></p>
 		  	<p>
 		  		<span id="bdate_span">시작일</span>
 		  		<input type="date" name="board_bdate" onchange="date()" id='bdate' required="required">
@@ -87,10 +87,10 @@ $(document).ready(function() {
 		  	</p>
 		  	<p><input name="file" type="file"></p>
 		   	<p>
-		   		<textarea id="summernote" name="board_content"></textarea>
+		   		<textarea id="summernote" name="board_content" required></textarea>
 		   	</p>
 		 	<p>
-		 		<button class="btn2">공지/이벤트작성</button>
+		 		<button class="btn2" onclick="date2(event)">공지/이벤트작성</button>
 		 	</p>
 	 	</form>
 	</div>
@@ -136,16 +136,23 @@ $(document).ready(function() {
 			if(bdate.value == ''){
 				alert('시작일을 정해주세요')
 				bdate.focus();
+				return true;
 			}else{
 				if(edate.value != '' && bdate.value.replaceAll('-','')>=edate.value.replaceAll('-','')){
 					alert('날짜를 다시 선택해주세요.')
 					bdate.focus();
+					return true;
 				}
-				return;
+				return false;
 			}
-		}else{return;}
+		}else{return false}
 	}
 	
+	function date2(event){
+		if(date()){
+			event.preventDefault()
+		}
+	}
 	
 </script>
 
