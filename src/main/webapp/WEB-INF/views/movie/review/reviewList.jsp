@@ -79,6 +79,10 @@
 	const recommend = document.getElementById('recommend');
 	
 	search.addEventListener("keyup",function(event){
+		for(let i=0;i<recommend.children.length;i++){
+			let a = recommend.children[i]
+			a.innerText = '';
+		}
 		recommend.style.display='flex';
 		const url = '${cpath}/movie/review/autoSearch/?query='+event.target.value;
 		const opt ={method : 'GET'}
@@ -89,6 +93,7 @@
 			for(let i=0;i<list.movieListResult.movieList.length;i++){
 				let val = list.movieListResult.movieList[i].movieNm
 				let a = recommend.children[i]
+				
 				a.innerText = val;
 				a.setAttribute('href','${cpath}/movie/review/result?query='+val)
 			}
