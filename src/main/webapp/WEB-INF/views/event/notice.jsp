@@ -15,7 +15,8 @@
 			</div>
 			
 			<c:forEach var="board" items="${list}">
-				<div class="list" onclick="location.href='${cpath}/notice/${board.board_number}?search=${param.search }&keyword=${param.keyword }&cate=3&page=${param.page}'">
+				<div class="list" onclick="location.href='${cpath}/notice/${board.board_number}?search=${param.search }&keyword=${param.keyword }&cate=3&page=${param.page}'"
+				style="cursor: pointer;">
 					<span>${board.board_number}</span>
 					<span>${board.board_title}</span>
 					<span>${board.board_store }</span>
@@ -49,14 +50,14 @@
 			<input type="text" name="keyword">
 			<input type="hidden" name="page" value="${param.page }">
 			<input type="hidden" name="cate" value="3">
-			<div class="btn3">검색</div>
+			<div class="btn4">검색</div>
 			</form>
 		</div>
 	</div>
 </section>
 
 <script>
- const btn = document.querySelector('.btn3')
+ const btn = document.querySelector('.btn4')
  const searchForm= document.getElementById('searchB')
  btn.onclick=function(event){
 	 searchForm.submit();

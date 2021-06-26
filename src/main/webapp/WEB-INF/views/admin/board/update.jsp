@@ -65,13 +65,6 @@ $(document).ready(function() {
 
 
 
-for (i = 0; i < document.getElementById("store").options.length; i++) {
-    if (document.getElementById("store").options[i].value == '${dto.board_store}') {
-        document.getElementById("store").options[i].selected = "selected";
-    }
-}
-
-
 </script>
 
 <section id="bodyWrap">
@@ -80,10 +73,10 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 		<input type="hidden" name="admin_num" value="${ad_login.admin_num}" >
 		<p><input type="text" name="board_title" value="${dto.board_title}" class="b-title" required></p>
 	  	<p>
-	  		<span>시작일</span>
-	  		<input type="date" name="board_bdate" value="${dto.board_bdate}" required>
-	  		<span>종료일</span>
-	  		<input type="date" name="board_edate" value="${dto.board_edate}" required>
+	  		<span id="bdate_span">시작일</span>
+	  		<input type="date" id="bdate" name="board_bdate" value="${dto.board_bdate}" onchange="date()" required>
+	  		<span id="edate_span">종료일</span>
+	  		<input type="date" id="edate" name="board_edate" value="${dto.board_edate}" onchange="date()" required>
 	  	</p>
 	  	<p>
 		  	<span>지점</span> 
@@ -92,9 +85,9 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 		  		<option value="서울">부산점</option>
 		  	</select>
 	  		&nbsp;&nbsp;<span>구분</span>
-	  		<select name="board_notice" id="notice">
-	  			<option value="N">공지</option>
+	  		<select name="board_notice" id="notice" onchange="changeNE()">
 	  			<option value="E">이벤트</option>
+	  			<option value="N">공지</option>
 	  		</select>
 	  	</p>
 	  	<p><input name="file" type="file"></p>
@@ -102,18 +95,53 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 	   		<textarea id="summernote" name="board_content" required></textarea>
 	   	</p>
 	   	<p>
-	 		<button id="write" class="btn2">작성</button>
+	 		<button id="write" class="btn2" onclick="date2(event)">작성</button>
 	 	</p>
 	 	</form>
  	</div>
 </section>
 
 <script>
-	const select = document.getElementById('ne')
-	const bdate = document.getElementById('bdate')
-	const edate = document.getElementById('edate')
-	const bspan=document.getElementById('bdate_span')
-	const espan=document.getElementById('edate_span')
+const bspan=document.getElementById('bdate_span')
+const espan=document.getElementById('edate_span')
+const bdate = document.getElementById('bdate')
+const edate = document.getElementById('edate')
+
+for (i = 0; i < document.getElementById("store").options.length; i++) {
+    if (document.getElementById("store").options[i].value == '${dto.board_store}') {
+        document.getElementById("store").options[i].selected = "selected";
+    }
+}
+
+for (i = 0; i < document.getElementById("notice").options.length; i++) {
+    if (document.getElementById("notice").options[i].value == '${dto.board_notice}') {
+        document.getElementById("notice").options[i].selected = "selected";
+    }
+}
+
+if(document.getElementById("notice").options[0].selected){
+	changeNE();
+}
+
+
+
+	function changeNE(){
+		if(document.getElementById("notice").selectedIndex==1){
+			bspan.innerText ='작성일';
+			espan.innerText ='';
+			bdate.value = getToday();
+			bdate.required=true;
+			edate.setAttribute("type", "hidden");
+			edate.required=false;			
+		}else{
+			bspan.innerText ='시작일';
+			espan.innerText ='종료일';
+			bdate.value = '';
+			edate.setAttribute("type", "date");
+			edate.required=true;
+		}
+	}
+
 	
 	function getToday(){
     var date = new Date();
@@ -124,23 +152,6 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
     return year + "-" + month + "-" + day;
 	}
 	
-	
-	select.onchange = function(event){
-		if(select.selectedIndex==1){//공지 선택
-			bspan.innerText ='작성일';
-			espan.innerText ='';
-			bdate.value = getToday();
-			bdate.required=true;
-			edate.setAttribute("type", "hidden");
-			edate.required=false;
-		}else{
-			bspan.innerText ='시작일';
-			espan.innerText ='종료일';
-			bdate.value = '';
-			edate.setAttribute("type", "date");
-			edate.required=true;
-		}
-	}
 	
 	////// 날짜 계산 함수/////////
 	function date(){

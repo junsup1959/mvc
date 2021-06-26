@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itbank.admin_board.AdminReplyDTO;
 import com.itbank.admin_board.CoboardDTO;
 import com.itbank.admin_board.Paging;
 import com.itbank.service.BoardSerivce;
@@ -62,6 +63,16 @@ public class C_boardController {
 		}
 		return mav;
 	}
+	
+	@PostMapping("/read/{co_idx}")
+	public String read(@PathVariable int co_idx,@RequestParam HashMap<String, Object>param) {
+//,AdminReplyDTO dto		
+//	int row = bs.replyInsert(dto);
+	return "redirect:/"+"admin/c_board/read/"+co_idx+"?search="+param.get("search")+"&keyword="+param.get("keyword")+"&page="+param.get("page");
+	}
+	
+	
+	
 	@GetMapping("update/{co_idx}")
 	public ModelAndView update(@PathVariable int co_idx) {
 		

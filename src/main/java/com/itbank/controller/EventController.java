@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class EventController {
 	
 	@GetMapping("/event")
 	public ModelAndView event(@RequestParam HashMap<String, Object>param, int page) {
-		int perPage = 8;
+		int perPage = 100;
 		ModelAndView mav= new ModelAndView("event/event");
 		int boardCount =  bs.boardCount(param);
 		Paging paging = new Paging(page, boardCount,perPage);
@@ -152,7 +153,7 @@ public class EventController {
 	
 	@GetMapping("/event/last")
 	public ModelAndView last(@RequestParam HashMap<String, Object> param, int page) {
-		int perPage = 8;
+		int perPage = 100;
 		ModelAndView mav= new ModelAndView("event/event");
 		int boardCount =  bs.boardCount(param);
 		Paging paging = new Paging(page, boardCount,perPage);
@@ -175,9 +176,19 @@ public class EventController {
 			return "n";
 		}
 	}
-
-	@GetMapping("/event/qna")
-	public void qna() {
-}
+	
+	@DeleteMapping(value = "/event/like/",consumes = "application/json; charset=utf-8")
+	@ResponseBody
+	public String delLikey(@RequestBody Board_likeDTO dto) {
+		String result = null;
+		int row =bs.BLdelete(dto);
+		if(row == 1) {
+			int BLcount = bs.blcount(dto.getBoard_number());
+			result = Integer.toString(BLcount);
+			return result; 
+		}else {
+			return "n";
+		}
+	}
 }
 

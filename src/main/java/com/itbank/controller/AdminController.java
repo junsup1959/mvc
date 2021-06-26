@@ -180,6 +180,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	
 	@GetMapping("/board/write")
 	public String write() {
 		return "admin/board/write";
@@ -237,6 +238,7 @@ public class AdminController {
 		return json;
 	}
 	
+
 
 	//////////////////////////////////////////////////////////////
 	// -----------------------customer-------------------------

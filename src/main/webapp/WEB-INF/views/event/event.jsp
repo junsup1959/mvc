@@ -96,6 +96,12 @@ to {
 	width: 100%
 }
 
+.e_wrap{
+	width:100%;
+	height: 100%;
+	position: relative;
+}
+
 
 .b_param{
 	position:relative;
@@ -134,6 +140,7 @@ to {
 	margin-right: auto;
 	display: flex;
 	flex-wrap: wrap;
+    margin-top: 100px;
 }
 
 .ev{
@@ -174,11 +181,33 @@ to {
     top: 4px;
     font-size: 15px;
 }
+.e_head{
+	position: absolute;
+    left: 906px;
+    top: -60px;
+}
+.lft-p{
+ 	position: absolute;
+ 	left: 10px;
+ 	bottom: 800px;
+}
+.rgt-p{
+	position: absolute;
+	right: 10px;
+	bottom: 800px;
+}
+
 </style>
 <div class="e_wrap">
-		<div class="">
-			<h2>이벤트 리스트 cate : ${param.cate }</h2>
-			<!-- 자바스크립트 수정필요 차후함. -->
+		<div class="e_head">
+		<c:choose>
+			<c:when test="${param.cate eq 2}">
+				<h1>이벤트 리스트</h1>
+			</c:when>
+			<c:otherwise>
+				<h1>지난 이벤트</h1>
+			</c:otherwise>
+		</c:choose>	
 		</div>
 	<div class="List_wrap">
 			<c:forEach var="board" items="${list }">
@@ -194,32 +223,36 @@ to {
 			</c:forEach>
 		</div>
 	</div>
-		<div id="popup1" class="layer">
-			<div class="box">
-				<a class="lft"><i class="xi-angle-left"></i></a>
-				<a class="rgt"><i class="xi-angle-right"></i></a>
-				<div class="b_param">
-					<c:choose>
-						<c:when test="${not empty login }">
-							<i class="xi-heart-o xi-2x" id="likey" onclick="likey()"></i>
-						</c:when>
-						<c:otherwise>
-							<i class="xi-heart-o xi-2x" id="likey"></i>
-						</c:otherwise>
-					</c:choose>
-							<span id="likey-count">0</span>
-					<span class="" id="btitle"></span>
-					<span class="values" id="bdate"></span>
-					<span class="values" id="edate"></span>
-				</div>
-				<div class="bcont_wrap">
-					<div id="bimg" class=""></div>
-					<div id="bcontent" class=""></div>
-				</div>
-				<a href="#" class="close"><i class="xi-close"></i></a>
+	
+	
+	<div id="popup1" class="layer">
+		<div class="box">
+			<a class="lft"><i class="xi-angle-left xi-2x"></i></a>
+			<a class="rgt"><i class="xi-angle-right xi-2x"></i></a>
+			<div class="b_param">
+				<c:choose>
+					<c:when test="${not empty login }">
+						<i class="xi-heart-o xi-2x" id="likey" onclick="likey()"></i>
+					</c:when>
+					<c:otherwise>
+						<i class="xi-heart-o xi-2x" id="likey" onclick="alert('로그인하셔야합니다.')"></i>
+					</c:otherwise>
+				</c:choose>
+						<span id="likey-count">0</span>
+				<span class="" id="btitle"></span>
+				<span class="values" id="bdate"></span>
+				<span class="values" id="edate"></span>
 			</div>
+			<div class="bcont_wrap">
+				<div id="bimg" class=""></div>
+				<div id="bcontent" class=""></div>
+			</div>
+			<a href="#" class="close"><i class="xi-close"></i></a>
 		</div>
 	
+</div>
+	
+
 
 
 
@@ -356,7 +389,7 @@ to {
 	
 	
 	function already(number){
-		if('${login.member_email}'==''){return flag}
+		if('${login.member_email}'==''){return;}
 		const url = '${cpath}/event/read/already/?board_number='+number+'&user_email=${login.member_email}'
 		const opt = {
 				method : "GET"
@@ -365,23 +398,19 @@ to {
 		.then(resp => resp.text())
 		.then(text=>{
 			if(text == 1){
-				flag = true;
 				BL.setAttribute('class','xi-heart xi-2x')
-				BL.style.cursor = 'default'
-				return flag;
 			}else{
-				flag =false;
 				BL.setAttribute('class','xi-heart-o xi-2x')
-				BL.style.cursor = 'pointer'
-				return flag;
 			}
 		})
 	}
 
 	
-	function likey (){
-		if('${login.member_email}'==''){alert('로그인을 하셔야합니다,');location.href='${cpath}/member/login'}
-		if(flag){return;}
+	function likey(){
+		if(BL.getAttribute('class')=="xi-heart xi-2x"){
+			delikey();
+			return;
+		}
 		
 		const obj={
 				board_number :bnumber.innerText,
@@ -400,15 +429,38 @@ to {
 				console.log(text)
 				if(text != 'n'){
 				BL.setAttribute('class','xi-heart xi-2x')
-				BL.style.cursor = 'default'
 				document.getElementById('likey-count').innerText = text;
-				flag = true;
+			}
+		})
+	}
+	
+	function delikey(){
+		if(BL.getAttribute('class')=="xi-heart-o xi-2x"){
+			likey();
+			return;
+		}
+		const obj={
+				board_number :bnumber.innerText,
+				user_email :'${login.member_email}'
+		}
+		const url='${cpath}/event/like/'
+		const opt={
+				method : "DELETE",
+				body : JSON.stringify(obj),
+				headers: {
+					'Content-Type' : 'application/json; charset=utf-8'
+				}
+		}
+		fetch(url,opt).then(resp=>resp.text())
+		.then(text=>{
+				console.log(text)
+				if(text != 'n'){
+				BL.setAttribute('class','xi-heart-o xi-2x')
+				document.getElementById('likey-count').innerText = text;
 			}
 		})
 	}
 
-
-	
 </script>
 
 
