@@ -9,7 +9,7 @@
 		insert into theater (branch, branch_code, branch_sdate, branch_edate, usable, screen_code, seat_amount)
 			values(
 			#{branch}, 
-			 #{branch} || to_char(theater_seq.nextval,'FM000'),
+			 #{branch_code} ,
 				<if test="branch!=null">
 					<choose>
 						<when test="branch_sdate!=null and branch_sdate.equals('')==false and branch_edate!=null and branch_edate.equals('')==false">
@@ -20,7 +20,8 @@
 						</otherwise>
 					</choose>
 		 	 	</if>
-				#{screen_code},
+		 	 	#{branch} || to_char('00') || #{screen_code},
+<!-- 				#{screen_code} || to_char(theater_seq.nextval,'FM000'), -->
 				${seat_amount}		 	 	
 		 	 	)
 	

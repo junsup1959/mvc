@@ -24,7 +24,7 @@ border-top: outset;
 	font-weight: bold;
 }
 .theaterList{
-	width: 920px;
+	width: 760px;
     height: 40px;
     border-bottom: outset;
     border-left: outset;
@@ -50,12 +50,6 @@ border-top: outset;
 	margin-left: 50%;
 }
 .Theater_del{
-	cursor: pointer;
-    background-color: gray;
-	color: white;
-	
-}
-.Theater_build{
 	cursor: pointer;
     background-color: gray;
 	color: white;
@@ -95,6 +89,7 @@ border-top: outset;
     </style>
     
 <!-- ------------------- -->
+<div class="btn" onclick="location.href='${cpath}/admin/cinema/addCinema'">상영 시간 추가</div>
 <div class="c_cont">
 
 	<div class="theaterList listT">
@@ -104,7 +99,6 @@ border-top: outset;
 		<span class="usable">가용여부</span>
 		<span>수정</span>
 		<span>삭제</span>
-		<span>상영 시간 추가</span>
 	</div>
 	
 	<c:forEach var="theater" items="${cinemaList }">
@@ -112,19 +106,20 @@ border-top: outset;
 		<span class="branch">${theater.branch }</span>
 		<span class="branchcode">${theater.branch_code }</span>
 		<span class="capacity">${theater.seat_amount }</span>
+		<span class="capacity">${theater.screen_code}</span>
 		
 		
-		<c:choose>
-			<c:when test="${theater.usable eq 'y' }">
-				<span class="usable">사용가능</span>
-			</c:when>
-			<c:otherwise>
-				<span class="usable">사용불가</span>
-			</c:otherwise>
-		</c:choose>
+<%-- 		<c:choose> --%>
+<%-- 			<c:when test="${theater.usable eq 'y' }"> --%>
+<!-- 				<span class="usable">사용가능</span> -->
+<%-- 			</c:when> --%>
+<%-- 			<c:otherwise> --%>
+<!-- 				<span class="usable">사용불가</span> -->
+<%-- 			</c:otherwise> --%>
+<%-- 		</c:choose> --%>
 		<span class="Theater_update" onclick="modify('${theater.branch_code}')">수정</span>
 		<span class="Theater_del" onclick="delete('${theater.branch_code}')">삭제</span>
-		<span class="Theater_build" onclick="location.href='${cpath}/admin/cinema/addCinema/${theater.branch_code}'">상영 시간 추가</span>
+		<span></span>
 	</div>
 	</c:forEach>
 	<div class="TheaterInsert">
@@ -242,10 +237,6 @@ border-top: outset;
 <script>
 
 
-function modify(branch_code){
-	console.log(branch_code)
-	const modifyCinema = window.open("/team/admin/cinema/cinemaModify", "영화관 수정", "width=570,height=420, scrollbars=yes, resizable=yes")
-}
 
 // function del(data){
 // 	if(confirm('정말 삭제하시겠습니까?')){

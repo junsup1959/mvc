@@ -21,4 +21,17 @@ public class CinemaService {
 		return dao.selectAllCinema();
 	}
 
+	public boolean getBranch(String branch) {
+		int row = dao.getBranch(branch);
+		return  row == 1 ? true : false;
+	}
+
+	public String getBranchCode(String branch) {
+		return dao.getBranchCode(branch);
+	}
+
+	public List<CinemaDTO> selectAllScreen(String branch) {
+		return dao.selectAllScreen(branch);
+	}
+
 }

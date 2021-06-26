@@ -1,6 +1,9 @@
 package com.itbank.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +26,11 @@ public class CinemaController {
 	@ResponseBody
 	@PostMapping("/cinema")
 	public String createScreen(CinemaDTO cinema) {
-		System.out.println("cinema.edate " + cinema.getBranch_edate());
-		System.out.println("cinema.sdate " + cinema.getBranch_sdate());
-		System.out.println("cinema.usable " + cinema.getUsable());
+		String ran =  UUID.randomUUID().toString().split("-")[1];
+		cinema.setBranch_code(cinema.getBranch() + ran);
+		if(cs.getBranch(cinema.getBranch())) {
+			cinema.setBranch_code(cs.getBranchCode(cinema.getBranch()));
+		}
 		int row = cs.insertCinema(cinema);
 		return row + "";
 	}
@@ -40,10 +45,21 @@ public class CinemaController {
 		return mav;
 	}
 
+	@GetMapping("/addCinema")
+	public void addCinema() {}
 	
-	@GetMapping("/addCinema/{branch_code}")
-	public String addCinema(@PathVariable String branch_code) {
-//		cs.selectBranch(branch_code);
-		return "admin/cinema/addCinema";
+	
+	@ResponseBody
+	@GetMapping(value = "/screenCodes/{branch}", produces = "application/json; charset=utf-8")
+	public List<String> addCinema(@PathVariable String branch) {
+		List<CinemaDTO> cinemaList = cs.selectAllScreen(branch);
+		List<String> screenList = new ArrayList<String>();
+		for(int i=0; i < cinemaList.size(); i++) {
+			System.out.println(cinemaList.get(i).getScreen_code());
+			screenList.add(i, cinemaList.get(i).getScreen_code());
+		}
+		
+		return screenList;
+		
 	}
 }
