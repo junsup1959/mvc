@@ -7,10 +7,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -120,82 +124,48 @@ public static ObjectMapper mapper =new ObjectMapper();
 ////////////////////////////////////////////////	////////// 결제 취소 및 java로 form 데이터 전송하기///////////////////
 /*
  * 파라미터 목록 ex)
- 		("imp_uid", "imp22022976"); iamport 고유번호
+ 		("imp_uid", "imp_12321345"); 결제 고유번호 따로 있음
 		("merchant_uid", "merchant_1624363104561"); 거래 고유번호
 		("amount", (double)1500.0); 금액 double
 		("reason", "테스트"); 취소이유
  */
 	
-    public static JsonNode Cancle(HashMap < String, Object > Form) {
-
-    	String ur = "https://api.iamport.kr/payments/cancel"; // api 주소값
-        try {
-            //   URL 설정하고 접속하기 
-            URL url = new URL(ur); // URL 설정 
-            String accesstoken = getImportToken();
-            
-            HttpsURLConnection con = (HttpsURLConnection) url.openConnection(); // 접속 
-            //-------------------------- 
-            //   전송 모드 설정 - 기본적인 설정 
-            //-------------------------- 
-            con.setDefaultUseCaches(false);
-            con.setDoOutput(true); 
-            con.setRequestMethod("POST"); // 전송 방식은 POST
-            
-            //--------------------------
-            // 헤더 세팅
-            //--------------------------
-            // 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다 
-            con.setRequestProperty("Authorization", "Bearer " + accesstoken);
-            con.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-
-
-            StringBuffer buffer = new StringBuffer();
-
-            //HashMap으로 전달받은 파라미터가 null이 아닌경우 버퍼에 넣어준다
-            System.out.println(Form);
-            if (Form != null) {
-
-                Set<String> key = Form.keySet();
-                buffer.append("{");
-                
-                for (Iterator<String> iterator = key.iterator(); iterator.hasNext();) {
-                    String keyName = (String) iterator.next();
-	                    String valueName = (String) Form.get(keyName);
-	                    buffer.append(keyName).append("=").append(valueName).append(", ");
-                    }
-                buffer.deleteCharAt(buffer.lastIndexOf(","));
-                buffer.deleteCharAt(buffer.lastIndexOf(" "));
-                buffer.append("}");
-            }
-            System.out.println(buffer.toString());
-            OutputStreamWriter outStream = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-            PrintWriter writer = new PrintWriter(outStream);
-            writer.write(buffer.toString());
-            writer.flush();
-
-
-
-         
-            InputStreamReader tmp = new InputStreamReader(con.getInputStream(), "UTF-8");
-            BufferedReader reader = new BufferedReader(tmp);
-            StringBuilder reponse = new StringBuilder();
-            String str;
-            while ((str = reader.readLine()) != null) {
-            	reponse.append(str + "\n");
-            }
-            ObjectMapper mapper =new ObjectMapper();
-            JsonNode rsp = mapper.readTree(reponse.toString());
-            System.out.println(rsp.toString());
-            return rsp;
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    public static String Cancle(HashMap < String, Object > param) throws IOException {
+    	
+    	StringBuilder data = new StringBuilder();
+    	for(Map.Entry<String,Object> p : param.entrySet()) {
+    		if(data.length() !=0)
+    			data.append("&");
+    		data.append(URLEncoder.encode(p.getKey(), "UTF-8"));
+    		data.append("=");
+    		data.append(URLEncoder.encode(String.valueOf(p.getValue()), "UTF-8"));
+    	}
+    	byte[] postdata = data.toString().getBytes();
+    	String accesstoken = getImportToken();
+    	URL url = new URL("https://api.iamport.kr/payments/cancel");
+    	HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+    	con.setRequestMethod("POST");
+    	con.setRequestProperty("Authorization", "Bearer " + accesstoken);
+		con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded"); 
+		con.setRequestProperty( "charset", "utf-8");
+		con.setRequestProperty( "Content-Length", String.valueOf( postdata.length ));
+		con.setDoOutput(true);
+		
+		con.getOutputStream().write(postdata);
 
 		
+		StringBuilder response = new StringBuilder();
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		
+		String line;
+
+		while ((line = in.readLine()) != null) {
+		  response.append(line);
+		}
+		in.close();
+		con.disconnect();
+		
+//		return JsonNode response;
+		return response.toString();
+    }
 }
