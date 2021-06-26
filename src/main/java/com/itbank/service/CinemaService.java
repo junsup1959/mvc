@@ -1,5 +1,7 @@
 package com.itbank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class CinemaService {
 
 	public int insertCinema(CinemaDTO cinema) {
 		return dao.insertCinema(cinema);
+	}
+
+	public List<CinemaDTO> selectAllCinema() {
+		return dao.selectAllCinema();
 	}
 
 }

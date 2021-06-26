@@ -19,16 +19,6 @@
 					<p><input type="text" name="member_email" id="member_email" onkeyup="emailCheck(this.value)" placeholder="이메일을 적어주세요." required></p>
 					<output id="emailChk"></output>	
 					
-				<!-- 	<select id="select"> -->
-				<!--        	<option value="" disabled selected>E-Mail 선택</option> -->
-				<!--    	    <option value="naver.com" id="naver.com">naver.com</option> -->
-				<!--         <option value="hanmail.net" id="hanmail.net">hanmail.net</option> -->
-				<!--         <option value="gmail.com" id="gmail.com">gmail.com</option> -->
-				<!--         <option value="nate.com" id="daum.net">daum.net</option> -->
-				<!--         <option value="directly" id="textEmail">직접 입력하기</option> -->
-				<!--        </select> -->
-				       
-					
 					<p> 
 						<input type="button" id="checkId" value="중복확인"  class="btn1" style="margin-left : 190px;">
 						&nbsp;&nbsp;<span id="checkIdMsg"></span>

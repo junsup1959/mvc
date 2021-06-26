@@ -24,7 +24,7 @@ border-top: outset;
 	font-weight: bold;
 }
 .theaterList{
-	width: 750px;
+	width: 920px;
     height: 40px;
     border-bottom: outset;
     border-left: outset;
@@ -50,6 +50,12 @@ border-top: outset;
 	margin-left: 50%;
 }
 .Theater_del{
+	cursor: pointer;
+    background-color: gray;
+	color: white;
+	
+}
+.Theater_build{
 	cursor: pointer;
     background-color: gray;
 	color: white;
@@ -98,13 +104,16 @@ border-top: outset;
 		<span class="usable">가용여부</span>
 		<span>수정</span>
 		<span>삭제</span>
+		<span>상영 시간 추가</span>
 	</div>
 	
-	<c:forEach var="theater" items="${list }">
+	<c:forEach var="theater" items="${cinemaList }">
 	<div class="theaterList">
 		<span class="branch">${theater.branch }</span>
-		<span class="branchcode">${theater.branchcode }</span>
-		<span class="capacity">${theater.capacity }</span>
+		<span class="branchcode">${theater.branch_code }</span>
+		<span class="capacity">${theater.seat_amount }</span>
+		
+		
 		<c:choose>
 			<c:when test="${theater.usable eq 'y' }">
 				<span class="usable">사용가능</span>
@@ -113,8 +122,9 @@ border-top: outset;
 				<span class="usable">사용불가</span>
 			</c:otherwise>
 		</c:choose>
-		<span class="Theater_update" onclick="update('${theater.branchcode}')">수정</span>
-		<span class="Theater_del" onclick="del('${theater.branchcode}')">삭제</span>
+		<span class="Theater_update" onclick="modify('${theater.branch_code}')">수정</span>
+		<span class="Theater_del" onclick="delete('${theater.branch_code}')">삭제</span>
+		<span class="Theater_build" onclick="location.href='${cpath}/admin/cinema/addCinema/${theater.branch_code}'">상영 시간 추가</span>
 	</div>
 	</c:forEach>
 	<div class="TheaterInsert">
@@ -158,15 +168,36 @@ border-top: outset;
 <!-- -----------영화관 생성 button-------------------- -->
 <div class="btn" onclick="modalUp()">영화관 생성</div>
  
- <div id="branchList"> 만든 상영관 목록 띄우기</div>
- 
-  <dib class="bg remove"></dib>
+  <div class="bg remove"></div>
    <div class="modal remove">
    <h2>영화관 생성</h2>
    <hr style="border-color: teal">
    <div class="modalCon">
     <form id="createScreen" method="post">
-        <p><input type="text" name="branch" placeholder="지점명" required></p>
+        <p>	    
+            <select name="branch">
+	        	<optgroup label="서울">
+	        		<option value ="강남">강남점</option>
+	        		<option value ="홍대">홍대점</option>
+	        		<option value ="명동">명동점</option>
+	        		<option value ="구로">구로점</option>
+	        	</optgroup>
+	        	<optgroup label="부산">
+	        		<option value ="서면">서면점</option>
+	        		<option value ="해운대">해운대점</option>
+	        		<option value ="남포">남포점</option>
+	        		<option value ="동래">동래점</option>
+	        	</optgroup>
+	        	<optgroup label="그외지역">
+	        		<option value ="김해">김해점</option>
+	        		<option value ="대구">대구점</option>
+	        		<option value ="광주">광주점</option>
+	        		<option value ="전주">전주점</option>
+	        		<option value ="천안/아산">천안/아산</option>
+	        		<option value ="강릉">강릉점</option>
+	        	</optgroup>
+	        </select>
+        </p>
         <p>
            <select name="screen_code">
             <option>선택하세요</option>
@@ -204,9 +235,40 @@ border-top: outset;
     </form>
     </div>
    </div> 
-   시작일 <input type="date" name="branch_sdate" required>  <br> 종료일<input type="date" name="branch_edate" required>
 
 <!-- ------------------------------- -->
+
+
+<script>
+
+
+function modify(branch_code){
+	console.log(branch_code)
+	const modifyCinema = window.open("/team/admin/cinema/cinemaModify", "영화관 수정", "width=570,height=420, scrollbars=yes, resizable=yes")
+}
+
+// function del(data){
+// 	if(confirm('정말 삭제하시겠습니까?')){
+// 		const url ='${cpath}/admin/cinema/'+data
+// 		const opt={
+// 				method : 'DELETE'
+// 		}
+// 		fetch(url,opt)
+// 		.then(resp => resp.text())
+// 		.then(text =>{
+// 			if(+text==1){
+// 				alert('삭제 성공')
+// 				location.reload()
+// 			}else{
+// 				alert('삭제 실패')
+// 			}
+// 		})
+// 	} 
+// }
+</script>
+
+
+
 
 <!-- -------------영화관 생성 button script------------------ -->
 
@@ -215,7 +277,6 @@ border-top: outset;
 	document.forms.createScreen.onsubmit =	function(event){
 		event.preventDefault()
 		const formData = new FormData(event.target)	
-		
 		const url = '${cpath}/admin/cinema/cinema'
 		const opt = {
 			method: 'POST',
@@ -227,6 +288,7 @@ border-top: outset;
 			console.log(text)
 			if(+text == 1){
 				alert("입력이 완료되었습니다.")
+				location.href = '${cpath}/admin/cinema/cinema'
 				close();
 			}else{
 				alert("이미 존재하는 상영관입니다.")
@@ -234,12 +296,6 @@ border-top: outset;
 			}
 		})
 	}
-	
-	
-
-
-
-
 
         const modal = document.querySelector('.modal')
         const bg = document.querySelector('.bg')
@@ -258,7 +314,7 @@ border-top: outset;
            let check = document.getElementById('nusable')
            let ndate = document.getElementById('ndate')
           if(check.checked){       
-        	  ndate.innerHTML = '시작일 <input type="date" name="startDay"> &nbsp;&nbsp; 종료일<input type="date" name="endtDay">'
+        	  ndate.innerHTML = '시작일 <input type="date" name="branch_sdate" required> &nbsp;&nbsp; 종료일<input type="date" name="branch_edate" required>'
           }
               
       }
@@ -274,7 +330,6 @@ border-top: outset;
       
   
 </script>
-
 
 
 
@@ -337,84 +392,8 @@ function insert(){
 		}
 	}
 }
-function update(data){
-	if(updatechk(data)){
-		const up_branchcode = document.getElementById('up_branchcode')
-		const up_capacity = document.getElementById('up_capacity')
-		const up_usable = document.getElementById('up_usable')
-		
-		const url='${cpath}/admin/cinema/'+data
-		const opt={
-				method: 'GET'
-		}
-		fetch(url,opt)
-		.then(resp => resp.json())
-		.then(json =>{
-			console.log(json)
-			for(key in json)
-				switch(key){
-				
-				case 'branchcode' : up_branchcode.value=json[key];up_branchcode.readOnly=true; break
-				case 'capacity' : up_capacity.value=json[key]; break
-				case 'usable' : 
-					for (i = 0; i < up_usable.options.length; i++) {
-				    if (up_usable.options[i].value == json[key]) {
-				    	up_usable.options[i].selected = "selected"
-				    	break;
-				    }
-				}; break
-				default : break
-				}
-		})
-		t_update.focus()
-		t_update.onsubmit = function(event){
-			event.preventDefault()
-			const formData = new FormData(event.target)
-			const ob = {}
-			for(key of formData.keys()){
-				ob[key] = formData.get(key)
-			}
-			const url='${cpath}/admin/cinema'
-			const opt={
-					method: 'PUT',
-					body : JSON.stringify(ob),
-					headers: { 
-						'Content-Type' : 'application/json; charset=utf-8'
-					}
-			}
-			fetch(url,opt)
-			.then(resp => resp.text())
-			.then(text =>{
-				console.log(text)
-				if(+text==1){
-				alert('수정 성공')
-				location.reload();
-				}else{
-					alert('수정 실패')
-				}
-		})
-		}
-	}
-}
 
-function del(data){
-	if(confirm('정말 삭제하시겠습니까?')){
-		const url ='${cpath}/admin/cinema/'+data
-		const opt={
-				method : 'DELETE'
-		}
-		fetch(url,opt)
-		.then(resp => resp.text())
-		.then(text =>{
-			if(+text==1){
-				alert('삭제 성공')
-				location.reload()
-			}else{
-				alert('삭제 실패')
-			}
-		})
-	} 
-}
+
 
 </script>
 
