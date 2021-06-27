@@ -52,7 +52,7 @@
         </div>
         </div>
         
-        <div class="btn1" onclick="location.href='${cpath}/movie/ticket2'">좌석선택하기</div>
+        <div class="btn1" onclick="goSeat()">좌석선택하기</div>
     </section>
     
     
@@ -118,6 +118,9 @@
     
     
     <script>
+    let cbranch='';
+    let cmovie='';
+    let cday='';
         $('#choice1 p').on('click', function(){
             $(this).css({
                'border':'1px dotted #ccc',
@@ -147,6 +150,7 @@
             });
             
             const t= $(this).text();
+            cbranch = t;
             console.log(t)
         })
         
@@ -161,6 +165,7 @@
             });
             const t2= $(this).find('b').text();
             console.log(t2)
+            cmovie = t2;
         })
 
     </script>
@@ -205,7 +210,14 @@
         
         const t3 = $(this).find('p').text()
         console.log(t3)
+        cday =t3;
     })
+    
+    function goSeat(){
+    	if(cbranch==''||cmovie==''||cday==''){alert('영화관,영화 및 날짜를 선택하지 않으셨습니다.');return;}
+    	location.href = "${cpath}/movie/ticket2?branch="+cbranch+"&movie="+cmovie+"&day="+cday
+    }
+    
     </script>
 
 

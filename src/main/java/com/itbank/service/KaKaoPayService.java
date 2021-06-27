@@ -5,18 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONObject;
@@ -24,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.revervation.ReservDTO;
 
 
 
@@ -93,8 +87,8 @@ public static ObjectMapper mapper =new ObjectMapper();
 	
 
 ////////////////////////////////////주문내역 조회/////////////////////////////////////////////////////////////
-	public static JsonNode paymentList(String merchant_uid) {
-		String url = "https://api.iamport.kr/payments/findAll/" + merchant_uid;
+	public static String paymentSearch(String merchant_uid) {
+		String url = "https://api.iamport.kr/payments/find/" + merchant_uid;
 		URL ur;
 		try {
 			ur = new URL(url);
@@ -104,15 +98,17 @@ public static ObjectMapper mapper =new ObjectMapper();
 			con.setRequestProperty("Authorization", "Bearer " + accesstoken);
 			
 			StringBuilder response = new StringBuilder();
-			InputStreamReader reader = new InputStreamReader(con.getInputStream());
+			InputStreamReader reader = new InputStreamReader(con.getInputStream(),"UTF-8");
 			BufferedReader li = new BufferedReader(reader);
 			String n = null;
 			while ((n = li.readLine()) != null) {
 				response.append(n);
 			}
-			JsonNode rsp = mapper.readTree(response.toString());
-			System.out.println(rsp.toString());
-			return rsp;
+			li.close();
+			con.disconnect();
+			
+			return response.toString();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,14 +118,7 @@ public static ObjectMapper mapper =new ObjectMapper();
 	
 	
 ////////////////////////////////////////////////	////////// 결제 취소 및 java로 form 데이터 전송하기///////////////////
-/*
- * 파라미터 목록 ex)
- 		("imp_uid", "imp_12321345"); 결제 고유번호 따로 있음
-		("merchant_uid", "merchant_1624363104561"); 거래 고유번호
-		("amount", (double)1500.0); 금액 double
-		("reason", "테스트"); 취소이유
- */
-	
+
     public static String Cancle(HashMap < String, Object > param) throws IOException {
     	
     	StringBuilder data = new StringBuilder();
@@ -168,4 +157,34 @@ public static ObjectMapper mapper =new ObjectMapper();
 //		return JsonNode response;
 		return response.toString();
     }
+    //////////////////// 환불 파라미터 ////////////////////////////////////////////
+    public static HashMap<String, Object> cancleParam(String imp_uid,String merchant_uid,double amount,String reason){
+    	HashMap<String, Object>param = new HashMap<String, Object>();
+    	param.put("imp_uid", imp_uid);
+    	param.put("merchant_uid", merchant_uid);
+    	if( amount!= 0) {
+    	param.put("amount", amount);
+    	}
+    	param.put("reason", reason);
+    	
+    	return param;
+    }
+    /////////////////////비교////////////////////////
+    public boolean compare(ReservDTO dto,JsonNode json) throws IOException {	
+    	
+    	String email=dto.getMember_email();
+		String cemail=json.get("response").get("buyer_email").toString().replaceAll("\"", "");
+		String name=dto.getMember_name();
+		String cname=json.get("response").get("buyer_name").toString().replaceAll("\"", "");
+		String pay=dto.getPay();
+		String cpay=json.get("response").get("amount").toString();
+		
+		if(email.equals(cemail)&name.equals(cname)&pay.equals(cpay)) {
+		//DB에 넣는부분
+			return true;
+		}
+		// form 데이터와 아임포트 스크립트쪽 변수값이 틀리므로 강제 취소
+    	return false;
+	}
+	
 }
