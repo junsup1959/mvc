@@ -27,7 +27,7 @@ $(document).ready(function() {
 			    ['fontname', ['fontname']],
 			    ['fontsize', ['fontsize']],
 			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-			    ['color', ['forecolor','color']],
+			    ['color', ['color','forecolor','backcolor']],
 			    ['table', ['table']],
 			    ['para', ['ul', 'ol', 'paragraph']],
 			    ['height', ['height']],
@@ -119,9 +119,7 @@ for (i = 0; i < document.getElementById("notice").options.length; i++) {
     }
 }
 
-if(document.getElementById("notice").options[0].selected){
-	changeNE();
-}
+
 
 
 
@@ -132,12 +130,14 @@ if(document.getElementById("notice").options[0].selected){
 			bdate.value = getToday();
 			bdate.required=true;
 			edate.setAttribute("type", "hidden");
-			edate.required=false;			
+			document.querySelector('input[name=file]').setAttribute("type", "hidden");
+			edate.required=false;
 		}else{
 			bspan.innerText ='시작일';
 			espan.innerText ='종료일';
-			bdate.value = '';
+			bdate.value = '${dto.board_bdate}';
 			edate.setAttribute("type", "date");
+			document.querySelector('input[name=file]').setAttribute("type", "file");
 			edate.required=true;
 		}
 	}

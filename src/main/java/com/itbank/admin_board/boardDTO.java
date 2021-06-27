@@ -23,7 +23,8 @@ public class boardDTO {
 			fileName += extName;
 			
 			File f = new File(root, fileName);
-			
+			if(!f.exists())
+				f.mkdirs();
 			try {
 				file.transferTo(f);
 				
