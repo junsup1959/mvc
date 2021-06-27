@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
  
 @Controller
-@RequestMapping("/movie")
 public class MovieController {
  
     // 상수 설정
@@ -30,13 +29,13 @@ public class MovieController {
     private final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd");
  
 
-	@GetMapping("/cinema")
+	@GetMapping("/movie/cinema")
 	public void cinema() {}
     
     
     
     // API요청
-    @GetMapping(value = {"/dailyMovie","/ticket"})
+    @GetMapping(value = {"/movie/dailyMovie","/movie/ticket","/admin/cinema/insertTheaterInfo"})
     public ModelAndView dailyMovie() {
     	
     	String REQUEST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -104,7 +103,7 @@ public class MovieController {
     }
  
     // API요청
-    @GetMapping("/weeklyMovie")
+    @GetMapping("/movie/weeklyMovie")
     public ModelAndView weeklyMovie() {
     	
     	String REQUEST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json";
@@ -181,7 +180,7 @@ public class MovieController {
     }
     
     
-    @GetMapping("/ticket2")
+    @GetMapping("/movie/ticket2")
     public void ticket() {}
     
     

@@ -17,6 +17,7 @@
 		<typeAlias type="com.itbank.admin_board.boardDTO" alias="board"/>
 		<typeAlias type="com.itbank.admin_board.CoboardDTO" alias="Coboard"/>
 		<typeAlias type="com.itbank.cinema.CinemaDTO" alias="cinema"/>
+		<typeAlias type="com.itbank.cinema.Theater_infoDTO" alias="theaterInfo"/>
 	</typeAliases>
 	
 </configuration>

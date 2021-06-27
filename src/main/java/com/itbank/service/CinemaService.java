@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.cinema.CinemaDAO;
 import com.itbank.cinema.CinemaDTO;
+import com.itbank.cinema.Theater_infoDTO;
 
 @Service
 public class CinemaService {
@@ -33,5 +34,18 @@ public class CinemaService {
 	public List<CinemaDTO> selectAllScreen(String branch) {
 		return dao.selectAllScreen(branch);
 	}
+
+	public int deleteScreen(String screen_code) {
+		return dao.deleteScreen(screen_code);
+	}
+
+	public int insertTheater_info(Theater_infoDTO info) {
+		return dao.insertTheater_info(info);
+	}
+
+	public List<Theater_infoDTO> screenCodes(String screenName) {
+		return dao.screenCodes(screenName);
+	}
+
 
 }

@@ -89,7 +89,7 @@ border-top: outset;
     </style>
     
 <!-- ------------------- -->
-<div class="btn" onclick="location.href='${cpath}/admin/cinema/addCinema'">상영 시간 추가</div>
+<div class="btn" onclick="location.href='${cpath}/admin/cinema/insertTheaterInfo'">상영 시간 추가</div>
 <div class="c_cont">
 
 	<div class="theaterList listT">
@@ -104,21 +104,18 @@ border-top: outset;
 	<c:forEach var="theater" items="${cinemaList }">
 	<div class="theaterList">
 		<span class="branch">${theater.branch }</span>
-		<span class="branchcode">${theater.branch_code }</span>
+		<span class="branchcode">${theater.screen_code}</span>
 		<span class="capacity">${theater.seat_amount }</span>
-		<span class="capacity">${theater.screen_code}</span>
-		
-		
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${theater.usable eq 'y' }"> --%>
-<!-- 				<span class="usable">사용가능</span> -->
-<%-- 			</c:when> --%>
-<%-- 			<c:otherwise> --%>
-<!-- 				<span class="usable">사용불가</span> -->
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-		<span class="Theater_update" onclick="modify('${theater.branch_code}')">수정</span>
-		<span class="Theater_del" onclick="delete('${theater.branch_code}')">삭제</span>
+		<c:choose>
+			<c:when test="${theater.usable eq 'y' }">
+				<span class="usable">사용가능</span>
+			</c:when>
+			<c:otherwise>
+				<span class="usable">사용불가</span>
+			</c:otherwise>
+		</c:choose>
+		<span class="Theater_update" onclick="modify('${theater.screen_code}')">수정</span>
+		<span class="Theater_del" onclick="deleteScreen('${theater.screen_code}')">삭제</span>
 		<span></span>
 	</div>
 	</c:forEach>
@@ -236,11 +233,9 @@ border-top: outset;
 
 <script>
 
-
-
-// function del(data){
-// 	if(confirm('정말 삭제하시겠습니까?')){
-// 		const url ='${cpath}/admin/cinema/'+data
+	function deleteScreen(screnn_code){
+	 	if(confirm('정말 삭제하시겠습니까?')){
+// 		const url ='${cpath}/admin/cinema/'+ ${theater.screen_code}
 // 		const opt={
 // 				method : 'DELETE'
 // 		}
@@ -254,8 +249,7 @@ border-top: outset;
 // 				alert('삭제 실패')
 // 			}
 // 		})
-// 	} 
-// }
+	} 
 </script>
 
 
@@ -358,31 +352,31 @@ function updatechk(data){
 	}
 }
 
-function insert(){
-	if(insertchk()){
-		inputform.focus()
-		inputform.onsubmit = function(event){
-			event.preventDefault()
-			const formData = new FormData(event.target)
-			const url='${cpath}/admin/cinema'
-			const opt={
-					method: 'POST',
-					body: formData
-			}
-			fetch(url,opt)
-			.then(resp => resp.text())
-			.then(text =>{
-				if(+text==1){
-					alert('추가 성공')
-					location.reload();
-					}else{
-						alert('추가 실패')
-						location.reload();
-					}
-			})
-		}
-	}
-}
+// function insert(){
+// 	if(insertchk()){
+// 		inputform.focus()
+// 		inputform.onsubmit = function(event){
+// 			event.preventDefault()
+// 			const formData = new FormData(event.target)
+// 			const url='${cpath}/admin/cinema'
+// 			const opt={
+// 					method: 'POST',
+// 					body: formData
+// 			}
+// 			fetch(url,opt)
+// 			.then(resp => resp.text())
+// 			.then(text =>{
+// 				if(+text==1){
+// 					alert('추가 성공')
+// 					location.reload();
+// 					}else{
+// 						alert('추가 실패')
+// 						location.reload();
+// 					}
+// 			})
+// 		}
+// 	}
+// }
 
 
 
