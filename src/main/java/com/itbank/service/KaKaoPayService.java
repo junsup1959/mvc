@@ -24,14 +24,14 @@ import com.itbank.revervation.ReservDTO;
 @Service
 public class KaKaoPayService {
 
-public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken"; 
-public static final String KEY = "6753336084250479";
-public static final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee6c7376f8c4128a273e2536b6956000344f865";   
-public static ObjectMapper mapper =new ObjectMapper();
+public final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken"; 
+public final String KEY = "6753336084250479";
+public final String SECRET = "2ad841f85121872df2d0ff5e5ebdfe0d3b9b2e791ee6c7376f8c4128a273e2536b6956000344f865";   
+public ObjectMapper mapper =new ObjectMapper();
 
 
 	
-	public static String getImportToken() { 
+	public String getImportToken() { 
 		
 		try {
 			URL url=new URL(IMPORT_TOKEN_URL);
@@ -87,7 +87,7 @@ public static ObjectMapper mapper =new ObjectMapper();
 	
 
 ////////////////////////////////////주문내역 조회/////////////////////////////////////////////////////////////
-	public static String paymentSearch(String merchant_uid) {
+	public String paymentSearch(String merchant_uid) {
 		String url = "https://api.iamport.kr/payments/find/" + merchant_uid;
 		URL ur;
 		try {
@@ -119,7 +119,7 @@ public static ObjectMapper mapper =new ObjectMapper();
 	
 ////////////////////////////////////////////////	////////// 결제 취소 및 java로 form 데이터 전송하기///////////////////
 
-    public static String Cancle(HashMap < String, Object > param) throws IOException {
+    public String Cancle(HashMap < String, Object > param) throws IOException {
     	
     	StringBuilder data = new StringBuilder();
     	for(Map.Entry<String,Object> p : param.entrySet()) {
@@ -158,7 +158,7 @@ public static ObjectMapper mapper =new ObjectMapper();
 		return response.toString();
     }
     //////////////////// 환불 파라미터 ////////////////////////////////////////////
-    public static HashMap<String, Object> cancleParam(String imp_uid,String merchant_uid,double amount,String reason){
+    public HashMap<String, Object> cancleParam(String imp_uid,String merchant_uid,double amount,String reason){
     	HashMap<String, Object>param = new HashMap<String, Object>();
     	param.put("imp_uid", imp_uid);
     	param.put("merchant_uid", merchant_uid);

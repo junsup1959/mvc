@@ -130,14 +130,12 @@ for (i = 0; i < document.getElementById("notice").options.length; i++) {
 			bdate.value = getToday();
 			bdate.required=true;
 			edate.setAttribute("type", "hidden");
-			document.querySelector('input[name=file]').setAttribute("type", "hidden");
 			edate.required=false;
 		}else{
 			bspan.innerText ='시작일';
 			espan.innerText ='종료일';
 			bdate.value = '${dto.board_bdate}';
 			edate.setAttribute("type", "date");
-			document.querySelector('input[name=file]').setAttribute("type", "file");
 			edate.required=true;
 		}
 	}

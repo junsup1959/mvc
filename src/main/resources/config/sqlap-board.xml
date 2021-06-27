@@ -21,9 +21,9 @@
 			and board_notice = 'E'
 			<![CDATA[ and board_edate<sysdate]]>
 			</when>
-			<otherwise>
+			<when test="cate==5">
 			and board_notice = 'E'
-			</otherwise>
+			</when>
 			</choose>
 			<if test="keyword!=null and keyword.equals('')==false">
    	 		and ${search} like '%${keyword}%'

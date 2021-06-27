@@ -15,7 +15,7 @@
 				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=3&keyword=${param.keyword }&page=${param.page}'">[공지]</li>
 				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=2&keyword=${param.keyword }&page=${param.page}'">[진행중인 이벤트]</li>
 				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=4&keyword=${param.keyword }&page=${param.page}'">[지난 이벤트]</li>
-				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=&keyword=${param.keyword }&page=${param.page}'">[이벤트 전체목록]</li>
+				<li onclick="location.href='${cpath}/admin/board/?search=${param.search }&cate=5&keyword=${param.keyword }&page=${param.page}'">[이벤트 전체목록]</li>
 			</ul>
 		</div>
 		<div class="content">

@@ -85,7 +85,7 @@ $(document).ready(function() {
 		  			<option value="N">공지</option>
 		  		</select>
 		  	</p>
-		  	<p><input name="file" type="file"></p>
+		  	<p><input name="file" type="file" id="file"></p>
 		   	<p>
 		   		<textarea id="summernote" name="board_content" required></textarea>
 		   	</p>
@@ -100,8 +100,9 @@ $(document).ready(function() {
 	const select = document.getElementById('ne')
 	const bdate = document.getElementById('bdate')
 	const edate = document.getElementById('edate')
-	const bspan=document.getElementById('bdate_span')
-	const espan=document.getElementById('edate_span')
+	const bspan= document.getElementById('bdate_span')
+	const espan= document.getElementById('edate_span')
+	const file =  document.getElementById('file')
 	
 	function getToday(){
     var date = new Date();
@@ -120,7 +121,6 @@ $(document).ready(function() {
 			bdate.value = getToday();
 			bdate.required=true;
 			edate.setAttribute("type", "hidden");
-			document.querySelector('input[name=file]').setAttribute("type", "hidden");
 			edate.required=false;
 		}else{
 			bspan.innerText ='시작일';
@@ -128,7 +128,6 @@ $(document).ready(function() {
 			bdate.value = '';
 			edate.value = '';
 			edate.setAttribute("type", "date");
-			document.querySelector('input[name=file]').setAttribute("type", "file");
 			edate.required=true;
 		}
 	}
