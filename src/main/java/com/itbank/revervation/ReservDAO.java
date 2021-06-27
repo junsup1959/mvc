@@ -15,7 +15,7 @@ public interface ReservDAO {
 			+ ",#{merchant_uid}"
 			+ ",#{pay}"
 			+ ",#{member_age}"
-			+ "#{reserv_num})")
+			+ ",#{reserv_num})")
 	int insert(ReservDTO dto);
 
 }
