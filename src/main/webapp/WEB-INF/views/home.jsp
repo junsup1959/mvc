@@ -136,10 +136,10 @@
     </section>
     <!-- 아이콘 끝 -->
     
-    <section id="event" class="clearfix">
+     <section id="event" class="clearfix">
     	<c:if test="${not empty event }">
 	    	<c:forEach var="event" items="${event}">
-		        <div>${event.board_title }</div>
+		        <div><a href="${cpath }/event/?search=&keyword=&cate=2&page=1" target="" title="이벤트 목록으로 이동하기">${event.board_title }</a></div>
 		    </c:forEach>
         </c:if>
     </section>
@@ -151,7 +151,7 @@
             <c:if test="${not empty notice }">
             <ul>
             <c:forEach var="no" items="${notice }">
-                <li><a href="">${no.board_title } <span>${no.board_bdate } </span></a></li>
+                <li><a href="${cpath}/notice/${no.board_number}?search=&keyword=&cate=3&page=1">${no.board_title } <span>${no.board_bdate } </span></a></li>
             </c:forEach>
             </ul>
             </c:if>
@@ -161,13 +161,11 @@
             <c:if test="${not empty notice }">
             <ul>
             <c:forEach var="no" items="${notice }">
-                <li><a href="">[${no.board_store }] ${no.board_title } <span>${no.board_bdate } </span></a></li>
+                <li><a href="${cpath}/notice/${no.board_number}?search=&keyword=&cate=3&page=1">[${no.board_store }] ${no.board_title } <span>${no.board_bdate } </span></a></li>
             </c:forEach>
             </ul>
             </c:if>
         </div>
-        
-        
     </section>
     <!-- 공지사항(전체, 지점) 끝 -->
     

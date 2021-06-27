@@ -70,7 +70,8 @@
 		</c:if>
 	</ul>
 	<div class="cf btnWrap">
-		<div onclick="location.href='${cpath}/admin/board/update/${dto.board_number}?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${param.page}'"  class="btn3">수정</div>
+		<div onclick="location.href='${cpath}/admin/board/?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${param.page}'"  class="btn3">목록</div>
+		<div onclick="location.href='${cpath}/admin/board/update/${dto.board_number}?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${param.page}'"  class="btn3" style="left: 350px;">수정</div>
 		<div id="del" class="btn3" gogo="/admin/board/delete/${dto.board_number}?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${param.page}" style="right: 10px">삭제</div>
 		<!-- gogo 속성 지우지 마세요...자바스크립트로 값가져와야함 @_@.. -->
 	</div>

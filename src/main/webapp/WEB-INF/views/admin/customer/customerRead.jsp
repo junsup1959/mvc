@@ -4,83 +4,68 @@
 
 
 
+	<section id="bodyWrap">
+	<h2>고객정보</h2>
+	<div class="conWrap">
 	<div>
-		<p>
-			<span>회원번호</span>
-			<span>${dto.member_email }</span>
-		</p>
+		<span>회원번호</span>
+		<p>${dto.member_email }</p>
 	</div>
 	<div>
-		<p>
-			<span>이름</span>
-			<span>${dto.member_name }</span>
-		</p>
+		<span>이름</span>
+		<p>${dto.member_name }</p>
 	</div>
 	<div>
-		<p>
-			<span>회원가입 일시</span>
-			<span>${dto.member_date}</span>
-		</p>
+		<span>회원가입 일시</span>
+		<p>${dto.member_date}</p>
 	</div>
 	<div>
-		<p>
-			<span>ID</span>
-			<span>${dto.member_email }</span>
-		</p>
+		<span>ID</span>
+		<p>${dto.member_email }</p>
 	</div>
-	<div>
+	<div>		
+		<span>등급</span>
 		<p>
-			<span>등급</span>
-				<c:choose>
-					<c:when test="${dto.member_grade  == 'P' }">
+			<c:choose>
+				<c:when test="${dto.member_grade  == 'P' }">
 								플레티넘
-					</c:when>
-					<c:when test="${dto.member_grade  == 'G' }">
+				</c:when>
+				<c:when test="${dto.member_grade  == 'G' }">
 								골드
-					</c:when>	
-					<c:when test="${dto.member_grade  == 'V'}">
+				</c:when>	
+				<c:when test="${dto.member_grade  == 'V'}">
 								VIP
-					</c:when>	
-					<c:when test="${dto.member_grade  == 'N' }">
+				</c:when>	
+				<c:when test="${dto.member_grade  == 'N' }">
 								일반
-					</c:when>		
-				</c:choose>
+				</c:when>		
+			</c:choose>
 		</p>
 	</div>
 	<div>
-		<p>
-			<span>주소</span>
-			<span>${dto.member_addr1}</span>
-			<span>${dto.member_addr2}</span>
-		</p>
+		<span>주소</span>
+		<p>${dto.member_addr1}${dto.member_addr2}</p>
 	</div>
 	<div>
-		<p>
-			<span>성별</span>
-			<span>${dto.member_gender == 'M' ? '남자' : '여자'}</span>
-		</p>
+		<span>성별</span>
+		<p>${dto.member_gender == 'M' ? '남자' : '여자'}</p>
 	</div>
 	<div>
-		<p>
-			<span>전화번호</span>
-			<span>${dto.member_phone}</span>
-		</p>
+		<span>전화번호</span>
+		<p>${dto.member_phone}</p>
 	</div>
 	<div>
-		<p>
-			<span>올해 사용금액</span>
-			<span>${dto.amount_this}</span>
-		</p>
+		<span>올해 사용금액</span>
+		<p>${dto.amount_this}</p>
 	</div>
 	<div>
-		<p>
-			<span>작년 사용금액</span>
-			<span>${dto.amount_last}</span>
-		</p>
+		<span>작년 사용금액</span>
+		<p>${dto.amount_last}</p>
 	</div>
-	
-	<button onclick="customerList()">회원목록</button>
 
+	</div>
+		<div class="btn" onclick="customerList()">회원목록</div>
+</section>
 <script>
 	function customerList(){
 		history.back(-1)

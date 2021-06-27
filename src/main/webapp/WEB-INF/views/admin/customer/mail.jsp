@@ -2,17 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>    
 
+<section id="bodyWrap">
+	<div class="noticeWrap">
 
-
-<h1>메일 전송</h1>
-<hr>
+<h1 class="mail">고객 메일 발송</h1>
 
 <form id="sendMailForm">
 		<div>
-			<p>
-				제목
-				<input type="text" id="title" >
-			</p>
+			<span>제목</span>
+			<p><input type="text" id="title" ></p>
 			<select name="listType" id="listType">
 				<optgroup label="전체 발송">
 					<option value="listAll">전체 발송</option>
@@ -25,13 +23,18 @@
 					<option value="P">플레티넘</option>
 				</optgroup>
 			</select>
+			</div>
+			<hr color="#b6e7e7">
 			
-			
-			
-			<textarea rows="20" cols="50" placeholder="내용을 입력해 주세요." id="textBody">가나다라</textarea>			
-			<input type="submit" value="메일 전송">
-		</div>
+	<div>
+		<textarea placeholder="내용을 입력해 주세요." id="textBody"></textarea>
+	</div>		
+			<input type="submit" value="메일 전송" class="btn2" style="margin-left:880px">
+		
 </form>
+	</div>
+</section>
+
 
 
 <script>
@@ -65,6 +68,4 @@
 
 </script>
 
-
-</body>
-</html>
+<%@ include file="../footer.jsp" %>

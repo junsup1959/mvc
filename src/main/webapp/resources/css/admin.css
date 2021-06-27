@@ -63,8 +63,8 @@
 	
 	
 	 /*--------------------------------admin-Mypage ---------------------------------------*/
-	 #bodyWrap>h2 {margin-left: 250px; margin-top: 50px; text-decoration: underline; font-weight: bold}
-	#bodyWrap .conWrap { width : 1000px;  margin : 10px auto; border-top : 2px solid #66cccc;  border-bottom : 2px solid #66cccc;}
+	 #bodyWrap>h2 {margin-left: 250px; margin-top: 30px; text-decoration: underline; font-weight: bold}
+	#bodyWrap .conWrap { width : 1000px;  margin : 0 auto; border-top : 2px solid #66cccc;  border-bottom : 2px solid #66cccc;}
 	#bodyWrap .conWrap>div {width : 100%; height : 50px; margin : 0;    border-bottom : 1px dotted #66cccc;}
 	#bodyWrap .conWrap>div span,p {display: inline-block; height : 50px; line-height : 50px; text-align : center;}
 	#bodyWrap .conWrap>div span {width : 200px; background : #32bebe; color : #fff; border-bottom: 1px solid #fff;}
@@ -160,7 +160,7 @@
   	
   /*-------------------------------- customer ---------------------------------------*/
   .btn5 {}
-  .orderBy {width : 1000px; margin : 0 auto; padding-top : 10px;}
+  .orderBy {width : 1000px; margin : 0 auto; }
  .orderBy  li {width : 150px;display: inline-block;}
  .orderBy  li:last-child {width : 200px;}
   .orderBy  li a {display: inline-block; width : 100%; height : 25px; line-height: 25px;  font-size : 16px;}
@@ -170,6 +170,14 @@
   .list2 > span {display : inline-block; width : 13.5%; height : 35px; line-height: 35px; font-size : 16px;}
   .list2 > span > a {display : inline-block; width : 80px; height : 30px; line-height : 30px; font-size : 14px; border-radius : 5px; background : #66cccc; color:#fff; }
    .list2 > span > a:hover {background: coral;} 
+   
+  /*-------------------------------- mail ---------------------------------------*/
+ .mail {margin : 10px 20px; font-size: 24px; font-weight: bold; color : teal;}
+ #sendMailForm {width : 100%; margin : 0; padding : 0}
+ #sendMailForm > div {padding :10px 20px;}
+ #sendMailForm > div > p> input {width : 600px;}
+ #sendMailForm > div #textBody {width : 1050px; height : 400px; margin : 20px 40px; padding : 10px; resize: none;}
+   
  /*-------------------------------- footer ---------------------------------------*/
 	footer{height : 120px; padding:20px 0; background:teal;}
     footer>div {width:1200px; margin:0 auto;}
