@@ -1,38 +1,45 @@
 package com.itbank.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.revervation.ReservDTO;
 import com.itbank.service.KaKaoPayService;
+import com.itbank.service.ReservationSrvice;
 
-@Controller
+@RestController
 public class KakaoPay {
-
-	
-	@GetMapping("/test")
-	public String aaa() {
-		return"../test";
-	}
-	
 	@Autowired private KaKaoPayService kp;
-	@RequestMapping(value = "/payments", method = RequestMethod.POST,consumes = "application/json; charset=utf-8" )
-	@ResponseBody
-	public String Kakaopay(@RequestBody HashMap<String, String>param) {
-		System.out.println(param); //주문번호 가맹점번호 파라미터로 받아옴. DB에 저장할 데이터도 차후 받아오기.
+	@Autowired private ReservationSrvice rs;
+	ObjectMapper mapper=new ObjectMapper();
+
+	@RequestMapping(value = "/payments", method = RequestMethod.POST,consumes="application/json; charset=utf-8")
+	public String Kakaopay(@RequestBody ReservDTO dto) throws IOException {
 		
-	
+
+		JsonNode search = mapper.readTree(kp.paymentSearch(dto.getMerchant_uid()));
 		
-		return 1+"";
+		if(kp.compare(dto, search)) {
+//			디비작업하는 부분
+			int row =rs.insert(dto);
+			return row+"";
+		}
+		
+		
+//		 form 데이터와 아임포트 스크립트쪽 변수값이 틀리므로 강제 취소
+		HashMap<String, Object>cancleParam=kp.cancleParam(dto.getImp_uid(),dto.getMerchant_uid(),0,"데이터 불일치");
+//		 취소,환불 api에 전달할 파라미터 작성 메소드
+//		 숫자는 금액 but 0은 전액취소
+		kp.Cancle(cancleParam);
+		//취소 메소드.
+		return "n";
 	}
 }

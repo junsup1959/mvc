@@ -27,7 +27,7 @@ $(document).ready(function() {
 			    ['fontname', ['fontname']],
 			    ['fontsize', ['fontsize']],
 			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-			    ['color', ['color']],
+			    ['color', ['color','forecolor','backcolor']],
 			    ['table', ['table']],
 			    ['para', ['ul', 'ol', 'paragraph']],
 			    ['height', ['height']],
@@ -120,12 +120,15 @@ $(document).ready(function() {
 			bdate.value = getToday();
 			bdate.required=true;
 			edate.setAttribute("type", "hidden");
+			document.querySelector('input[name=file]').setAttribute("type", "hidden");
 			edate.required=false;
 		}else{
 			bspan.innerText ='시작일';
 			espan.innerText ='종료일';
 			bdate.value = '';
+			edate.value = '';
 			edate.setAttribute("type", "date");
+			document.querySelector('input[name=file]').setAttribute("type", "file");
 			edate.required=true;
 		}
 	}

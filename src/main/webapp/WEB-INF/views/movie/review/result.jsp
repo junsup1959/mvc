@@ -5,7 +5,7 @@
 	<h1>제목 클릭하면 리뷰 보드로 이동 !!!!!!</h1>
 	<c:forEach var="movie" items="${list }">
 	<div>
-		<span><a href="${cpath}/movie/review/board?moviecode=${movie.moviecode }">제목 ${movie.title}</a></span>
+		<span><a href="${cpath}/movie/review/board?moviecode=${movie.moviecode }"><U>제목${movie.title}</U></a></span>
 		<span>링크주소 ${movie.link }</span>
 		<span>이미지 ${movie.image }</span>
 		<span>감독 ${movie.director }</span>

@@ -20,6 +20,13 @@
 
        </div>
        <div>
+			<form><!-- 좌석 다시 선택하면 밑에 폼이 초기화가 되어서 값을 넣기 힘들어서 @_@;;만듬 -->
+	       		<input type="hidden" name="start_date" value="${param.day }">   
+	            <input type="hidden" name="movie_code" value="${param.movie }">   
+	            <input type="hidden" name="branchcode" value="${param.branch }">
+       		</form>
+       		
+       		
            <form id="ticket">
               <!-- 전페이지에서 영화 제목, 영화관, 날짜, 시간 가져와서 같이 넘기기-->
                
@@ -48,7 +55,6 @@
        let youth = 0
        let ct = 0
        var person = 0
-
          function total(name){
              var tmp = 0
              const  target = $('#' + name)
@@ -62,7 +68,6 @@
              
              console.log($('#'+name).val())
              person = Number(adult) + Number(youth) + Number(ct)    // 전체 인원 구하기
-
              
              if(person > 4){                               // 4명 초과될 경우 
                alert('최대 4명까지만 예약가능합니다')
@@ -91,7 +96,6 @@
             console.log("어른 : " + adult  + " 어린이 : "+ youth + " 우대 : " + ct)
          }
         
-
     </script>
    
 
@@ -118,7 +122,6 @@
         col = seatAll / row
         seat(col, row, seatAll)
        }
-
     // 인원에 따른 영화관 좌석 생성
        function seat(col,row, count){
            for(let i = 1; i < row+1; i++){
@@ -150,18 +153,14 @@
                 }
                div.appendChild(ul)
            }
-
            wrap.appendChild(div)     
        }
     
-
-
        
     </script>
    
     
     <script>
-
     // 예매 좌석을 배열로 받아오기
  $(document).ready(function(){
     var nseat = ["1-1", "3-5", "4-7","8-9"]     // 예매한 좌석이 있을 경우    
@@ -176,7 +175,6 @@
     }
     
  });
-
     
     // 좌석 선택 여러명일 경우 연석만 선택 가능
     $('.row > span').click(function(){
@@ -276,10 +274,8 @@
 	        div.appendChild(p3)
 	        
 	        
-	        ticketForm.innerHTML += '<input type="hidden" name="adult" value="' + adult + '">'
-	        ticketForm.innerHTML += '<input type="hidden" name="youth" value="' + youth + '">'
-	        ticketForm.innerHTML += '<input type="hidden" name="ct" value="' + ct + '">'
-	        ticketForm.innerHTML += '<input type="hidden" name="person" value="' + person + '">'
+	        ticketForm.innerHTML += '<input type="hidden" name="member_age" value="' + adult +","+youth+","+ct +'">'
+	        ticketForm.innerHTML += '<input type="hidden" name="reserv_num" value="' + person + '">'
 	        ticketForm.innerHTML += '<input type="hidden" name="pay" value="' + (10000 * adult + 8000 * youth + 7000 * ct) + '">'
 	        
 	        
@@ -296,8 +292,8 @@
 		                pg : 'kakaopay',
 		                pay_method : 'kakaopay',
 		                merchant_uid : 'merchant_' + new Date().getTime(),
-		                name : '주문명:결제테스트',
-		                amount : 1500,
+		                name : '주문명:'+document.querySelector('input[name=movie_code]').value,
+		                amount : document.querySelector("input[name=pay]").value,
 		                buyer_email : '${login.member_email}',
 		                buyer_name : '${login.member_name}',
 		                buyer_tel : '${login.member_phone}',
@@ -306,27 +302,39 @@
 		            }, function(rsp) {
 		                if ( rsp.success ) {
 		                	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-		                	const obj ={
-		                			imp_uid : rsp.imp_uid,
-		                			merchant_uid : rsp.merchant_uid
-		                			//db에 입력할 데이터 추가입력
-		                			//필수정보 좌석,결제 예정금액(script 내의 값이 아니라 html에서 불러와야함. 대조 증명하기위해)
-		                	}
+		                	const formData = new FormData(event.target)
+		                	formData.append('imp_uid',rsp.imp_uid)
+		                	formData.append('merchant_uid',rsp.merchant_uid)
+		                	formData.append('member_name',"${login.member_name }")
+		                	formData.append('member_email','${login.member_email }')
+		                	formData.append('branchcode',document.querySelector('input[name=branchcode]').value)
+		                	formData.append('movie_code',document.querySelector('input[name=movie_code]').value)
+		                	formData.append('start_date',document.querySelector('input[name=start_date]').value)
+		                	
+		                	const ent = formData.entries();				
+							let ob = {};								
+							while(true) {							
+								next = ent.next();						
+								if(next.done) break;
+								ob[next.value[0]] = next.value[1];		
+							}
 		                	const url ="${cpath}/payments"
 		                	const opt ={
 		                			method : "POST",
-		                			body: JSON.stringify(obj),
-	                	 			headers: {	
-		                	 				'Content-Type': 'application/json; charset=utf-8'	                	 			
-	               					}
+		                			body: JSON.stringify(ob),
+		                			headers: {	
+		                 				'Content-Type': 'application/json; charset=utf-8'
+		                 			}
 		                	}
 		       				fetch(url,opt).then(resp=>resp.text())
 		       				.then(text=>{
 		       						console.log(text)
 		       					if(+text==1){
 		       						alert('결제 성공하셨습니다.')
+		       					}else if(text=='n'){
+		       						alert('데이터 위변조 문제로 결제가 취소되었습니다.')
 		       					}else{
-		       						alert('데이터 위변조 가능성이 있습니다. 고객센터에 문의해주세요.')
+		       						alert('서버측 문제로 결제가 기록되지 않았습니다. 고객센터로 문의바랍니다.')
 		       					}
 		       				})	
 		                } else {
@@ -340,7 +348,6 @@
 		});
                
         }
-
     }
     </script>
 

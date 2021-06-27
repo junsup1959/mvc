@@ -75,6 +75,9 @@ public class BoardSerivce {
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자				
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		File targetFile = new File(fileRoot + savedFileName);
+		if(!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
 		try {
 			multipartFile.transferTo(targetFile);
 		} catch (IllegalStateException | IOException e) {
