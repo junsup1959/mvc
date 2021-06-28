@@ -6,7 +6,7 @@
 	var pw = ${ad_login.admin_password}
 	if(pw == '1234'){
 		alert('비밀번호를 변경해주세요')
-		location.href="${cpath }/admin/adminMypage"
+		location.href="${cpath }/admin/adminMypage/changePw/${ad_login.admin_num }"
 	}
 
 </script>

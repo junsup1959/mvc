@@ -19,7 +19,7 @@
         <nav class="adminMy">
 	        <h4>${ad_login.admin_name }님</h4>     
 	        	<ul class="cf">
-	        		<li><a href="${cpath }/admin/adminMypage">마이페이지</a></li>
+	        		<li><a href="${cpath }/admin/adminMypage/">마이페이지</a></li>
 	        		<li><a href="${cpath }/admin/logout">로그아웃</a></li>
 	        		<li><a href="">기타</a></li>
 	        	</ul>
