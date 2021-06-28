@@ -20,15 +20,15 @@
 			<div>평점-> 클릭하면 input hidden에 값 입력</div>
 			<div>좋아요/싫어요??? 다른 db table로 구현</div>	
 			<div>
-				<form>
+				<form method="post">
 					<input type="text" name="writer" value="${login.member_nick }" readonly="readonly">
 					<textarea name="content">내용 집어 넣자</textarea>
 					<span id="rate"><i class="xi-heart-o"></i><i class="xi-heart-o"></i><i class="xi-heart-o"></i><i class="xi-heart-o"></i>
 					<i class="xi-heart-o"></i></span>
-					<input type="number" name="rating" readonly="readonly">
+					<input type="number"" name="rating" readonly="readonly">
 					<input type="hidden" name="movie_name" value="${movie.title }">
 					<input type="hidden" name="movie_code" value="${movie.moviecode }">
-					<button></button>
+					<button>작성</button>
 				</form>
 			</div>
 		</div>
@@ -37,24 +37,31 @@
 
 <script>
 const rate = document.getElementById('rate').children
-
+const rr = document.getElementById('rate')
 
 for(let i=0;i<rate.length;i++){
 	rate[i].onmouseover=function(event){
-		if(i != 0){
 		rate[i].setAttribute('class','xi-heart')
+		if(i != 0){
 			for(let b=0;b<i;b++){
 				rate[b].setAttribute('class','xi-heart')
 			}
+		}
 			for(let c=rate.length-1;c>i;c--){
 				rate[c].setAttribute('class','xi-heart-o')
 			}
-		}
 	}
 }
-document.getElementById('rate').onclick=function(event){
-	document.querySelector('input[name=rating]').value
-}
+rr.addEventListener("click",function(){
+	let count=0;
+	for(let i=0;rate.length;i++){
+		var value =rate[i].getAttribute('class')
+		if(value =='xi-heart'){
+			count+=1;
+		}
+	}
+	document.querySelector('input[name=rating]').value=count
+})
 
 </script>
 </body>
