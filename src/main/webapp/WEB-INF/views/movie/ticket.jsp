@@ -180,9 +180,9 @@
                
         const date = new Date()
         const week = ['일','월','화','수','목','금','토']
-        var day = date.getDate()
-        var w = date.getDay()
-
+        var day = date.getDate()				// 날짜
+        var w = date.getDay()					// 주간 0 ~ 6 (일~토)과 week 변수 => 요일 생성
+		var month = date.getMonth()+1			// 월 0~11 이므로 + 1 해준다
         for(let i = 0; i < 7; i++){
             
             const li = document.createElement('li')
@@ -196,7 +196,16 @@
                 li.setAttribute("style", "color:red")
             }
             p1.textContent = day
+            //p1.textContent = month + '월' + day + '일'     월과 일을 같이 표시하고 싶으면 그렇게 하기
             span.textContent = week[w]
+            
+            switch(month){	// 월 바뀔때마다 날짜 초기화
+            case 2: if(day==28) {day=0; month++};break;
+            case 4:;case 6:;case 9:;
+            case 11:if(day==30) {day=0; month++}; break;
+            case 1:;case 3:;case 5:;case 7:;case 8:;case 10:;
+            case 12:if(day==31) {day=0; month++};break;    
+   			 }
             w++
             day++
             li.appendChild(p1)

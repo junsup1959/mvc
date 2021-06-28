@@ -29,8 +29,9 @@
         </div>
     </section>
     <!-- 슬라이드 메뉴 끝 -->
+    
         <div id="vedioWrap">       
-        <i class="xi-close xi-3x" id="close"></i>
+        <i class="xi-close xi-4x" id="close"></i>
         <div class="layer_contents">
            <video height="100%" width="100%" controls id="vdoPlayer" src="https://caching2.lottecinema.co.kr/lotte_image/2021/Black/Black_1280720.mp4" autoplay muted></video>
            <video height="100%" width="100%" controls id="vdoPlayer" src="https://caching2.lottecinema.co.kr/lotte_image/2021/Jam/Jam_1280720.mp4" autoplay muted></video>
@@ -42,6 +43,7 @@
             
         </div>
     </div>
+    <div class="backBg"></div>
 
 <script src="jquery-1.12.4.js"></script>
 <script>
@@ -49,18 +51,18 @@
     $('.slider-main .slider-item').click(function(){
     	$('#vedioWrap').css({'display' : 'none'})
         $('#vedioWrap .layer_contents video').eq(index).css({'display' : 'none'})
-        $('.bg').css({'display' : 'none'})
+        $('.backBg').css({'display' : 'none'})
         index = $(this).index()-1
         console.log(index)
         $('#vedioWrap').css({'display' : 'block'})
         $('#vedioWrap .close').css({'display' : 'block'})
-        $('.bg').css({'display' : 'block'})
+        $('.backBg').css({'display' : 'block'})
         $('#vedioWrap .layer_contents video').eq(index).css({'display' : 'block'})
     })
     $('#close').click(function(){
     	$('#vedioWrap').css({'display' : 'none'})
         $('#vedioWrap .layer_contents video').eq(index).css({'display' : 'none'})
-        $('.bg').css({'display' : 'none'})
+        $('.backBg').css({'display' : 'none'})
     })
     
 </script>
