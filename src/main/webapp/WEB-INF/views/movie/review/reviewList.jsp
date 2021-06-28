@@ -88,13 +88,16 @@
 		const opt ={method : 'GET'}
 		fetch(url,opt).then(resp => resp.json())
 		.then(json=>{
+			console.log(json);
 			if(json==null||json==''){recommend.style.display='none'; return;}
 			const list = JSON.parse(json)
-			for(let i=0;i<list.movieListResult.movieList.length;i++){
-				let val = list.movieListResult.movieList[i].movieNm
+			for(let i=0;i<list.items.length;i++){
+				let val = list.items[i].title
 				let a = recommend.children[i]
 				
-				a.innerText = val;
+				a.innerHTML = val;
+				val = val.replace('<b>','');
+				val = val.replace('</b>',' ');
 				a.setAttribute('href','${cpath}/movie/review/result?query='+val)
 			}
 		})

@@ -5,7 +5,7 @@
 	<h1>제목 클릭하면 리뷰 보드로 이동 !!!!!!</h1>
 	<c:forEach var="movie" items="${list }">
 	<div>
-		<span><a href="${cpath}/movie/review/board?moviecode=${movie.moviecode }"><U>제목${movie.title}</U></a></span>
+		<span><a href="${cpath }/movie/review/board?moviecode=${movie.moviecode}&title=${movie.title}">${movie.title}</a></span>
 		<span>링크주소 ${movie.link }</span>
 		<span>이미지 ${movie.image }</span>
 		<span>감독 ${movie.director }</span>
@@ -15,5 +15,12 @@
 		<span>영화코드 ${movie.moviecode }</span>
 	</div>
 	</c:forEach>
+	
+<script>
+function gogo(data1,data2){
+	location.href ="'${cpath}'/movie/review/board?moviecode="+data1+"&title="+data2
+}
+</script>
+
 </body>
 </html>

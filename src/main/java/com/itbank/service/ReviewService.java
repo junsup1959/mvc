@@ -11,9 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.net.ssl.HttpsURLConnection;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -114,28 +112,7 @@ public class ReviewService {
 		return response.toString();
 		
 	}
-	
-	public String autoSearch(String query) throws IOException {
-		String url = "http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key="+AUTH_KEY+"&itemPerPage=7"+"&movieNm=";
-		String enquery =URLEncoder.encode(query, "UTF-8");
-		URL ur = new URL(url+enquery);
-		HttpURLConnection con = (HttpURLConnection) ur.openConnection();
-	      con.setRequestMethod("GET");
-	      con.setDoInput(true);
-	
-	      BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-	      String readline = null;
-	      StringBuffer response = new StringBuffer();
-	      while ((readline = br.readLine()) != null) {
-	          response.append(readline);
-	      }
-	      br.close();
-	      con.disconnect();
-		
-		return response.toString();
-	}
-	
-	
+
 	
 	 private String makeQueryString(Map<String, String> paramMap) {
 	        final StringBuilder sb = new StringBuilder();
@@ -149,5 +126,6 @@ public class ReviewService {
 	 
 	        return sb.toString();
 	    }
+	 
 
 }

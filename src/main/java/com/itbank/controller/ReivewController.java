@@ -34,6 +34,7 @@ public class ReivewController {
 	public ModelAndView result(@RequestParam String query) throws IOException{
 		ModelAndView mav = new ModelAndView("movie/review/result");
 		
+		
 		JsonNode response = mapper.readTree(rs.movieSearch(query));
 		Iterator<JsonNode> it = response.get("items").iterator();
 		
@@ -47,9 +48,16 @@ public class ReivewController {
 		return mav;
 	}
 	@GetMapping("/board")
-	public ModelAndView reviewBoard(@RequestParam int moviecode) {
+	public ModelAndView reviewBoard(@RequestParam int moviecode,String title) throws IOException {
 		ModelAndView mav = new ModelAndView("movie/review/review");
-		
+		JsonNode response = mapper.readTree(rs.movieSearch(title));
+		Iterator<JsonNode> it = response.get("items").iterator();
+		while(it.hasNext()) {
+			MovieJson movie=new MovieJson(it.next());
+			if(movie.getMoviecode()==String.valueOf(moviecode))
+				System.out.println(it.next().toString());
+				mav.addObject("movie", movie);
+		}
 		return mav;
 	}
 	
@@ -57,7 +65,7 @@ public class ReivewController {
 	@ResponseBody
 	public String autoSeach(@RequestParam String query) throws IOException {
 	
-		String response = rs.autoSearch(query);
+		String response = rs.movieSearch(query);
 		String json = mapper.writeValueAsString(response);
 		
 		return json;

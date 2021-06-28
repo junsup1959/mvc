@@ -48,9 +48,10 @@
 			<div id="del" class="btn3" style="right: 10px">삭제</div>
 		</div>
 	</c:if>
+	<!-- 
 	<c:if test="${not empty ad_login }">	
 		<div>
-			<form method="post">
+			 <form method="post">
 				<input type="hidden" name="" value="${ad_login.admin_name}" required="required">
 				<input type="hidden" name="" value="${dto.co_idx }">
 				<textarea name="" style="width: 300px;height: 300px;"></textarea>
@@ -58,6 +59,7 @@
 			</form>
 		</div>
 	</c:if>
+	 -->
 		<div>
 		</div>
 	</div>
