@@ -40,8 +40,8 @@ function tab(t, admin_num){
 					switch(key){
 					case 'admin_password':break;
 					case 'deleted' : break;
-					case 'admin_jday' : input.value = json[key];
-					case 'admin_lday' : span.innerText = key;
+					case 'admin_jday' : 
+					case 'admin_lday' : span.innerText = key; input.value = json[key];
 										input.name = key;
 										input.type = 'date'; 
 										updateForm.appendChild(span);
@@ -139,7 +139,7 @@ var choice =  document.querySelector('.con'+t)
 	                </div>
 	                <div class="list cf">
 	                <c:forEach var="a" items="${list}"> 
-	                <c:if test="${a.deleted eq 'n'}"> 
+	                <c:if test="${a.deleted eq 'n' }"> 
 					<p onclick="tab(4, ${a.admin_num})">
 	                	<span>${a.admin_num}</span>
 	                	<span>${a.admin_store}</span>

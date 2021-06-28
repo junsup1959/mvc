@@ -9,7 +9,7 @@
     <section id="contents">
         <div>
             <div>
-               <h3>NEWs & Notice<small>more</small></h3>
+               <h3>Notice & Event<small>more</small></h3>
                 <c:if test="${not empty mainList }">
 		            <ul>
 		            <c:forEach var="no" items="${mainList }">

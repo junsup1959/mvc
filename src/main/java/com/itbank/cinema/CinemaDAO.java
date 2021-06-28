@@ -26,8 +26,9 @@ public interface CinemaDAO {
 
 	int insertTheater_info(Theater_infoDTO info);
 
-	@Select("select start_date, end_date, start_time, end_time from theater_info where screen_code=#{screen_code}")
+	@Select("select start_date, end_date, start_time, end_time, runtime from theater_info where screen_code=#{screen_code}")
 	List<Theater_infoDTO> screenCodes(String screenName);
+
 
 
 
