@@ -43,12 +43,26 @@
         
         <div id="screenList">
 <!--         	screen_code 에 해당하는 모든 시간 list 가져오기 -->
-        
+			<div class="Movielist">
+					<span class="start_date" id="start_date">[상영 시작일]</span>
+					<span class="end_date" id="end_date" >[상영 마감일]</span>
+					<span class="start_time" id="start_time">[시작 시간]</span>
+					<span class="end_time" id="end_time">[마감 시간]</span>
+					<span class="runtime" id="runtime">[러닝 타임]</span>
+			</div>
+        	<div class="movie_Tlist">
+        	
+<!-- 	        	<span id="start_date"></span> -->
+<!-- 	        	<span id="end_date"></span> -->
+<!-- 	        	<span id="start_time"></span> -->
+<!-- 	        	<span id="end_time"></span> -->
+        	
+        	</div>
         </div>
         
         <div id="movieInfo">
             <h1 class="text">영화입력 폼</h1>
-
+            
 
 	        <p>
 				<input type="date" name="start_date" required>   	
@@ -92,7 +106,11 @@ document.forms.Theater_info.onsubmit = function(event){
 			alert("상영시간을 입력하였습니다.")
 			location.href = "${cpath}/admin/cinema/insertTheaterInfo"
 		}else{
-			alert("입력폼을 확인해 주세요.")
+			if(+text == 0){
+				alert("입력 시간을 확인해 주세요.")
+			}else{
+				alert(text + "\n입력 시간이 중복됩니다.")
+			}
 		}
 	})
 	
@@ -218,30 +236,54 @@ document.forms.Theater_info.onsubmit = function(event){
     		.then(resp => resp.json())
     		.then(json => {
     			
-				const screenList = document.getElementById("screenList")
+				const movie_Tlist = document.querySelector('.movie_Tlist')
     	        
-//     			console.log(json)
+     			console.log(json)
     			console.log(Object.keys(json).length)
-    			for(let i=0; i < Object.keys(json).length; i++){
-    				let list = {};
-//     				let list = json[i];
-    				list.start_date = json[i].start_date
-    				list.end_date = json[i].end_date
-    				list.start_time= json[i].start_time
-    				list.end_time = json[i].end_time
-//     				console.log("json "+ i + ":" +json[i].start_date)
-//     				console.log("json "+ i + ":" +json[i].end_date)
-//     				console.log("json "+ i + ":" +json[i].start_time)
-//     				console.log("json "+ i + ":" +json[i].end_time)
-    				console.log(list)
-    				
+    			
+    			for(let i=0; i < json.length; i++){
+   					const div = document.createElement('div')
+    				const ob = json[i];
+    				for(let key in ob) {
+    					if(key != ""){
+	    					const value = ob[key]
+	    					const span = document.createElement('span')
+	    					span.className = key
+	    					span.innerText = value
+	    					div.appendChild(span)
+    					}
+    					movie_Tlist.appendChild(div)
+    				}
     			}
+    			
+    			
+//     			for(let i=0; i < Object.keys(json).length; i++){
+//     				console.log(json[i].start_date)
+//     				console.log(json[i].end_date)
+//     				console.log(json[i].start_time)
+//  					console.log(json[i].end_time)
+//     			}
+				
     		})
 		}
 
+//     				let list = {};
+//     				let list = json[i];
+//     				list.start_date = json[i].start_date
+//     				list.end_date = json[i].end_date
+//     				list.start_time= json[i].start_time
+//     				list.end_time = json[i].end_time
 // 	<select id="screen_code" name="screen_code" onchange="javascript:screenList(this)">
 // 	<option>상영관을 선택해 주세요.</option>
-// </select>        
+// </select>   
+//     				span.innerText =json[i].start_date
+    				
+//     				document.getElementById('start_date').textContent = json[i].start_date
+//     				document.getElementById('end_date').textContent = json[i].end_date
+//     				document.getElementById('start_time').textContent = json[i].start_time
+//     				document.getElementById('end_time').textContent = json[i].end_time
+    				
+
 </script>
     
     

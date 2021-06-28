@@ -1,6 +1,9 @@
 package com.itbank.controller;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -74,32 +77,70 @@ public class CinemaController {
 		String startTime = info.getStart_time();
 		startTime = startTime.replace(":", "");
 		info.setStart_time(startTime);
-		System.out.println(info.getRuntime());
 		int hour = (info.getRuntime()/60); 
-		System.out.println("hour : "+hour);
 		int minute = (info.getRuntime()%60);
-		System.out.println("minute : "+ minute);
 		String runTime = Integer.toString(hour) + Integer.toString(minute);
-		System.out.println(runTime);
 		info.setRuntime(Integer.parseInt(runTime));
+		int end_time = (Integer.parseInt(info.getStart_time()) + info.getRuntime());
+		if((end_time % 100) >= 60 ) {
+			end_time += 40;
+		}
+		info.setEnd_time(Integer.toString(end_time));
+
+		int row = 0;
+		int i_s = Integer.parseInt(info.getStart_time());
+		int i_e = Integer.parseInt(info.getEnd_time());
 		
+//		System.out.println("입력 상영관 영화 시작시간: "+i_s);
+//		System.out.println("입력 상영관 영화 마감시간: "+i_e);
+//		System.out.println("=============================================");
+		List<Theater_infoDTO> screenCodes = cs.screenCodes(info.getScreen_code());
 		
-		int row = cs.insertTheater_info(info);
-		
-		System.out.println("row : "+row);
-		return row + "";
+		for(int i = 0; i < screenCodes.size(); i++) {
+			int s_s = Integer.parseInt(screenCodes.get(i).getStart_time());
+			int s_e = Integer.parseInt(screenCodes.get(i).getEnd_time());
+			
+//			System.out.println("입력 되어있는 상영관 영화 마감시간: "+ s_s);
+//			System.out.println("입력 되어있는 상영관 영화 마감시간: "+s_e);
+			
+			if((i_s < s_s && i_e < s_s) || (i_s > s_e && i_s> s_e)) {
+				 row = cs.insertTheater_info(info);
+				 return row + "";
+			}
+		}
+		if(screenCodes.size() == 0) {
+			row = cs.insertTheater_info(info);
+			return row+"";
+		}
+//		System.out.println("row : " + row);
+
+		return i_s + " ~ " + i_e;
 	}
 	
 	@ResponseBody
 	@GetMapping(value = "/getScreenCodes/{screenName}", produces = "application/json; charset=utf-8")
 	public List<Theater_infoDTO> screenList(@PathVariable String screenName) {
-		System.out.println(screenName);
+		System.out.println("screenName : "+screenName);
 		List<Theater_infoDTO> screenCodes = cs.screenCodes(screenName);
-		List<String> screenList = new ArrayList<String>();
-		for(int i=0; i < screenCodes.size(); i++) {
-//			System.out.println(screenCodes.get(i).get);
-//			screenList.add(i, screenCodes.get(i).getScreen_code());
-		}
+//		List<String> screenList = new ArrayList<String>();
+	
+//		DecimalFormat Commas = new DecimalFormat("##,##"); 
+//		String returnData2 = (String)Commas.format(returnData1);
+
+//		for(int i = 0; i < screenCodes.size(); i++) {
+//			
+//			String start_time = new SimpleDateFormat("HH:mm")
+//                    .format(new Date(Integer.parseInt(screenCodes.get(i).getStart_time())));
+//			
+//			System.out.println(start_time);
+			
+//			String start_time = (String)Commas.format(Integer.parseInt(screenCodes.get(i).getStart_time()));
+//			String end_time = (String)Commas.format(Integer.parseInt(screenCodes.get(i).getEnd_time()));
+//			System.out.println(start_time);
+//			System.out.println(end_time);
+//			screenCodes.get(i).setStart_time(start_time);
+//			screenCodes.get(i).setEnd_time(end_time);
+//		}
 		return screenCodes;
 	}
 	
