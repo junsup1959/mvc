@@ -21,7 +21,7 @@ public interface Admin_memberDAO {
 			+ ",null)")
 	int insert(Admin_memberDTO dto);
 
-	@Select("select * from admin_member")
+	@Select("select * from admin_member order by admin_num desc")
 	List<Admin_memberDTO> selectAll();
 
 	@Select("select * from admin_member where admin_num = #{admin_num} and admin_password = #{admin_password}")

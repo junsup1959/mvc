@@ -50,17 +50,16 @@ function tab(t, admin_num){
 					case 'admin_dept' :span.innerText = key;
 										select.name = key;
 										
-										for(let i=0; i < 4; i ++){
-											const option = document.createElement('option');
-											option.value=json[key];select.appendChild(option);
+											select.innerHTML='<option value="1">총괄관리자</option><option value="2">지점장</option><option value="3">매니저</option><option value="4">사원</option>'
+											const options = select.querySelectorAll('option')
 											switch(json[key]){
-											case '1' :  option.selected = true;  option.text='총괄관리자';  break;
-											case '2' :	option.selected = true; option.text='지점장';break;
-											case '3' :	option.selected = true; option.text='매니저';break;
-											case '4' :	option.selected = true; option.text='사원';break;
+											case '1' :  options[0].selected = true;  options.text='총괄관리자';  break;
+											case '2' :	options[1].selected = true; options.text='지점장';break;
+											case '3' :	options[2].selected = true; options.text='매니저';break;
+											case '4' :	options[3].selected = true; options.text='사원';break;
 											}
-											 
-										}
+											
+										
 										updateForm.appendChild(span);
 										updateForm.appendChild(select);
 										break;
