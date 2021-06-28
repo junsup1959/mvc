@@ -33,20 +33,44 @@ function tab(t, admin_num){
 			
 			updateForm.innerHTML = ''
 			for(key in json){
-//				console.log(key, ':', json[key])
+				console.log(key, ':', json[key])
 					const span = document.createElement('span');
 					const input = document.createElement('input');
+					const select = document.createElement('select');
 					switch(key){
-					case 'admin_password':;
+					case 'admin_password':break;
 					case 'deleted' : break;
-					default : 
-						span.innerText = key;
-					input.name = key;
-					input.value = json[key];
-					updateForm.appendChild(span);
-					updateForm.appendChild(input);
+					case 'admin_jday' : input.value = json[key];
+					case 'admin_lday' : span.innerText = key;
+										input.name = key;
+										input.type = 'date'; 
+										updateForm.appendChild(span);
+										updateForm.appendChild(input);
+										break;
+					case 'admin_dept' :span.innerText = key;
+										select.name = key;
+										
+										for(let i=0; i < 4; i ++){
+											const option = document.createElement('option');
+											option.value=json[key];select.appendChild(option);
+											switch(json[key]){
+											case '1' :  option.selected = true;  option.text='총괄관리자';  break;
+											case '2' :	option.selected = true; option.text='지점장';break;
+											case '3' :	option.selected = true; option.text='매니저';break;
+											case '4' :	option.selected = true; option.text='사원';break;
+											}
+											 
+										}
+										updateForm.appendChild(span);
+										updateForm.appendChild(select);
+										break;
+					default : span.innerText = key;
+							input.name = key;
+							input.value = json[key]; 
+							updateForm.appendChild(span);
+							updateForm.appendChild(input);break;
 					}
-				
+							
 			}	
 			const submit = document.createElement('input');
 			submit.type='submit';
@@ -170,9 +194,28 @@ var choice =  document.querySelector('.con'+t)
 						<input type="tel" name="admin_phone" placeholder="폰번호"><br>
 						<input type="text" name="admin_addr" placeholder="주소"><br>
 						근무지<select name="admin_store">
-							<option value="서울점">서울점</option>
-							<option value="부산점">부산점</option>
-						</select><br>
+				        		<option>지점을 선택해 주세요.</option>
+					        	<optgroup label="서울">
+					        		<option value ="강남">강남점</option>
+					        		<option value ="홍대">홍대점</option>
+					        		<option value ="명동">명동점</option>
+					        		<option value ="구로">구로점</option>
+					        	</optgroup>
+					        	<optgroup label="부산">
+					        		<option value ="서면">서면점</option>
+					        		<option value ="해운대">해운대점</option>
+					        		<option value ="남포">남포점</option>
+					        		<option value ="동래">동래점</option>
+					        	</optgroup>
+					        	<optgroup label="그외지역">
+					        		<option value ="김해">김해점</option>
+					        		<option value ="대구">대구점</option>
+					        		<option value ="광주">광주점</option>
+					        		<option value ="전주">전주점</option>
+					        		<option value ="천안/아산">천안/아산</option>
+					        		<option value ="강릉">강릉점</option>
+					        	</optgroup>
+				        </select><br>
 						입사일 <input type="date" name="admin_jday"><br>
 						직급 <select name="admin_dept">
 							<option value="1">총괄관리자</option>

@@ -43,8 +43,12 @@ public class AdminController {
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	@GetMapping({"", "/"})
-	public String admin(HttpSession session) {
-		return "admin/admin_main";
+	public ModelAndView admin(HttpSession session) {
+		//메인 페이지 공지,이벤트 출력용
+		ModelAndView mav= new ModelAndView("admin/admin_main");	
+		List<boardDTO> mainList=bs.mainList();
+		mav.addObject("mainList", mainList);
+		return mav;
 	}
 	
 	@GetMapping("/login")

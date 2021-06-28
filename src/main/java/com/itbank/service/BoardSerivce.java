@@ -172,5 +172,8 @@ return bl_dao.BLdelete(dto);
 	public List<boardDTO> homeEvent() {
 		return dao.getEvent();
 	}
+	public List<boardDTO> mainList() {
+		return dao.mainList();
+	}
 
 }
