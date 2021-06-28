@@ -228,7 +228,7 @@ document.forms.Theater_info.onsubmit = function(event){
 		const movie_Tlist = document.querySelector('.movie_Tlist')
 		
 		if(document.querySelector('.movie_list') != null){
-			movie_Tlist.removeChilde(movie_list)		
+			movie_Tlist.innerText = ""		
 		}
 		
 		const url = '${cpath}/admin/cinema/getScreenCodes/' + screenName
@@ -248,7 +248,8 @@ document.forms.Theater_info.onsubmit = function(event){
 					div.className = "movie_list"
    					const ob = json[i];
     				for(let key in ob) {
-    					if(key != null){
+    					console.log(ob[key])
+    					if(ob[key] != null){
 	    					const value = ob[key]
 	    					const span = document.createElement('span')
 	    					span.className = key
