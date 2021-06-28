@@ -3,9 +3,17 @@
 <%@ include file="../header.jsp" %>
 
 
-<h1>비밀번호 찾기</h1>
+<section id="bodyWrap">
+	<div class="loginWrap">
+		<h2>비밀번호 찾기</h2>
+		<hr color="#fff">
+		<div class="text">
+			<p>
+				<i class="xi-lock xi-2x"></i>
+				비밀번호 찾기 위해 본인확인이 필요합니다</p>		
+		</div>
 
-<div style="position: relative;">
+<div  class="checkPw">
 	<form method="post">	
 		<p>이름</p>
 		<p>
@@ -17,7 +25,7 @@
 		</p>
 		<p>아이디</p>
 		<p><input type="text" name="member_email"  placeholder="이메일을 적어주세요." required></p>
-		<input type="submit" value="비밀번호 찾기">
+		<input type="submit" value="비밀번호 찾기" class="btn1">
 	</form>
 	
 	
@@ -33,13 +41,12 @@
 </c:if>
 <c:if test="${not empty findPw}">
 	<script>
-	 	window.open("/team/member/findPwAlert?member_email=" + "${findPw.member_email}","pop","width=570,height=420, scrollbars=yes, resizable=yes")
+		location.href="/team/member/findPwAlert?member_email=" + "${findPw.member_email}"
+	 	//window.open("/team/member/findPwAlert?member_email=" + "${findPw.member_email}","pop","width=570,height=420, scrollbars=yes, resizable=yes")
 	</script>
 </c:if>
 
-		
+	</div>
+</section>		
 
-	
-
-</body>
-</html>
+<%@ include file="../footer.jsp" %>
