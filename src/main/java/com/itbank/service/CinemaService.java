@@ -51,6 +51,11 @@ public class CinemaService {
 		return dao.screenCodes2(screenName);
 	}
 
+	public List<Theater_infoDTO> selectAlltheater_info() {
+
+		return dao.selectAlltheater_info();
+	}
+
 
 
 }

@@ -32,6 +32,9 @@ public interface CinemaDAO {
 	@Select("select start_date, end_date, substr(start_time, 1,2)||':'|| substr(start_time, 3,4) as start_time, substr(end_time, 1,2)||':'|| substr(end_time, 3,4) as end_time, runtime from theater_info where screen_code=#{screen_code}")
 	List<Theater_infoDTO> screenCodes2(String screenName);
 
+	@Select("select * from theater_info")
+	List<Theater_infoDTO> selectAlltheater_info();
+
 
 
 
