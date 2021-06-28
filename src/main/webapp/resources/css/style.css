@@ -118,11 +118,7 @@
             background: rgba(0, 0, 0, 0.7);
             z-index: 5;
         }
-        
-
-        
-        
-        
+          
         
     /* slider */
     #slider img {
@@ -136,6 +132,21 @@
     #slider .slider-main ul.slick-dots li {display:inline-block; width:50px; height:4px; background:#fff; margin:0 3px;}
     #slider .slider-main ul.slick-dots li.slick-active {background:#f00;}
     #slider .slider-main ul.slick-dots button {display:none;}
+
+/* vedio */
+#vedioWrap {position: absolute; display: none; width : 800px; height : 500px; z-index: 10; left: 50%;
+            top: 20px;}
+.bg {position: absolute; display: none; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 5;}
+.layer_contents {
+            position: absolute;       
+            width : 700px;
+            height : 400px;
+            border : 10px solid #fff;
+        }
+        video {
+            display: none;
+        }
+        #close{position: absolute;left: 50%; color: #fff;  z-index: 12;}
         
     /* tab */
     #tab {
