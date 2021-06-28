@@ -10,13 +10,20 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.itbank.review.ReviewDAO;
+import com.itbank.review.ReviewDTO;
 
 @Service
 public class ReviewService {
 
+	@Autowired private ReviewDAO dao;
 	
 	  private final String AUTH_KEY = "0c5277606b20ef880a6c3aec340bb83b";
 	  private final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyyMMdd");
@@ -126,6 +133,14 @@ public class ReviewService {
 	 
 	        return sb.toString();
 	    }
+//////////////////////////////////DB 관련 함수////////////////////////////////
+	public int insert(ReviewDTO dto) {
+		return dao.insert(dto);
+	}
+
+	public List<ReviewDTO> selectAll(int moviecode) {
+		return dao.selectAll(moviecode);
+	}
 	 
 
 }

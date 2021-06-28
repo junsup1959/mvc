@@ -105,7 +105,7 @@
 	document.querySelector('.btn').onclick=function(event){
 		const search = document.querySelector('input[name=search]').value
 		if(search == '' || search == null){return}
-		location.href='${cpath}/movie/review/result?query='+encodeURI(search)
+		location.href='${cpath}/movie/review/result/?query='+encodeURI(search)
 	}
 	
 </script>

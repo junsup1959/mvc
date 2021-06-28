@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itbank.review.MovieJson;
+import com.itbank.review.ReviewDTO;
 import com.itbank.service.ReviewService;
 
 @Controller
@@ -50,6 +51,7 @@ public class ReivewController {
 		mav.addObject("list",list);
 		return mav;
 	}
+	
 	@GetMapping("/board")
 	public ModelAndView reviewBoard(@RequestParam int moviecode,String title) throws IOException {
 		//리뷰 서비스에 select(moviecode,title)로 리뷰 보드 LIST 불러오고 model에 추가.
@@ -60,18 +62,20 @@ public class ReivewController {
 		Iterator<JsonNode> it = response.get("items").iterator();
 		while(it.hasNext()) {
 			MovieJson movie=new MovieJson(it.next());
-			if(movie.getMoviecode()==String.valueOf(moviecode))
-				System.out.println(it.next().toString());
+			if(Integer.parseInt(movie.getMoviecode())==moviecode)
 				mav.addObject("movie", movie);
 		}
+		List<ReviewDTO>list = rs.selectAll(moviecode);
+		mav.addObject("list", list);
 		return mav;
 	}
 	@PostMapping("/board")
-	public String insertReview(@RequestParam int moviecode,String title) throws UnsupportedEncodingException {
+	public String insertReview(ReviewDTO dto,@RequestParam int moviecode,String title) throws UnsupportedEncodingException {
 		String etitle= URLEncoder.encode(title, "UTF-8");//파라미터 리뷰 DTO 추가
 		//리뷰 서비스에-> 리뷰 보드 insert로 만들기
 		//리뷰 수정->ajax로 처리? or java 처리? 둘중 택일.
 		//리뷰 삭제는 redirect로 충분 (컨트롤러 주소 추가)
+		int row = rs.insert(dto);
 		
 		return "redirect:/movie/review/board?moviecode="+moviecode+"&title="+etitle;
 	}
