@@ -11,7 +11,7 @@ public interface Admin_memberDAO {
 	@Insert("insert into admin_member values("
 			+ "to_char(sysdate,'yyyy') || to_char(admin_seq.nextval,'FM000')"
 			+ ",#{admin_name}"
-			+ ",#{admin_password}"
+			+ ",1234"
 			+ ",#{admin_phone}"
 			+ ",#{admin_addr}"
 			+ ",#{admin_store}"
@@ -39,6 +39,11 @@ public interface Admin_memberDAO {
 
 	@Select("select count(*) from admin_member")
 	int adminCount();
+
+	@Update("update admin_member "
+			+ "set admin_password = #{admin_password} "
+			+ "where admin_num = #{admin_num}")
+	int changePw(Admin_memberDTO dto);
 
 	
 }

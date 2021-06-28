@@ -28,23 +28,11 @@
 			<div><span>연락처</span> <p>${ad_login.admin_phone }</p></div>
 			<div><span>주소</span> <p>${ad_login.admin_addr }</p></div>		
 		</div>
-			<div class="btn" onclick="changePw(${ad_login.admin_password})">비밀번호 수정</div>
+			<div class="btn" onclick="location.href='${cpath}/admin/adminMypage/changePw/${ad_login.admin_num }'">비밀번호 수정</div>
+		
 </section>
-<script>
-	function changePw(password){
-		const pw1 = prompt("변경할 비밀번호를 입력해주세요");
-		const pw2 = prompt("다시한번 변경할 비밀번호를 입력해주세요");
-		if(pw1 == pw2){
-			
-//			const url = '${cpath}/admin/admin_member/?changPw=' + pw1
-//			const opt = { method:'POST' }
-			
-		}else{
-			alert('입력값이 다릅니다')
-		}
-	}
-</script>
 
+	
 
 
 <%@ include file="../footer.jsp" %>

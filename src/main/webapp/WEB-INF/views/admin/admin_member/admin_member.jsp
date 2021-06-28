@@ -189,7 +189,7 @@ var choice =  document.querySelector('.con'+t)
                 <div class="insertForm">
 	                <form id="insertForm">
 						<input type="text" name="admin_name" placeholder="이름"><br>
-						<input type="password" name="admin_password" placeholder="비밀번호"><br>
+<!-- 						<input type="password" name="admin_password" placeholder="비밀번호"><br> -->
 						<input type="tel" name="admin_phone" placeholder="폰번호"><br>
 						<input type="text" name="admin_addr" placeholder="주소"><br>
 						근무지<select name="admin_store">

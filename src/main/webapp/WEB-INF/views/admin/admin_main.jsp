@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
+<script>
+
+	var pw = ${ad_login.admin_password}
+	if(pw == '1234'){
+		alert('비밀번호를 변경해주세요')
+		location.href="${cpath }/admin/adminMypage"
+	}
+
+</script>
+
     <section id="visual">
         <h2>Movie reView Container</h2>
         <p>영화관 <br>사내 홈페이지</p>

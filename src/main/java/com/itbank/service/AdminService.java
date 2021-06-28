@@ -45,6 +45,10 @@ public class AdminService {
 		return dao.adminCount();
 	}
 
+	public int changePw(Admin_memberDTO dto) {
+		return dao.changePw(dto);
+	}
+
 	
 	
 }

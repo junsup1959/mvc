@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="${cpath }/resources/css/admin.css">
 <script src="http://code.jquery.com/jquery-1.2.4.js"></script>
 </head>
-<script>
 
-</script>
 <body>
     <header class="cf">
         <h1><a href="${cpath }/admin">MVC</a></h1>
@@ -30,7 +28,9 @@
 
     <nav class="adminMenu">
         <ul class="cf">
+        	<c:if test="${ad_login.admin_dept < 3 }">
             <li><a href="${cpath }/admin/admin_member?page=1">인사관리</a></li>
+            </c:if>
             <li><a href="${cpath }/admin/cinema/cinema">영화관관리</a></li>
             <li><a href="#">리뷰관리</a></li>
             <li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1">고객관리</a></li>

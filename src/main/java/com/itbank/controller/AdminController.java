@@ -136,6 +136,24 @@ public class AdminController {
 		return row+"";
 	}
 
+	@GetMapping("/adminMypage/changePw/{admin_num}")
+	public String changePw() {
+		
+		return "admin/admin_member/changePw";
+	}
+	
+	@PostMapping("/adminMypage/changePw/{admin_num}")
+	public String changePw(Admin_memberDTO dto, HttpSession session) {
+		System.out.println(dto.getAdmin_num() + " : " + dto.getAdmin_password());
+		int row = as.changePw(dto);
+		if(row == 1) {
+			session.invalidate();
+			return "redirect:/admin";
+		}else {
+			return "redirect:/admin/admin_member/changePw/";
+		}
+		
+	}
 
 	
 	//////////////////////////////////////////////////////////////
