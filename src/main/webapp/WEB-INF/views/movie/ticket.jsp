@@ -75,7 +75,7 @@
 		const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
    		const movieCd = encodeURI(movieCode);
    		
-   		const url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
+   		const url = "http	//www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
    		const opt ={
    				method : 'GET'
    		}
