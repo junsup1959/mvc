@@ -28,7 +28,7 @@
 	
 	
 	<insert id="insertTheater_info" parameterType="theaterInfo">
-		insert into theater_info values(#{screen_code}, #{movie_code}, #{movie_title}, #{start_date}, #{end_date}, #{start_time}, #{end_time}, #{runtime}, #{movie_type})
+		insert into theater_info values(#{screen_code}, #{movie_code}, #{movie_title}, #{start_date}, #{end_date},  to_char(#{start_time},'FM0000'),  to_char(#{end_time},'FM0000'), #{runtime}, #{movie_type})
 	
 	</insert>
 	

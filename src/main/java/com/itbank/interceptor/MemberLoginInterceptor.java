@@ -15,14 +15,14 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("login") == null) {
-			if(request.getRequestURI().equals("/team/member/login")) {
+			if(request.getRequestURI().equals(request.getContextPath() + "/member/login")) {
 				return true;
 			}else {
 				response.sendRedirect(request.getContextPath() + "/member/login");
 				return false;
 			}
 		}
-		if(session.getAttribute("login") != null && request.getRequestURI().equals("/team/member/login")) {
+		if(session.getAttribute("login") != null && request.getRequestURI().equals(request.getContextPath() + "/member/login")) {
 			response.sendRedirect(request.getContextPath() + "/");
 			return false;	
 		}

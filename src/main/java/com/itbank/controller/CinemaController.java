@@ -121,26 +121,7 @@ public class CinemaController {
 	@GetMapping(value = "/getScreenCodes/{screenName}", produces = "application/json; charset=utf-8")
 	public List<Theater_infoDTO> screenList(@PathVariable String screenName) {
 		System.out.println("screenName : "+screenName);
-		List<Theater_infoDTO> screenCodes = cs.screenCodes(screenName);
-//		List<String> screenList = new ArrayList<String>();
-	
-//		DecimalFormat Commas = new DecimalFormat("##,##"); 
-//		String returnData2 = (String)Commas.format(returnData1);
-
-//		for(int i = 0; i < screenCodes.size(); i++) {
-//			
-//			String start_time = new SimpleDateFormat("HH:mm")
-//                    .format(new Date(Integer.parseInt(screenCodes.get(i).getStart_time())));
-//			
-//			System.out.println(start_time);
-			
-//			String start_time = (String)Commas.format(Integer.parseInt(screenCodes.get(i).getStart_time()));
-//			String end_time = (String)Commas.format(Integer.parseInt(screenCodes.get(i).getEnd_time()));
-//			System.out.println(start_time);
-//			System.out.println(end_time);
-//			screenCodes.get(i).setStart_time(start_time);
-//			screenCodes.get(i).setEnd_time(end_time);
-//		}
+		List<Theater_infoDTO> screenCodes = cs.screenCodes2(screenName);
 		return screenCodes;
 	}
 	

@@ -225,8 +225,11 @@ document.forms.Theater_info.onsubmit = function(event){
 	function screenList(obj){
 		const screenName = obj.value
 		console.log("screenName : "+screenName)
+		const movie_Tlist = document.querySelector('.movie_Tlist')
 		
-		
+		if(document.querySelector('.movie_list') != null){
+			movie_Tlist.removeChilde(movie_list)		
+		}
 		
 		const url = '${cpath}/admin/cinema/getScreenCodes/' + screenName
 		const opt = {
@@ -236,16 +239,16 @@ document.forms.Theater_info.onsubmit = function(event){
     		.then(resp => resp.json())
     		.then(json => {
     			
-				const movie_Tlist = document.querySelector('.movie_Tlist')
     	        
      			console.log(json)
     			console.log(Object.keys(json).length)
     			
     			for(let i=0; i < json.length; i++){
    					const div = document.createElement('div')
-    				const ob = json[i];
+					div.className = "movie_list"
+   					const ob = json[i];
     				for(let key in ob) {
-    					if(key != ""){
+    					if(key != null){
 	    					const value = ob[key]
 	    					const span = document.createElement('span')
 	    					span.className = key
@@ -256,33 +259,9 @@ document.forms.Theater_info.onsubmit = function(event){
     				}
     			}
     			
-    			
-//     			for(let i=0; i < Object.keys(json).length; i++){
-//     				console.log(json[i].start_date)
-//     				console.log(json[i].end_date)
-//     				console.log(json[i].start_time)
-//  					console.log(json[i].end_time)
-//     			}
-				
     		})
 		}
 
-//     				let list = {};
-//     				let list = json[i];
-//     				list.start_date = json[i].start_date
-//     				list.end_date = json[i].end_date
-//     				list.start_time= json[i].start_time
-//     				list.end_time = json[i].end_time
-// 	<select id="screen_code" name="screen_code" onchange="javascript:screenList(this)">
-// 	<option>상영관을 선택해 주세요.</option>
-// </select>   
-//     				span.innerText =json[i].start_date
-    				
-//     				document.getElementById('start_date').textContent = json[i].start_date
-//     				document.getElementById('end_date').textContent = json[i].end_date
-//     				document.getElementById('start_time').textContent = json[i].start_time
-//     				document.getElementById('end_time').textContent = json[i].end_time
-    				
 
 </script>
     

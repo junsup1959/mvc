@@ -47,6 +47,10 @@ public class CinemaService {
 		return dao.screenCodes(screenName);
 	}
 
+	public List<Theater_infoDTO> screenCodes2(String screenName) {
+		return dao.screenCodes2(screenName);
+	}
+
 
 
 }
