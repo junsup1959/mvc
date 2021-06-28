@@ -47,6 +47,9 @@
 <script>
     var index
     $('.slider-main .slider-item').click(function(){
+    	$('#vedioWrap').css({'display' : 'none'})
+        $('#vedioWrap .layer_contents video').eq(index).css({'display' : 'none'})
+        $('.bg').css({'display' : 'none'})
         index = $(this).index()-1
         console.log(index)
         $('#vedioWrap').css({'display' : 'block'})
