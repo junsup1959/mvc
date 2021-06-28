@@ -9,18 +9,27 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
  
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.cinema.Theater_infoDTO;
+import com.itbank.service.CinemaService;
  
 @Controller
 public class MovieController {
  
+	ObjectMapper mapper = new ObjectMapper();
+	@Autowired private CinemaService cs;
     // 상수 설정
     //   - 요청(Request) 요청 변수
     private final String AUTH_KEY = "0c5277606b20ef880a6c3aec340bb83b";
@@ -92,11 +101,19 @@ public class MovieController {
             if(requestURL.equals("ticket")){
         		mav.setViewName("movie/ticket");
             	}
+            
+            List<Theater_infoDTO>list = cs.selectAlltheater_info();
+            String json = mapper.writeValueAsString(list);
+            mav.addObject("list", list);
+            mav.addObject("json", json);
             mav.addObject("dailyMovie", response);
             return mav;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        
+        
         mav.setViewName("home");
         return mav;
         

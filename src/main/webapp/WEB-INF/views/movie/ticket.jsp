@@ -61,6 +61,10 @@
     
     
 	<script>
+	const Json = JSON.parse('${json}'); //controller에서 theater_info를 json형태로 반환함.
+	//이름 알아서 지정하세요.. 임의지정중
+	console.log(Json);
+	
 	const key = "0c5277606b20ef880a6c3aec340bb83b"
 
 	const client_id = "p3EkwlpyD99frDpNN5th";
@@ -75,7 +79,7 @@
 		const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
    		const movieCd = encodeURI(movieCode);
    		
-   		const url = "http	//www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
+   		const url = "http//www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
    		const opt ={
    				method : 'GET'
    		}
