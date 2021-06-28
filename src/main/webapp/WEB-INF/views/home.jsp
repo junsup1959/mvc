@@ -5,25 +5,25 @@
 
     <section id="slider">
         <div class="slider-main">
-            <div class="slider-item01">
+            <div class="slider-item">
+                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Black/Black_1920774.jpg" alt=""></a>
+            </div>
+            <div class="slider-item">
+                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Jam/Jam_1920774.jpg" alt=""></a>
+            </div>
+            <div class="slider-item">
+                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Room/Room_1920774.jpg" alt=""></a>
+            </div>
+            <div class="slider-item">
                 <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Ella/Ella_1920774.jpg" alt=""></a>
             </div>
-            <div class="slider-item02">
-                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Truck/0604/Truck_1920774.jpg" alt=""></a>
+            <div class="slider-item">
+                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Dark/0622/Dark_1920774.jpg" alt=""></a>
             </div>
-            <div class="slider-item03">
-                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Killer/0603/Killer_1920774.jpg" alt=""></a>
-            </div>
-            <div class="slider-item04">
-                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/InTheHeights/0528/InTheHeights_1920774.jpg" alt=""></a>
-            </div>
-            <div class="slider-item05">
-                <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Conjuring/0602/Conjuring_1920774.jpg" alt=""></a>
-            </div>
-            <div class="slider-item06">
+            <div class="slider-item">
                 <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Luca/0602/Luca_1920774.jpg" alt=""></a>
             </div>
-            <div class="slider-item07">
+            <div class="slider-item">
                 <a href=""><img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Place/0602/Place_1920774.jpg" alt=""></a>
             </div>
         </div>

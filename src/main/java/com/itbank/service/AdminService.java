@@ -33,6 +33,11 @@ public class AdminService {
 
 	public int update(Admin_memberDTO dto) {
 		System.out.println("deleted : " + dto.getDeleted());
+		if(dto.getAdmin_lday().equals("") ) {
+			dto.setDeleted("n");
+		}else {
+			dto.setDeleted("y");
+		}
 		return dao.adminMemberUpdate(dto);
 	}
 

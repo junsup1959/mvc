@@ -48,9 +48,10 @@
     #contents>div>div h3 {line-height:30px; border-bottom:2px solid teal; margin-bottom:10px; }
     #contents>div>div h3>small {float:right; font-size:12px; line-height:30px;}
 
-    #contents ul>li {border-bottom:1px dotted #ddd;}
-    #contents ul>li>a {display:block; line-height:30px; }
-    #contents ul>li>a>small {float:right; line-height:30px; font-size:14px;}
+    #contents ul>li {border-bottom:1px dotted #ddd; }
+    #contents ul>li>a {display:block; line-height:30px; font-size : 14px;}
+    #contents ul>li>a>span{float : right; font-size : 14px;}
+    #contents ul>li>a>small {float:right; line-height:30px; }
 
     #contents>div>div h2 {border-bottom:2px solid teal; margin-bottom:25px; text-align:right;}
     #contents>div>div h2>a {font-size:30px; font-weight:700; letter-spacing:-0.025em; line-height: 80px;}

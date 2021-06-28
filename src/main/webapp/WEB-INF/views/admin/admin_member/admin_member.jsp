@@ -40,8 +40,8 @@ function tab(t, admin_num){
 					switch(key){
 					case 'admin_password':break;
 					case 'deleted' : break;
-					case 'admin_jday' : input.value = json[key];
-					case 'admin_lday' : span.innerText = key;
+					case 'admin_jday' : 
+					case 'admin_lday' : span.innerText = key; input.value = json[key];
 										input.name = key;
 										input.type = 'date'; 
 										updateForm.appendChild(span);
