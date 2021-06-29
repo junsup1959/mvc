@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../header.jsp" %>
 
+
 <style>
 .c_cont{
 	display: flex;
