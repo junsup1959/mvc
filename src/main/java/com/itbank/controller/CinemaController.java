@@ -63,13 +63,13 @@ public class CinemaController {
 		return screenList;
 	}
 	
-//	@ResponseBody
-//	@DeleteMapping(value = "/{screen_code}", produces = "application/json; charset=utf-8")
-//	public int deleteScreen(@PathVariable String screen_code) {
-//		int row = cs.deleteScreen(screen_code);
-//		
-//		return row;
-//	}
+	@ResponseBody
+	@DeleteMapping(value = "/{screen_code}", produces = "application/json; charset=utf-8")
+	public int deleteScreen(@PathVariable String screen_code) {
+		int row = cs.deleteScreen(screen_code);
+		
+		return row;
+	}
 	
 	@ResponseBody
 	@PostMapping("/insertTheaterInfo")
