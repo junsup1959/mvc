@@ -17,16 +17,18 @@
 	</div>
 	<div>
 		<div>
+			<span>글번호?</span><!-- 필요할까? 말까? 고민 -->
 			<span>닉네임</span>
 			<span>내용</span>
-			<span>평점</span>
 			<span>작성일</span>
 		</div>
 		<c:forEach var="review" items="${list }">
-			<div>
+			<div class="review">
+				<span>${review.idx }</span><!-- 외래키 잡고 댓글 -->
 				<span>${review.writer }</span>
 				<span>${review.content }</span>
 				<span>${review.wdate }</span>
+				<button onclick="modify(${review.idx})">수정</button>
 			</div>
 		</c:forEach>
 	</div>
@@ -77,6 +79,23 @@ rSelect.addEventListener("click",function(){
 	}
 })
 //////////////////////////좋아요 카운팅 자바스크립트/////////////////////////////
+
+//////////// 수정 자바 스크립트/////////////////////////////////////////////////////
+
+leg Rflag=false;
+const rvnode = document.querySelectorAll('.review')
+
+function modify(data){
+	if(Rflag){gomodify() return}
+	for(let i =0;i<rvnode.length;i++){
+		if(rvnode[i].children[0].innerText==data){
+		let val = rvnode[i].children[2].innerText;
+			rvnode[i].children[2].innerHTML="<textarea>"+val+"</textarea>";
+		}	
+	}
+	
+}
+
 </script>
 </body>
 </html>

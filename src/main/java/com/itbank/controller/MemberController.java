@@ -1,6 +1,12 @@
 package com.itbank.controller;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +15,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.member.MemberDTO;
+import com.itbank.revervation.ReservDTO;
+import com.itbank.service.KaKaoPayService;
 import com.itbank.service.MemberService;
+import com.itbank.service.ReservationSrvice;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
 	@Autowired MemberService ms;
-	
+	@Autowired ReservationSrvice rs;
+	@Autowired KaKaoPayService ks;
 	
 	@GetMapping("/modifyPw")
 	public void modifyPw() {}
@@ -200,9 +211,43 @@ public class MemberController {
 		mav.setViewName("member/join");
 		return mav;	
 	}
-	
+	/////////////////////////////////////////  거래목록 DB/////////////////////// 확인
 
-
+	@GetMapping("reserve_List")
+	public ModelAndView reserve_List(HttpSession session) {
+		ModelAndView mav= new ModelAndView("/member/reserve_List");
+		if(session.getAttribute("login")!=null) {
+			MemberDTO login = (MemberDTO) session.getAttribute("login");
+			
+			List<ReservDTO>li = rs.selectList(login.getMember_email());
+			Iterator<ReservDTO>it = li.iterator();
+			List<ReservDTO>list = new ArrayList<ReservDTO>();
+			ReservDTO dto = new ReservDTO();
+			while(it.hasNext()) {
+				dto = it.next();
+				dto.countAYC(dto.getMember_age());
+				list.add(dto);
+			}
+			mav.addObject("list", list);
+			return mav;
+		}
+		mav.addObject("msg","로그인 정보가 없습니다.");
+		mav.setViewName("msg");
+		return mav;
+	}
 	
-	
+	@GetMapping("reserve_List/cancle")
+	public ModelAndView cancle(@RequestParam HashMap<String, Object>param,HttpSession session) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(param);
+		MemberDTO login = (MemberDTO) session.getAttribute("login");
+//		dto.getWdate(); --> 날짜 비교. 상영 시간 xxx 전부터 취소못하게 막음.
+		int row = rs.delete(param,login.getMember_email());
+		if(row==1) {
+			System.out.println(ks.Cancle(param));
+			//print와 결제취소가 동시에되는 메소드임  확인겸 결제취소. 삭제하려면 ks.Cancle(param); 만..
+		}
+		mav.setViewName("redirect:/member/reserve_List");
+		return mav;
+	}
 }

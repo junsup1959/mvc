@@ -1,8 +1,16 @@
 package com.itbank.revervation;
 
 public class ReservDTO {
-	private String imp_uid,branchcode,start_date,movie_code;
-	private String member_email,member_name,merchant_uid,pay,member_age,reserv_num;
+	private String imp_uid,branchcode,start_date,movie_code,wdate;
+	private String member_email,member_name,merchant_uid,pay,member_age,reserv_num,deleted;
+	private int adult,youth,ct;
+	
+	public void countAYC(String member_age){
+		String[] List = member_age.split(",");
+		adult = Integer.valueOf(List[0]);
+		youth = Integer.valueOf(List[1]);
+		ct = Integer.valueOf(List[2]);
+	}
 	
 	public String getMember_email() {
 		return member_email;
@@ -63,6 +71,40 @@ public class ReservDTO {
 	}
 	public void setReserv_num(String reserv_num) {
 		this.reserv_num = reserv_num;
+	}
+	public int getAdult() {
+		return adult;
+	}
+	public void setAdult(int adult) {
+		this.adult = adult;
+	}
+	public int getYouth() {
+		return youth;
+	}
+	public void setYouth(int youth) {
+		this.youth = youth;
+	}
+	public int getCt() {
+		return ct;
+	}
+	public void setCt(int ct) {
+		this.ct = ct;
+	}
+
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
+	}
+
+	public String getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(String deleted) {
+		this.deleted = deleted;
 	}
 	
 }

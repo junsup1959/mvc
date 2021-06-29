@@ -89,7 +89,7 @@ $(document).ready(function(){
             
             <div class="top-right-nav">
                 <ul class="clearfix">
-                    <li><a href="${cpath }/member/membership">멤버십</a></li>
+                    <li><a href="${cpath }/member/reserve_List">예약확인</a></li>
 					<c:if test="${empty login }">                    
 	                    <li><a href="${cpath }/member/login">로그인</a></li>
 	                    <li><a href="${cpath }/member/join">회원가입</a></li>
