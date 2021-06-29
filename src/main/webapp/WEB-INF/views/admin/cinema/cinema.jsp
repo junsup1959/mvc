@@ -86,10 +86,11 @@ border-top: outset;
         .modal #createScreen p:nth-child(5) {width : 530px;}
         .modal #createScreen p:nth-child(5) input {display: inline-block; width:160px; }
         input.btn {margin: 0;}
-        .bg {position : absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 5}
+        .modalBg {position : absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 5}
     </style>
     
 <!-- ------------------- -->
+<section id="bodyWrap">
 <div class="btn" onclick="location.href='${cpath}/admin/cinema/insertTheaterInfo'">상영 시간 추가</div>
 <div class="c_cont">
 
@@ -121,14 +122,13 @@ border-top: outset;
 	</div>
 	</c:forEach>
 
-
+</div>
 
 
 <!-- -----------영화관 생성 button & 모달창-------------------- -->
 <div class="btn" onclick="modalUp()">영화관 생성</div>
  
-  <div class="bg remove"></div>
-   <div class="modal remove">
+   <div class="modal remove" id="modal1">
    <h2>영화관 생성</h2>
    <hr style="border-color: teal">
    <div class="modalCon">
@@ -195,8 +195,77 @@ border-top: outset;
     </div>
    </div> 
 
-<!-- ------------------------------- -->
+<!-- --------------- 영화관 수정 모달창 ---------------- -->
+ 
+  <div class="modalBg remove"></div>
+   <div class="modal remove" id="modal2">
+   <h2>영화관 수정</h2>
+   <hr style="border-color: teal">
+   <div class="modalCon">
+    <form id="createScreen" method="post">
+        <p>	    
+            <select name="branch">
+	        	<optgroup label="서울">
+	        		<option value ="강남">강남점</option>
+	        		<option value ="홍대">홍대점</option>
+	        		<option value ="명동">명동점</option>
+	        		<option value ="구로">구로점</option>
+	        	</optgroup>
+	        	<optgroup label="부산">
+	        		<option value ="서면">서면점</option>
+	        		<option value ="해운대">해운대점</option>
+	        		<option value ="남포">남포점</option>
+	        		<option value ="동래">동래점</option>
+	        	</optgroup>
+	        	<optgroup label="그외지역">
+	        		<option value ="김해">김해점</option>
+	        		<option value ="대구">대구점</option>
+	        		<option value ="광주">광주점</option>
+	        		<option value ="전주">전주점</option>
+	        		<option value ="천안/아산">천안/아산</option>
+	        		<option value ="강릉">강릉점</option>
+	        	</optgroup>
+	        </select>
+        </p>
+        <p>
+           <select name="screen_code">
+            <option>선택하세요</option>
+            <option value="1">1관</option>
+            <option value="2">2관</option>
+            <option value="3">3관</option>
+            <option value="4">4관</option>
+            <option value="5">5관</option>
+            <option value="6">6관</option>
+            <option value="7">7관</option>
+            </select>
+        </p>
+        
+        <p>
+            <select name="seat_amount">
+<!--
+               //row 12 :  120 132 144  156 168 180 192
+                //row 14 :  224 238
+-->
+                <option value="80">80명</option>
+                <option value="120">120명</option>
+                <option value="156">156명</option>
+                <option value="180">180명</option>
+                <option value="224">224명</option>
+                <option value="252">252명</option>
+            </select>
+        </p>
+        <p class="clearfix">
+            <label for="usable">사용</label><input type="radio" name="usable" id="usable" value="y" onchange="deldate()" checked>
+            &nbsp;&nbsp;
+            <label for="nusable">사용안함</label><input type="radio" name="usable"  id="nusable" value="n" onchange="createdate()">
+        </p>
+        <p id="ndate" class="clearfix"></p>
+        <p><input type="submit" class="btn" value="상영관생성"></p>
+    </form>
+    </div>
+   </div> 
 
+</section>
 
 <script>
 
@@ -255,18 +324,19 @@ border-top: outset;
 		})
 	}
 
-        const modal = document.querySelector('.modal')
-        const bg = document.querySelector('.bg')
+	// 영화관 생성 모달창(modal1)
+        const modal1 = document.querySelector('#modal1')
+        var modalBg = document.querySelector('.modalBg')
         function modalUp(){                
-            modal.classList.remove('remove')
-            bg.classList.remove('remove')
+        	modal1.classList.remove('remove')
+            modalBg.classList.remove('remove')
         }
         
         function close(){
-            modal.classList.add('remove')
-            bg.classList.add('remove')
+        	modal1.classList.add('remove')
+            modalBg.classList.add('remove')
         }
-        bg.addEventListener('click', close)
+        modalBg.addEventListener('click', close)
         
        function createdate(){
            let check = document.getElementById('nusable')
@@ -289,6 +359,23 @@ border-top: outset;
   
 </script>
 
+<script>
+// 영화관 수정 모달창(modal2)
+		const modal2 = document.querySelector('#modal2')
+        function modifyScreen(screen_code){  
+        	
+			modal2.classList.remove('remove')
+            modalBg.classList.remove('remove')
+            
+        }
+        
+		function close(){
+        	modal2.classList.add('remove')
+            modalBg.classList.add('remove')
+        }
+        modalBg.addEventListener('click', close)
+
+</script>
 
 
 <%@include file="../footer.jsp" %>
