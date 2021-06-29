@@ -51,12 +51,6 @@
 					<span class="runtime" id="runtime">[러닝 타임]</span>
 			</div>
         	<div class="movie_Tlist">
-        	
-<!-- 	        	<span id="start_date"></span> -->
-<!-- 	        	<span id="end_date"></span> -->
-<!-- 	        	<span id="start_time"></span> -->
-<!-- 	        	<span id="end_time"></span> -->
-        	
         	</div>
         </div>
         
@@ -177,12 +171,16 @@ document.forms.Theater_info.onsubmit = function(event){
 		   		.then(json => {
 		   			const movie_name = json.movieInfoResult.movieInfo.movieNm
 		   			const movie_runtime = json.movieInfoResult.movieInfo.showTm
-		   			
+// 					const movieAudit = json.movieInfoResult.movieInfo.audit[0].watchGradeNm
+		   			console.log(json)
+		   			console.log(movieAudit)
+					
 					const span1 = document.createElement('span')
 					const span2 = document.createElement('span')
 					const hidden1 = document.createElement('input')
 					const hidden2 = document.createElement('input')
 					const hidden3 = document.createElement('input')
+					const hidden4 = document.createElement('input')
 					const b1 = document.createElement('b')
 					const b2 = document.createElement('b')
 					span1.appendChild(b1)
@@ -199,6 +197,11 @@ document.forms.Theater_info.onsubmit = function(event){
 					hidden3.type = 'hidden'
 					hidden3.name = 'runtime'
 					hidden3.value = movie_runtime
+
+// 					hidden4.type = 'hidden'
+// 					hidden4.name = 'movie_Audit'
+// 					hidden4.value = movieAudit
+// 					console.log("audits" + movieAudit)
 					
 					
 					b1.innerHTML = "movie_title : " + movieName +"<br>"
@@ -224,7 +227,7 @@ document.forms.Theater_info.onsubmit = function(event){
 
 	function screenList(obj){
 		const screenName = obj.value
-		console.log("screenName : "+screenName)
+// 		console.log("screenName : "+screenName)
 		const movie_Tlist = document.querySelector('.movie_Tlist')
 		
 		if(document.querySelector('.movie_list') != null){
@@ -240,15 +243,15 @@ document.forms.Theater_info.onsubmit = function(event){
     		.then(json => {
     			
     	        
-     			console.log(json)
-    			console.log(Object.keys(json).length)
+//      			console.log(json)
+//     			console.log(Object.keys(json).length)
     			
     			for(let i=0; i < json.length; i++){
    					const div = document.createElement('div')
 					div.className = "movie_list"
    					const ob = json[i];
     				for(let key in ob) {
-    					console.log(ob[key])
+//     					console.log(ob[key])
     					if(ob[key] != null){
 	    					const value = ob[key]
 	    					const span = document.createElement('span')

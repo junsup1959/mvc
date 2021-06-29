@@ -114,50 +114,16 @@ border-top: outset;
 				<span class="usable">사용불가</span>
 			</c:otherwise>
 		</c:choose>
-		<span class="Theater_update" onclick="modify('${theater.screen_code}')">수정</span>
+		<span class="Theater_update" onclick="modifyScreen('${theater.screen_code}')">수정</span>
 		<span class="Theater_del" onclick="deleteScreen('${theater.screen_code}')">삭제</span>
 		<span></span>
 	</div>
 	</c:forEach>
-	<div class="TheaterInsert">
-		<span><i onclick="insert()" class="xi-plus" style='cursor:pointer;'></i></span>
-	</div>
-	<div id="t_input" class="hidden">
-		<form id="t_inputform">
-			<p><input type="text" name="branch" placeholder="지점"></p>
-			<p><input type="number" name="capacity" placeholder="가용인원"></p>
-			<p><input type="submit" value="작성"></p>
-		</form>
-	</div>
-	<div id="t_update" class="hidden">
-		<form id="t_updateform">
-			<p><input type="text" name="branchcode" id="up_branchcode"></p>
-			<p><input type="number" name="capacity" id="up_capacity"></p>	
-			<p>
-				<select name="usable" id="up_usable">
-					<option value="y">사용가능</option>
-					<option value="n">불가능</option>
-				</select>
-			</p>
-			<p><input type="submit" value="수정"></p>
-		</form>
-	</div>
-</div>
-<div style="margin-left: 39%; margin-bottom: 100px">
-	<form id="T_search">
-		<select name="search"  style="width: 80px; margin-right: 20px">
-			<option value="branch">지점</option>
-			<option value="branchcode">코드</option>
-		</select>
-		<p><input type="text" name="" ></p>
-		<p><span onclick="Tsubmit()" style="padding-right:5px; padding-left:5px; font-size:20px; text-align:center; cursor: pointer; background-color: gray; color: white;">검색</span></p>
-	</form>
-</div>
 
 
 
 
-<!-- -----------영화관 생성 button-------------------- -->
+<!-- -----------영화관 생성 button & 모달창-------------------- -->
 <div class="btn" onclick="modalUp()">영화관 생성</div>
  
   <div class="bg remove"></div>
@@ -233,23 +199,29 @@ border-top: outset;
 
 <script>
 
-	function deleteScreen(screnn_code){
+	function deleteScreen(screen_code){
 	 	if(confirm('정말 삭제하시겠습니까?')){
-// 		const url ='${cpath}/admin/cinema/'+ ${theater.screen_code}
-// 		const opt={
-// 				method : 'DELETE'
-// 		}
-// 		fetch(url,opt)
-// 		.then(resp => resp.text())
-// 		.then(text =>{
-// 			if(+text==1){
-// 				alert('삭제 성공')
-// 				location.reload()
-// 			}else{
-// 				alert('삭제 실패')
-// 			}
-// 		})
+		const url ='${cpath}/admin/cinema/'+ screen_code
+		const opt={
+				method : 'DELETE'
+		}
+		fetch(url,opt)
+		.then(resp => resp.text())
+		.then(text =>{
+			console.log(text)
+			if(+text==1){
+				alert('삭제 성공')
+				location.reload()
+			}else{
+				alert('삭제 실패')
+			}
+		})
 	} 
+	}
+	
+	function modifyScreen(screen_code){
+		
+	}
 </script>
 
 
@@ -317,69 +289,5 @@ border-top: outset;
 </script>
 
 
-
-<script>
-const input = document.getElementById('t_input')
-const inputform = document.getElementById('t_inputform')
-const t_update = document.getElementById('t_update')
-const hidden = document.querySelectorAll('.hidden')
-for(let i = 0 ; i < hidden.length ;i++){
-	hidden[i].style.display = "none"
-}
-let iflag=false;
-let uflag=false;
-
-function insertchk(){
-	if(iflag){
-		hidden[0].style.display="none"
-		iflag=false;
-		return false;
-	}else{
-		hidden[0].style.display="block"
-		iflag=true;
-		return true;
-	}
-}
-function updatechk(data){
-	if(uflag & document.getElementById('up_branchcode').value == data){
-		hidden[1].style.display="none"
-		uflag = false;
-		return false;
-	}else{
-		hidden[1].style.display="block"
-		uflag = true;
-		return true;
-	}
-}
-
-// function insert(){
-// 	if(insertchk()){
-// 		inputform.focus()
-// 		inputform.onsubmit = function(event){
-// 			event.preventDefault()
-// 			const formData = new FormData(event.target)
-// 			const url='${cpath}/admin/cinema'
-// 			const opt={
-// 					method: 'POST',
-// 					body: formData
-// 			}
-// 			fetch(url,opt)
-// 			.then(resp => resp.text())
-// 			.then(text =>{
-// 				if(+text==1){
-// 					alert('추가 성공')
-// 					location.reload();
-// 					}else{
-// 						alert('추가 실패')
-// 						location.reload();
-// 					}
-// 			})
-// 		}
-// 	}
-// }
-
-
-
-</script>
 
 <%@include file="../footer.jsp" %>

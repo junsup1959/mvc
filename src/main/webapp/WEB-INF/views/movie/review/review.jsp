@@ -79,6 +79,7 @@ rSelect.addEventListener("click",function(){
 	}
 })
 //////////////////////////좋아요 카운팅 자바스크립트/////////////////////////////
+<<<<<<< HEAD
 
 //////////// 수정 자바 스크립트/////////////////////////////////////////////////////
 
@@ -96,6 +97,8 @@ function modify(data){
 	
 }
 
+=======
+>>>>>>> branch 'master' of https://github.com/Minb8730/MVCProject.git
 </script>
 </body>
 </html>
