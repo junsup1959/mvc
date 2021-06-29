@@ -1,11 +1,7 @@
 package com.itbank.controller;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +23,18 @@ import com.itbank.service.CinemaService;
 public class CinemaController {
 
 	@Autowired CinemaService cs;
+	
+	@ResponseBody
+	@PostMapping("/modify")
+	public String modifyScreen(CinemaDTO cinema) {
+		System.out.println(cinema.getSeat_amount());
+		System.out.println(cinema.getUsable());
+		System.out.println(cinema.getScreen_code());
+		int row = cs.modifyScreen(cinema);
+		
+		return row + "";
+	}
+	
 	
 	@ResponseBody
 	@PostMapping("/cinema")

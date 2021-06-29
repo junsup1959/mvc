@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface CinemaDAO {
 
@@ -35,6 +36,8 @@ public interface CinemaDAO {
 	@Select("select * from theater_info")
 	List<Theater_infoDTO> selectAlltheater_info();
 
+	@Update("update theater_info set seat_amount=#{seat_amount} and usable=#{usable} where screen_code=#{screen_code} ")
+	int modifyScreen(CinemaDTO cinema);
 
 
 

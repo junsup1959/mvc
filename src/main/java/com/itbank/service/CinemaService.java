@@ -56,6 +56,10 @@ public class CinemaService {
 		return dao.selectAlltheater_info();
 	}
 
+	public int modifyScreen(CinemaDTO cinema) {
+		return dao.modifyScreen(cinema);
+	}
+
 
 
 }

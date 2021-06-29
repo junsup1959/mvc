@@ -158,8 +158,8 @@ border-top: outset;
 	        </select>
         </p>
         <p>
-           <select name="screen_code">
-            <option>선택하세요</option>
+           <select name="screen_code" required>
+            <option value="">선택하세요</option>
             <option value="1">1관</option>
             <option value="2">2관</option>
             <option value="3">3관</option>
@@ -202,44 +202,11 @@ border-top: outset;
    <h2>영화관 수정</h2>
    <hr style="border-color: teal">
    <div class="modalCon">
-    <form id="createScreen" method="post">
-        <p>	    
-            <select name="branch">
-	        	<optgroup label="서울">
-	        		<option value ="강남">강남점</option>
-	        		<option value ="홍대">홍대점</option>
-	        		<option value ="명동">명동점</option>
-	        		<option value ="구로">구로점</option>
-	        	</optgroup>
-	        	<optgroup label="부산">
-	        		<option value ="서면">서면점</option>
-	        		<option value ="해운대">해운대점</option>
-	        		<option value ="남포">남포점</option>
-	        		<option value ="동래">동래점</option>
-	        	</optgroup>
-	        	<optgroup label="그외지역">
-	        		<option value ="김해">김해점</option>
-	        		<option value ="대구">대구점</option>
-	        		<option value ="광주">광주점</option>
-	        		<option value ="전주">전주점</option>
-	        		<option value ="천안/아산">천안/아산</option>
-	        		<option value ="강릉">강릉점</option>
-	        	</optgroup>
-	        </select>
-        </p>
-        <p>
-           <select name="screen_code">
-            <option>선택하세요</option>
-            <option value="1">1관</option>
-            <option value="2">2관</option>
-            <option value="3">3관</option>
-            <option value="4">4관</option>
-            <option value="5">5관</option>
-            <option value="6">6관</option>
-            <option value="7">7관</option>
-            </select>
-        </p>
-        
+    <form id="modifyScreen" method="post">
+    
+    	<div id="branch_code">
+    	</div>
+    
         <p>
             <select name="seat_amount">
 <!--
@@ -289,9 +256,6 @@ border-top: outset;
 	} 
 	}
 	
-	function modifyScreen(screen_code){
-		
-	}
 </script>
 
 
@@ -361,11 +325,52 @@ border-top: outset;
 
 <script>
 // 영화관 수정 모달창(modal2)
-		const modal2 = document.querySelector('#modal2')
-        function modifyScreen(screen_code){  
-        	
-			modal2.classList.remove('remove')
-            modalBg.classList.remove('remove')
+	const modal2 = document.querySelector('#modal2')
+    function modifyScreen(screen_code){  
+    	
+		const modifyScreen = document.forms.modifyScreen
+	
+		
+		branch_code = document.getElementById("branch_code")
+		const p = document.createElement('p')
+		p.innerText = ''
+		p.innerText = '상영관 코드 ' + '['+ screen_code + ']'
+		branch_code.appendChild(p)
+		
+		
+		
+		const hidden = document.createElement('input')
+		hidden.type = 'hidden'
+		hidden.name = 'screen_code'
+		hidden.value = screen_code
+		modifyScreen.appendChild(hidden)
+		
+		modal2.classList.remove('remove')
+           modalBg.classList.remove('remove')
+           
+       	modifyScreen.onsubmit =	function(event){
+			event.preventDefault()
+			const formData = new FormData(event.target)	
+			const url = '${cpath}/admin/cinema/modify'
+			const opt = {
+				method: 'POST',
+				body: formData,
+			}
+			fetch(url, opt)
+			.then(resp => resp.text())
+			.then(text => {
+				console.log(text)
+				if(+text == 1){
+					alert("수정을 완료되었습니다.")
+					location.href = '${cpath}/admin/cinema/cinema'
+					close();
+				}else{
+					alert("수정을 실패하였습니다.")
+					return false
+				}
+			})
+		}
+            
             
         }
         
