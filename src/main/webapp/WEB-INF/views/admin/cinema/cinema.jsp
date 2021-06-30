@@ -15,7 +15,7 @@
 	position: relative;
 }
 .listT{
-margin-top: 50px;
+margin-top: 10px;
 margin-left : auto;
 margin-right : auto;
 border-top: outset;
@@ -102,26 +102,26 @@ border-top: outset;
 		<span>수정</span>
 		<span>삭제</span>
 	</div>
-	
-	<c:forEach var="theater" items="${cinemaList }">
-	<div class="theaterList">
-		<span class="branch">${theater.branch }</span>
-		<span class="branchcode">${theater.screen_code}</span>
-		<span class="capacity">${theater.seat_amount }</span>
-		<c:choose>
-			<c:when test="${theater.usable eq 'y' }">
-				<span class="usable">사용가능</span>
-			</c:when>
-			<c:otherwise>
-				<span class="usable">사용불가</span>
-			</c:otherwise>
-		</c:choose>
-		<span class="Theater_update" onclick="modifyScreen('${theater.screen_code}')">수정</span>
-		<span class="Theater_del" onclick="deleteScreen('${theater.screen_code}')">삭제</span>
-		<span></span>
-	</div>
+	<div style="overflow-y: scroll; padding-left: 22px;">
+		<c:forEach var="theater" items="${cinemaList }">
+		<div class="theaterList">
+			<span class="branch">${theater.branch }</span>
+			<span class="branchcode">${theater.screen_code}</span>
+			<span class="capacity">${theater.seat_amount }</span>
+			<c:choose>
+				<c:when test="${theater.usable eq 'y' }">
+					<span class="usable">사용가능</span>
+				</c:when>
+				<c:otherwise>
+					<span class="usable">사용불가</span>
+				</c:otherwise>
+			</c:choose>
+			<span class="Theater_update" onclick="modifyScreen('${theater.screen_code}')">수정</span>
+			<span class="Theater_del" onclick="deleteScreen('${theater.screen_code}')">삭제</span>
+			<span></span>
+		</div>
 	</c:forEach>
-
+	</div>
 </div>
 
 

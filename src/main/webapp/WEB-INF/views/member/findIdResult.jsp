@@ -10,7 +10,7 @@
 				<i class="xi-lock xi-2x"></i>
 				고객님의 ID는 아래와 같습니다</p>		
 		</div>
-		<div  class="checkPw">	
+		<div  class="checkPw" style="padding : 20px 0 0 70px;">	
 			<h3 style="font-size: 30px;">${id }</h3>
 			<button onclick="location.href ='${cpath}/member/login'" class="btn3">로그인하기</button>
 			<button onclick="location.href='${cpath}/member/findPw'" class="btn3">비밀번호찾기</button>
