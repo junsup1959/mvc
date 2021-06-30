@@ -145,7 +145,7 @@ var choice =  document.querySelector('.con'+t)
         </div>
 
         <div class="rightWrap">
-            <div class="con1 on">				<!--  사원 리스트  -->
+            <div class="con1 on" >				<!--  사원 리스트  -->
                 <h2>사원목록</h2>
                 <c:if test="${empty list }">
                 	<h2>사원 목록이 없습니다.</h2>
