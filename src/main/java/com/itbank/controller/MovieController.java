@@ -18,10 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itbank.cinema.CinemaDTO;
 import com.itbank.cinema.Theater_infoDTO;
 import com.itbank.service.CinemaService;
  
@@ -44,7 +47,7 @@ public class MovieController {
     
     
     // API요청
-    @GetMapping(value = {"/movie/dailyMovie","/movie/ticket","/admin/cinema/insertTheaterInfo"})
+    @GetMapping(value = {"/movie/dailyMovie","/admin/cinema/insertTheaterInfo"})
     public ModelAndView dailyMovie() {
     	
     	String REQUEST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
@@ -198,7 +201,21 @@ public class MovieController {
     
     
     @GetMapping("/movie/ticket2")
+    public void ticket2() {}
+    
+    @GetMapping("/movie/ticket")
     public void ticket() {}
     
+    
+    @GetMapping(value = "/movie/movieList",produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String movieList() throws JsonProcessingException {
+    	ModelAndView mav = new ModelAndView();
+    	String json = null;
+    	List<Theater_infoDTO> movieList = cs.selectAllmovieList();
+    	json = mapper.writeValueAsString(movieList);
+    	
+    	return json;
+    }
     
 }

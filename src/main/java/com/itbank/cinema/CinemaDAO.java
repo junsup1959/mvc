@@ -30,7 +30,8 @@ public interface CinemaDAO {
 	@Select("select start_date, end_date, start_time, end_time, runtime from theater_info where screen_code=#{screen_code}")
 	List<Theater_infoDTO> screenCodes(String screenName);
 
-	@Select("select start_date, end_date, substr(start_time, 1,2)||':'|| substr(start_time, 3,4) as start_time, substr(end_time, 1,2)||':'|| substr(end_time, 3,4) as end_time, runtime from theater_info where screen_code=#{screen_code}")
+	@Select("select start_date, end_date, substr(start_time, 1,2)||':'|| substr(start_time, 3,4) as start_time, substr(end_time, 1,2)||':'|| substr(end_time, 3,4) as end_time, runtime, movie_title "
+			+ "from theater_info where screen_code=#{screen_code} order by movie_title desc, start_date asc, start_time asc")
 	List<Theater_infoDTO> screenCodes2(String screenName);
 
 	@Select("select * from theater_info")
@@ -38,6 +39,9 @@ public interface CinemaDAO {
 
 	@Update("update theater_info set seat_amount=#{seat_amount} and usable=#{usable} where screen_code=#{screen_code} ")
 	int modifyScreen(CinemaDTO cinema);
+
+	@Select("select distinct movie_title, movie_audit from theater_info")
+	List<Theater_infoDTO> selectAllmovieList();
 
 
 

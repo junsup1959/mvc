@@ -128,7 +128,6 @@ public class CinemaController {
 	@ResponseBody
 	@GetMapping(value = "/getScreenCodes/{screenName}", produces = "application/json; charset=utf-8")
 	public List<Theater_infoDTO> screenList(@PathVariable String screenName) {
-		System.out.println("screenName : "+screenName);
 		List<Theater_infoDTO> screenCodes = cs.screenCodes2(screenName);
 		return screenCodes;
 	}

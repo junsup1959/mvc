@@ -10,10 +10,11 @@ package com.itbank.cinema;
 //end_time
 //상영시간	runtime	number
 //2d 3d	movie_type	char(1)
+//관람등급	movie_audit	varchar2(25)
 
 
 public class Theater_infoDTO {
-	private String screen_code, movie_code, movie_title, start_date, end_date, movie_type, start_time, end_time;
+	private String screen_code, movie_code, movie_title, start_date, end_date, movie_type, start_time, end_time, movie_audit;
 	public String getStart_time() {
 		return start_time;
 	}
@@ -68,6 +69,12 @@ public class Theater_infoDTO {
 	}
 	public void setRuntime(int runtime) {
 		this.runtime = runtime;
+	}
+	public String getMovie_audit() {
+		return movie_audit;
+	}
+	public void setMovie_audit(String movie_audit) {
+		this.movie_audit = movie_audit;
 	}
 	
 	

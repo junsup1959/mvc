@@ -38,6 +38,9 @@
             
             <nav class="nav" id="choice2">
                 <h1 class="text">영화선택</h1>
+	            
+	            <ul id="theater_info_movie">
+	            </ul>
                
             </nav>
             
@@ -118,8 +121,63 @@
 		
 // 	}
 
+
 	</script>    
     
+<script>
+		const theater_info_movie = document.getElementById('theater_info_movie')
+		const url = "${cpath}/movie/movieList"; 
+   		const opt ={
+   				method : 'GET'
+   		}
+   		fetch(url, opt)
+   		.then(resp => resp.json())
+   		.then(json => {
+   			console.log(json)
+   			
+			for(let i=0; i < json.length; i++){
+				const li = document.createElement('li')
+				li.className = "movie_list"
+				const ob = json[i];
+				for(let key in ob) {
+					//console.log(ob[key])
+					if(ob[key] != null){
+    					const value = ob[key]
+						if(key != 'runtime'){
+	    					const span = document.createElement('span')
+	    					
+	    					
+	    					if(key == 'movie_audit'){			
+								switch(value){
+								case '전체관람가': span.innerHTML = 'All';
+									span.style.background = 'green';
+									break;
+								case '12세이상관람가': span.innerHTML  = '12세' ; 
+									span.style.background = 'blue';
+									break;
+								case '15세이상관람가': span.innerHTML  = '15세' ;
+									span.style.background = 'orange';
+									break;
+								case '청소년관람불가': span.innerHTML  = '청불' ;
+									span.style.background = 'red';
+									break;
+								default : break;
+								}
+	    					}else{
+	    						span.className = key
+	    						span.innerText = value
+	    					}
+	    					
+	    					li.appendChild(span)
+							theater_info_movie.appendChild(li)
+							
+	    					}
+						}
+					}
+				}
+			
+   		})
+    </script>
     
     <script>
     let cbranch='';
