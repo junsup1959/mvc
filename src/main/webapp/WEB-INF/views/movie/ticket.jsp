@@ -165,7 +165,7 @@
 								}
 	    					}else{
 	    						span.className = key
-	    						span.innerText = value
+	    						span.innerHTML = '<b>'+value+'</b>'
 	    					}
 	    					
 	    					li.appendChild(span)
