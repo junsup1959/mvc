@@ -25,6 +25,8 @@ public class KakaoPay {
 	public String Kakaopay(@RequestBody ReservDTO dto) throws IOException {
 		
 
+		System.out.println("seatnum"+ dto.getSeatNum());
+		System.out.println("reserv_num : "+dto.getReserv_num());
 		JsonNode search = mapper.readTree(kp.paymentSearch(dto.getMerchant_uid()));
 		
 		if(kp.compare(dto, search)) {

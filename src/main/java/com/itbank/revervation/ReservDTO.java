@@ -1,7 +1,7 @@
 package com.itbank.revervation;
 
 public class ReservDTO {
-	private String imp_uid,branchcode,start_date,movie_code,wdate;
+	private String imp_uid,branchcode,start_date,movie_code,wdate,seatNum;
 	private String member_email,member_name,merchant_uid,pay,member_age,reserv_num,deleted;
 	private int adult,youth,ct;
 	
@@ -105,6 +105,15 @@ public class ReservDTO {
 
 	public void setDeleted(String deleted) {
 		this.deleted = deleted;
+	}
+
+
+	public String getSeatNum() {
+		return seatNum;
+	}
+
+	public void setSeatNum(String seatNum) {
+		this.seatNum = seatNum;
 	}
 	
 }

@@ -9,7 +9,18 @@ import org.apache.ibatis.annotations.Update;
 
 public interface ReservDAO {
 
-	@Insert("insert into reservation(imp_uid,branchcode,start_date,movie_code,member_email,member_name,merchant_uid,pay,member_age,reserv_num)"
+	@Insert("insert into reservation(imp_uid,"
+			+ "branchcode,"
+			+ "start_date,"
+			+ "movie_code,"
+			+ "member_email,"
+			+ "member_name,"
+			+ "merchant_uid,"
+			+ "pay,"
+			+ "member_age,"
+			+ "reserv_num"
+			+ ",seatNum)"
+			
 			+ "values("
 			+ "#{imp_uid}"
 			+ ",#{branchcode}"
@@ -20,7 +31,8 @@ public interface ReservDAO {
 			+ ",#{merchant_uid}"
 			+ ",#{pay}"
 			+ ",#{member_age}"
-			+ ",#{reserv_num})")
+			+ ",#{reserv_num}"
+			+ ",#{seatNum})")
 	int insert(ReservDTO dto);
 
 	@Select("select * from reservation where member_email=#{member_email} and deleted='n'")
