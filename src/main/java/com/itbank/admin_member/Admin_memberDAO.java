@@ -24,7 +24,7 @@ public interface Admin_memberDAO {
 	@Select("select * from admin_member order by admin_num desc")
 	List<Admin_memberDTO> selectAll();
 
-	@Select("select * from admin_member where admin_num = #{admin_num} and admin_password = #{admin_password}")
+	@Select("select * from admin_member where admin_num = #{admin_num} and admin_password = #{admin_password} and deleted='n'")
 	Admin_memberDTO login(Admin_memberDTO dto);
 
 	@Select("select * from admin_member where admin_num = #{admin_num}")
@@ -32,7 +32,7 @@ public interface Admin_memberDAO {
 
 	@Update("update admin_member set "
 			+ "admin_name=#{admin_name}, admin_phone = #{admin_phone}, "
-			+ "admin_addr= #{admin_addr}, admin_store = #{admin_store},"
+			+ "admin_addr= #{admin_addr}, admin_store = #{admin_store},admin_jday=#{admin_jday}, "
 			+ "admin_dept = #{admin_dept}, admin_lday=#{admin_lday}, deleted=#{deleted} "
 			+ "where admin_num=#{admin_num}")
 	int adminMemberUpdate(Admin_memberDTO dto);

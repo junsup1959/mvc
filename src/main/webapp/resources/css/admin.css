@@ -144,15 +144,17 @@
  	 .rightWrap div.con3 .list span:nth-child(7) {width : 10%}
  	.rightWrap div.con3 .list span:last-child {width : 30%}
  	
- 	.con2 .insertForm {width : 500px; height: 500px; border : 1px solid #32bebe;}
- 	.con2 .insertForm form {width : 300px; margin : 10px auto;}
+ 	.con2 .insertForm {width : 680px; height: 450px; border : 1px solid #32bebe;}
+ 	.con2 .insertForm form {width : 600px; margin : 10px auto;}
  	.con2 .insertForm form select {margin-left : 0}
  	.con2 .insertForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-bottom : 7px; border : 1px solid #ddd; border-radius : 5px;}
 
-	.con4 .updateForm {width : 500px; height: 500px; border : 1px solid #32bebe;}
- 	.con4 .updateForm form {width : 100%; margin : 10px auto;}
- 	.con4 .updateForm form span {display : inline-block; width : 160px; margin-left: 10px; font-size: 18px; }
- 	.con4 .updateForm form input,select {display : inline-block; width : 300px; height : 45px; line-hehiht : 45px; margin-left: 10px; margin-bottom : 7px; padding-left : 10px; border : 1px solid #ddd; border-radius : 5px;}
+	.con4 .updateForm {width : 660px; height: 520px; border : 1px solid #32bebe;}
+ 	.con4 .updateForm form {width : 100%; margin : 0 auto; padding : 15px}
+ 		.con4 .updateForm form div::after {content:''; display: block; clear : both;}
+ 	.con4 .updateForm form input[type=hidden] {width : 0; height : 0; padding : 0;}
+ 	.con4 .updateForm form span {float : left;display : inline-block; width : 110px; height : 50px; line-height : 50px; margin-left: 10px; font-size: 18px; }
+ 	.con4 .updateForm form input,select { display : inline-block; width : 500px; height : 45px; line-hehiht : 45px; margin-bottom : 7px; padding-left : 10px; border : 1px solid #ddd; border-radius : 5px;}
 
  /*-------------------------------- admin_notice ---------------------------------------*/
  	.noticeWrap {width : 1170px; height:100%; margin : 0 auto; border-left:2px solid #b6e7e7; border-right:2px solid #b6e7e7;  font-size : 18px; font-weight: bold;}

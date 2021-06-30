@@ -131,7 +131,10 @@ public class AdminController {
 	@PostMapping("/admin_member/update")
 	@ResponseBody
 	public String update(Admin_memberDTO dto) {
-		System.out.println(dto.getAdmin_name());
+		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
+		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
+		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
+		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
 		int row = as.update(dto);
 		return row+"";
 	}
@@ -155,6 +158,13 @@ public class AdminController {
 		
 	}
 
+	// 주소 API 처리
+		@RequestMapping(value = "/addrPopup", method = {RequestMethod.GET, RequestMethod.POST})
+		public void addrPopup() {}
+		
+		
+		@GetMapping("/addr")
+		public void addr() {}
 	
 	//////////////////////////////////////////////////////////////
 	// -----------------------board-------------------------
