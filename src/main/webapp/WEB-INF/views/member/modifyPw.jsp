@@ -25,12 +25,12 @@
 			<p>
 				<input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required>
 			</p>
-			<output id="pwCheck2"></output>					
+			<output id="pwCheck2"></output><br>				
 			<label>변경 비밀번호 확인</label>
 			<p>
 				<input type="text" id="pw2"  placeholder="영문,숫자로 조합해주세요." required>
 			</p>
-				<output id="pwCheck"></output>
+				<!-- <output id="pwCheck"></output> -->
 				<p><input type="submit" value="확인" class="btn1"></p>
 			</form>
 		</div>

@@ -4,16 +4,16 @@
 
 
 <section id="bodyWrap">
-	<div class="loginWrap">
+	<div class="loginWrap" style="height: 450px">
 		<h2>비밀번호 찾기</h2>
 		<hr color="#fff">
-		<div class="text">
+		<div class="text" style="margin-top:20px;">
 			<p>
 				<i class="xi-lock xi-2x"></i>
 				비밀번호 찾기 위해 본인확인이 필요합니다</p>		
 		</div>
 
-<div  class="checkPw">
+<div  class="checkPw" style="height: 280px;">
 	<form method="post">	
 		<p>이름</p>
 		<p>
@@ -41,6 +41,7 @@
 </c:if>
 <c:if test="${not empty findPw}">
 	<script>
+		alert('임시 비밀번호가 발급되었습니다. E-Mail을 확인하세요')
 		location.href="/team/member/findPwAlert?member_email=" + "${findPw.member_email}"
 	 	//window.open("/team/member/findPwAlert?member_email=" + "${findPw.member_email}","pop","width=570,height=420, scrollbars=yes, resizable=yes")
 	</script>
