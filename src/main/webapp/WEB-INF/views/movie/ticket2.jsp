@@ -251,7 +251,7 @@
         
         const ticketForm = document.getElementById('ticket')
 		ticketForm.innerHTML=''									// 선택된 인원이 없을 경우 form 내용 reset
-		
+		let sum='';
 		
         if(seatNum != 0){
 			for(let i = 0;  i < seatNum.length ; i++){
@@ -259,8 +259,9 @@
 	            p.innerText = ''
 	            p.innerText = '좌석 : ' + seatNum[i]     
 	            div.appendChild(p)
-	                
-	            ticketForm.innerHTML += '<input type="hidden" name="seatNum" value="' + seatNum[i] + '">'			// formData 생성
+	            if(i==0){sum +=  seatNum[i]}
+	            sum+=","+seatNum[i];
+	            ticketForm.innerHTML += '<input type="hidden" name="seatNum" value="' + sum + '">'			// formData 생성
         	}
 			
 	        const p1  = document.createElement('p')
