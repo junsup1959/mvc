@@ -259,8 +259,11 @@
 	            p.innerText = ''
 	            p.innerText = '좌석 : ' + seatNum[i]     
 	            div.appendChild(p)
-	            if(i==0){sum +=  seatNum[i]}
+	            if(i==0){
+	            	sum +=  seatNum[i]
+	            }else{
 	            sum+=","+seatNum[i];
+	            }
 	            ticketForm.innerHTML += '<input type="hidden" name="seatNum" value="' + sum + '">'			// formData 생성
         	}
 			
@@ -332,10 +335,13 @@
 		       						console.log(text)
 		       					if(+text==1){
 		       						alert('결제 성공하셨습니다.')
+		       						history.go(-1);
 		       					}else if(text=='n'){
 		       						alert('데이터 위변조 문제로 결제가 취소되었습니다.')
+		       						history.go(-1);
 		       					}else{
 		       						alert('서버측 문제로 결제가 기록되지 않았습니다. 고객센터로 문의바랍니다.')
+		       						history.go(-1);
 		       					}
 		       				})	
 		                } else {

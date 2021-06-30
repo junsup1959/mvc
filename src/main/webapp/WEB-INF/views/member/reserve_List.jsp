@@ -66,11 +66,27 @@
 			<span>${reserve.ct } 명</span>
 			<span>${reserve.reserv_num } 명</span>
 			<span>${reserve.seatNum }</span>
-			<button onclick="location.href='${cpath}/member/reserve_List/cancle?imp_uid=${reserve.imp_uid}&merchant_uid=${reserve.merchant_uid}'">취소</button>
+			<button onclick="del('${reserve.imp_uid}','${reserve.merchant_uid}')">취소</button>
 		</div>
 		</c:forEach>
 	</div>
 <script>
+function getToday(){
+	let date = new Date();
+	let year = date.getFullYear();
+	let month = ("0" + (1 + date.getMonth())).slice(-2);
+	let day = ("0" + date.getDate()).slice(-2);
+	let hour = date.getHours()
+	let minute = date.getMinutes()
+	return year + "-" + month + "-" + day + " " + hour + ":" + minute;
+}
+console.log(getToday())
+
+function del(imp_uid,merchant_uid){
+	if(confirm('정말 취소 하시겠습니까?')){
+		location.href='${cpath}/member/reserve_List/cancle?imp_uid='+imp_uid+'&merchant_uid='+merchant_uid
+	}
+}
 
 </script>
 
