@@ -10,7 +10,7 @@
 
 	<c:if test="${not empty list }">
 		<div class="content">
-			<div class="listTitle">
+			<div class="listTitle" style="margin-top: 30px;">
 				<span>글번호</span>
 				<span>제목</span>
 				<span>작성자</span>
