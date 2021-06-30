@@ -63,86 +63,62 @@
     
     
     
-	<script>
-// 	const Json = JSON.parse('${json}'); //controller에서 theater_info를 json형태로 반환함.
-// 	//이름 알아서 지정하세요.. 임의지정중
-// 	console.log(Json);
-	
-// 	const key = "0c5277606b20ef880a6c3aec340bb83b"
-
-// 	const client_id = "p3EkwlpyD99frDpNN5th";
-// 	const client_secret = "_t4XeBaQvU";
-// 	const test1 = '${dailyMovie }'
-// 	const test2 = JSON.parse(test1)
-// 	const ul = document.createElement('ul')
-// 	ul.id = "daily"
-// 	ul.className = 'movie'
-// 	for(let i = 0;i< test2.boxOfficeResult.dailyBoxOfficeList.length ; i++ ){
-// 		const movieName = test2.boxOfficeResult.dailyBoxOfficeList[i].movieNm
-// 		const movieCode = test2.boxOfficeResult.dailyBoxOfficeList[i].movieCd
-//    		const movieCd = encodeURI(movieCode);
-   		
-//    		const url = "http//www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" +key +"&movieCd=" + movieCd; 
-//    		const opt ={
-//    				method : 'GET'
-//    		}
-//    		fetch(url, opt)
-//    		.then(resp => resp.json())
-//    		.then(json => {
-// //    			console.log(json)
-//    			watchGradeNm = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
-// 			const li = document.createElement('li')
-// 			const span = document.createElement('span')
-// 			const b = document.createElement('b')
-// 			li.appendChild(span)
-// 			li.appendChild(b)
-			
-// 			switch(watchGradeNm){
-// 			case '전체관람가': span.innerHTML = 'All';
-// 										span.style.background = 'green';
-// 										break;
-// 			case '12세이상관람가': span.innerHTML  = '12세' ; 
-// 			span.style.background = 'blue';
-// 			break;
-// 			case '15세이상관람가': span.innerHTML  = '15세' ;
-// 			span.style.background = 'orange';
-// 			break;
-// 			case '청소년관람불가': span.innerHTML  = '청불' ;
-// 												span.style.background = 'red';
-// 												break;
-// 			default : break;
-// 		}
-			
-// 			b.innerHTML = movieName
-			
-// 			ul.appendChild(li)
-//    		})
-// 		document.getElementById('choice2').appendChild(ul)
-		
-// 	}
-
-
-	</script>    
     
-<script>
-		const theater_info_movie = document.getElementById('theater_info_movie')
-		const url = "${cpath}/movie/movieList"; 
-   		const opt ={
-   				method : 'GET'
-   		}
-   		fetch(url, opt)
-   		.then(resp => resp.json())
-   		.then(json => {
-   			console.log(json)
-   			
+    <script>
+    let cbranch='';
+    let cmovie='';
+    let cday='';
+        $('#choice1 p').on('click', function(){
+            $(this).css({
+               'border':'1px dotted #ccc',
+                'color' : 'red',
+                'background':'#fff',
+                'font-weight':'bold'
+            }).parent().siblings().find('p').css({
+                'border':'none',
+                'color' : '#000',
+                'background':'#eee',
+                'font-weight':'normal'
+            });
+            
+            $(this).siblings('.sub').stop().show().parent().siblings().find('.sub').stop().hide();
+        })
+        
+        $('#choice1 .sub li').on('click', function(){
+	        const theater_info_movie = document.getElementById('theater_info_movie')
+        	theater_info_movie.innerText = ''
+            $(this).css({
+               'border':'1px dotted #ccc',
+                'color' : 'red',
+                'font-weight':'bold'
+            }).siblings().css({
+                'border':'none',
+                'color' : '#000',
+                'font-weight':'normal'
+            });
+            
+            const t= $(this).text();
+            cbranch = t;
+            console.log(t.slice(0,-1))
+            branch = t.slice(0, -1)
+			const url = "${cpath}/movie/movieList?branch=" + branch; 
+	   		const opt ={
+	   				method : 'GET'
+	   		}
+	   		fetch(url, opt)
+	   		.then(resp => resp.json())
+	   		.then(json => {
+	   			console.log(json)
+	  			
 			for(let i=0; i < json.length; i++){
 				const li = document.createElement('li')
 				li.className = "movie_list"
 				const ob = json[i];
+	
 				for(let key in ob) {
 					//console.log(ob[key])
 					if(ob[key] != null){
-    					const value = ob[key]
+	   					const value = ob[key]
 						if(key != 'runtime'){
 	    					const span = document.createElement('span')
 	    					
@@ -167,7 +143,6 @@
 	    						span.className = key
 	    						span.innerText = value
 	    					}
-	    					
 	    					li.appendChild(span)
 							theater_info_movie.appendChild(li)
 							
@@ -176,45 +151,10 @@
 					}
 				}
 			
-   		})
-    </script>
-    
-    <script>
-    let cbranch='';
-    let cmovie='';
-    let cday='';
-        $('#choice1 p').on('click', function(){
-            $(this).css({
-               'border':'1px dotted #ccc',
-                'color' : 'red',
-                'background':'#fff',
-                'font-weight':'bold'
-            }).parent().siblings().find('p').css({
-                'border':'none',
-                'color' : '#000',
-                'background':'#eee',
-                'font-weight':'normal'
-            });
-            
-            $(this).siblings('.sub').stop().show().parent().siblings().find('.sub').stop().hide();
-        })
-        
-        $('#choice1 .sub li').on('click', function(){
-
-            $(this).css({
-               'border':'1px dotted #ccc',
-                'color' : 'red',
-                'font-weight':'bold'
-            }).siblings().css({
-                'border':'none',
-                'color' : '#000',
-                'font-weight':'normal'
-            });
-            
-            const t= $(this).text();
-            cbranch = t;
-            console.log(t)
-        })
+	  		})
+	            
+	            
+	        })
         
         
         $(document).on('click', '#choice2 li', function(){

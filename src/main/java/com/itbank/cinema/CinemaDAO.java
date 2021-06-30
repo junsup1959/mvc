@@ -40,8 +40,8 @@ public interface CinemaDAO {
 	@Update("update theater_info set seat_amount=#{seat_amount} and usable=#{usable} where screen_code=#{screen_code} ")
 	int modifyScreen(CinemaDTO cinema);
 
-	@Select("select distinct movie_title, movie_audit from theater_info")
-	List<Theater_infoDTO> selectAllmovieList();
+	@Select("select distinct movie_title, movie_audit from theater_info where screen_code like '%${branch}%'")
+	List<Theater_infoDTO> selectAllmovieList(String branch);
 
 
 
