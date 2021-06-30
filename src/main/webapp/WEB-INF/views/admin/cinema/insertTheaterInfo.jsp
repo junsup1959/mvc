@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
-	
-	
+<section id="bodyWrap">
+		
+	<div class="noticeWrap" style="padding : 10px;">
+	<h2 style="font-weight: bold; margin : 0 30px;text-decoration: underline; ">지점/영화선택</h2>
+	<div class="infoWrap">
    <form method="post" id="Theater_info">
         <p>	    
             <select name="branch" onchange="javascript:myListener(this)">
@@ -42,6 +44,7 @@
         </p>
         
         <div id="screenList">
+        <h2 style="font-weight: bold; margin : 0 0 10px 20px; text-align:left; text-decoration: underline; ">상영예정목록</h2>
 <!--         	screen_code 에 해당하는 모든 시간 list 가져오기 -->
 			<div class="Movielist">
 					<span class="runtime" id="runtime">[영화 제목]</span>
@@ -56,7 +59,7 @@
         </div>
         
         <div id="movieInfo">
-            <h1 class="text">영화입력 폼</h1>
+            <h2 style="font-weight: bold; margin : 0 20px;text-decoration: underline; ">상영시간 추가</h2>
             
 
 	        <p>
@@ -74,14 +77,18 @@
 	        
 	        
         </div>   
-			<input type="time" name="start_time" required>
+			<input type="time" name="start_time" required style="width : 280px; height: 40px; line-height: 40px;">
 <!--        
 	필요한 컬럼, movie_code, start_date, end_date, movie_type
  현재 상영 영화 api 로 가져와서 런타임이랑 몇가지 정보 받아오기 시간 입력해서 theater_info 에 넣기  이름, showTm 뒤 25분 여유
 			해당 스크린의 occupy time list 를 전부 띄워주기 -->
 			
-        <p><input type="submit" class="btn" value="영화시간입력" ></p>
+        <p><input type="submit" class="btn2" value="영화시간입력" style="width : 200px;"></p>
     </form>
+    </div>
+ </div>
+ </section>
+  
     
 <script>
 // 	영화시간 입력 버튼 onclick
@@ -175,7 +182,7 @@ document.forms.Theater_info.onsubmit = function(event){
 					const movieAudit = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
 // 		   			console.log(json)
 // 		   			console.log(movieAudit)
-					
+					div.innerHTML=''
 					const span1 = document.createElement('span')
 					const span2 = document.createElement('span')
 					const hidden1 = document.createElement('input')
