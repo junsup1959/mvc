@@ -34,11 +34,11 @@
 			<span>${reserve.start_date }</span>
 			<span>${reserve.movie_code }</span>
 			<span>${reserve.wdate }</span>
-			<span>${reserve.pay }</span>
-			<span>${reserve.reserv_num }</span>
-			<span>${reserve.adult }</span>
-			<span>${reserve.youth }</span>
-			<span>${reserve.ct }</span>
+			<span>${reserve.pay } 원</span>
+			<span>${reserve.reserv_num } 명</span>
+			<span>${reserve.adult } 명</span>
+			<span>${reserve.youth } 명</span>
+			<span>${reserve.ct } 명</span>
 			<span>${reserve.seatNum }</span>
 			<button onclick="location.href='${cpath}/member/reserve_List/cancle?imp_uid=${reserve.imp_uid}&merchant_uid=${reserve.merchant_uid}'">취소</button>
 		</div>
