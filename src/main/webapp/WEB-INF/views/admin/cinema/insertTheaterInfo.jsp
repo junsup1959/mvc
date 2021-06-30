@@ -44,6 +44,7 @@
         <div id="screenList">
 <!--         	screen_code 에 해당하는 모든 시간 list 가져오기 -->
 			<div class="Movielist">
+					<span class="runtime" id="runtime">[영화 제목]</span>
 					<span class="start_date" id="start_date">[상영 시작일]</span>
 					<span class="end_date" id="end_date" >[상영 마감일]</span>
 					<span class="start_time" id="start_time">[시작 시간]</span>
@@ -171,9 +172,9 @@ document.forms.Theater_info.onsubmit = function(event){
 		   		.then(json => {
 		   			const movie_name = json.movieInfoResult.movieInfo.movieNm
 		   			const movie_runtime = json.movieInfoResult.movieInfo.showTm
-// 					const movieAudit = json.movieInfoResult.movieInfo.audit[0].watchGradeNm
-		   			console.log(json)
-		   			console.log(movieAudit)
+					const movieAudit = json.movieInfoResult.movieInfo.audits[0].watchGradeNm
+// 		   			console.log(json)
+// 		   			console.log(movieAudit)
 					
 					const span1 = document.createElement('span')
 					const span2 = document.createElement('span')
@@ -198,11 +199,9 @@ document.forms.Theater_info.onsubmit = function(event){
 					hidden3.name = 'runtime'
 					hidden3.value = movie_runtime
 
-// 					hidden4.type = 'hidden'
-// 					hidden4.name = 'movie_Audit'
-// 					hidden4.value = movieAudit
-// 					console.log("audits" + movieAudit)
-					
+					hidden4.type = 'hidden'
+					hidden4.name = 'movie_audit'
+					hidden4.value = movieAudit
 					
 					b1.innerHTML = "movie_title : " + movieName +"<br>"
 					b2.innerHTML = "runtime : " + movie_runtime
@@ -212,6 +211,7 @@ document.forms.Theater_info.onsubmit = function(event){
 					div.appendChild(hidden1)
 					div.appendChild(hidden2)
 					div.appendChild(hidden3)
+					div.appendChild(hidden4)
 		   			
 		   		})
 			document.getElementById('movieInfo').appendChild(div)
@@ -251,7 +251,7 @@ document.forms.Theater_info.onsubmit = function(event){
 					div.className = "movie_list"
    					const ob = json[i];
     				for(let key in ob) {
-//     					console.log(ob[key])
+    					console.log(ob[key])
     					if(ob[key] != null){
 	    					const value = ob[key]
 	    					const span = document.createElement('span')
