@@ -61,7 +61,7 @@ function getCookie(cookieName) {
 	</div>
 	
 	<div class="loginApi">
-		<a href="https://kauth.kakao.com/oauth/authorize?client_id=7d7a89444c3dc7117978512358c75028&redirect_uri=http://localhost:8081/team/member/auth/kakao/callback&response_type=code">
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=7d7a89444c3dc7117978512358c75028&redirect_uri=http://localhost:8080/team/member/auth/kakao/callback&response_type=code">
 			<img src="${cpath }/resources/kakaoImage/kakao_login_medium_narrow.png"/>
 		</a>
 	<p>네이버 로그인</p>

@@ -1,9 +1,12 @@
 package com.itbank.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.itbank.admin_board.Paging;
 import com.itbank.admin_member.Admin_memberDAO;
 import com.itbank.admin_member.Admin_memberDTO;
 
@@ -17,9 +20,12 @@ public class AdminService {
 		return dao.insert(dto);
 	}
 
-	public List<Admin_memberDTO> selectAll() {
-		// TODO Auto-generated method stub
-		return dao.selectAll();
+	public List<Admin_memberDTO> selectAll(HashMap<String, Object> param, Paging paging) {
+		
+		param.putIfAbsent("offset", paging.getOffset());
+		param.putIfAbsent("perpage", paging.getPerPage());
+		
+		return dao.selectAll(param);
 	}
 
 	public Admin_memberDTO login(Admin_memberDTO dto) {
