@@ -98,7 +98,7 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin_member")
-	public ModelAndView admin_member(@RequestParam HashMap<String, Object> param, int page) {
+	public ModelAndView admin_member(@RequestParam int page) {
 		ModelAndView mav=new ModelAndView("admin/admin_member/admin_member");
 		int adminCount = as.adminCount();
 		Paging paging = new Paging(page, adminCount,perPage);

@@ -130,12 +130,14 @@ for (i = 0; i < document.getElementById("notice").options.length; i++) {
 			espan.innerText ='';
 			bdate.value = getToday();
 			bdate.required=true;
+			bdate.readOnly=true
 			edate.setAttribute("type", "hidden");
 			edate.required=false;
 		}else{
 			bspan.innerText ='시작일';
 			espan.innerText ='종료일';
 			bdate.value = '${dto.board_bdate}';
+			bdate.readOnly=false;
 			edate.setAttribute("type", "date");
 			edate.required=true;
 		}

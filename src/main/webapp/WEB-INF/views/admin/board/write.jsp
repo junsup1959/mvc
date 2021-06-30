@@ -119,6 +119,7 @@ $(document).ready(function() {
 			bspan.innerText ='작성일';
 			espan.innerText ='';
 			bdate.value = getToday();
+			bdate.readOnly=true
 			bdate.required=true;
 			edate.setAttribute("type", "hidden");
 			edate.required=false;
@@ -129,6 +130,7 @@ $(document).ready(function() {
 			edate.value = '';
 			edate.setAttribute("type", "date");
 			edate.required=true;
+			bdate.readOnly=false;
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package com.itbank.admin_member;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -21,8 +22,8 @@ public interface Admin_memberDAO {
 			+ ",null)")
 	int insert(Admin_memberDTO dto);
 
-	@Select("select * from admin_member order by admin_num desc")
-	List<Admin_memberDTO> selectAll();
+	@Select("select * from admin_member order by admin_num desc offset ${offset} rows fetch first ${perpage} rows only")
+	List<Admin_memberDTO> selectAll(HashMap<String, Object> param);
 
 	@Select("select * from admin_member where admin_num = #{admin_num} and admin_password = #{admin_password} and deleted='n'")
 	Admin_memberDTO login(Admin_memberDTO dto);

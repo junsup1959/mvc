@@ -142,7 +142,7 @@
 								}
 	    					}else{
 	    						span.className = key
-	    						span.innerText = value
+	    						span.innerHTML = '<b>'+value+'</b>'
 	    					}
 	    					li.appendChild(span)
 							theater_info_movie.appendChild(li)
