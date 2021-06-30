@@ -102,7 +102,8 @@ public class AdminController {
 		ModelAndView mav=new ModelAndView("admin/admin_member/admin_member");
 		int adminCount = as.adminCount();
 		Paging paging = new Paging(page, adminCount,perPage);
-		List<Admin_memberDTO>list=as.selectAll();
+		HashMap<String, Object> param = new HashMap<>();
+		List<Admin_memberDTO>list=as.selectAll(paging,param);
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		return mav;
