@@ -47,12 +47,12 @@
         <h2 style="font-weight: bold; margin : 0 0 10px 20px; text-align:left; text-decoration: underline; ">상영예정목록</h2>
 <!--         	screen_code 에 해당하는 모든 시간 list 가져오기 -->
 			<div class="Movielist">
-					<span class="runtime" id="runtime">[영화 제목]</span>
-					<span class="start_date" id="start_date">[상영 시작일]</span>
-					<span class="end_date" id="end_date" >[상영 마감일]</span>
-					<span class="start_time" id="start_time">[시작 시간]</span>
-					<span class="end_time" id="end_time">[마감 시간]</span>
-					<span class="runtime" id="runtime">[러닝 타임]</span>
+					<span class="runtime" id="runtime">[영화제목]</span>
+					<span class="start_date" id="start_date">[상영시작일]</span>
+					<span class="end_date" id="end_date" >[상영마감일]</span>
+					<span class="start_time" id="start_time">[시작시간]</span>
+					<span class="end_time" id="end_time">[마감시간]</span>
+					<span class="runtime" id="runtime">[러닝타임]</span>
 			</div>
         	<div class="movie_Tlist">
         	</div>

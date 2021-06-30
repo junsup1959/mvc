@@ -163,9 +163,14 @@
 .infoWrap > #Theater_info > p {height : 50px;}
 #screenList{width : 100%;text-align: center; margin-bottom: 10px;}
 #screenList .Movielist {height : 35px; line-height: 35px; background : #32bebe; }
-#screenList .Movielist > span{display : inline-block; width : 16%;  color : #fff;}
+#screenList .Movielist > span:first-child{width : 25%}
+
+#screenList .Movielist > span{display : inline-block; width : 14%;  color : #fff;}
 #screenList .movie_Tlist > div.movie_list { border-bottom: 1px dotted  #66cccc; }
-#screenList .movie_Tlist > div.movie_list> span {display : inline-block;  width : 16%; height: 30px; line-height: 30px;}
+#screenList .movie_Tlist > div.movie_list> span:first-child {width : 23%}
+#screenList .Movielist > div.movie_list> span:nth-child(2){width : 17%}
+#screenList .Movielist > div.movie_list> span:nth-child(3){width : 17%}
+#screenList .movie_Tlist > div.movie_list> span {display : inline-block;  width : 15%; height: 30px; line-height: 30px;}
 #screenList .movie_Tlist > div.movie_list:last-child { border-bottom: 1px solid #32bebe;}
 #movieInfo > p > input {width : 280px; height: 40px; line-height: 40px;}
 #movieInfo > p > select {width : 280px; height: 40px; line-height: 40px;}
