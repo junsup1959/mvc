@@ -333,8 +333,9 @@ border-top: outset;
 	
 		
 		branch_code = document.getElementById("branch_code")
+		branch_code.innerHTML = ''
 		const p = document.createElement('p')
-		p.innerText = ''
+// 		p.innerText = ''
 		p.innerText = '상영관 코드 ' + '['+ screen_code + ']'
 		branch_code.appendChild(p)
 		
