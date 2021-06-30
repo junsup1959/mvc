@@ -221,20 +221,35 @@ public class MovieController {
     
     @GetMapping(value = "/movie/dateList",produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String dateList(@RequestParam String date) throws JsonProcessingException {
+    public String dateList(@RequestParam(value="date", required=false,defaultValue = "0" ) int date, 
+    		@RequestParam(value="branch",required=false,defaultValue = "0" ) String branch,
+    		@RequestParam(value = "movie_title",required=false,defaultValue = "0" ) String movie_title ) throws JsonProcessingException {
+    	String json = null;
+    	if(branch.equals("0") || date == 0 || movie_title.equals("0")) {
+    		System.out.println(date);
+    		System.out.println(branch);
+    		System.out.println(movie_title);
+    		return json;
+    	}
     	List<Theater_infoDTO> dateList = cs.selectAlldate();
     	System.out.println(date);
+    	System.out.println(branch);
+    	System.out.println(movie_title);
     	for(int i=0; i < dateList.size(); i++) {
-    		int s_s = Integer.parseInt(dateList.get(i).getStart_date().replace("-", ""));
-			int s_e = Integer.parseInt(dateList.get(i).getEnd_date().replace("-", "").substring(3));
+    		int s_s = Integer.parseInt(dateList.get(i).getStart_date().replace("-", "").substring(4));
+			int s_e = Integer.parseInt(dateList.get(i).getEnd_date().replace("-", "").substring(4));
 			System.out.println(s_s);
 			System.out.println(s_e);
+			if(s_s <= date && date <= s_e) {
+				System.out.println("전달전 : "+branch);
+				List<Theater_infoDTO> movieList = cs.selectDateList(branch, movie_title);
+				json = mapper.writeValueAsString(movieList);
+				return json;
+				
+			}
 		}
-    	String json = null;
-//    	List<Theater_infoDTO> movieList = cs.selectAllmovieList(date);
-//    	json = mapper.writeValueAsString(movieList);
-    	
     	return json;
+    	
     }
     
 }

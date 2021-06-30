@@ -68,6 +68,11 @@ public class CinemaService {
 		return dao.selectAlldate();
 	}
 
+	public List<Theater_infoDTO> selectDateList(String branch, String movie_title) {
+		System.out.println("service : " +branch);
+		return dao.selectDateList(branch, movie_title);
+	}
+
 
 
 }

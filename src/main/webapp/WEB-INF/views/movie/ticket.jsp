@@ -67,9 +67,10 @@
     
     
     <script>
-    let cbranch='';
-    let cmovie='';
-    let cday='';
+    var cbranch='';
+    var cmovie='';
+    var cday='';
+    var t4='';
         $('#choice1 p').on('click', function(){
             $(this).css({
                'border':'1px dotted #ccc',
@@ -169,6 +170,8 @@
             const t2= $(this).find('span').text();
             console.log(t2)
             cmovie = t2;
+            t4= $(this).find('b').text();
+            console.log('t4'+t4)
         })
 
     </script>
@@ -235,8 +238,11 @@
         const t3 = $(this).find('p').text()
         console.log(t3)
         cday =t3;
+        cbranch = cbranch.slice(0, -1)
+        console.log('dateForm : '+cbranch)
+        console.log('cmovie : '+t4)
         
-		const url = "${cpath}/movie/dateList?date=" + t3; 
+		const url = "${cpath}/movie/dateList?date=" + t3+"&branch="+cbranch+"&movie_title="+t4; 
    		const opt ={
    				method : 'GET'
    		}
@@ -244,10 +250,10 @@
    		.then(resp => resp.json())
    		.then(json => {
 			console.log(json)
-		for(let i=0; i < json.length; i++){
-			const li = document.createElement('li')
-			li.className = "movie_list"
-			const ob = json[i];
+// 		for(let i=0; i < json.length; i++){
+// 			const li = document.createElement('li')
+// 			li.className = "movie_list"
+// 			const ob = json[i];
 
 // 			for(let key in ob) {
 // 				//console.log(ob[key])
@@ -264,7 +270,7 @@
 //     					}
 // 					}
 // 				}
-			}
+// 			}
 		
   		})
             

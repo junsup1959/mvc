@@ -27,9 +27,6 @@ public class CinemaController {
 	@ResponseBody
 	@PostMapping("/modify")
 	public String modifyScreen(CinemaDTO cinema) {
-		System.out.println(cinema.getSeat_amount());
-		System.out.println(cinema.getUsable());
-		System.out.println(cinema.getScreen_code());
 		int row = cs.modifyScreen(cinema);
 		
 		return row + "";
