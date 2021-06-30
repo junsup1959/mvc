@@ -134,15 +134,12 @@ $(document).ready(function(){
                 <li><a href="${cpath }/movie/cinema">영화관</a>
                     <ul class="sub clearfix">
                         <li><a href="${cpath }/movie/cinema">해운대점</a></li>
-                        <li><a href="">서면점</a></li>
-                        <li><a href="">기타등등</a></li>
+
                     </ul>
                 </li>
                 <li><a href="${cpath }/event/?search=&keyword=&cate=2&page=1">이벤트</a>
                     <ul class="sub clearfix">
                         <li><a href="${cpath }/event/?search=&keyword=&cate=2&page=1">이벤트</a></li>
-                        <li><a href="">시사회</a></li>
-                        <li><a href="">제휴/할인</a></li>
                         <li><a href="${cpath }/event/last/?search=&keyword=&cate=4&page=1">지난이벤트</a></li>
                     </ul>
                 </li>
