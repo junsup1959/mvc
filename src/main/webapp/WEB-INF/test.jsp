@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+12344
 <h1>TEST</h1>
 <button id="e1"> 보내기</button>
 <button id="e2">주문조회</button>	
