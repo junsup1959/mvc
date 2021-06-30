@@ -60,8 +60,8 @@ public class CinemaService {
 		return dao.modifyScreen(cinema);
 	}
 
-	public List<Theater_infoDTO> selectAllmovieList() {
-		return dao.selectAllmovieList();
+	public List<Theater_infoDTO> selectAllmovieList(String branch) {
+		return dao.selectAllmovieList(branch);
 	}
 
 

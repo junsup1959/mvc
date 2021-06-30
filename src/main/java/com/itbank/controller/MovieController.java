@@ -17,7 +17,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -209,10 +211,10 @@ public class MovieController {
     
     @GetMapping(value = "/movie/movieList",produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String movieList() throws JsonProcessingException {
-    	ModelAndView mav = new ModelAndView();
+    public String movieList(@RequestParam String branch) throws JsonProcessingException {
+    	System.out.println(branch);
     	String json = null;
-    	List<Theater_infoDTO> movieList = cs.selectAllmovieList();
+    	List<Theater_infoDTO> movieList = cs.selectAllmovieList(branch);
     	json = mapper.writeValueAsString(movieList);
     	
     	return json;
