@@ -212,7 +212,7 @@ to {
 	<div class="List_wrap">
 			<c:forEach var="board" items="${list }">
 			<div class="ev">
-				<img alt="파일첨부해줘요잉" src="${cpath }/upload/${board.board_file }">
+				<img alt="파일첨부해줘요잉" src="${board.board_file }">
 				<!-- 이미지 첨부는 필수 -->
 				<span class="evtitle" ><a href="#popup1" onclick="e_read(${board.board_number})">
 				<b style="color:orange">[${board.board_store}점] </b>${board.board_title }</a></span>

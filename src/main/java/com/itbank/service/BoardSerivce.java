@@ -1,6 +1,7 @@
 package com.itbank.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,12 @@ import com.itbank.admin_board.Paging;
 import com.itbank.admin_board.boardDAO;
 import com.itbank.admin_board.boardDTO;
 import com.itbank.admin_member.Admin_memberDTO;
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
 
 @Service
 public class BoardSerivce {
@@ -30,6 +37,13 @@ public class BoardSerivce {
 	@Autowired private CoboardDAO c_dao;
 	@Autowired private Board_likeDAO bl_dao;
 	@Autowired private AdminReplyDAO r_dao;
+	private final String serverIp = "192.168.0.70";
+	private final int serverPort = 22;
+	private final String serverUser = "root";
+	private final String serverPass = "1";
+	private ChannelSftp chsftp = null;
+	
+	
 	
 	public List<boardDTO> list(Paging paging,HashMap<String, Object>param) {
 		// TODO Auto-generated method stub
@@ -37,7 +51,7 @@ public class BoardSerivce {
 		param.put("perPage",paging.getPerPage());
 		return dao.list(param);
 	}
-	public int insert(boardDTO dto) {
+	public int insert(boardDTO dto) throws IllegalStateException, SftpException, JSchException, IOException {
 
 		if(dto.getFile().isEmpty()) {
 		dto.setBoard_file("");
@@ -51,7 +65,7 @@ public class BoardSerivce {
 		boardDTO dto = dao.selectOne(board_number);
 		return dto;
 	}
-	public int update(boardDTO dto) {
+	public int update(boardDTO dto) throws IllegalStateException, SftpException, JSchException, IOException {
 
 		if(dto.getFile().isEmpty()) {
 			dto.setBoard_file("");
@@ -69,24 +83,51 @@ public class BoardSerivce {
 
 		return dao.delete(board_number);
 	}
-	public String summernote(MultipartFile multipartFile, HashMap<String, String> jm) {
-		String fileRoot = "D:\\upload\\";	//저장될 외부 파일 경로
+	public String summernote(MultipartFile multipartFile) throws JSchException, IOException, SftpException {
+		
+		
+		Session sess = null;
+		Channel channel = null;
+		JSch jsch = new JSch();
+		sess = jsch.getSession(serverUser, serverIp, serverPort);
+		sess.setPassword(serverPass);
+		sess.setConfig("StrictHostKeyChecking", "no");
+		
+		sess.connect();
+		System.out.println("sftp> Connected");
+		System.out.println(sess.getHost());
+		
+		channel = sess.openChannel("sftp");
+		channel.connect();
+		chsftp = (ChannelSftp) channel;
+		
+		System.out.println("aaa : " + channel);
+		////////////////////////////////////////////////////////////////
+		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자				
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		File targetFile = new File(fileRoot + savedFileName);
-		if(!targetFile.exists()) {
-			targetFile.mkdirs();
-		}
-		try {
-			multipartFile.transferTo(targetFile);
-		} catch (IllegalStateException | IOException e) {
-			targetFile.delete();	//저장된 파일 삭제
-			jm.put("responseCode", "error");
-			e.printStackTrace();
-		}
-		return savedFileName;
+		
+		File tmp = new File(multipartFile.getOriginalFilename());
+		multipartFile.transferTo(tmp);
+	
+		FileInputStream fis = new FileInputStream(tmp);
+		chsftp.cd("/var/www/html");
+		chsftp.put(fis, savedFileName);
+		
+		System.out.println("sftp> transfer complete !!");
+
+		fis.close();
+		chsftp.exit();
+		tmp.delete();
+		
+		System.out.println("sftp>exit");
+		
+		return "http://" + serverIp + ":1234/"+savedFileName;
+	
+		
 	}
+	
 	public boardDTO next(int board_number, HashMap<String, Object> param) {
 
 		param.put("board_number", board_number);

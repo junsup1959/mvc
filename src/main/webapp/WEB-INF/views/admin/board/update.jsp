@@ -116,6 +116,7 @@ for (i = 0; i < document.getElementById("store").options.length; i++) {
 for (i = 0; i < document.getElementById("notice").options.length; i++) {
     if (document.getElementById("notice").options[i].value == '${dto.board_notice}') {
         document.getElementById("notice").options[i].selected = "selected";
+        changeNE()
     }
 }
 

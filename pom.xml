@@ -211,6 +211,14 @@
 			<version>1.6.2</version>
 		</dependency>
 		
+			<!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+
+<!-- Java Secure Channel -->
+	<dependency>
+	    <groupId>com.jcraft</groupId>
+	    <artifactId>jsch</artifactId>
+	    <version>0.1.54</version>
+	</dependency>
 		
 		
 	</dependencies>

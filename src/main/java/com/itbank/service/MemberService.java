@@ -36,25 +36,25 @@ public class MemberService {
 	
 	
 	public int insert(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		String[] user_num = UUID.randomUUID().toString().split("-");
 		member.setMember_number(user_num[0]);
 		return dao.insert(member);
 	}
 
 	public MemberDTO selectOne(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		return dao.selectOne(member);
 	}
 	
 	public MemberDTO selectOne2(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		return dao.selectOne2(member);
 	}
 		
 
 	public int selectOne3(MemberDTO dto) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		dto.setMember_password(getHash(dto.getMember_password()));
 		return dao.selectOne3(dto);
 	}
 
@@ -74,14 +74,13 @@ public class MemberService {
 
 
 	public MemberDTO doubleCheck(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		return dao.doubleCheck(member);
 	}
 
 
 
 	public int modify(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
 		return dao.modify(member);
 	}
 
@@ -106,7 +105,7 @@ public class MemberService {
 
 
 	public int deleteMember(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		if(dao.insertDelMember(member) == 0) {
 			return dao.insertDelMember(member);
 		}
@@ -142,7 +141,7 @@ public class MemberService {
 
 
 	public int modifyPw(MemberDTO member) {
-//		member.setMember_password(getHash(member.getMember_password()));
+		member.setMember_password(getHash(member.getMember_password()));
 		return dao.modifyPw(member);
 	}
 
