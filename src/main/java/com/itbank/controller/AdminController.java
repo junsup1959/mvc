@@ -1,5 +1,6 @@
 package com.itbank.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
 import com.itbank.service.CinemaService;
 import com.itbank.service.MemberService;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
 
 @Controller
 @RequestMapping("/admin")
@@ -206,7 +209,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/board/write")
-	public String board(boardDTO dto) throws UnsupportedEncodingException {
+	public String board(boardDTO dto) throws IllegalStateException, SftpException, JSchException, IOException {
 		int row=bs.insert(dto);
 		
 	return "redirect:/admin/board?search=&keyword=&cate=1&page=1";
@@ -223,7 +226,7 @@ public class AdminController {
 		return mav;
 	}
 	@PostMapping("/board/update/{board_number}")
-	public String update(boardDTO dto,@RequestParam String search,String keyword,int cate,int page) throws UnsupportedEncodingException {
+	public String update(boardDTO dto,@RequestParam String search,String keyword,int cate,int page) throws IllegalStateException, SftpException, JSchException, IOException {
 		String word= URLEncoder.encode(keyword, "UTF-8");
 		int row =bs.update(dto);
 		
@@ -242,14 +245,14 @@ public class AdminController {
 
 	@RequestMapping(value="/board/write/uploadSummernoteImageFile",method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) throws JsonProcessingException {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) throws JSchException, IOException, SftpException {
 		
 		//JsonObject jsonObject = new JsonObject();
 		String json=null;
 		HashMap<String, String> jm=new HashMap<>();		
-		String savedFileName = bs.summernote(multipartFile,jm);
+		String savedFileName = bs.summernote(multipartFile);
 					String cpath = request.getContextPath();
-			jm.put("url",cpath+"/upload/"+savedFileName);
+			jm.put("url",savedFileName);
 			jm.put("responseCode", "success");		
 		
 		json=mapper.writeValueAsString(jm);

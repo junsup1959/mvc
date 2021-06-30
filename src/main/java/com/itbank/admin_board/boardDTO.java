@@ -1,10 +1,18 @@
 package com.itbank.admin_board;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
 
 public class boardDTO {
 	
@@ -13,25 +21,54 @@ public class boardDTO {
 	private String board_content,board_bdate,board_edate,board_title,board_store,board_file,admin_num;
 	private String board_notice;
 	MultipartFile file;
+	private final String serverIp = "192.168.0.70";
+	private final int serverPort = 22;
+	private final String serverUser = "root";
+	private final String serverPass = "1";
+	private ChannelSftp chsftp = null;
 	
-	public void ready() {
+	public void ready() throws SftpException, JSchException, IllegalStateException, IOException {
 
 		if(file.getOriginalFilename().equals("") == false || file != null ) {
-			String fileName = UUID.randomUUID().toString().replaceAll("-", "");
-			int beginIndex = file.getOriginalFilename().indexOf(".");
-			String extName = file.getOriginalFilename().substring(beginIndex);
-			fileName += extName;
+			Session sess = null;
+			Channel channel = null;
+			JSch jsch = new JSch();
+			sess = jsch.getSession(serverUser, serverIp, serverPort);
+			sess.setPassword(serverPass);
+			sess.setConfig("StrictHostKeyChecking", "no");
 			
-			File f = new File(root, fileName);
-			if(!f.exists())
-				f.mkdirs();
-			try {
-				file.transferTo(f);
-				
-			} catch (IllegalStateException | IOException e) {
-				System.out.println("업로드 문제 발생 : " + e);
-			}
-			this.board_file = fileName;
+			sess.connect();
+			System.out.println("sftp> Connected");
+			System.out.println(sess.getHost());
+			
+			channel = sess.openChannel("sftp");
+			channel.connect();
+			chsftp = (ChannelSftp) channel;
+			
+			System.out.println("aaa : " + channel);
+			////////////////////////////////////////////////////////////////
+			
+			String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자				
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File tmp = new File(file.getOriginalFilename());
+			file.transferTo(tmp);
+		
+			FileInputStream fis = new FileInputStream(tmp);
+			chsftp.cd("/var/www/html");
+			chsftp.put(fis, savedFileName);
+			
+			System.out.println("sftp> transfer complete !!");
+
+			fis.close();
+			chsftp.exit();
+			tmp.delete();
+			
+			System.out.println("sftp>exit");
+			
+			board_file = "http://" + serverIp + ":1234/"+savedFileName;
+		
 		}
 	}
 
