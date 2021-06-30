@@ -212,10 +212,27 @@ public class MovieController {
     @GetMapping(value = "/movie/movieList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String movieList(@RequestParam String branch) throws JsonProcessingException {
-    	System.out.println(branch);
     	String json = null;
     	List<Theater_infoDTO> movieList = cs.selectAllmovieList(branch);
     	json = mapper.writeValueAsString(movieList);
+    	
+    	return json;
+    }
+    
+    @GetMapping(value = "/movie/dateList",produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String dateList(@RequestParam String date) throws JsonProcessingException {
+    	List<Theater_infoDTO> dateList = cs.selectAlldate();
+    	System.out.println(date);
+    	for(int i=0; i < dateList.size(); i++) {
+    		int s_s = Integer.parseInt(dateList.get(i).getStart_date().replace("-", ""));
+			int s_e = Integer.parseInt(dateList.get(i).getEnd_date().replace("-", "").substring(3));
+			System.out.println(s_s);
+			System.out.println(s_e);
+		}
+    	String json = null;
+//    	List<Theater_infoDTO> movieList = cs.selectAllmovieList(date);
+//    	json = mapper.writeValueAsString(movieList);
     	
     	return json;
     }

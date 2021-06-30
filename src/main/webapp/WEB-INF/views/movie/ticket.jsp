@@ -49,6 +49,8 @@
             <ul id="dateForm"></ul>
             
             <div id="movieList">
+            
+            
                 불러온 영화 목록 띄우기          
             </div>
     
@@ -108,8 +110,7 @@
 	   		fetch(url, opt)
 	   		.then(resp => resp.json())
 	   		.then(json => {
-	   			console.log(json)
-	  			
+   			console.log(json)
 			for(let i=0; i < json.length; i++){
 				const li = document.createElement('li')
 				li.className = "movie_list"
@@ -165,7 +166,7 @@
                 'border':'none',
                 'color' : '#000',                
             });
-            const t2= $(this).find('b').text();
+            const t2= $(this).find('span').text();
             console.log(t2)
             cmovie = t2;
         })
@@ -194,7 +195,19 @@
                 li.setAttribute("style", "color:red")
             }
             p1.textContent = day
-            //p1.textContent = month + '월' + day + '일'     월과 일을 같이 표시하고 싶으면 그렇게 하기
+            if(month < 10){
+            	if(day < 10){
+	            	p1.textContent = '0' + month + '0' + day      //월과 일을 같이 표시하고 싶으면 그렇게 하기
+            	}else if(day >= 10){
+	            	p1.textContent = '0' + month  + day      //월과 일을 같이 표시하고 싶으면 그렇게 하기
+            	}
+            }else{
+            	if(day < 10){
+    	            p1.textContent =  month + '0' + day      //월과 일을 같이 표시하고 싶으면 그렇게 하기
+               	}else if(day >= 10){
+    	            p1.textContent = month  + day      //월과 일을 같이 표시하고 싶으면 그렇게 하기
+                	}
+            }
             span.textContent = week[w]
             
             switch(month){	// 월 바뀔때마다 날짜 초기화
@@ -222,6 +235,41 @@
         const t3 = $(this).find('p').text()
         console.log(t3)
         cday =t3;
+        
+		const url = "${cpath}/movie/dateList?date=" + t3; 
+   		const opt ={
+   				method : 'GET'
+   		}
+   		fetch(url, opt)
+   		.then(resp => resp.json())
+   		.then(json => {
+			console.log(json)
+		for(let i=0; i < json.length; i++){
+			const li = document.createElement('li')
+			li.className = "movie_list"
+			const ob = json[i];
+
+// 			for(let key in ob) {
+// 				//console.log(ob[key])
+// 				if(ob[key] != null){
+//    					const value = ob[key]
+// 					if(key != 'runtime'){
+//     					const span = document.createElement('span')
+    					
+//    						span.className = key
+//    						span.innerText = value
+//     					li.appendChild(span)
+// 						theater_info_movie.appendChild(li)
+						
+//     					}
+// 					}
+// 				}
+			}
+		
+  		})
+            
+        
+        
     })
     
     function goSeat(){

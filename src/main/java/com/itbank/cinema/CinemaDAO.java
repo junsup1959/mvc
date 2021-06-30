@@ -43,6 +43,9 @@ public interface CinemaDAO {
 	@Select("select distinct movie_title, movie_audit from theater_info where screen_code like '%${branch}%'")
 	List<Theater_infoDTO> selectAllmovieList(String branch);
 
+	@Select("select start_date, end_date from theater_info")
+	List<Theater_infoDTO> selectAlldate();
+
 
 
 

@@ -64,6 +64,10 @@ public class CinemaService {
 		return dao.selectAllmovieList(branch);
 	}
 
+	public List<Theater_infoDTO> selectAlldate() {
+		return dao.selectAlldate();
+	}
+
 
 
 }
