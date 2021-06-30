@@ -32,17 +32,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		return true;		// 예정대로 컨트롤러의 메서드를 진행시킨다
 	}
 	
-	@Override	// 컨트롤러의 메서드가 반환되었으나, viewResolver에게 전달하지 않은 상태
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		
-		String[] color = {"salmon", "burlywood", "lightgreen", "skyblue"};
-		Random ran = new Random();
-		int i = ran.nextInt(4);
-		String bgcolor = color[i];
-		if(modelAndView != null) 	modelAndView.addObject("bgcolor", bgcolor);
-
-	}
 	
 	
 }

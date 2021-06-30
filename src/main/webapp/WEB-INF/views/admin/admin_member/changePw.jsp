@@ -29,7 +29,7 @@ var t1= /[0-9]/
 var t2= /[a-zA-Z]/
 function pwCheck(pw){ // 비밀번호 조건 체크
 	
-		if(!t1.test(pw) || !t2.test(pw) || !(pw.length >= 6 &&pw.length <= 12)){
+	if(!t1.test(pw) || !t2.test(pw) || !(pw.length >= 6 &&pw.length <= 12)){
 		document.getElementById('Check').value = "비밀번호는 6~12자리. 영문,숫자 조합"
 			document.getElementById('Check').style.color = "red"
 	}else{
@@ -54,7 +54,7 @@ form.onsubmit = function(e){
 		return false
 	}
 	if(pw == pw2){
-		 if(${ad_login.admin_password} == currentPw){
+		 if('${ad_login.admin_password}' == currentPw){
 		e.target.submit();
 		}else{
 			alert('기존 비밀번호가 일치하지 않습니다')
