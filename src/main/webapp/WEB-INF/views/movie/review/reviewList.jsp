@@ -3,41 +3,50 @@
 <%@include file="../../header.jsp" %>
 <style>
 .wrap{
-	width: 100%;
+	width : 900px;
 	height: 900px;
-	background-color: yellow;
+	margin : 0 auto;
+	padding-top : 100px;
 }
-.warp>.top{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 100px;
-
+.warp .top{
+	position: relative;
 	width: 100%;
 	height: 200px;
-	position: relative;
+	margin : 0 auto;
 	background-color: black;
 }
+
+#search {width : 500px; height: 50px; margin-left : 100px; line-height: 50px; padding: 5px 10px; border : 1px solid #666; border-radius: 5px;}
+button.btn1 {width : 120px;}
 #recommend{
+	position: absolute;
 	display: flex;
 	flex-flow: column;
 	display: none;
-	width:300px;
-	height:300px;
-	position: absolute;
-	right:600px;
-	top: 30px;
-	background-color: red;
+	width:400px;
+	height:400px;
+	right :350px;
+	top : 250px;
+	background-color: #ccc;
+	font-size: 20px;
+	overflow-y: scroll;
 }
 #recommend>a{
+	display : block;
+	height : 40px;
+	line-height : 40px;
 	text-decoration: underline;
 }
 </style>
 
+<section id="bodyWrap">
+<div>
+<h2>영화검색/리뷰작성</h2>
 <div class="wrap">
 	
 		<div class="top">
-			<input type="text" name="search" id="search">
-			<button class="btn">검색</button> 
+			<input type="text" name="search" id="search" placeholder="검색할 영화를 입력하세요">
+			<button class="btn1">검색</button> 
 			<div id="recommend">
 				검색은?
 				<a></a>
@@ -47,7 +56,9 @@
 				<a></a>
 				<a></a>
 				<a></a>
-				<button class='btn2'>닫기</button>
+				<a></a>
+				<a></a>
+<!-- 				<button class="btn1">닫기</button> -->
 			</div>
 		</div>
 		<div class="bottom">
@@ -73,8 +84,9 @@
 		         <span>userRating</span>
 			</div>
 		</div>
-
 </div>
+</div>
+</section>
 <script>
 	const recommend = document.getElementById('recommend');
 	
@@ -102,7 +114,7 @@
 			}
 		})
 	})
-	document.querySelector('.btn').onclick=function(event){
+	document.querySelector('.btn1').onclick=function(event){
 		const search = document.querySelector('input[name=search]').value
 		if(search == '' || search == null){return}
 		location.href='${cpath}/movie/review/result/?query='+encodeURI(search)

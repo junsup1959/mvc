@@ -148,3 +148,17 @@ $(document).ready(function(){
         <!-- main menu -->
     </header>
     <!-- header 끝 -->
+
+<!-- scroll -->
+     <p class="scroll">TOP</p>
+     <script>
+        
+        //scrollTop animate
+        $('.scroll').on('click',function(){
+            $('html,body').animate({
+                'scrollTop':0
+                //0으로 scrollTop라는 애니메이트 속성
+            }, 500);
+        });
+        
+    </script>

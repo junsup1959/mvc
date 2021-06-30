@@ -55,16 +55,21 @@
 			const data = json.items[0]
 			for(key in data) {
 				const p = document.createElement('p')
+				p.className='linkWrap'
 				switch(key) {
 				case 'title': 
 					p.innerHTML =  data[key]
 					break;
 				case 'image':
-					p.innerHTML = '<img src="' + data[key] + '" style="width:200px;">'
-					break;
+					p.innerHTML = '<img src="' + data[key] + '" style="width:200px;" class="linkImg">'
+				case 'link':
+					p.innerHTML += '<a href="' + data[key] + 
+						'" style="width:150px; height:35px; color : #fff; border : 2px solid #fff; border-radius : 5px;" class="link">영화상세정보</a>'
+						
 				}
-				
+				if(p.innerText !=''){
 				wrap.appendChild(p)
+				}
 				}
 				
 			document.getElementById('weekly').appendChild(wrap)
