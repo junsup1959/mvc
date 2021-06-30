@@ -222,11 +222,11 @@ border-top: outset;
             </select>
         </p>
         <p class="clearfix">
-            <label for="usable">사용</label><input type="radio" name="usable" id="usable" value="y" onchange="deldate()" checked>
+            <label for="usable">사용</label><input type="radio" name="usable" id="usable" value="y" onchange="deldate2()" checked>
             &nbsp;&nbsp;
-            <label for="nusable">사용안함</label><input type="radio" name="usable"  id="nusable" value="n" onchange="createdate()">
+            <label for="nusable">사용안함</label><input type="radio" name="usable"  id="nusable2" value="n" onchange="createdate2()">
         </p>
-        <p id="ndate" class="clearfix"></p>
+        <p id="ndate2" class="clearfix"></p>
         <p><input type="submit" class="btn" value="상영관생성"></p>
     </form>
     </div>
@@ -298,13 +298,14 @@ border-top: outset;
         
         function close(){
         	modal1.classList.add('remove')
+        	modal2.classList.add('remove')
             modalBg.classList.add('remove')
         }
         modalBg.addEventListener('click', close)
         
        function createdate(){
-           let check = document.getElementById('nusable')
-           let ndate = document.getElementById('ndate')
+           const check = document.getElementById('nusable')
+           const ndate = document.getElementById('ndate')
           if(check.checked){       
         	  ndate.innerHTML = '시작일 <input type="date" name="branch_sdate" required> &nbsp;&nbsp; 종료일<input type="date" name="branch_edate" required>'
           }
@@ -313,8 +314,8 @@ border-top: outset;
         
        
       function deldate(){	
-          let check = document.getElementById('usable')
-           let ndate = document.getElementById('ndate')
+          const check = document.getElementById('usable')
+           const ndate = document.getElementById('ndate')
           if(check.checked){
               ndate.innerHTML = ''
           } 
@@ -325,7 +326,7 @@ border-top: outset;
 
 <script>
 // 영화관 수정 모달창(modal2)
-	const modal2 = document.querySelector('#modal2')
+	var modal2 = document.querySelector('#modal2')
     function modifyScreen(screen_code){  
     	
 		const modifyScreen = document.forms.modifyScreen
@@ -347,6 +348,9 @@ border-top: outset;
 		
 		modal2.classList.remove('remove')
            modalBg.classList.remove('remove')
+           
+          
+          
            
        	modifyScreen.onsubmit =	function(event){
 			event.preventDefault()
@@ -374,12 +378,24 @@ border-top: outset;
             
         }
         
-		function close(){
-        	modal2.classList.add('remove')
-            modalBg.classList.add('remove')
-        }
-        modalBg.addEventListener('click', close)
-
+	
+    
+	function createdate2(){
+        const check = document.getElementById('nusable2')
+        const ndate2 = document.getElementById('ndate2')
+       if(check.checked){       
+    	   ndate2.innerHTML = '시작일 <input type="date" name="branch_sdate" required> &nbsp;&nbsp; 종료일<input type="date" name="branch_edate" required>'
+       }
+           
+   }
+	   
+	function deldate2(){	
+        const check = document.getElementById('nusable2')
+         const ndate2 = document.getElementById('ndate2')
+        if(check.checked){
+        	ndate2.innerHTML = ''
+        } 
+	}  
 </script>
 
 
