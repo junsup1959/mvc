@@ -5,7 +5,7 @@
 <script>
 // 주소 api
 function goPopup(){
-	var pop = window.open("/team/member/addrPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	var pop = window.open("/team/admin/addrPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 }
 
 

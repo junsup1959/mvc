@@ -74,7 +74,7 @@ public class AdminController {
 		}
 		
 		session.setAttribute("ad_login", ad_login );
-		session.setMaxInactiveInterval(60*60);
+		session.setMaxInactiveInterval(60*60*60);
 		return mav;
 	}	
 	
@@ -112,7 +112,10 @@ public class AdminController {
 	@PostMapping("/admin_member/insert")
 	@ResponseBody
 	public String admin_insert(Admin_memberDTO dto) {
-		System.out.println(dto.getAdmin_name());
+		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
+		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
+		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
+		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
 		int row =as.insert(dto);
 		System.out.println(row);
 		return row+"";
