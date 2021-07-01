@@ -261,11 +261,10 @@
 		for(let i=0; i < json.length; i++){
 			const li = document.createElement('li');
 			li.className = "date_list";
-			li.innerHTML = "<span>"+json[i].screen_code+"  " +"</span>"+"<span>"+json[i].movie_title+"   "+"</span>"+"<span> 시작시간 : "+json[i].start_time+"  " +"</span>"+"<span>남은 좌석: "+json[i].seat_amount+"  " +"</span>"
+			li.innerHTML = "<span>"+json[i].screen_code+" " +"</span>"+"<span>"+json[i].movie_title+" "+"</span>"+"<span> 시작시간 : "+json[i].start_time+" " +"</span>"+"<span>남은 좌석: "+json[i].seat_amount+" " +"</span>"
 			ul.appendChild(li)
 			movieList.appendChild(ul)
 			li.style.cursor='pointer';
-			li.addEventListener('click',gogo2(json[i]))
 			}
   		})
     	
@@ -275,7 +274,10 @@
     	const text2 = $(this).find('span').eq(1).text()
     	const text3 = $(this).find('span').eq(2).text()
     	const text4 = $(this).find('span').eq(3).text()
-    	console.log(text1 + text2 + text3 + text4)
+    	screen_code = text1.replaceAll(' ','')
+    	movie_title = text2.replaceAll(' ','')
+    	sdate = text3.split(':')[1].replaceAll(' ','')
+    	seat_amount = text4.split(':')[1].replaceAll(' ','')
     	$('.date_list').css({
     		'border' : 'none',
     		'color' : '#000'
@@ -285,14 +287,7 @@
     		'color' : 'red'
     	})
     })
-    
-    function gogo2(data){
-    	screen_code = data.screen_code
-    	movie_title = data.movie_title
-    	sdate = data.start_time
-   		seat_amount = data.seat_amount
-    }
-    
+        
     
     function goSeat(){
     	if(screen_code==''||sdate==''||movie_title==''||seat_amount==''){alert('영화관,영화 및 날짜를 선택하지 않으셨습니다.');return;}
