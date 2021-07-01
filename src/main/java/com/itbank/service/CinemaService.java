@@ -1,5 +1,6 @@
 package com.itbank.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +70,10 @@ public class CinemaService {
 	}
 
 	public List<Theater_infoDTO> selectDateList(String branch, String movie_title) {
-		System.out.println("service : " +branch);
-		return dao.selectDateList(branch, movie_title);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("branch", branch);
+		map.put("movie_title", movie_title);
+		return dao.selectDateList(map);
 	}
 
 

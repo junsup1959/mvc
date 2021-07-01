@@ -14,7 +14,7 @@ package com.itbank.cinema;
 
 
 public class Theater_infoDTO {
-	private String screen_code, movie_code, movie_title, start_date, end_date, movie_type, start_time, end_time, movie_audit;
+	private String screen_code, movie_code, movie_title, start_date, end_date, movie_type, start_time, end_time, movie_audit, seat_amount;
 	public String getStart_time() {
 		return start_time;
 	}
@@ -75,6 +75,12 @@ public class Theater_infoDTO {
 	}
 	public void setMovie_audit(String movie_audit) {
 		this.movie_audit = movie_audit;
+	}
+	public String getSeat_amount() {
+		return seat_amount;
+	}
+	public void setSeat_amount(String seat_amount) {
+		this.seat_amount = seat_amount;
 	}
 	
 	

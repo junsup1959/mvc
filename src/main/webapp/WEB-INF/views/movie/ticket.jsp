@@ -234,7 +234,7 @@
     $('#dateForm li').on('click', function(){
         $(this).siblings().removeClass()
         $(this).addClass('on')
-        
+        const movieList = document.getElementById('movieList')
         const t3 = $(this).find('p').text()
         console.log(t3)
         cday =t3;
@@ -250,27 +250,27 @@
    		.then(resp => resp.json())
    		.then(json => {
 			console.log(json)
-// 		for(let i=0; i < json.length; i++){
-// 			const li = document.createElement('li')
-// 			li.className = "movie_list"
-// 			const ob = json[i];
+		for(let i=0; i < json.length; i++){
+			const li = document.createElement('li')
+			li.className = "date_list"
+			const ob = json[i];
 
-// 			for(let key in ob) {
-// 				//console.log(ob[key])
-// 				if(ob[key] != null){
-//    					const value = ob[key]
-// 					if(key != 'runtime'){
-//     					const span = document.createElement('span')
+			for(let key in ob) {
+				console.log(ob[key])
+				if(ob[key] != null){
+   					const value = ob[key]
+					if(key != 'runtime'){
+    					const span = document.createElement('span')
     					
-//    						span.className = key
-//    						span.innerText = value
-//     					li.appendChild(span)
-// 						theater_info_movie.appendChild(li)
+   						span.className = key
+   						span.innerText = value
+    					li.appendChild(span)
+						movieList.appendChild(li)
 						
-//     					}
-// 					}
-// 				}
-// 			}
+    					}
+					}
+				}
+			}
 		
   		})
             

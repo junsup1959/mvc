@@ -1,5 +1,6 @@
 package com.itbank.cinema;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -46,8 +47,7 @@ public interface CinemaDAO {
 	@Select("select start_date, end_date from theater_info")
 	List<Theater_infoDTO> selectAlldate();
 
-	@Select("select start_time, end_time, movie_title, movie_type, screen_code from theater_info where screen_code like '%${branch}%' and movie_title=#{movie_title}")
-	List<Theater_infoDTO> selectDateList(String branch, String movie_title);
+	List<Theater_infoDTO> selectDateList(HashMap<String, String> map);
 
 
 

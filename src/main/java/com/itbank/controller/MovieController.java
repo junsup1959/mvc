@@ -226,9 +226,6 @@ public class MovieController {
     		@RequestParam(value = "movie_title",required=false,defaultValue = "0" ) String movie_title ) throws JsonProcessingException {
     	String json = null;
     	if(branch.equals("0") || date == 0 || movie_title.equals("0")) {
-    		System.out.println(date);
-    		System.out.println(branch);
-    		System.out.println(movie_title);
     		return json;
     	}
     	List<Theater_infoDTO> dateList = cs.selectAlldate();
