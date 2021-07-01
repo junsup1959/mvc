@@ -29,7 +29,14 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			member_date desc
+  	 			<choose>
+  	 				<when test="sorted.equals('desc')">
+					member_date desc
+					</when>
+					<otherwise>
+					member_date asc
+					</otherwise>
+				</choose>
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
@@ -41,7 +48,15 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			amount_last desc, member_date desc
+			<choose>
+  	 				<when test="sorted == 1 ">
+					amount_last desc,
+					</when>
+					<otherwise>
+					amount_last asc,
+					</otherwise>
+				</choose>
+				member_date desc
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
@@ -53,7 +68,16 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			amount_this desc, member_date desc
+  	 	
+  	 		<choose>
+  	 				<when test="sorted == 1 ">
+					amount_this desc,
+					</when>
+					<otherwise>
+					amount_this asc,
+					</otherwise>
+				</choose>
+				member_date desc
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
@@ -64,7 +88,14 @@
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
   	 	order by 
-			member_date desc
+  	 		<choose>
+  	 				<when test="sorted == 1 ">
+					member_date desc
+					</when>
+					<otherwise>
+					member_date asc
+					</otherwise>
+				</choose>
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>
@@ -74,7 +105,17 @@
 				<if test="keyword!=null and keyword.equals('')==false">
 		  	 		where ${search} like '%${keyword}%'
 		 	 	</if>
-  	 	order by decode(member_grade, 'P', 1, 'G', 2, 'V', 3, 'N', 4) asc, member_date desc
+  	 	order by 
+  	 		<choose>
+  	 			<when test="sorted == 1 ">
+				  	 	decode(member_grade, 'P', 1, 'G', 2, 'V', 3, 'N', 4) desc,
+				</when>
+				<otherwise>
+				  	 	decode(member_grade, 'P', 1, 'G', 2, 'V', 3, 'N', 4) asc,
+				</otherwise>
+			</choose>
+				member_date desc
+  	 	
 		offset ${offset} rows
 	 		fetch first ${perPage} rows only
 	</select>

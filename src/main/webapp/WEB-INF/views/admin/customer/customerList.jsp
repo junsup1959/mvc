@@ -7,16 +7,16 @@
 <!-- 탈퇴회원     - del  -->
 	<div class="boardList">
 		<ul class="orderBy">
-			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1&sorted=desc">[회원 가입순]</a></li>
-			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=2&sorted=desc">[등급순]</a></li>
-			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=3&sorted=desc">[올해 사용 금액순]</a></li>
-			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=4&sorted=desc">[작년 사용 금액순]</a></li>
-			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=5&sorted=desc">[탈퇴 회원 목록]</a></li>
+			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=1&sorted=1">[회원 가입순]</a></li>
+			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=2&sorted=1">[등급순]</a></li>
+			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=3&sorted=1">[올해 사용 금액순]</a></li>
+			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=4&sorted=1">[작년 사용 금액순]</a></li>
+			<li><a href="${cpath }/admin/customer/customerList/?search=&keyword=&page=1&number=5&sorted=1">[탈퇴 회원 목록]</a></li>
 	
-	<!-- 옵션을 클릭하고 보여주는 페이지에서 asc desc 순서 클릭하면 순서대로 보여주기  -->
+	<!-- 옵션을 클릭하고 보여주는 페이지에서 2 1 순서 클릭하면 순서대로 보여주기  -->
 			<li>
-				<a href="${cpath }/admin/customer/customerList/?search=${param.search }&keyword=${param.keyword }&page=1&number=${param.number}&sorted=asc"  style="width : 90px; font-size : 12px;">▲오름차순</a>
-				<a href="${cpath }/admin/customer/customerList/?search=${param.search }&keyword=${param.keyword }&page=1&number=${param.number}&sorted=desc"  style="width : 90px; font-size : 12px;">▼내림차순</a>
+				<a href="${cpath }/admin/customer/customerList/?search=${param.search }&keyword=${param.keyword }&page=1&number=${param.number}&sorted=2"  style="width : 90px; font-size : 12px;">▲오름차순</a>
+				<a href="${cpath }/admin/customer/customerList/?search=${param.search }&keyword=${param.keyword }&page=1&number=${param.number}&sorted=1"  style="width : 90px; font-size : 12px;">▼내림차순</a>
 			</li>
 		</ul>
 	

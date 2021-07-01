@@ -117,12 +117,12 @@ public class AdminController {
 	@PostMapping("/admin_member/insert")
 	@ResponseBody
 	public String admin_insert(Admin_memberDTO dto) {
-		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
-		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
-		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
-		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
+//		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
+//		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
+//		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
+//		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
 		int row =as.insert(dto);
-		System.out.println(row);
+//		System.out.println(row);
 		return row+"";
 	}
 	
@@ -133,7 +133,7 @@ public class AdminController {
 		System.out.println(admin_num);
 		String json = null;
 		Admin_memberDTO dto = as.selectOne(admin_num);
-		System.out.println("selectOne 실행 후 : " + dto.getAdmin_name());
+//		System.out.println("selectOne 실행 후 : " + dto.getAdmin_name());
 		json = mapper.writeValueAsString(dto);
 		
 		return json;
@@ -142,10 +142,10 @@ public class AdminController {
 	@PostMapping("/admin_member/update")
 	@ResponseBody
 	public String update(Admin_memberDTO dto) {
-		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
-		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
-		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
-		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
+//		System.out.println("name : " +dto.getAdmin_name() + ", phone : " + dto.getAdmin_phone());
+//		System.out.println("addr : " +dto.getAdmin_addr() + ", store : " + dto.getAdmin_store());
+//		System.out.println("dept : " +dto.getAdmin_dept() + ", 입사일 : " + dto.getAdmin_jday());
+//		System.out.println("퇴사일 : " +dto.getAdmin_lday() );
 		int row = as.update(dto);
 		return row+"";
 	}
@@ -284,16 +284,15 @@ public class AdminController {
 	
 	@GetMapping("/customer/customerList")
 	public ModelAndView customerList(@RequestParam HashMap<String, Object> param, int page,int number) {
+		System.out.println(param);
 		ModelAndView mav= new ModelAndView("admin/customer/customerList");
 		int memberCount = ms.memberCount();
 		Paging paging = new Paging(page, memberCount,perPage);
 		List<MemberDTO> customerList = ms.customerList(number, paging, param);
-		
 		mav.addObject("customerList", customerList);
 		mav.addObject("paging", paging);
 		return mav;
 	}
-	
 	
 	@GetMapping("/customer/customerRead/{member_number}")
 	public ModelAndView customerRead(@PathVariable String member_number) {
