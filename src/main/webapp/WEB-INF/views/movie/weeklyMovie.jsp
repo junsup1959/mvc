@@ -2,26 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-영화 목록
 
-
-순위 이미지 타이틀
-<hr>
-
+<style>
+#weekly{width : 1500px; margin : 0 auto; padding : 20px;}
+#weekly .linkWrap {position:relative; display : inline-block; width: 220px; height: 350px; margin-left: 50px; margin-bottom: 50px; text-align : center; overflow: hidden; }
+#weekly .linkWrap p {display: block; width : 100%;}
+#weekly .linkWrap p:first-child{position: absolute; display : block; width : 100%; height : 30px; line-height : 30px; background : #fff; bottom: 0; left : 0; }
+#weekly .linkWrap p .linkImg {display: block; width : 100%;}
+#weekly .linkWrap p .link{position : absolute; display : none; width : 100%; height : 100%; line-height: 50px; color : #fff; z-index: 10; }
+#weekly .linkWrap:hover p .link {display: block; background: rgba(0,0,0,0.6)}
+</style>
+<section id="bodyWrap">
+<div style="padding : 50px 20px;">
+<%-- 
 <div style="display: none">
 <a href="${cpath }/member/dailymovie">영화목록</a>
-</div>
+</div> --%>
 
 
 <!-- 네이버에서 받아온 영화  띄우기 -->
 
+<h2>주간 박스 오피스</h2>
 
-저번주 일주일간 영화 랭킹
 <div id="weekly"></div>
 
-
-
-
+</div>
+</section>
 
 <script>
 
@@ -55,20 +61,19 @@
 			const data = json.items[0]
 			for(key in data) {
 				const p = document.createElement('p')
-				p.className='linkWrap'
+				wrap.className='linkWrap'
 				switch(key) {
 				case 'title': 
-					p.innerHTML =  data[key]
-					break;
+					p.innerHTML =  data[key]; wrap.appendChild(p); break;
 				case 'image':
-					p.innerHTML = '<img src="' + data[key] + '" style="width:200px;" class="linkImg">'
+					p.innerHTML = '<img src="' + data[key] + '" class="linkImg">'; wrap.appendChild(p); break;
 				case 'link':
-					p.innerHTML += '<a href="' + data[key] + 
-						'" style="width:150px; height:35px; color : #fff; border : 2px solid #fff; border-radius : 5px;" class="link">영화상세정보</a>'
-						
+					p.innerHTML = '<a href="' + data[key] + 
+						'" class="link">영화상세정보</a>';
+					 wrap.appendChild(p); break;
 				}
-				if(p.innerText !=''){
-				wrap.appendChild(p)
+				if(p.innerText != ''){
+					wrap.appendChild(p); 
 				}
 				}
 				
