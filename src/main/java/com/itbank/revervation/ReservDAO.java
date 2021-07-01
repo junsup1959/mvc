@@ -35,7 +35,7 @@ public interface ReservDAO {
 			+ ",#{seatNum})")
 	int insert(ReservDTO dto);
 
-	@Select("select * from reservation where member_email=#{member_email} and deleted='n'")
+	@Select("select * from reservation where member_email=#{member_email} and deleted='n' order by wdate desc")
 	List<ReservDTO> selectlist(String member_email);
 
 	@Update("update reservation set deleted='y' where member_email=#{member_email} and imp_uid=#{imp_uid} and merchant_uid =#{merchant_uid}")
