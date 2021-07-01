@@ -221,10 +221,11 @@ public class MovieController {
     			ReservDTO dto = new ReservDTO();
     			dto.setSeatNum(seat[i]);
     			seatList.add(dto);
+    			seatarray.add(seat[i]);
     		}
     	}
     	String json = mapper.writeValueAsString(seatList);
-    	mav.addObject("list", seatList);
+    	mav.addObject("list", seatList); // list -> dto.seatNum
     	mav.addObject("seatarray",seatarray.toArray(new String[0]));
     	mav.addObject("json",json);
     	return mav;
