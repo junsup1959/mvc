@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<script>
 
+</script>
 <section id="movieWrap">
         <div class="ticket"> 
              <nav class="nav" id="choice1">  
@@ -268,6 +270,21 @@
   		})
     	
     }
+    $(document).on('click','.date_list', function () {
+    	const text1 = $(this).find('span').eq(0).text()
+    	const text2 = $(this).find('span').eq(1).text()
+    	const text3 = $(this).find('span').eq(2).text()
+    	const text4 = $(this).find('span').eq(3).text()
+    	console.log(text1 + text2 + text3 + text4)
+    	$('.date_list').css({
+    		'border' : 'none',
+    		'color' : '#000'
+    	})
+    	$(this).css({
+    		'border' : '1px solid #000',
+    		'color' : 'red'
+    	})
+    })
     
     function gogo2(data){
     	screen_code = data.screen_code

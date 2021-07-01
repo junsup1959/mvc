@@ -6,12 +6,12 @@
 	<div class="noticeWrap">
 
 	
-	<ul class="cf read">
+	<ul class="cf read" style="width : 100%">
 		<li>
 			<p>글번호</p>
 			<span>${dto.board_number}</span> 
 		</li>
-		<li>
+		<li style="width : 965px;">
 			<p>제목</p>
 			<span>${dto.board_title}</span>
 		</li>
@@ -54,7 +54,7 @@
 		</li>
 	</ul>
 	
-	<ul class="prev-next cf">
+	<ul class="prev-next cf"  style="width : 100%">
 		<c:if test="${not empty next }">
 		<li>
 			[다음글]<a href="${cpath}/admin/board/read/${next.board_number}?search=${param.search }&keyword=${param.keyword }&cate=${param.cate}&page=${param.page}">${next.board_title}</a>

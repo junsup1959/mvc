@@ -24,6 +24,7 @@
 	       		<input type="hidden" name="start_date" value="${param.day }">   
 	            <input type="hidden" name="movie_code" value="${param.movie }">   
 	            <input type="hidden" name="branchcode" value="${param.branch }">
+	            <input type="hidden" name="seat_amount" value="${param.seat_amount }" id="seat_amount">
        		</form>
        		
        		
@@ -103,7 +104,9 @@
        // 인원에 따른 영화관 좌석 생성
        const wrap = document.getElementById('seatWrap')
        const div = document.createElement('div')
-       const seatAll = 80;     //row 12 :  120 132 144  156 168 180 192
+       const seat_amount = document.getElementById('seat_amount').value
+       console.log(seat_amount)
+       const seatAll = Number(seat_amount);     //row 12 :  120 132 144  156 168 180 192
                                 //row 14 :  224 238
        var row = 0
        var col = 0

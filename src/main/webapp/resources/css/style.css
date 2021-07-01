@@ -262,16 +262,30 @@ video { display: none; }
             padding: 20px 30px;
         }
         #event div {
+        	position : relative;
             float: left;
             width: 31.5%;
             height: 200px;
-            background: teal;
             margin-right: 30px;
             border-radius: 30px;
+            overflow :hidden;
         }
-        #event div:last-child {
-            margin-right: 0;
-        }
+         #event div img{width : 100%; margin : 0 auto; }
+         #event div a {
+  		position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        line-height : 50px;
+        font-size : 28px;
+        font-weight : 700;
+        top :0;
+        left: 0;
+        color : #fff;
+        text-align: center;
+	}
+         #event div:hover a {display: block; background: rgba(0, 0, 0, 0.6); }
+        #event div:last-child { margin-right: 0;  }
         
     /* footer */
         #footer {
