@@ -65,6 +65,8 @@
 				</span>
 			</div>
 		</c:forEach>
+		</c:if>
+	</div>
 
 		
 		<div class="pages">
@@ -84,13 +86,6 @@
 			   	</p>
 		   	</c:if>
   	 	</div>
-		</c:if>
-	</div>
-
-	
-	</div>
-
-
 
 		<div class="searchWrap cf">
 			<form>	
