@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<script>
 
+</script>
 <section id="movieWrap">
         <div class="ticket"> 
              <nav class="nav" id="choice1">  
@@ -67,10 +69,15 @@
     
     
     <script>
+    
+    var sdate ='';
+    var movie_title='';
+    var screen_code = '';
+    
     var cbranch='';
     var cmovie='';
     var cday='';
-    var t4='';
+    
         $('#choice1 p').on('click', function(){
             $(this).css({
                'border':'1px dotted #ccc',
@@ -152,7 +159,7 @@
 						}
 					}
 				}
-			
+   			List();
 	  		})
 	            
 	            
@@ -168,10 +175,8 @@
                 'color' : '#000',                
             });
             const t2= $(this).find('span').text();
-            console.log(t2)
-            cmovie = t2;
-            t4= $(this).find('b').text();
-            console.log('t4'+t4)
+            cmovie= $(this).find('b').text();
+            List();
         })
 
     </script>
@@ -238,49 +243,55 @@
         const t3 = $(this).find('p').text()
         console.log(t3)
         cday =t3;
-        cbranch = cbranch.slice(0, -1)
-        console.log('dateForm : '+cbranch)
-        console.log('cmovie : '+t4)
-        
-		const url = "${cpath}/movie/dateList?date=" + t3+"&branch="+cbranch+"&movie_title="+t4; 
+        List();
+    })
+    
+    function List(){
+		const movieList = document.getElementById('movieList')
+    	if(cbranch==''||cmovie==''||cday==''){console.log('bye'); return;}
+		movieList.innerHTML='';
+		const ul = document.createElement('ul')
+		const url = "${cpath}/movie/dateList?date=" + cday+"&branch="+cbranch.slice(0,-1)+"&movie_title="+cmovie; 
    		const opt ={
    				method : 'GET'
    		}
    		fetch(url, opt)
    		.then(resp => resp.json())
    		.then(json => {
-			console.log(json)
 		for(let i=0; i < json.length; i++){
-			const li = document.createElement('li')
-			li.className = "date_list"
-			const ob = json[i];
-
-			for(let key in ob) {
-				console.log(ob[key])
-				if(ob[key] != null){
-   					const value = ob[key]
-					if(key != 'runtime'){
-    					const span = document.createElement('span')
-    					
-   						span.className = key
-   						span.innerText = value
-    					li.appendChild(span)
-						movieList.appendChild(li)
-						
-    					}
-					}
-				}
+			const li = document.createElement('li');
+			li.className = "date_list";
+			li.innerHTML = "<span>"+json[i].screen_code+" " +"</span>"+"<span>"+json[i].movie_title+" "+"</span>"+"<span> 시작시간 : "+json[i].start_time+" " +"</span>"+"<span>남은 좌석: "+json[i].seat_amount+" " +"</span>"
+			ul.appendChild(li)
+			movieList.appendChild(ul)
+			li.style.cursor='pointer';
 			}
-		
   		})
-            
-        
-        
+    	
+    }
+    $(document).on('click','.date_list', function () {
+    	const text1 = $(this).find('span').eq(0).text()
+    	const text2 = $(this).find('span').eq(1).text()
+    	const text3 = $(this).find('span').eq(2).text()
+    	const text4 = $(this).find('span').eq(3).text()
+    	screen_code = text1.replaceAll(' ','')
+    	movie_title = text2.replaceAll(' ','')
+    	sdate = text3.split(':')[1].replaceAll(' ','')
+    	seat_amount = text4.split(':')[1].replaceAll(' ','')
+    	$('.date_list').css({
+    		'border' : 'none',
+    		'color' : '#000'
+    	})
+    	$(this).css({
+    		'border' : '1px solid #000',
+    		'color' : 'red'
+    	})
     })
+        
     
     function goSeat(){
-    	if(cbranch==''||cmovie==''||cday==''){alert('영화관,영화 및 날짜를 선택하지 않으셨습니다.');return;}
-    	location.href = "${cpath}/movie/ticket2?branch="+cbranch+"&movie="+cmovie+"&day="+cday
+    	if(screen_code==''||sdate==''||movie_title==''||seat_amount==''){alert('영화관,영화 및 날짜를 선택하지 않으셨습니다.');return;}
+    	location.href = "${cpath}/movie/ticket2?branch="+screen_code+"&movie="+movie_title+"&day="+cday+"/"+sdate+"&seat_amount="+seat_amount
     }
     
     </script>

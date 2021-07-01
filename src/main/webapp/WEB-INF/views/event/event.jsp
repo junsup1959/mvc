@@ -32,7 +32,7 @@ a {
 
 .layer .box {
 	overflow: auto;
-	width: 70%;
+	width: 1500px;
 	height: 90%;
 	padding: 20px 20px 60px;
 	margin: 20px;
@@ -89,7 +89,7 @@ to {
 	justify-content: center;
 }
 .bcont_wrap div {
-	width : 700px;
+	width : 1000px;
 	margin : 0 auto;
 }
 #bimg img {
@@ -130,8 +130,10 @@ to {
 }
 #btitle{
     position: absolute;
-    right: 450px;
     top: -7px;
+    left: 400px;
+    font-size: 30px;
+    width: 500px;
 }
 .List_wrap{
 	width: 1400px;
@@ -144,6 +146,7 @@ to {
 }
 
 .ev{
+	position : relative;
 	display: flex;
 	flex-flow: column;
 	margin-left: 20px;
@@ -151,24 +154,34 @@ to {
 	width: 300px;
 	height: 350px;
     border: groove;
+    text-align: center;
+    overflow: hidden;
 }
 .ev>img{
 	display: block;
 	width: 295px;
-	height: 250px;
-	
+	margin-left: auto;
+	margin-right: auto;
+
 }
 
 .ev>.evtitle{
+	position:absolute;
 	display: block;
 	width: 100%;
 	text-align: center;
+	bottom : 30px;
+	background : #fff;
 }
 .evtdate{
+	position:absolute;
 	text-align: center;
+	width : 100%;
+	background : #fff;
+	bottom : 0;
 }
 .evtdate>span{
-    margin-right: 10px;
+    	display: inline-block;
 }
 #likey{
     position: absolute;
@@ -196,7 +209,6 @@ to {
 	right: 10px;
 	bottom: 800px;
 }
-
 </style>
 <div class="e_wrap">
 		<div class="e_head">

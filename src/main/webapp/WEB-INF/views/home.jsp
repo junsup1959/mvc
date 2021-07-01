@@ -153,23 +153,23 @@
     
     <section id="icon" class="clearfix">
        <div class="icon-item">
-            <i class="xi-crown"></i>
+            <i class="xi-crown"></i><br>
             <p>멤버쉽</p>
         </div>
          <div class="icon-item">
-            <i class="xi-calendar-list"></i>
+            <i class="xi-calendar-list"></i><br>
             <p>상영시간표</p>
         </div>
         <div class="icon-item">
-            <i class="xi-gift"></i>
+            <i class="xi-gift"></i><br>
             <p>이벤트</p>
         </div>
         <div class="icon-item">
-            <i class="xi-coupon"></i>
+            <i class="xi-coupon"></i><br>
             <p>할인카드안내</p>
         </div> 
         <div class="icon-item">
-            <i class="xi-shop"></i>
+            <i class="xi-shop"></i><br>
             <p>스토어</p>
         </div>
     </section>
@@ -178,7 +178,9 @@
      <section id="event" class="clearfix">
     	<c:if test="${not empty event }">
 	    	<c:forEach var="event" items="${event}">
-		        <div><a href="${cpath }/event/?search=&keyword=&cate=2&page=1" target="" title="이벤트 목록으로 이동하기">${event.board_title }</a></div>
+		        <div>
+		        <img src="${event.board_file}">
+		        <a href="${cpath }/event/?search=&keyword=&cate=2&page=1" target="" title="이벤트 목록으로 이동하기">${event.board_title }</a></div>
 		    </c:forEach>
         </c:if>
     </section>

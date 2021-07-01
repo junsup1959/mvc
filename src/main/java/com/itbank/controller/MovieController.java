@@ -225,21 +225,19 @@ public class MovieController {
     		@RequestParam(value="branch",required=false,defaultValue = "0" ) String branch,
     		@RequestParam(value = "movie_title",required=false,defaultValue = "0" ) String movie_title ) throws JsonProcessingException {
     	String json = null;
+    	System.out.println(branch);
+    	System.out.println(date);
+    	System.out.println(movie_title);
     	if(branch.equals("0") || date == 0 || movie_title.equals("0")) {
     		return json;
     	}
     	List<Theater_infoDTO> dateList = cs.selectAlldate();
-    	System.out.println(date);
-    	System.out.println(branch);
-    	System.out.println(movie_title);
     	for(int i=0; i < dateList.size(); i++) {
     		int s_s = Integer.parseInt(dateList.get(i).getStart_date().replace("-", "").substring(4));
 			int s_e = Integer.parseInt(dateList.get(i).getEnd_date().replace("-", "").substring(4));
-			System.out.println(s_s);
-			System.out.println(s_e);
 			if(s_s <= date && date <= s_e) {
-				System.out.println("전달전 : "+branch);
 				List<Theater_infoDTO> movieList = cs.selectDateList(branch, movie_title);
+				System.out.println(movieList.toString());
 				json = mapper.writeValueAsString(movieList);
 				return json;
 				

@@ -192,7 +192,7 @@
  	.noticeWrap ul.read li p {width :120px; height : 35px; line-height : 35px; background : #32bebe; color : #fff; }
  	.noticeWrap ul.read li:last-child {float: none;width : 100%; height : 400px; padding : 10px;border-bottom : 1px solid #66cccc; overflow-y: scroll;}
  	.noticeWrap ul.read li:last-child p{width : 0; background: #fff; color: #000;}
- 	
+ 	.read > ul > li > span > div > p > img {width : 600px;}
  	.prev-next {width : 900px; height : 75px; margin: 0 auto; margin-top : 5px; border-top : 1px dotted #ddd;}
  	.prev-next li {padding-left: 20px;height: 25px; font-size: 14px;  border-bottom : 1px dotted #ddd;}
  	.prev-next li a {line-height: 25px; font-size: 14px;}
