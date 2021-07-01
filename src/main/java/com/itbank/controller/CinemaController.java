@@ -79,6 +79,7 @@ public class CinemaController {
 	@ResponseBody
 	@PostMapping("/insertTheaterInfo")
 	public String insertTheater_info(Theater_infoDTO info) {
+		
 		String startTime = info.getStart_time();
 		startTime = startTime.replace(":", "");
 		info.setStart_time(startTime);
