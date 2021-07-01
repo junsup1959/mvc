@@ -14,7 +14,7 @@
 		<p>비밀번호 확인</p>
 			<form method="post">
 				<p><input type="hidden" name="member_email" value="${login.member_email }"></p>
-				<p><input type="text" name="member_password"></p>
+				<p><input type="password" name="member_password"></p>
 				<p><input type="submit" value="확인"  class="btn1"></p>
 				<div id="checkPwMsg"></div>
 	
