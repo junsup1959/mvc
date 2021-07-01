@@ -67,21 +67,25 @@
 		</c:forEach>
 		
 		<div class="pages">
-		<c:if test="${paging.prev }">
-		   	<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.begin-1}&number=${param.number}&sorted=${param.sorted}">
-		   	[이전]</a>
-	   	</c:if>
-		<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
-			<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${i}&number=${param.number}&sorted=${param.sorted}">[${i}]</a>
-		</c:forEach>
-		<c:if test="${paging.next }">
-		   	<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.end+1}&number=${param.number}&sorted=${param.sorted}">
-		   	[다음]</a>
-	   	</c:if>
-	   	</div>
-	</c:if>
-	</div>
-	
+			<c:if test="${paging.prev }">
+			   	<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.begin-1}&number=${param.number}&sorted=${param.sorted}">
+			   	[이전]</a>
+		   	</c:if>
+			<c:forEach var="i" begin="${paging.begin }" end="${paging.end}">
+				<c:if test="${paging.end ne 1}">
+					<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${i}&number=${param.number}&sorted=${param.sorted}">[${i}]</a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.next }">
+				<p>
+			   		<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.end+1}&number=${param.number}&sorted=${param.sorted}">
+			   		[다음]</a>
+			   	</p>
+		   	</c:if>
+  	 	</div>
+		</c:if>
+		</div>
+		
 	
 		<div class="searchWrap cf">
 			<form>	

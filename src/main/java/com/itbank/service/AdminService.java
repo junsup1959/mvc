@@ -23,7 +23,6 @@ public class AdminService {
 	public List<Admin_memberDTO> selectAll(Paging paging, HashMap<String, Object> param) {
 		param.put("offset",paging.getOffset());
 		param.put("perPage",paging.getPerPage());
-		
 		return dao.selectAll(param);
 	}
 

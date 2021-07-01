@@ -39,7 +39,7 @@ function getCookie(cookieName) {
 	<div class="loginForm">
 		<form method="post" id="loginForm">
 			<p><input type="text" name="member_email" id="userid" placeholder="아이디" required autofocus></p>
-			<p><input type="text" name="member_password" placeholder="비밀번호" required></p>
+			<p><input type="password" name="member_password" placeholder="비밀번호" required></p>
 			<p><input type="submit" id="checkLogin" value="로그인" class="btn1"></p>
 			<div id="checkLoginMsg"></div>
 		</form>

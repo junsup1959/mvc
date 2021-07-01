@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,7 +29,6 @@ import com.itbank.admin_member.Admin_memberDTO;
 import com.itbank.member.MemberDTO;
 import com.itbank.service.AdminService;
 import com.itbank.service.BoardSerivce;
-import com.itbank.service.CinemaService;
 import com.itbank.service.MemberService;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
@@ -40,7 +40,6 @@ public class AdminController {
 	@Autowired private AdminService as; 
 	@Autowired private BoardSerivce bs;
 	@Autowired private MemberService ms;
-	@Autowired private CinemaService cs;
 	
 	private final int perPage = 10;
 	private ObjectMapper mapper = new ObjectMapper();
@@ -104,6 +103,11 @@ public class AdminController {
 		Paging paging = new Paging(page, adminCount,perPage);
 		HashMap<String, Object> param = new HashMap<>();
 		List<Admin_memberDTO>list=as.selectAll(paging,param);
+		
+		Iterator<Admin_memberDTO> it = list.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next().getAdmin_name());
+		}
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		return mav;

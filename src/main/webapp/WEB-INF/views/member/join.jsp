@@ -27,10 +27,10 @@
 				</div>
 				<div>
 					<label>비밀번호</label>
-					<p><input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required></p>
+					<p><input type="password" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required></p>
 					<output id="pwCheck2"></output>					
 					<label>비밀번호 확인</label>
-					<p><input type="text" id="pw2" placeholder="영문,숫자로 조합해주세요." required></p>
+					<p><input type="password" id="pw2" placeholder="영문,숫자로 조합해주세요." required></p>
 					<output id="pwCheck"></output>
 				</div>
 				
