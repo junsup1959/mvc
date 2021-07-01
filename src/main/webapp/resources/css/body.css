@@ -53,7 +53,7 @@ input { border : none; border-radius: 5px;}
 .formWrap label {width : 200px; height: 40px; line-height: 40px; font-size : 20px;}
 .formWrap input {width : 470px; padding-left:10px; height: 40px; line-height: 40px; font-size : 20px;}
 .formWrap output {margin-left : 200px; width : 450px;}
-.formWrap input.btn1 { width : 150px;  }
+.formWrap input.btn1 { width : 150px; padding : 0  }
 
 .formWrap .radio p {width : 200px; height : 30px;  line-height: 30px;}
 .formWrap .radio input {width : 100px;height : 25px; }
