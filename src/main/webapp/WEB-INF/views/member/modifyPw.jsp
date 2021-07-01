@@ -14,7 +14,7 @@
 			<p>현재 비밀번호 확인</p>
 			<form>
 				<p><input type="hidden" name="member_email" value="${login.member_email }"></p>
-				<p><input type="text" name="member_password"></p>
+				<p><input type="password" name="member_password"></p>
 				<p><input type="submit" value="확인" class="btn1"></p>
 				<div id="checkPwMsg"></div>
 			</form>
@@ -23,12 +23,12 @@
 			<form>
 			<p>변경 비밀번호</pl>
 			<p>
-				<input type="text" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required>
+				<input type="password" name="member_password" id="pw1" onkeyup="passcheck2(this.value)" placeholder="영문,숫자로 조합해주세요." required>
 			</p>
 			<output id="pwCheck2"></output><br>				
 			<label>변경 비밀번호 확인</label>
 			<p>
-				<input type="text" id="pw2"  placeholder="영문,숫자로 조합해주세요." required>
+				<input type="password" id="pw2"  placeholder="영문,숫자로 조합해주세요." required>
 			</p>
 				<!-- <output id="pwCheck"></output> -->
 				<p><input type="submit" value="확인" class="btn1"></p>

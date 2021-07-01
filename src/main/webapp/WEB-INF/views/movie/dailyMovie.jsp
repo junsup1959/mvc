@@ -66,8 +66,11 @@
 					span.setStyle({
 						display:'inline-block',
 						position: 'absolute',
+						width : '100%',
+						height : '30px',
 						bottom: '50px',
-					    left: '20px'
+					    left: '0',
+					    background : '#fff'
 					})
 					span.innerHTML =  data[key]
 					wrap.appendChild(span)
@@ -75,7 +78,7 @@
 				case 'image':
 					const span1 = document.createElement('span')
 					span1.style.display = 'inline-block'
-					span1.innerHTML = '<img src="' + data[key] + '" style="width:200px;">'
+					span1.innerHTML = '<img src="' + data[key] + '" style="width:220px;">'
 					wrap.appendChild(span1)
 					break;
 			}
@@ -85,10 +88,10 @@
 			document.getElementById('daily').appendChild(wrap)
 			wrap.setStyle({
 				position: 'relative',
-		      	marginLeft: '10px',
-		      	width: '200px',
-		      	height: '300px',
-		      	marginTop: '50px'
+		      	marginLeft: '40px',
+		      	width: '220px',
+		      	height: '330px',
+		      	marginTop: '50px',
 		      	overflow : 'hidden'
 			})
 		})
@@ -99,8 +102,7 @@
 		display : 'flex',
 		flexWrap: "wrap",
 		justifyContent: "space-evenly",
-		width : '1200px',
-		hieght : '1000px',
+		width : '1500px',
 		marginLeft: 'auto',
 		marginRight: 'auto'
 	})
