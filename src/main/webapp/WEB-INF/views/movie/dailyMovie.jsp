@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-영화 목록
+<section id="bodyWrap">
+<div style="padding : 50px 20px;">
+<h2>일간 순위</h2>
 
 
-순위 이미지 타이틀
-<hr>
-
-<div style="display: none">
+ <div style="display: none">
 <a href="${cpath }/member/dailymovie">영화목록</a>
 </div>
 
@@ -16,7 +15,8 @@
 <!-- 네이버에서 받아온 영화  띄우기 -->
 <div id="daily"></div>
 
-
+</div>
+</section>
 
 
 
@@ -75,7 +75,7 @@
 				case 'image':
 					const span1 = document.createElement('span')
 					span1.style.display = 'inline-block'
-					span1.innerHTML = '<img src="' + data[key] + '" style="width:200px; height :200px">'
+					span1.innerHTML = '<img src="' + data[key] + '" style="width:200px;">'
 					wrap.appendChild(span1)
 					break;
 			}
@@ -89,6 +89,7 @@
 		      	width: '200px',
 		      	height: '300px',
 		      	marginTop: '50px'
+		      	overflow : 'hidden'
 			})
 		})
 		

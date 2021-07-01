@@ -127,7 +127,7 @@ $(document).ready(function(){
                 <li><a href="${cpath }/movie/dailyMovie">영화</a>
                     <ul class="sub clearfix" >
                         <li><a href="${cpath }/movie/dailyMovie">현재상영작</a></li>
-                        <li><a href="${cpath }/movie/weeklyMovie">상영예정작</a></li>
+                        <li><a href="${cpath }/movie/weeklyMovie">주간박스오피스</a></li>
                         <li><a href="${cpath }/movie/review">리뷰/평점</a></li>
                     </ul>
                 </li>
