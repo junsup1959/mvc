@@ -41,4 +41,7 @@ public interface ReservDAO {
 	@Update("update reservation set deleted='y' where member_email=#{member_email} and imp_uid=#{imp_uid} and merchant_uid =#{merchant_uid}")
 	int delete(HashMap<String, Object> param);
 
+	@Select("select seatNum from reservation where branchcode = #{branch} and movie_code=#{movie} and start_date=#{day}")
+	List<ReservDTO> selectSeatNum(HashMap<String, Object> param);
+
 }
