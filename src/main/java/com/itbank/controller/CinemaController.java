@@ -99,9 +99,9 @@ public class CinemaController {
 		int i2_s = Integer.parseInt(info.getStart_date().replace("-", ""));
 		int i2_e = Integer.parseInt(info.getEnd_date().replace("-", ""));
 		
-//		System.out.println("입력 상영관 영화 시작시간: "+i_s);
-//		System.out.println("입력 상영관 영화 마감시간: "+i_e);
-//		System.out.println("=============================================");
+		System.out.println("입력 상영관 영화 시작시간: "+i_s);
+		System.out.println("입력 상영관 영화 마감시간: "+i_e);
+		System.out.println("=============================================");
 		List<Theater_infoDTO> screenCodes = cs.screenCodes(info.getScreen_code());
 		
 		for(int i = 0; i < screenCodes.size(); i++) {
@@ -110,18 +110,22 @@ public class CinemaController {
 			int s2_s = Integer.parseInt(screenCodes.get(i).getStart_date().replace("-", ""));
 			int s2_e = Integer.parseInt(screenCodes.get(i).getEnd_date().replace("-", ""));
 			
-//			System.out.println("입력 되어있는 상영관 영화 마감시간: "+ s_s);
-//			System.out.println("입력 되어있는 상영관 영화 마감시간: "+s_e);
-			if((i2_s < s2_s && i2_e < s2_s) || (i2_s > s2_e && i2_s> s2_e)) {
-				row = cs.insertTheater_info(info);
-				 return row + "";
-			}else {
-				if((i_s < s_s && i_e < s_s) || (i_s > s_e && i_s> s_e)) {
+			System.out.println("123입력 되어있는 상영관 영화 마감시간: "+ s_s);
+			System.out.println("123입력 되어있는 상영관 영화 마감시간: "+s_e);
+			if((i2_s > s2_s && i2_s < s2_e) || (i2_e > s2_s && i2_e < s2_e)) {
+				if((i_s > s_s && i_s < s_e) || (i_e > s_s && i_e < s_e)) {
+					return i_s + " ~ " + i_e;
+				}else {
 					row = cs.insertTheater_info(info);
 					return row + "";
 				}
+			}else {
+				row = cs.insertTheater_info(info);
+				return row + "";
 			}
 		}
+		
+		
 		if(screenCodes.size() == 0) {
 			row = cs.insertTheater_info(info);
 			return row+"";
@@ -130,6 +134,17 @@ public class CinemaController {
 
 		return i_s + " ~ " + i_e;
 	}
+//			if((i2_s < s2_s && i2_e < s2_s) || (i2_s > s2_e && i2_e> s2_e)) {
+//				row = cs.insertTheater_info(info);
+//				return row + "";
+//			}else {
+//				if((i_s < s_s && i_e < s_s) || (i_s > s_e && i_e> s_e)) {
+//					System.out.println("444입력 되어있는 상영관 영화 마감시간: "+ s_s);
+//					System.out.println("444입력 되어있는 상영관 영화 마감시간: "+s_e);
+//					row = cs.insertTheater_info(info);
+//					return row + "";
+//				}
+//			}
 	
 	@ResponseBody
 	@GetMapping(value = "/getScreenCodes/{screenName}", produces = "application/json; charset=utf-8")

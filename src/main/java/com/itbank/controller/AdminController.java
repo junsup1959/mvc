@@ -104,10 +104,6 @@ public class AdminController {
 		HashMap<String, Object> param = new HashMap<>();
 		List<Admin_memberDTO>list=as.selectAll(paging,param);
 		
-		Iterator<Admin_memberDTO> it = list.iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next().getAdmin_name());
-		}
 		mav.addObject("paging", paging);
 		mav.addObject("list", list);
 		return mav;
