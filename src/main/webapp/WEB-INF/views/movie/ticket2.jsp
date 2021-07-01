@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
+<c:if test="${not empty list}" >
+	
+	<c:forEach items="${list }" var="seat">
+		<input type="hidden" name="resvSeat" class="resvSeat" value="${seat.seatNum }">
+	</c:forEach>
+</c:if>
+
+
 <section id="movieWrap">
   <section id="stWrap" class="clearfix">
    <article id="seatWrap">
@@ -166,7 +174,20 @@
     <script>
     // 예매 좌석을 배열로 받아오기
  $(document).ready(function(){
-    var nseat = ["1-1", "3-5", "4-7","8-9"]     // 예매한 좌석이 있을 경우    
+	 const v = document.querySelectorAll('.resvSeat')
+
+	 for(let i=0; i < v.length; i++){
+		 var nSeatNum = v[i].value
+		 console.log(nSeatNum)
+		 var resSeat = $('#'+ nSeatNum)
+	        resSeat.addClass('off')					// 새로운 className 부여
+	        resSeat.click(function(){
+//	            alert('예매된 좌석입니다')
+	            return false
+	 })
+	 }
+         // 예매한 좌석이 있을 경우    
+/*     console.log(nseat)
     for(var i = 0; i < nseat.length; i++){		// 예매수만큼 좌석 번호를 확인 하여
         var nSeatNum = nseat[i]
         var resSeat = $('#'+ nSeatNum)
@@ -175,7 +196,7 @@
 //            alert('예매된 좌석입니다')
             return false
         })
-    }
+    } */
     
  });
     
