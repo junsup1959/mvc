@@ -335,13 +335,13 @@
 		       						console.log(text)
 		       					if(+text==1){
 		       						alert('결제 성공하셨습니다.')
-		       						history.go(-1);
+		       						location.href = "${cpath}/movie/ticket"
 		       					}else if(text=='n'){
 		       						alert('데이터 위변조 문제로 결제가 취소되었습니다.')
-		       						history.go(-1);
+		       						location.href = "${cpath}/movie/ticket"
 		       					}else{
 		       						alert('서버측 문제로 결제가 기록되지 않았습니다. 고객센터로 문의바랍니다.')
-		       						history.go(-1);
+		       						location.href = "${cpath}/movie/ticket"
 		       					}
 		       				})	
 		                } else {
