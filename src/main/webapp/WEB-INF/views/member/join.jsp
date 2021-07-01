@@ -136,7 +136,7 @@ var check3 = false
 	
 	document.getElementById('checkId').onclick = function(event) {
 		const member_email = document.querySelector('input[name="member_email"]').value
-		const url = '${cpath}/member/' + member_email + '/'			
+		const url = '${cpath}/member/checkId/' + member_email + '/'			
 		const opt ={
 				method: 'GET'
 		}

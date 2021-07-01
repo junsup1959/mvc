@@ -49,9 +49,10 @@ public class AjaxController {
 	}
 	
 	
-	@GetMapping(value = "/{member_email}/", produces = "application/json; charset=utf-8")
+	@GetMapping(value = "/checkId/{member_email}/", produces = "application/json; charset=utf-8")
 	public String member(@PathVariable String member_email) throws JsonProcessingException{
 		int row = ms.select(member_email);
+		System.out.println(member_email);
 		return row +"";
 	}
 	

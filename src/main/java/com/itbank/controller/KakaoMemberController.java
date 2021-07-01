@@ -52,6 +52,7 @@ public class KakaoMemberController {
 	// 카카오 API 사용
 	@GetMapping(value="/auth/kakao/callback", produces="text/json;charset=UTF-8")
 	public ModelAndView kakaoCallback(String code, HttpSession session) {
+		System.out.println(code);
 		
 		//post 방식으로 key=value 데이터를 요청(카카오쪽으로)
 		//라이브러리 모음
@@ -68,7 +69,7 @@ public class KakaoMemberController {
 		
 		String grant_type = "authorization_code";
 		String client_id ="7d7a89444c3dc7117978512358c75028";
-		String redirect_uri = "http://localhost:8081/team/member/auth/kakao/callback";
+		String redirect_uri = "http://localhost:8080/team/member/auth/kakao/callback";
 	
 		//HttpBody 오브젝트 생성
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();

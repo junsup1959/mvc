@@ -50,7 +50,10 @@
 				<exclude-mapping path="/member/membership"/>			
 				<exclude-mapping path="/member/findId"/>			
 				<exclude-mapping path="/member/findPw"/>			
-				<exclude-mapping path="/member/addrPopup"/>			
+				<exclude-mapping path="/member/addrPopup"/>
+				<exclude-mapping path="/member/checkId/**"/>
+				<exclude-mapping path="/member/nick/**"/>
+				<exclude-mapping path="/member/auth/kakao/callback"/>			
 			<beans:bean id="MemberLoginInterceptor" class="com.itbank.interceptor.MemberLoginInterceptor" />
 		</interceptor>
 	</interceptors>
