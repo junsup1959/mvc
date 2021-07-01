@@ -34,8 +34,8 @@
 	
 	<select id="selectDateList" parameterType="HashMap" resultType="theaterInfo">
 		select theater_info.start_time, theater_info.end_time, theater_info.movie_title, theater_info.movie_type, 
-		theater_info.screen_code, theater.seat_amount from theater_info, theater 
-		where theater_info.screen_code like '%${branch}%' and theater_info.movie_title=#{movie_title} and theater_info.screen_code = theater.screen_code
+		theater_info.screen_code, theater.seat_amount from theater_info, theater
+		where theater_info.screen_code like '%${branch}%' and theater_info.movie_title=#{movie_title} and theater_info.screen_code = theater.screen_code order by start_time asc
 	</select>
 </mapper>
 
