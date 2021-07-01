@@ -224,6 +224,12 @@ public class MovieController {
     	}
     	String json = mapper.writeValueAsString(seatList);
     	mav.addObject("list", seatList);
+    	
+    	it = seatList.iterator();
+    	while(it.hasNext()){
+    		System.out.println(it.next().getSeatNum());
+    	}
+    	
     	mav.addObject("seatarray",seatarray.toArray(new String[0]));
     	mav.addObject("json",json);
     	return mav;

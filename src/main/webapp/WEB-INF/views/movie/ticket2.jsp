@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
+
 <c:if test="${not empty list}" >
 	
 	<c:forEach items="${list }" var="seat">
