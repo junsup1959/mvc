@@ -105,6 +105,11 @@ public class CinemaController {
 		System.out.println("=============================================");
 		List<Theater_infoDTO> screenCodes = cs.screenCodes(info.getScreen_code());
 		
+		boolean flag1 = false;
+		boolean flag2 = false;
+		boolean flag3 = false;
+		boolean flag4 = false;
+		
 		for(int i = 0; i < screenCodes.size(); i++) {
 			int s_s = Integer.parseInt(screenCodes.get(i).getStart_time());
 			int s_e = Integer.parseInt(screenCodes.get(i).getEnd_time());
@@ -114,38 +119,31 @@ public class CinemaController {
 			System.out.println("123입력 되어있는 상영관 영화 마감시간: "+ s_s);
 			System.out.println("123입력 되어있는 상영관 영화 마감시간: "+s_e);
 			if((i2_s > s2_s && i2_s < s2_e) || (i2_e > s2_s && i2_e < s2_e)) {
-				if((i_s > s_s && i_s < s_e) || (i_e > s_s && i_e < s_e)) {
-					return i_s + " ~ " + i_e;
-				}else {
-					row = cs.insertTheater_info(info);
-					return row + "";
+				flag1 = true; 
+				if(flag1 == true) {
+					if((i_s > s_s && i_s < s_e) || (i_e > s_s && i_e < s_e)) {
+						flag3 = true;	// 입력 불가
+					}else {
+						flag4 = true;	// 영화 입력
+					}
 				}
 			}else {
-				row = cs.insertTheater_info(info);
-				return row + "";
+				flag2 = true;
+				
 			}
 		}
 		
-		
-		if(screenCodes.size() == 0) {
-			row = cs.insertTheater_info(info);
-			return row+"";
+		if((flag1 == true)||(flag3 == true)) {
+			return i_s + " ~ " + i_e;
 		}
-//		System.out.println("row : " + row);
+		if((flag1 == false && flag2 == true) || (flag3 == false && flag4 == true)) {
+			row = cs.insertTheater_info(info);
+		}
+		
 
-		return i_s + " ~ " + i_e;
+
+		return row + "";
 	}
-//			if((i2_s < s2_s && i2_e < s2_s) || (i2_s > s2_e && i2_e> s2_e)) {
-//				row = cs.insertTheater_info(info);
-//				return row + "";
-//			}else {
-//				if((i_s < s_s && i_e < s_s) || (i_s > s_e && i_e> s_e)) {
-//					System.out.println("444입력 되어있는 상영관 영화 마감시간: "+ s_s);
-//					System.out.println("444입력 되어있는 상영관 영화 마감시간: "+s_e);
-//					row = cs.insertTheater_info(info);
-//					return row + "";
-//				}
-//			}
 	
 	@ResponseBody
 	@GetMapping(value = "/getScreenCodes/{screenName}", produces = "application/json; charset=utf-8")
