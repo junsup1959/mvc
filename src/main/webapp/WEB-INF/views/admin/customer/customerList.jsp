@@ -65,8 +65,9 @@
 				</span>
 			</div>
 		</c:forEach>
-		
-		<div class="pages">
+	</c:if>
+	</div>
+	<div class="pages">
 		<c:if test="${paging.prev }">
 		   	<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.begin-1}&number=${param.number}&sorted=${param.sorted}">
 		   	[이전]</a>
@@ -78,11 +79,8 @@
 		   	<a href="${cpath }/admin/customer/customerList?search=${param.search }&keyword=${param.keyword }&page=${paging.end+1}&number=${param.number}&sorted=${param.sorted}">
 		   	[다음]</a>
 	   	</c:if>
-	   	</div>
-	</c:if>
-	</div>
-	
-	
+	  </div>
+
 		<div class="searchWrap cf">
 			<form>	
 			<select name="search">
@@ -99,7 +97,7 @@
 		</div>
 	
 		<div>
-			<div class="btn2" onclick="location.href='${cpath}/admin/customer/mail'" style="margin-left: 200px">회원 메일 발송</div>
+			<div class="btn3" onclick="location.href='${cpath}/admin/customer/mail'" >회원 메일 발송</div>
 		</div>
 	</div>
 </section>
