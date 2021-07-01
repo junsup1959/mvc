@@ -29,4 +29,9 @@ public class ReservationSrvice {
 		return dao.delete(param);
 	}
 
+	public List<ReservDTO> selectSeatNum(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return dao.selectSeatNum(param);
+	}
+
 }

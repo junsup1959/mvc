@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
  
@@ -28,13 +30,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itbank.cinema.CinemaDTO;
 import com.itbank.cinema.Theater_infoDTO;
+import com.itbank.revervation.ReservDTO;
 import com.itbank.service.CinemaService;
+import com.itbank.service.ReservationSrvice;
  
 @Controller
 public class MovieController {
  
 	ObjectMapper mapper = new ObjectMapper();
 	@Autowired private CinemaService cs;
+	@Autowired ReservationSrvice rs;
     // 상수 설정
     //   - 요청(Request) 요청 변수
     private final String AUTH_KEY = "0c5277606b20ef880a6c3aec340bb83b";
@@ -203,7 +208,27 @@ public class MovieController {
     
     
     @GetMapping("/movie/ticket2")
-    public void ticket2() {}
+    public ModelAndView ticket2(@RequestParam HashMap<String, Object>param) throws JsonProcessingException {
+    	ModelAndView mav= new ModelAndView("/movie/ticket2");
+    	List<ReservDTO>list = rs.selectSeatNum(param);
+    	List<ReservDTO>seatList = new ArrayList<ReservDTO>();
+    	List<String> seatarray = new ArrayList<String>();
+    	Iterator<ReservDTO>it = list.iterator();
+    	
+    	while(it.hasNext()) {
+    		String[] seat= it.next().getSeatNum().split(",");
+    		for(int i = 0 ;i<seat.length;i++) {
+    			ReservDTO dto = new ReservDTO();
+    			dto.setSeatNum(seat[i]);
+    			seatList.add(dto);
+    		}
+    	}
+    	String json = mapper.writeValueAsString(seatList);
+    	mav.addObject("list", seatList);
+    	mav.addObject("seatarray",seatarray.toArray(new String[0]));
+    	mav.addObject("json",json);
+    	return mav;
+    }
     
     @GetMapping("/movie/ticket")
     public void ticket() {}
