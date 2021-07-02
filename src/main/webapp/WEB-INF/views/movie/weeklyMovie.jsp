@@ -69,7 +69,7 @@
 					p.innerHTML = '<img src="' + data[key] + '" class="linkImg">'; wrap.appendChild(p); break;
 				case 'link':
 					p.innerHTML = '<a href="' + data[key] + 
-						'" class="link">영화상세정보</a>';
+						'" class="link" target="_blank">영화상세정보</a>';
 					 wrap.appendChild(p); break;
 				}
 				if(p.innerText != ''){

@@ -261,7 +261,7 @@
 		for(let i=0; i < json.length; i++){
 			const li = document.createElement('li');
 			li.className = "date_list";
-			li.innerHTML = "<span>"+json[i].screen_code+" " +"</span>"+"<span>"+json[i].movie_title+" "+"</span>"+"<span> 시작시간 : "+json[i].start_time+" " +"</span>"+"<span>남은 좌석: "+json[i].seat_amount+" " +"</span>"
+			li.innerHTML = "<span>"+json[i].screen_code+" " +"</span>"+"<span>"+json[i].movie_title+" "+"</span>"+"<span> 시작시간 : "+json[i].start_time+" " +"</span>"+"<span>전체좌석: "+json[i].seat_amount+" " +"</span>"
 			ul.appendChild(li)
 			movieList.appendChild(ul)
 			li.style.cursor='pointer';

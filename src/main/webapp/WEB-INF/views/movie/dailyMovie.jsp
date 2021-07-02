@@ -68,7 +68,7 @@
 						position: 'absolute',
 						width : '100%',
 						height : '30px',
-						bottom: '50px',
+						bottom: '0',
 					    left: '0',
 					    background : '#fff'
 					})
