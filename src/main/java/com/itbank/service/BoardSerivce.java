@@ -37,10 +37,10 @@ public class BoardSerivce {
 	@Autowired private CoboardDAO c_dao;
 	@Autowired private Board_likeDAO bl_dao;
 	@Autowired private AdminReplyDAO r_dao;
-	private final String serverIp = "192.168.0.70";
+	private final String serverIp = "192.168.109.137";
 	private final int serverPort = 22;
 	private final String serverUser = "root";
-	private final String serverPass = "1";
+	private final String serverPass = "1234";
 	private ChannelSftp chsftp = null;
 	
 	

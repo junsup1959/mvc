@@ -173,6 +173,7 @@ public class MovieController {
                 response.append(readline);
             }
  
+            System.out.println(response.toString());
             // JSON 객체로  변환
             JSONObject responseBody = new JSONObject(response.toString());
  
